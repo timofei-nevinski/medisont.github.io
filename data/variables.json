@@ -407,15 +407,9 @@
             "numberOfSections": 4,
             "coefficientIfSmallPrinting": 1.05,
             "timeOfOnePantone": 1800,
-<<<<<<< HEAD
             "paperChargingTime": 120,
             "cutPrice": 0.1,
             "ream": 300,
-=======
-            "paperChargingTime": 1700, 
-            "cutPrice": 0.1, 
-            "ream": 300, 
->>>>>>> 50d7689008153bf128a151dbfed025523f9995a0
             "defaultRentabilityId": "1", 
             "Rentability": [
                 {
