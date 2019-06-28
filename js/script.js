@@ -953,13 +953,11 @@ function getPaperFormatBL(firstCall) {
                         widthBL.disabled = false;
                         lengthBL.disabled = false;
                         
-
                         width = Number(document.getElementById('widthBL').value);
                         length = Number(document.getElementById('lengthBL').value);
                         
                     }
 
-                    
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -1268,7 +1266,7 @@ function getPrintedMachineBL(){
 }
 
 var jsonObj = "";
-var requestURL = 'https://medisont.github.io/variables.json';
+var requestURL = 'https://medisont.github.io/data/variables.json';
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (request.readyState == XMLHttpRequest.DONE) {
@@ -1318,7 +1316,6 @@ request1.onreadystatechange = function() {
 request1.open('GET', requestURLDollar, true);
 request1.responseType = 'json';
 request1.send();
-
 
 //универсальный калькулятор
 var homeContainer = document.getElementById("homeContainer");
@@ -1569,8 +1566,6 @@ html +=         '</div>'
 html +=     '</div>'
 html += '</div>'
 homeContainer.innerHTML = html;     
-
-
 
 
 var numInput = document.querySelectorAll('input');
