@@ -1268,7 +1268,7 @@ function getPrintedMachineBL(){
 }
 
 var jsonObj = "";
-var requestURL = 'https://cdn.belstu.by/calculator/variables.json';
+var requestURL = 'https://medisont.github.io/variables.json';
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (request.readyState == XMLHttpRequest.DONE) {
