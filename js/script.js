@@ -1808,10 +1808,25 @@ function calculatePrintedField() {
 
     checkLabel +="Скорость печати: " + (printSpeed * printSpeedRatio) + "<br />";
 
+    var coeff = 1;
+
+    if(jsonP.weight <= 170){
+        coef = Math.floor((allFittingPaper + numberOfPrintedSheets) / 3000, 1);
+        paperChargingTime += (120 * coeff);
+
+    } else if(jsonP.weight >= 200 && jsonP.weight <= 250) {
+        coef = Math.floor((allFittingPaper + numberOfPrintedSheets) / 1900, 1);
+        paperChargingTime += (90 * coeff);
+    }
+    else if (jsonP.weight >=300 || paperType == "Carton"){
+        coef = Math.floor((allFittingPaper + numberOfPrintedSheets) / 850, 1);
+        paperChargingTime += (60 * coeff);
+    }
+
     if(printSpeed != 0){
         var iterations = Math.ceil(face / numberOfSections) + Math.ceil(turnover / numberOfSections) + varnishing;
 
-        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / paperChargingTime) * iterations) * 60;
+        var chargingTime = (paperChargingTime * iterations);
         var dateChanging = new Date(null);
         dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
         checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
