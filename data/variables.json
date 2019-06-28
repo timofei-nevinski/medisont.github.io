@@ -395,21 +395,22 @@
             "id": "0",
             "name": "Ryobi 524",
             "flap": 10, 
-            "scale": 8,
             "sideField": 5,
             "chemistryPrice": 1.5,
             "amortization": 1.5,
-            "formPrice": 2.3,
             "priceOneHour": 57,
             "printSpeed": 7750,
             "printSpeedRatio": 0.75,
             "fittingTime": 150,
+            "fittingTime": 300, 
             "numberOfSections": 4,
             "coefficientIfSmallPrinting": 1.05,
             "timeOfOnePantone": 1800,
             "paperChargingTime": 120,
             "cutPrice": 0.1,
             "ream": 300,
+            "ream": 300, 
+>>>>>>> 50d7689008153bf128a151dbfed025523f9995a0
             "defaultRentabilityId": "1", 
             "Rentability": [
                 {
@@ -820,4 +821,3 @@
             "price": 25
         }
     ]
-}
