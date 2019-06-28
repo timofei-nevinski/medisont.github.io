@@ -400,7 +400,7 @@
             "chemistryPrice": 1.5,
             "amortization": 1.5,
             "formPrice": 2.3, 
-            "priceOneHour": 57, /стоимость печати
+            "priceOneHour": 57,
             "printSpeed": 7750,
             "printSpeedRatio": 0.75,
             "fittingTime": 150, 
