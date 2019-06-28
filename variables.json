@@ -1,0 +1,823 @@
+{
+    "Paper": {
+        "Format": [
+            {
+                "id": "0",
+                "name": "43x61",
+                "width": 430,
+                "length": 610
+            },
+            {
+                "id": "1",
+                "name": "50x70",
+                "width": 500,
+                "length": 700
+            },
+            {
+                "id": "2",
+                "name": "62x86",
+                "width": 620,
+                "length": 860
+            },
+            {
+                "id": "3",
+                "name": "62x90",
+                "width": 620,
+                "length": 900
+            },
+            {
+                "id": "4",
+                "name": "62x94",
+                "width": 620,
+                "length": 940
+            },
+            {
+                "id": "5",
+                "name": "65x94",
+                "width": 650,
+                "length": 940
+            },
+            {
+                "id": "6",
+                "name": "70x100",
+                "width": 700,
+                "length": 1000
+            },
+            {
+                "id": "7",
+                "name": "72x104",
+                "width": 720,
+                "length": 1040
+            }
+        ],
+        "Blanks": [
+            
+            {
+                "id": "0",
+                "name": "А7",
+                "width": 105,
+                "length": 74
+            },
+            {
+                "id": "1",
+                "name": "A6",
+                "width": 148,
+                "length": 105
+            },
+            {
+                "id": "2",
+                "name": "A5",
+                "width": 210,
+                "length": 148
+            },
+            {
+                "id": "3",
+                "name": "A4",
+                "width": 297,
+                "length": 210
+            },
+            {
+                "id": "4",
+                "name": "A3",
+                "width": 420,
+                "length": 297
+            },
+            {
+                "id": "5",
+                "name": "Другой",
+                "width": 100,
+                "length": 100
+            }
+            
+        ],
+
+        "Offset": [
+          {
+            "id": "0",
+            "name": "Офсетная 65 г.",
+            "weight": 65,
+            "price": 1.18,
+            "format": "2,3,5,6,7"
+          },
+          {
+            "id": "1",
+            "name": "Офсетная 80 г.",
+            "weight": 80,
+            "price": 1.18,
+            "format": "2,3,5,6,7"
+            
+          },
+          {
+            "id": "2",
+            "name": "Офсетная 100 г.",
+            "weight": 100,
+            "price": 1.18,
+            "format": "2,3,4,5,6,7"
+            
+          },
+          {
+            "id": "3",
+            "name": "Офсетная 120 г.",
+            "weight": 120,
+            "price": 1.18,
+            "format": "2,3,4,5,6,7"
+            
+          },
+          {
+            "id": "4",
+            "name": "Офсетная 160 г.",
+            "weight": 160,
+            "price": 1.18,
+            "format": "2,3,4,5,6,7"
+            
+          },
+          {
+            "id": "5",
+            "name": "Офсетная 200 г.",
+            "weight": 200,
+            "price": 1.18,
+            "format": "2,3,4,5,6,7"
+            
+          }
+        ],
+
+        "Glossy": [
+            {
+                "id": "0",
+                "name": "Глянцевая 90 г.",
+                "weight": 90,
+                "price": 1.345,
+                "format": "5,7"
+                
+            },
+            {
+                "id": "1",
+                "name": "Глянцевая 115 г.",
+                "weight": 115,
+                "price": 1.22,
+                "format": "5,7"
+            },
+            {
+                "id": "2",
+                "name": "Глянцевая 130 г.",
+                "weight": 130,
+                "price": 1.23,
+                "format": "5,7"
+            },
+            {
+                "id": "3",
+                "name": "Глянцевая 150 г.",
+                "weight": 150,
+                "price": 1.27,
+                "format": "5,7"
+            },
+            {
+                "id": "4",
+                "name": "Глянцевая 170 г.",
+                "weight": 170,
+                "price": 1.28,
+                "format": "5,7"
+            },
+            {
+                "id": "5",
+                "name": "Глянцевая 200 г.",
+                "weight": 200,
+                "price": 1.34,
+                "format": "5,7"
+            },
+            {
+                "id": "6",
+                "name": "Глянцевая 250 г.",
+                "weight": 250,
+                "price": 1.31,
+                "format": "5,7"
+            },
+            {
+                "id": "7",
+                "name": "Глянцевая 300 г.",
+                "weight": 300,
+                "price": 1.45,
+                "format": "5,7"
+            },
+            {
+                "id": "8",
+                "name": "Глянцевая 350 г.",
+                "weight": 350,
+                "price": 1.45,
+                "format": "5,7"
+            }
+        ],
+
+        "Mat": [
+            {
+                "id": "0",
+                "name": "Матовая 90 г.",
+                "weight": 90,
+                "price": 1.345,
+                "format": "5,7"
+            },
+            {
+                "id": "1",
+                "name": "Матовая 115 г.",
+                "weight": 115,
+                "price": 1.22,
+                "format": "5,7"
+            },
+            {
+                "id": "2",
+                "name": "Матовая 130 г.",
+                "weight": 130,
+                "price": 1.23,
+                "format": "5,7"
+            },
+            {
+                "id": "3",
+                "name": "Матовая 150 г.",
+                "weight": 150,
+                "price": 1.27,
+                "format": "5,7"
+            },
+            {
+                "id": "4",
+                "name": "Матовая 170 г.",
+                "weight": 170,
+                "price": 1.28,
+                "format": "5,7"
+            },
+            {
+                "id": "5",
+                "name": "Матовая 200 г.",
+                "weight": 200,
+                "price": 1.34,
+                "format": "5,7"
+            },
+            {
+                "id": "6",
+                "name": "Матовая 250 г.",
+                "weight": 250,
+                "price": 1.31,
+                "format": "5,7"
+            },
+            {
+                "id": "7",
+                "name": "Матовая 300 г.",
+                "weight": 300,
+                "price": 1.45,
+                "format": "5,7"
+            },
+            {
+                "id": "8",
+                "name": "Матовая 350 г.",
+                "weight": 350,
+                "price": 1.45,
+                "format": "5,7"
+            }
+        ],
+        "Adhesive": [
+            {
+                "id": "0",
+                "name": "Самоклеящаяся 190 г.",
+                "weight": 190,
+                "price": 1.345,
+                "format": "0,1"
+            }
+        ],
+        "Carton": [
+            {
+                "id": "0",
+                "name": "Картон х1 200 г.",
+                "weight": 200,
+                "price": 1.28,
+                "format": "5,7"
+            },
+            {
+                "id": "1",
+                "name": "Картон х1 225 г.",
+                "weight": 225,
+                "price": 1.34,
+                "format": "5,7"
+            },
+            {
+                "id": "2",
+                "name": "Картон х1 250 г.",
+                "weight": 250,
+                "price": 1.31,
+                "format": "5,7"
+            },
+            {
+                "id": "3",
+                "name": "Картон х1 270 г.",
+                "weight": 270,
+                "price": 2,
+                "format": "5,7"
+            },
+            {
+                "id": "4",
+                "name": "Картон х2 270 г.",
+                "weight": 270,
+                "price": 2.6,
+                "format": "5,7"
+            },
+            {
+                "id": "5",
+                "name": "Картон х2 300 г.",
+                "weight": 300,
+                "price": 2.6,
+                "format": "5,7"
+            }
+        ],
+        "Evelope": [
+            {
+                "id": "0",
+                "name": "Евро",
+                "price": 0.016279
+            },
+            {
+                "id": "1",
+                "name": "С6",
+                "price": 0.016279
+            },
+            {
+                "id": "2",
+                "name": "С5",
+                "price": 0.023256
+            },
+            {
+                "id": "3",
+                "name": "С4",
+                "price": 0.04186
+            }
+        ],
+        "Kappa": [
+            {
+                "id": "0",
+                "name": "Каппа",
+                "price": 1.6,
+                "format": "6"
+            }
+        ],
+        "FittingPager": [
+            {
+                "id": "0",
+                "before": 500,
+                "numberPaper": 30
+            },
+            {
+                "id": "1",
+                "before": 1000,
+                "numberPaper": 45
+            },
+            {
+                "id": "2",
+                "before": 2000,
+                "numberPaper": 50
+            },
+            {
+                "id": "3",
+                "before": 3000,
+                "numberPaper": 60
+            },
+            {
+                "id": "4",
+                "before": 5000,
+                "numberPaper": 80
+            },
+            {
+                "id": "5",
+                "before": 10000,
+                "numberPaper": 120
+            }
+        ]
+    },
+
+    "PrintingMachine": [
+        {
+            "id": "0",
+            "name": "Ryobi 524",
+            "flap": 10, 
+            "scale": 8,
+            "sideField": 5,
+            "chemistryPrice": 1.5,
+            "amortization": 1.5,
+            "formPrice": 2.3,
+            "priceOneHour": 57,
+            "printSpeed": 7750,
+            "printSpeedRatio": 0.75,
+            "fittingTime": 150,
+            "numberOfSections": 4,
+            "coefficientIfSmallPrinting": 1.05,
+            "timeOfOnePantone": 1800,
+            "paperChargingTime": 1700,
+            "cutPrice": 0.1,
+            "ream": 300,
+            "defaultRentabilityId": "1", 
+            "Rentability": [
+                {
+                    "id": "0",
+                    "name": "Аврал",
+                    "price": 80
+                },
+                {
+                    "id": "1",
+                    "name": "Хорошая",
+                    "price": 57
+                },
+                {
+                    "id": "2",
+                    "name": "Средняя",
+                    "price": 45
+                },
+                {
+                    "id": "3",
+                    "name": "Минимум",
+                    "price": 38.25
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "name": "Ryobi 522",
+            "flap": 10,
+            "scale": 8,
+            "sideField": 5,
+            "chemistryPrice": 1.2,
+            "amortization": 1.2,
+            "formPrice": 2.3,
+            "priceOneHour": 38,
+            "printSpeed": 7200,
+            "printSpeedRatio": 0.75,
+            "fittingTime": 300,
+            "numberOfSections": 2,
+            "coefficientIfSmallPrinting": 1.05,
+            "timeOfOnePantone": 1800,
+            "paperChargingTime": 1700,
+            "cutPrice": 0.1,
+            "ream": 300,
+            "defaultRentabilityId": "1", 
+            "Rentability": [
+                {
+                    "id": "0",
+                    "name": "Аврал",
+                    "price": 53
+                },
+                {
+                    "id": "1",
+                    "name": "Хорошая",
+                    "price": 38
+                },
+                {
+                    "id": "2",
+                    "name": "Средняя",
+                    "price": 30
+                },
+                {
+                    "id": "3",
+                    "name": "Минимум",
+                    "price": 25.5
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Ромайор",
+            "flap": 8,
+            "scale": 0,
+            "sideField": 0,
+            "chemistryPrice": 1.2,
+            "amortization": 1.2,
+            "formPrice": 2.1,
+            "priceOneHour": 25,
+            "printSpeed": 5000,
+            "printSpeedRatio": 1,
+            "fittingTime": 300,
+            "numberOfSections": 1,
+            "coefficientIfSmallPrinting": 1,
+            "timeOfOnePantone": 1800,
+            "paperChargingTime": 1700,
+            "cutPrice": 0.1,
+            "ream": 600,
+            "defaultRentabilityId": "1", 
+            "Rentability": [
+                {
+                    "id": "0",
+                    "name": "Аврал",
+                    "price": 35
+                },
+                {
+                    "id": "1",
+                    "name": "Хорошая",
+                    "price": 25
+                },
+                {
+                    "id": "2",
+                    "name": "Средняя",
+                    "price": 20
+                },
+                {
+                    "id": "3",
+                    "name": "Минимум",
+                    "price": 18
+                }
+            ]
+
+        }
+    ],
+    "Сoefficients": {
+        "materials": 1.05,
+        "outsideWork": 1.4,
+        "minCutPrice": 5
+    },
+    "PostpressProcessing": {
+        "scoring": 0.01,
+        "hole": 0.005,
+        "grommet": 0.02,
+        "rounding": 0.001,
+        "brace": 0.012,
+        "folding": 0.005,
+        "compilation": 0.004,
+        "gluingPVA": 0.1,
+        "gluingPVAMore250": 0.12,
+        "insertSheetsInBlock": 0.016,
+        "cutting": 0.21,
+        "numeration": 0.05
+    },
+    "ThermalCover":[
+        {
+            "id": "0",
+            "name": "Нет",
+            "price": 0
+        },
+        {
+            "id": "1",
+            "name": "A4",
+            "price": 0.25
+        },
+        {
+            "id": "2",
+            "name": "A5",
+            "price": 0.2
+        }
+    ],
+    "Laminade": [
+        {
+            "id": "0",
+            "name": "Нет",
+            "price": 0
+        },
+        {
+            "id": "1",
+            "name": "Глянцевый х1",
+            "price": 0.08
+        },
+        {
+            "id": "2",
+            "name": "Глянцевый х2",
+            "price": 0.16
+        },
+        {
+            "id": "3",
+            "name": "Матовый х1",
+            "price": 0.1
+        },
+        {
+            "id": "4",
+            "name": "Матовый х2",
+            "price": 0.2
+        },
+        {
+            "id": "5",
+            "name": "Сатин х1",
+            "price": 0.15
+        },
+        {
+            "id": "6",
+            "name": "Сатин х2",
+            "price": 0.3
+        }
+    ],
+    "Spring": [
+        {
+            "id": "0",
+            "name": "Нет",
+            "price": 0
+        },
+        {
+            "id": "1",
+            "name": "A6",
+            "price": 0.25
+        },
+        {
+            "id": "2",
+            "name": "A5",
+            "price": 0.35
+        },
+        {
+            "id": "3",
+            "name": "A4",
+            "price": 0.45
+        },
+        {
+            "id": "4",
+            "name": "A3",
+            "price": 0.9
+        }
+    ],
+    "Gluing": [
+        {
+            "glueGun": 0.05,
+            "scotch": 0.005,
+            "BuildPackage": [
+                {
+                    "id": "0",
+                    "before": 200,
+                    "price": 1.1
+                },
+                {
+                    "id": "1",
+                    "before": 500,
+                    "price": 0.8
+                },
+                {
+                    "id": "2",
+                    "before": 1000,
+                    "price": 0.7
+                },
+                {
+                    "id": "3",
+                    "after": 1000,
+                    "price": 0.65
+                }
+            ]
+            
+        }
+    ],
+    "Pasting": [
+        {
+            "id": "0",
+            "name": "Нет",
+            "price": 0
+        },
+        {
+            "id": "1",
+            "name": "x1",
+            "price": 0.25
+        },
+        {
+            "id": "2",
+            "name": "x2",
+            "price": 0.5
+        }
+    ],
+    "CuttingDown": [
+        {
+            "id": "0",
+            "before": 100,
+            "price": 25
+        },
+        {
+            "id": "1",
+            "before": 200,
+            "price": 30
+        },
+        {
+            "id": "2",
+            "before": 300,
+            "price": 25
+        },
+        {
+            "id": "3",
+            "before": 400,
+            "price": 25
+        },
+        {
+            "id": "4",
+            "before": 500,
+            "price": 25
+        },
+        {
+            "id": "5",
+            "before": 1000,
+            "price": 25
+        },
+        {
+            "id": "6",
+            "before": 1500,
+            "price": 25
+        },
+        {
+            "id": "7",
+            "before": 2000,
+            "price": 25
+        },
+        {
+            "id": "8",
+            "before": 2500,
+            "price": 25
+        },
+        {
+            "id": "9",
+            "before": 3000,
+            "price": 25
+        },
+        {
+            "id": "10",
+            "before": 3500,
+            "price": 25
+        },
+        {
+            "id": "11",
+            "before": 4000,
+            "price": 25
+        },
+        {
+            "id": "12",
+            "before": 4500,
+            "price": 25
+        },
+        {
+            "id": "13",
+            "before": 5000,
+            "price": 25
+        },
+        {
+            "id": "14",
+            "before": 5500,
+            "price": 25
+        },
+        {
+            "id": "15",
+            "before": 6000,
+            "price": 25
+        },
+        {
+            "id": "16",
+            "before": 6500,
+            "price": 25
+        },
+        {
+            "id": "17",
+            "before": 7000,
+            "price": 25
+        },
+        {
+            "id": "18",
+            "before": 7500,
+            "price": 25
+        },
+        {
+            "id": "19",
+            "before": 8000,
+            "price": 25
+        },
+        {
+            "id": "20",
+            "before": 8500,
+            "price": 25
+        },
+        {
+            "id": "21",
+            "before": 9000,
+            "price": 25
+        },
+        {
+            "id": "22",
+            "before": 9500,
+            "price": 25
+        },
+        {
+            "id": "23",
+            "before": 10000,
+            "price": 25
+        },
+        {
+            "id": "24",
+            "before": 15000,
+            "price": 25
+        },
+        {
+            "id": "25",
+            "before": 20000,
+            "price": 25
+        },
+        {
+            "id": "26",
+            "before": 25000,
+            "price": 25
+        },
+        {
+            "id": "27",
+            "before": 30000,
+            "price": 25
+        },
+        {
+            "id": "28",
+            "before": 40000,
+            "price": 25
+        },
+        {
+            "id": "29",
+            "before": 50000,
+            "price": 25
+        }
+    ]
+}
