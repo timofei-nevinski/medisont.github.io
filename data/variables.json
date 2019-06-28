@@ -356,7 +356,6 @@
                 "format": "6"
             }
         ],
-        //---------------------------------------Приладка
         "FittingPager": [
             {
                 "id": "0",
@@ -395,22 +394,22 @@
         {
             "id": "0",
             "name": "Ryobi 524",
-            "flap": 10, //клапан
-            "scale": 8, //шкалы
+            "flap": 10, 
+            "scale": 8, 
             "sideField": 5,
             "chemistryPrice": 1.5,
             "amortization": 1.5,
-            "formPrice": 2.3, //цена формы
+            "formPrice": 2.3, 
             "priceOneHour": 57, /стоимость печати
             "printSpeed": 7750,
             "printSpeedRatio": 0.75,
-            "fittingTime": 150, //Приладка 1 формы7??
+            "fittingTime": 150, 
             "numberOfSections": 4,
             "coefficientIfSmallPrinting": 1.05,
-            "timeOfOnePantone": 1800, //секунд на замес 1-го пантона
-            "paperChargingTime": 1700, //зарядка бумаги на каждые ???
-            "cutPrice": 0.1, //цена резки
-            "ream": 300, //привертка для резки
+            "timeOfOnePantone": 1800,
+            "paperChargingTime": 1700, 
+            "cutPrice": 0.1, 
+            "ream": 300, 
             "defaultRentabilityId": "1", 
             "Rentability": [
                 {
