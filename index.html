@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="Cache-Control" content="no-cache">
+      <meta http-equiv="Cache-Control" content="private">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <link rel="stylesheet" href="./css/style.css">
+    </head>
+    
+  <body>
+
+    <div class="container">
+      <div class="row">
+          <div  class="col-lg-12">
+              <h3>Left Tabs</h3>
+              <hr/>
+              <div class="col-lg-2"> <!-- required for floating -->
+                <!-- Nav tabs  -->
+                <ul class="nav nav-tabs tabs-left sideways">
+                  <li><a href="#universal-calculator-v" data-toggle="tab">Универсальный калькулятор</a></li>
+                  <li><a href="#bierdequel-v" data-toggle="tab">Бирдекели</a></li>
+                  <li class="active"><a href="#blanks-v" data-toggle="tab">Бланки</a></li>
+                  <li><a href="#settings-v" data-toggle="tab">Конверты</a></li>
+                </ul>
+              </div>
+      
+              <div class="col-lg-10">
+                <!-- Tab panes  -->
+                <div class="tab-content">
+                  <div class="tab-pane " id="universal-calculator-v">
+                      <div id="homeContainer" class="universal-calculator"></div>
+                  </div>
+                  <div class="tab-pane" id="bierdequel-v">
+                    <div id="bierdequelContainer" class="bierdequel-calculator"></div>
+                  </div>
+                  <div class="tab-pane active" id="blanks-v">
+                    <div id="blanksContainer" class="blanks-calculator"></div>
+                  </div>
+                  <div class="tab-pane" id="settings-v">Settings Tab.</div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
+    <script type="text/javascript" src="./js/script.js"></script>
+    
+  </body> 
+</html>
