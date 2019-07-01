@@ -1811,15 +1811,15 @@ function calculatePrintedField() {
     var coeff = 1;
 
     if(jsonP.weight <= 170){
-        coeff = Math.floor((allFittingPaper + numberOfPrintedSheets) / 3000, 1);
+        coeff = Math.ceil((allFittingPaper + numberOfPrintedSheets) / 3000);
         paperChargingTime += (120 * coeff);
 
     } else if(jsonP.weight >= 200 && jsonP.weight <= 250) {
-        coeff = Math.floor((allFittingPaper + numberOfPrintedSheets) / 1900, 1);
+        coeff = Math.ceil((allFittingPaper + numberOfPrintedSheets) / 1900);
         paperChargingTime += (90 * coeff);
     }
     else if (jsonP.weight >=300 || paperType == "Carton"){
-        coeff = Math.floor((allFittingPaper + numberOfPrintedSheets) / 850, 1);
+        coeff = Math.ceil((allFittingPaper + numberOfPrintedSheets) / 850);
         paperChargingTime += (60 * coeff);
     }
 
