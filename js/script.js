@@ -1886,7 +1886,7 @@ function calculatePrintedField() {
     checkLabel +="Стоимость Подборки: " + (printing * jsonPP.compilation * compilation).toFixed(2) + "$" +  "<br />";
 
     allCost += (printing * jsonPP.numberNumeration * numiration);
-    checkLabel +="Стоимость Нумирации: " + (printing * jsonPP.numberNumeration * numiration).toFixed(2) + "$" +  "<br />";
+    checkLabel +="Стоимость Нумерации: " + (printing * jsonPP.numberNumeration * numiration).toFixed(2) + "$" +  "<br />";
 
     allCost += (gluingPVA > 250 ? jsonPP.gluingPVAMore250 * gluingPVA : jsonPP.gluingPVA * gluingPVA) ;
     checkLabel +="Стоимость Склейки ПВА: " + (gluingPVA > 250 ? jsonPP.gluingPVAMore250 * gluingPVA : jsonPP.gluingPVA * gluingPVA).toFixed(2) + "$" +  "<br />";
