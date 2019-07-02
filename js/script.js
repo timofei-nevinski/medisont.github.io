@@ -706,9 +706,9 @@ html +=                 '<h4>Нумерация</h4>'
 html +=             '</div> '
 html +=             '<div class="col-md-12">'				
 html +=                 '<div>'
-html +=                     '<p><input name="numeration" type="radio" value="0" onchange="calculateBlanks()" checked="checked"> Нет</p>'
-html +=                     '<p><input name="numeration" type="radio" value="1" onchange="calculateBlanks()"> x1</p>'
-html +=                     '<p><input name="numeration" type="radio" value="2" onchange="calculateBlanks()">  x2</p>'
+html +=                     '<p><input name="numerationBL" type="radio" value="0" onchange="calculateBlanks()" checked="checked"> Нет</p>'
+html +=                     '<p><input name="numerationBL" type="radio" value="1" onchange="calculateBlanks()"> x1</p>'
+html +=                     '<p><input name="numerationBL" type="radio" value="2" onchange="calculateBlanks()">  x2</p>'
 html +=                 '</div> '
 html +=             '</div>'
 html +=         '</div>'
@@ -732,7 +732,7 @@ function calculateBlanks() {
     var rentabilityId = Number(document.getElementById("rentabilityBL").value); 
     var turnoverElem = document.getElementById('turnoverBL');
     var paperFormat = document.getElementById("paperFormatBL").value;
-    var numeration = document.querySelector('input[name=numeration]:checked').value;
+    var numerationBL = document.querySelector('input[name=numerationBL]:checked').value;
     var paperWeightValue = document.getElementById("paperWeightBL").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -865,8 +865,8 @@ function calculateBlanks() {
     var jsonPP = jsonObj["PostpressProcessing"]; 
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    allCost += (printing * jsonPP.numeration * numeration);
-    checkLabel +="Стоимость нумерации: " + (printing * jsonPP.numeration * numeration).toFixed(2) + "$" +  "<br />";
+    allCost += (printing * jsonPP.numeration * numerationBL);
+    checkLabel +="Стоимость нумерации: " + (printing * jsonPP.numeration * numerationBL).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
@@ -1485,6 +1485,14 @@ html +=             '</div> '
 html +=         '</div> '
 html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-4">'				
+html +=                 '<p><input name="numiration" type="checkbox" onchange="getStateElem(this)"> Количество нумераций</p>'
+html +=             '</div>'
+html +=             '<div class="col-md-4">'
+html +=                 '<input id="numiration" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
+html +=             '</div> '
+html +=         '</div> '
+html +=         '<div class="col-md-12">'
+html +=             '<div class="col-md-4">'				
 html +=                 '<p><input name="insertSheetsInBlock" type="checkbox" onchange="getStateElem(this)"> Вставка листов в блок, шт</p>'
 html +=             '</div>'
 html +=             '<div class="col-md-4">'
@@ -1603,6 +1611,7 @@ function calculatePrintedField() {
     var rentabilityId = Number(document.getElementById("rentability").value); 
     var montage = Number(document.getElementById('montage').value);
     var scoring = Number(document.getElementById('scoring').value);
+    var numiration = Number(document.getElementById('numiration').value);
     var hole = Number(document.getElementById('hole').value);
     var insertSheetsInBlock = Number(document.getElementById('insertSheetsInBlock').value);
     var grommet = Number(document.getElementById('grommet').value);
@@ -1839,7 +1848,7 @@ function calculatePrintedField() {
         var printTime1 = (((numberOfPrintedSheets / (printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
         var date1 = new Date(null);
         date1.setSeconds(printTime1); // specify value for SECONDS here
-        checkLabel +="Время печати без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
+        checkLabel +="Время печати с зарядкой без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
 
         var printTime = (((numberOfPrintedSheets / (printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
         var date = new Date(null);
@@ -1875,6 +1884,9 @@ function calculatePrintedField() {
     checkLabel +="Стоимость Фальцовка: " + (printing * jsonPP.folding * folding).toFixed(2) + "$" +  "<br />";
     allCost += (printing * jsonPP.compilation * compilation);
     checkLabel +="Стоимость Подборки: " + (printing * jsonPP.compilation * compilation).toFixed(2) + "$" +  "<br />";
+
+    allCost += (printing * jsonPP.numberNumeration * numiration);
+    checkLabel +="Стоимость Нумирации: " + (printing * jsonPP.numberNumeration * numiration).toFixed(2) + "$" +  "<br />";
 
     allCost += (gluingPVA > 250 ? jsonPP.gluingPVAMore250 * gluingPVA : jsonPP.gluingPVA * gluingPVA) ;
     checkLabel +="Стоимость Склейки ПВА: " + (gluingPVA > 250 ? jsonPP.gluingPVAMore250 * gluingPVA : jsonPP.gluingPVA * gluingPVA).toFixed(2) + "$" +  "<br />";
@@ -1922,10 +1934,12 @@ function calculatePrintedField() {
     allCost += (printing * jsonPP.insertSheetsInBlock * insertSheetsInBlock);
     checkLabel +="Стоимость вставки листов в блок: " + (printing * jsonPP.insertSheetsInBlock * insertSheetsInBlock).toFixed(2) + "$" +  "<br />";
 
+
+    checkLabel +="Курс доллара: " + (jsonObjDollar * jsonC.dollarCoeff).toFixed(2) + "/" + Number(jsonObjDollar).toFixed(2)  + "$" +  "<br />";
+
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
 
- 
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     if (numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "W", false) == numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) && numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) == 0) {
         getPaperFormat(false)
