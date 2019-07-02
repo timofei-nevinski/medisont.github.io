@@ -403,7 +403,7 @@
             "priceOneHour": 57,
             "printSpeed": 8500,
             "printSpeedRatio": 0.75,
-            "fittingTime": 360,
+            "fittingTime": 290,
             "numberOfSections": 4,
             "coefficientIfSmallPrinting": 1.05,
             "timeOfOnePantone": 1800,
