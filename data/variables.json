@@ -525,7 +525,8 @@
     "Сoefficients": {
         "materials": 1.05,
         "outsideWork": 1.4,
-        "minCutPrice": 5
+        "minCutPrice": 5,
+        "dollarCoeff": 1.05
     },
     "PostpressProcessing": {
         "scoring": 0.01,

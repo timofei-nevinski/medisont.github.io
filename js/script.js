@@ -1831,6 +1831,11 @@ function calculatePrintedField() {
         dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
         checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
 
+        var printTime2 = (((numberOfPrintedSheets / (printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones;  //время печати
+        var date2 = new Date(null);
+        date2.setSeconds(printTime2); // specify value for SECONDS here
+        checkLabel +="Время только печати без приладки: " + date2.getUTCHours() + " ч " + date2.getMinutes() + " м " + date2.getSeconds() + " сек" + "<br />";
+
         var printTime1 = (((numberOfPrintedSheets / (printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
         var date1 = new Date(null);
         date1.setSeconds(printTime1); // specify value for SECONDS here
@@ -1839,7 +1844,7 @@ function calculatePrintedField() {
         var printTime = (((numberOfPrintedSheets / (printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
         var date = new Date(null);
         date.setSeconds(printTime); // specify value for SECONDS here
-        checkLabel +="Время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
+        checkLabel +="Общее время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
     }
 
     checkLabel +="Стоимость работы в час: " + rentabilityPrice + "$" +  "<br />";
