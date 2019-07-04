@@ -523,7 +523,7 @@
         }
     ],
     "Сoefficients": {
-        "materials": 1.05,
+        "materials": 1.02,
         "outsideWork": 1.4,
         "minCutPrice": 5,
         "dollarCoeff": 1.05
