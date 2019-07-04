@@ -1765,6 +1765,7 @@ function calculatePrintedField() {
         numberOfPrintedSheets = "Ошибка"
     }
 
+
     var numberOfFittingPaper = 0;
     jsonFP.some(function(elem) {
         if(numberOfPrintedSheets <= elem.before) { 
@@ -1917,8 +1918,6 @@ function calculatePrintedField() {
     checkLabel +="Стоимость Пружин: " + (springNumber * jsonS.price ).toFixed(2) + "$" +  "<br />";
 
     numberOfPS = numberOfPrintedSheets;
-    getStateElem(false);
-
     if(cuttingDown.checked){
         for(let elem of jsonCD){
             if(cuttingDownVal < elem.before){
@@ -1982,7 +1981,7 @@ function getStateElem(elem){
         if(elem.checked) { 
             if(elem.name == "rounding") {
                 elemField.disabled = false; elemField.value = 4;
-            } if(elem.name == "cuttingDown") {
+            } else if(elem.name == "cuttingDown") {
                 elemField.disabled = false; elemField.value = 4;
             } 
             else {
@@ -1992,8 +1991,14 @@ function getStateElem(elem){
             elemField.disabled = true; elemField.value = 0;
         }
         calculatePrintedField();
+        if(elem.checked) { 
+            if(elem.name == "cuttingDown") {
+                elemField.disabled = false; elemField.value = numberOfPS;
+            } 
+        } else {
+            elemField.disabled = true; elemField.value = 0;
+        }
     }
-   
 }
 
 function getRev(numberOfProduct){
