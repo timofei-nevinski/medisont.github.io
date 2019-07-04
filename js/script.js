@@ -1302,6 +1302,7 @@ request.send();
 var jsonObjDollar = "";
 var requestURLDollar = 'https://www.nbrb.by/API/ExRates/Rates/USD?ParamMode=2';
 var request1 = new XMLHttpRequest();
+var numberOfPS = 0;
 
 request1.onreadystatechange = function() {
     if (request1.status == 200) {
@@ -1387,10 +1388,10 @@ html +=         '</div>'
 html +=         '<div class="col-md-4">'				
 html +=             '<label class="description">Лакировка</label>'
 html +=             '<div>'
-html +=                 '<p><input name="varnishing" type="radio" value="NO" onchange="getPrintedMachine()" checked="checked">Нет</p>'
-html +=                 '<p><input name="varnishing" type="radio" value="1" onchange="getPrintedMachine()">Офсетный х1</p>'
-html +=                 '<p><input name="varnishing" type="radio" value="2" onchange="getPrintedMachine()">Офсетный х2</p>'
-html +=                 '<p><input name="varnishing" type="radio" value="UVV" onchange="getPrintedMachine()">УФ-лакировка</p>'
+html +=                 '<p><input name="varnishing" type="radio" value="NO" onchange="getPrintedMachine()" checked="checked"> Нет</p>'
+html +=                 '<p><input name="varnishing" type="radio" value="1" onchange="getPrintedMachine()"> Офсетный х1</p>'
+html +=                 '<p><input name="varnishing" type="radio" value="2" onchange="getPrintedMachine()"> Офсетный х2</p>'
+html +=                 '<p><input name="varnishing" type="radio" value="UVV" onchange="getPrintedMachine()"> УФ-лакировка</p>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-4">'				
@@ -1420,8 +1421,8 @@ html +=         '</div>'
 html +=         '<div class="col-md-4">'
 html +=             '<label class="description">Оборот</label><br/>'
 html +=             '<div style="display:inline-flex">'
-html +=                 '<p><input name="rev" id="anotherRev" type="radio" value="1" onchange="calculatePrintedField()" checked="checked">Чужой</p>&nbsp;&nbsp;&nbsp;'
-html +=                 '<p><input name="rev" id="ownRev" type="radio" value="2" onchange="calculatePrintedField()" >Свой</p>'
+html +=                 '<p><input name="rev" id="anotherRev" type="radio" value="1" onchange="calculatePrintedField()" checked="checked"> Чужой</p>&nbsp;&nbsp;&nbsp;'
+html +=                 '<p><input name="rev" id="ownRev" type="radio" value="2" onchange="calculatePrintedField()" > Свой</p>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'				
@@ -1915,6 +1916,9 @@ function calculatePrintedField() {
     allCost += (springNumber * jsonS.price );
     checkLabel +="Стоимость Пружин: " + (springNumber * jsonS.price ).toFixed(2) + "$" +  "<br />";
 
+    numberOfPS = numberOfPrintedSheets;
+    getStateElem(false);
+
     if(cuttingDown.checked){
         for(let elem of jsonCD){
             if(cuttingDownVal < elem.before){
@@ -1978,7 +1982,10 @@ function getStateElem(elem){
         if(elem.checked) { 
             if(elem.name == "rounding") {
                 elemField.disabled = false; elemField.value = 4;
-            } else {
+            } if(elem.name == "cuttingDown") {
+                elemField.disabled = false; elemField.value = 4;
+            } 
+            else {
                 elemField.disabled = false; elemField.value = 1;
             }
         } else {
@@ -1986,6 +1993,7 @@ function getStateElem(elem){
         }
         calculatePrintedField();
     }
+   
 }
 
 function getRev(numberOfProduct){
