@@ -97,7 +97,7 @@ html +=             '<h3>Послепечатная обработка</h3>'
 html +=         '</div>'
 html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-4">'				
-html +=                 '<p><input id="cuttingDown" type="checkbox" onchange="calculateBierdequels() " checked> Вырубка</p>'
+html +=                 '<p><input id="cuttingDownBL" type="checkbox" onchange="calculateBierdequels() " checked> Вырубка</p>'
 html +=             '</div>'
 html +=         '</div> '
 html +=         '<div class="col-md-12">'				
@@ -128,7 +128,7 @@ function calculateBierdequels() {
     var printedMachine = document.getElementById("printedMachineB").value;
     var rentabilityId = Number(document.getElementById("rentabilityB").value); 
     var side1 = document.querySelector('input[name=side1]:checked').value;
-    var cuttingDown = document.getElementById("cuttingDown");
+    var cuttingDown = document.getElementById("cuttingDownBL");
     var side2 = document.querySelector('input[name=side2]:checked').value;
     var paperFormat = document.getElementById("paperFormatB").value;
     var paperWeightValue = document.getElementById("paperWeightB").value; //получаем value выбранного элемента option по ID элемента select 
@@ -1525,6 +1525,14 @@ html +=             '</div> '
 html +=         '</div> '
 html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-4">'				
+html +=                 '<p><input name="cuttingDown" type="checkbox" onchange="getStateElem(this)"> Вырубка</p>'
+html +=             '</div>'
+html +=             '<div class="col-md-4">'
+html +=                 '<input id="cuttingDown" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
+html +=             '</div> '
+html +=         '</div> '
+html +=         '<div class="col-md-12">'
+html +=             '<div class="col-md-4">'				
 html +=                 '<p><input name="scotch" type="checkbox" onchange="getStateElem(this)"> Cклейка скотч, см</p>'
 html +=             '</div>'
 html +=             '<div class="col-md-4">'
@@ -1609,6 +1617,8 @@ function calculatePrintedField() {
     var thermalCover = Number(document.getElementById('thermalCover').value);
     var gluingPVA = Number(document.getElementById("gluingPVA").value); 
     var rentabilityId = Number(document.getElementById("rentability").value); 
+    var cuttingDown = document.querySelector('input[name=cuttingDown]');
+    var cuttingDownVal = Number(document.getElementById('cuttingDown').value);
     var montage = Number(document.getElementById('montage').value);
     var scoring = Number(document.getElementById('scoring').value);
     var numiration = Number(document.getElementById('numiration').value);
@@ -1649,6 +1659,7 @@ function calculatePrintedField() {
     var numberOfSections = 0;
     var paperChargingTime = 0;
     var printSpeedRatio = 1;
+    var cuttingDownCost = 0;
     var coefficientIfSmallPrinting = 0;
     width = width + (allowance * 2) // прибавляем припуски
     length = length + (allowance * 2)
@@ -1659,6 +1670,7 @@ function calculatePrintedField() {
     var jsonFP = jsonObj["Paper"]["FittingPager"];
     var jsonC = jsonObj["Сoefficients"];
     var jsonCPF = jsonObj["Paper"]["Format"];
+    var jsonCD = jsonObj["CuttingDown"];
     
     jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
         
@@ -1902,6 +1914,18 @@ function calculatePrintedField() {
     var jsonS = jsonObj["Spring"][spring];
     allCost += (springNumber * jsonS.price );
     checkLabel +="Стоимость Пружин: " + (springNumber * jsonS.price ).toFixed(2) + "$" +  "<br />";
+
+    if(cuttingDown.checked){
+        for(let elem of jsonCD){
+            if(cuttingDownVal < elem.before){
+                cuttingDownCost = elem.price ;
+                break;
+            } 
+        }
+    }
+
+    allCost += cuttingDownCost;
+    checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
 
     var jsonG = jsonObj["Gluing"][0];
     allCost += (printing * glueGun * jsonG.glueGun)

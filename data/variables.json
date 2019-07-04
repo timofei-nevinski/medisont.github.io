@@ -523,7 +523,7 @@
         }
     ],
     "Сoefficients": {
-        "materials": 1.02,
+        "materials": 1.05,
         "outsideWork": 1.4,
         "minCutPrice": 5,
         "dollarCoeff": 1.05
@@ -684,142 +684,142 @@
         {
             "id": "2",
             "before": 300,
-            "price": 25
+            "price": 35
         },
         {
             "id": "3",
             "before": 400,
-            "price": 25
+            "price": 40
         },
         {
             "id": "4",
             "before": 500,
-            "price": 25
+            "price": 48
         },
         {
             "id": "5",
             "before": 1000,
-            "price": 25
+            "price": 78
         },
         {
             "id": "6",
             "before": 1500,
-            "price": 25
+            "price": 84
         },
         {
             "id": "7",
             "before": 2000,
-            "price": 25
+            "price": 114
         },
         {
             "id": "8",
             "before": 2500,
-            "price": 25
+            "price": 144
         },
         {
             "id": "9",
             "before": 3000,
-            "price": 25
+            "price": 174
         },
         {
             "id": "10",
             "before": 3500,
-            "price": 25
+            "price": 186
         },
         {
             "id": "11",
             "before": 4000,
-            "price": 25
+            "price": 210
         },
         {
             "id": "12",
             "before": 4500,
-            "price": 25
+            "price": 234
         },
         {
             "id": "13",
             "before": 5000,
-            "price": 25
+            "price": 258
         },
         {
             "id": "14",
             "before": 5500,
-            "price": 25
+            "price": 270
         },
         {
             "id": "15",
             "before": 6000,
-            "price": 25
+            "price": 282
         },
         {
             "id": "16",
             "before": 6500,
-            "price": 25
+            "price": 306
         },
         {
             "id": "17",
             "before": 7000,
-            "price": 25
+            "price": 330
         },
         {
             "id": "18",
             "before": 7500,
-            "price": 25
+            "price": 354
         },
         {
             "id": "19",
             "before": 8000,
-            "price": 25
+            "price": 366
         },
         {
             "id": "20",
             "before": 8500,
-            "price": 25
+            "price": 378
         },
         {
             "id": "21",
             "before": 9000,
-            "price": 25
+            "price": 390
         },
         {
             "id": "22",
             "before": 9500,
-            "price": 25
+            "price": 402
         },
         {
             "id": "23",
             "before": 10000,
-            "price": 25
+            "price": 414
         },
         {
             "id": "24",
             "before": 15000,
-            "price": 25
+            "price": 708
         },
         {
             "id": "25",
             "before": 20000,
-            "price": 25
+            "price": 948
         },
         {
             "id": "26",
             "before": 25000,
-            "price": 25
+            "price": 1176
         },
         {
             "id": "27",
             "before": 30000,
-            "price": 25
+            "price": 1536
         },
         {
             "id": "28",
             "before": 40000,
-            "price": 25
+            "price": 1896
         },
         {
             "id": "29",
             "before": 50000,
-            "price": 25
+            "price": 2376
         }
     ]
 }
