@@ -2138,14 +2138,14 @@ function getPaperFormat(firstCall) {
                     width = width + (allowance * 2) // прибавляем припуски
                     length = length + (allowance * 2)
 
-                    if (width == length && width >= 200 && width <= 220){
+                    if (width == length && width >= 165 && width <= 165){
                         if(elem.id == '7' ){ //id=7 72х104
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                         }
                         else {
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
                         }
-                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500) {
+                    } else if (width >= 165 && width <= 165 && length >= 400 && length <= 500) {
                         if(elem.id == '7' ){ //id=7 72х104
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                         }
@@ -2153,7 +2153,7 @@ function getPaperFormat(firstCall) {
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
                         }
                     } 
-                    else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                    else if (length >= 165 && length <= 165 && width >= 400 && width <= 500) {
                         if(elem.id == '7' ){ //id=7 72х104
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                         }
@@ -2170,13 +2170,13 @@ function getPaperFormat(firstCall) {
                                     widthPrintedArea = elem.width - 2; 
                                     lengthPrintedArea = (elem.length / 2) -2;
                                 } else if (elem.id == "7"){
-                                    if (width == length && width >= 200 && width <= 220){
+                                    if (width == length && width >= 165 && width <= 165){
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
-                                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
+                                    } else if (width >= 165 && width <= 165 && length >= 400 && length <= 500){
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
-                                    } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                                    } else if (length >= 165 && length <= 165 && width >= 400 && width <= 500) {
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
                                     } else {
