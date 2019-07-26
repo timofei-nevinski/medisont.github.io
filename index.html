@@ -5,16 +5,43 @@
       <meta http-equiv="Cache-Control" content="no-cache">
       <meta http-equiv="Cache-Control" content="private">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
       <link rel="stylesheet" href="./css/style.css">
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    
+          <script>
+          $(document).ready(function() {
+            $('.block').on('click', '.extremum-click', function() {
+              $.when( $(this).siblings('.extremum-slide').slideToggle(200)).then(function(){appendHeight() }); 
+            });
+            $('.nav').height($('.right-panel').height());
+          });
+
+          function dropDown() {
+            $(this).siblings('.extremum-slide').slideToggle(500);
+          }
+
+          function appendHeight() {
+            var heightLeftPanel =  $( '.right-panel').height()
+              $('.nav').height(heightLeftPanel);
+          }
+
+          $(this).toggle()(function() {
+            $('.nav').height();
+          })
+          
+
+          
+          
+          </script>
     </head>
     
   <body>
-    <div class="container">
+    <div class="container mother-container">
       <div class="row">
-          <div  class="col-lg-12">
-              <h3>Left Tabs</h3>
-              <hr/>
-              <div class="col-lg-2"> <!-- required for floating -->
+          <div  class="col-lg-12 home-panel">
+
+              <div class="col-lg-2 left-panel"> <!-- required for floating -->
                 <!-- Nav tabs  -->
                 <ul class="nav nav-tabs tabs-left sideways">
                   <li><a href="#universal-calculator-v" data-toggle="tab">Универсальный калькулятор</a></li>
@@ -22,9 +49,10 @@
                   <li class="active"><a href="#blanks-v" data-toggle="tab">Бланки</a></li>
                   <li><a href="#settings-v" data-toggle="tab">Конверты</a></li>
                 </ul>
+                
               </div>
       
-              <div class="col-lg-10">
+              <div class="col-lg-10 right-panel">
                 <!-- Tab panes  -->
                 <div class="tab-content">
                   <div class="tab-pane " id="universal-calculator-v">
@@ -42,8 +70,9 @@
             </div>
         </div>
     </div>
+      
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
     <script type="text/javascript" src="./js/script.js?v=1"></script>
   </body> 
