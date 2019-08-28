@@ -668,38 +668,36 @@ function getBierdequelsFormat() {
 //бланки
 var blanksContainer = document.getElementById("blanksContainer");
 var html = '<div class="row ">'
-html +=     '<div class="col-md-8">'	
+html +=     '<div class="col-md-12">'	
 html +=         '<div class="col-md-12">'
 html +=             '<h2>Бланки</h2>'
 html +=         '</div> '
-html +=         '<div class="col-md-4">'				
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Тираж, шт </label>'
 html +=             '<div>'
 html +=                 '<input id="printingBL" class="element text medium" type="number" pattern="\d+" min="0" oninput="calculateBlanks()"  maxlength="255"  value="1000"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'
-html +=             '<h3>Размер изделия</h3>'
-html +=         '</div> '
-html +=         '<div class="col-md-4">'				
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Формат</label>'
 html +=             '<div>'
 html +=                 '<select id="formatBL" name="formatBL" onchange="getPaperFormatBL(false)"></select>'
 html +=             '</div> '
 html +=         '</div>'	
-html +=         '<div class="col-md-4">'				
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Ширина, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="widthBL" class="element text medium" type="number" min="0" oninput="getPaperFormatBL(false)" maxlength="255"  value="210" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-4">'	
+html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Длинна, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="lengthBL" class="element text medium" type="number" min="0" oninput="getPaperFormatBL(false)" maxlength="255" value="297"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-4">'	
+html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="allowanceBL" class="element text medium" type="number" min="0" oninput="getPaperFormatBL(false)" maxlength="255" value="2"/> '
@@ -750,34 +748,45 @@ html +=             '<div>'
 html +=                 '<select id="rentabilityBL" name="rentabilityBL" onchange="calculateBlanks()"></select>'
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12">'				
-html +=             '<h3>Послепечатная обработка</h3>'
-html +=         '</div>'
-html +=         '<div class="col-md-6">'
-html +=             '<div class="col-md-12">'
-html +=                 '<h4>Нумерация</h4>'
-html +=             '</div> '
-html +=             '<div class="col-md-12">'				
+html +=         '<div class="col-md-12 block">'				
+html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
+html +=         '<div class="extremum-slide">'
+html +=             '<div class="col-md-4 padding-none">'				
+html +=                 '<label class="description">Нумерация</label>'
 html +=                 '<div>'
-html +=                     '<p><input name="numerationBL" type="radio" value="0" onchange="calculateBlanks()" checked="checked"> Нет</p>'
-html +=                     '<p><input name="numerationBL" type="radio" value="1" onchange="calculateBlanks()"> x1</p>'
-html +=                     '<p><input name="numerationBL" type="radio" value="2" onchange="calculateBlanks()">  x2</p>'
+html +=                     '<select id="numerationBL" name="numerationBL" onchange="calculateBlanks()">'
+html +=                     '<option value="0">Нет</option>'
+html +=                     '<option value="1">x1</option>'
+html +=                     '<option value="2">x2</option></select>'
 html +=                 '</div> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12">'
-html +=             '<br/><input type="button" value="Сбросить" onClick="window.location.reload()"><br/>'
-html +=         '</div> '
-html +=     '</div>'
-html +=     '<div class="col-md-4">'
-html +=         '<div class="col-md-12">'
-html +=             '<br/><label id="checkBL" class="description"></label>'
 html +=         '</div>'
+html +=         '<div class="col-md-12"><br/></div>'
 html +=     '</div>'
+html +=         '<div class="col-md-12 final-cost-block">'
+html +=             '<label id="final-costBL" class="final-cost-description"></label><br/>'
+html +=         '</div>'
+html +=         '<div class="col-md-12">'
+html +=             '<div class="col-md-12 block">'				
+html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
+html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label id="checkBL" class="description"></label>'
+html +=             '</div><br/>'
+html +=         '</div>'
 html += '</div>'
 blanksContainer.innerHTML = html;     
 
+function Blanks() {
+    getBlanksFormat();
+    getPaperWeightBL();
+    getPrintedMachineBL();
+    getPaperFormatBL();
+    getRentabilityBL();
+}
+
 function calculateBlanks() {
+    var finalCostBL = document.getElementById('final-costBL');
     var labelCheck = document.getElementById('checkBL');
     var printing = Number(document.getElementById('printingBL').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProducts());
@@ -785,7 +794,7 @@ function calculateBlanks() {
     var rentabilityId = Number(document.getElementById("rentabilityBL").value); 
     var turnoverElem = document.getElementById('turnoverBL');
     var paperFormat = document.getElementById("paperFormatBL").value;
-    var numerationBL = document.querySelector('input[name=numerationBL]:checked').value;
+    var numerationBL = document.getElementById("numerationBL").value;
     var paperWeightValue = document.getElementById("paperWeightBL").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -923,6 +932,7 @@ function calculateBlanks() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    finalCostBL.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -1326,19 +1336,19 @@ request.onreadystatechange = function() {
     if (request.readyState == XMLHttpRequest.DONE) {
         request.onload = function() { 
             jsonObj = request.response; 
-            getBlanksFormat();
+            
             getPaperWeight();
             
-            getPaperWeightBL();
+            
             getPrintedMachine();
             
-            getPrintedMachineBL();
+            
             getPaperFormat(true);
             
-            getPaperFormatBL();
+            
             getRentability();
             
-            getRentabilityBL();
+            
             getStateElem(true);
             getLaminade();
             getPasting();
@@ -1346,6 +1356,7 @@ request.onreadystatechange = function() {
             getSpring();
             getThermalCover();
             Bierdequels();
+            Blanks();
         }
     }
 }
