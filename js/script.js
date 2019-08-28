@@ -29,6 +29,7 @@ html +=             '<div>'
 html +=                 '<input id="lengthB" class="element text medium" type="number" min="0" oninput="getPaperFormatB(false)" maxlength="255" value="100"/> '
 html +=             '</div> '
 html +=         '</div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
@@ -74,34 +75,51 @@ html +=             '<div>'
 html +=                 '<select id="rentabilityB" name="rentability" onchange="getRentabilityB()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'				
-html +=             '<h3>Послепечатная обработка</h3>'
-html +=         '</div>'
-html +=         '<div class="col-md-12">'
-html +=             '<div class="col-md-4">'				
-html +=                 '<p><input id="cuttingDownBL" type="checkbox" onchange="calculateBierdequels() " checked> Вырубка</p>'
+html +=         '<div class="col-md-12 block">'				
+html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
+html +=         '<div class="extremum-slide">'
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-6">'				
+html +=                    '<label><input id="cuttingDownB" name="cuttingDownB" class="col-md-1 checkbox"  type="checkbox" onchange="calculateBierdequels()" checked><span class="col-md-11" >Вырубка</span> </label>'
+html +=                 '</div>'
 html +=             '</div>'
-html +=         '</div> '
-html +=         '<div class="col-md-3">'				
-html +=             '<label class="description">Кашировка</label>'
-html +=             '<div>'
-html +=                 '<select id="pastingB" name="pasting" onchange="getPastingB()"></select>'
-html +=             '</div> '
+html +=             '<div class="col-md-4">'				
+html +=                 '<label class="description">Кашировка</label>'
+html +=                 '<div>'
+html +=                     '<select id="pastingB" name="pastingB" onchange="getPastingB()"></select>'
+html +=                 '</div> '
+html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'
 html +=     '</div>'
+html +=  '</div>'
+
 html +=         '<div class="col-md-12 final-cost-block">'
-html +=             '<label id="final-cost" class="final-cost-description"></label><br/>'
+html +=             '<label id="final-costB" class="final-cost-description"></label><br/>'
 html +=         '</div>'
-html +=     '<div class="col-md-6">'
 html +=         '<div class="col-md-12">'
-html +=             '<br/><label id="checkB" class="description"></label>'
+html +=             '<div class="col-md-12 block">'				
+html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
+html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label id="checkB" class="description"></label>'
+html +=             '</div><br/>'
 html +=         '</div>'
-html +=     '</div>'
 html += '</div>'
 bierdequelContainer.innerHTML = html;     
 
 
+function Bierdequels() {
+    
+    getPrintedMachineB();
+    getPaperWeightB();
+    getPaperFormatB();
+    getRentabilityB();
+    getPastingB();
+    getBierdequelsFormat();
+    getBierdequelsSize();
+    getBierdequelsSide1();
+    getBierdequelsSide2();
+}
  
 
 function calculateBierdequels() {
@@ -110,9 +128,10 @@ function calculateBierdequels() {
     var numberOfPrintedSheets = Math.ceil(printing / getBierdequelsFormat());
     var printedMachine = document.getElementById("printedMachineB").value;
     var rentabilityId = Number(document.getElementById("rentabilityB").value); 
-    var side1 = document.querySelector('input[name=side1]:checked').value;
-    var cuttingDown = document.getElementById("cuttingDownBL");
-    var side2 = document.querySelector('input[name=side2]:checked').value;
+    var side1 = document.getElementById("side1").value;
+    var cuttingDown = document.getElementById("cuttingDownB");
+    var finalcost = document.getElementById('final-costB');
+    var side2 = document.getElementById("side2").value;
     var paperFormat = document.getElementById("paperFormatB").value;
     var paperWeightValue = document.getElementById("paperWeightB").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
@@ -287,14 +306,14 @@ function calculateBierdequels() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-
+    finalcost.innerHTML ="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
 
 function getPastingB() {
     var pasting = document.getElementById('pastingB');
-    var side2 = document.querySelector('input[name=side2]:checked').value;
+    var side2 = document.getElementById('side2').value;
     pasting.options.length = 0;
         var jsonL = jsonObj["Pasting"]; 
         jsonL.forEach(function(elem) {
@@ -353,7 +372,7 @@ function getBierdequelsSide1() {
     var side1 = document.getElementById("side1");
 
     if (side1.options.length == 0){
-        var jsonB = jsonObj["Paper"]["Bierdequels"]["Side1"];
+        var jsonB = jsonObj["Paper"]["Bierdequels"][4]["Side1"];
         
         jsonB.forEach(function(elem) { 
             if(elem.id == '0'){
@@ -370,7 +389,7 @@ function getBierdequelsSide2() {
     var side2 = document.getElementById("side2");
 
     if (side2.options.length == 0){
-        var jsonB = jsonObj["Paper"]["Bierdequels"]["Side2"];
+        var jsonB = jsonObj["Paper"]["Bierdequels"][4]["Side2"];
         
         jsonB.forEach(function(elem) { 
             if(elem.id == '4'){
@@ -1309,25 +1328,24 @@ request.onreadystatechange = function() {
             jsonObj = request.response; 
             getBlanksFormat();
             getPaperWeight();
-            getPaperWeightB();
+            
             getPaperWeightBL();
             getPrintedMachine();
-            getPrintedMachineB();
+            
             getPrintedMachineBL();
             getPaperFormat(true);
-            getPaperFormatB();
+            
             getPaperFormatBL();
             getRentability();
-            getRentabilityB();
+            
             getRentabilityBL();
             getStateElem(true);
             getLaminade();
             getPasting();
-            getPastingB();
+            
             getSpring();
             getThermalCover();
-            getBierdequelsFormat();
-            getBierdequelsSize();
+            Bierdequels();
         }
     }
 }
@@ -1463,7 +1481,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide">'
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                    '<label><input name="scoring" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span class="col-md-11" >Биговка</span> </label>'
 html +=               '</div>'
@@ -1471,7 +1489,7 @@ html +=               '<div class="col-md-6">'
 html +=                   '<input id="scoring" class=" element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=               '</div> '
 html +=            '</div> '
-html +=            '<div class="col-md-12">'
+html +=            '<div class="col-md-12 padding-none">'
 html +=              '<div class="col-md-6">'				
 html +=                   '<label><input name="hole" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span class="col-md-11">Отверстие</span> </label>'
 html +=               '</div>'
@@ -1479,7 +1497,7 @@ html +=              '<div class="col-md-6">'
 html +=                   '<input id="hole" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=               '</div> '
 html +=            '</div> '
-html +=            '<div class="col-md-12">'
+html +=            '<div class="col-md-12 padding-none">'
 html +=                '<div class="col-md-6">'				
 html +=                    '<label><input name="grommet" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Люверс</span> </label>'
 html +=                 '</div>'
@@ -1487,7 +1505,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="grommet" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=              '</div> '
 html +=            '</div> '
-html +=            '<div class="col-md-12">'
+html +=            '<div class="col-md-12 padding-none">'
 html +=              '<div class="col-md-6">'				
 html +=                  '<label><input name="rounding" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Скругление</span> </label>'
 html +=              '</div>'
@@ -1495,7 +1513,7 @@ html +=              '<div class="col-md-6">'
 html +=                     '<input id="rounding" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="brace" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Скобы</span> </label>'
 html +=                 '</div>'
@@ -1503,7 +1521,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="brace" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                   '<label><input name="folding" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Фальцовка</span> </label>'
 html +=                 '</div>'
@@ -1511,7 +1529,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="folding" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                    '<label><input name="compilation" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Подборка</span> </label>'
 html +=                 '</div>'
@@ -1519,7 +1537,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="compilation" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="numiration" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Количество нумераций</span> </label>'
 html +=                 '</div>'
@@ -1527,7 +1545,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="numiration" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="insertSheetsInBlock" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"> <span>Вставка листов в блок, шт</span></label>'
 html +=                 '</div>'
@@ -1535,7 +1553,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="insertSheetsInBlock" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="gluingPVA" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Склейка ПВА</span> </label>'
 html +=                 '</div>'
@@ -1543,7 +1561,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="gluingPVA" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="cutting" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Надрезка за рез, м</span> </label>'
 html +=                 '</div>'
@@ -1551,7 +1569,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="cutting" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="glueGun" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Склейка пистолет, точек</span> </label>'
 html +=                 '</div>'
@@ -1559,7 +1577,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="glueGun" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="cuttingDown" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Вырубка</span> </label>'
 html +=                 '</div>'
@@ -1567,7 +1585,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="cuttingDown" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="scotch" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Cклейка скотч, см</span> </label>'
 html +=                 '</div>'
@@ -1575,7 +1593,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<input id="scotch" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-12">'
+html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input id="buildPackage" class="col-md-1 checkbox"  type="checkbox" onchange="calculatePrintedField()"><span>Сборка пакетов</span> </label>'
 html +=                 '</div>'
@@ -1615,12 +1633,13 @@ html += '</div>'
 html +=         '<div class="col-md-12 final-cost-block">'
 html +=             '<label id="final-cost" class="final-cost-description"></label><br/>'
 html +=         '</div>'
-
-html +=         '<div class="col-md-12 block">'				
-html +=             '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
-html +=         '<div class="extremum-slide">'
-html +=             '<br/><label id="check" class="description"></label>'
-html +=         '</div><br/>'
+html +=         '<div class="col-md-12">'	
+html +=             '<div class="col-md-12 block">'				
+html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
+html +=             '<div class="extremum-slide">'
+html +=                 '<label id="check" class="description"></label>'
+html +=             '</div><br/>'
+html +=         '</div>'
 html +=     '</div>'
 
 homeContainer.innerHTML = html;     
