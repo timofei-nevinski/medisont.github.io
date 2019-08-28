@@ -1,38 +1,36 @@
 //бирдекели
 var bierdequelContainer = document.getElementById("bierdequelContainer");
 var html = '<div class="row ">'
-html +=     '<div class="col-md-8">'	
-html +=     '<div class="col-md-12">'
-html +=         '<h2>Бирдекели</h2>'
-html +=     '</div> '
-html +=         '<div class="col-md-4">'				
+html +=     '<div class="col-md-12">'	
+html +=         '<div class="col-md-12">'
+html +=             '<h2>Бирдекели</h2>'
+html +=         '</div> '
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Тираж, шт </label>'
 html +=             '<div>'
 html +=                 '<input id="printingB" class="element text medium" type="number" pattern="\d+" min="0" oninput="calculateBierdequels()"  maxlength="255"  value="1000"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'
-html +=             '<h3>Размер изделия</h3>'
-html +=         '</div> '
-html +=         '<div class="col-md-4">'				
+html +=         '<div class="col-md-3">'	
+html +=             '<label class="description">Размер изделия</label>'			
 html +=             '<div>'
 html +=                 '<select id="sizeB" name="sizeB" onchange="getBierdequelsSize()"></select>'
 html +=             '</div> '
 html +=         '</div>'	
-html +=         '<div class="col-md-4">'				
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Ширина, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="widthB" class="element text medium" type="number" min="0" oninput="getPaperFormatB(false)" maxlength="255"  value="100" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-4">'	
+html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Длинна, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="lengthB" class="element text medium" type="number" min="0" oninput="getPaperFormatB(false)" maxlength="255" value="100"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-4">'	
-html +=             '<label class="description">Припуски, мм </label>'
+html +=         '<div class="col-md-3">'	
+html +=         '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="allowanceB" class="element text medium" type="number" min="0" oninput="getPaperFormatB(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
@@ -40,50 +38,37 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'
 html +=             '<h3>Красочность</h3>'
 html +=         '</div> '
-html +=         '<div class="col-md-6">'
-html +=             '<div class="col-md-12">'
-html +=                 '<h3>1-сторона</h3>'
+html +=         '<div class="col-md-6">'				
+html +=             '<label class="description">1-сторона</label>'			
+html +=             '<div>'
+html +=                 '<select id="side1" name="side1" onchange="getBierdequelsSide1()"></select>'
 html +=             '</div> '
-html +=             '<div class="col-md-12">'				
-html +=                 '<div>'
-html +=                     '<p><input name="side1" type="radio" value="0" onchange="calculateBierdequels()" checked="checked"> 4 + ламинация Глянцевая</p>'
-html +=                     '<p><input name="side1" type="radio" value="1" onchange="calculateBierdequels()">  4 + ламинация Матовая</p>'
-html +=                 '</div> '
-html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-6">'	
-html +=             '<div class="col-md-12">'
-html +=              '<h3>2-сторона</h3>'
+html +=         '<div class="col-md-6">'			
+html +=             '<label class="description">2-сторона</label>'			
+html +=             '<div>'
+html +=                 '<select id="side2" name="side2" onchange="getBierdequelsSide2()"></select>'
 html +=             '</div> '
-html +=             '<div class="col-md-12">'				
-html +=                 '<div>'
-html +=                     '<p><input name="side2" type="radio" value="0" onchange="getPastingB()" > 4 + ламинация Глянцевая</p>'
-html +=                     '<p><input name="side2" type="radio" value="1" onchange="getPastingB()">  4 + ламинация Матовая</p>'
-html +=                     '<p><input name="side2" type="radio" value="2" onchange="getPastingB()"> Белый + ламинация Глянцевая</p>'
-html +=                     '<p><input name="side2" type="radio" value="3" onchange="getPastingB()">  Белый + ламинация Матовая</p>'
-html +=                     '<p><input name="side2" type="radio" value="4" onchange="getPastingB()" checked="checked"> Ничего</p>'
-html +=                 '</div> '
-html +=             '</div>'
-html +=         '</div>'	
-html +=         '<div class="col-md-4">'				
+html +=         '</div>'
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
 html +=                 '<select id="paperWeightB" name="paperWeight" onchange="getPaperWeightB()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-4">'	
+html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Размер бумаги</label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatB" name="paperFormat" onchange="getPaperFormatB()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-4">'	
+html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Печатная машина</label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineB" name="printedMachine" onchange="calculateBierdequels() "></select>'
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-4">'
+html +=         '<div class="col-md-3">'
 html +=             '<label class="description">Рентабельность</label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityB" name="rentability" onchange="getRentabilityB()"></select>'
@@ -97,17 +82,18 @@ html +=             '<div class="col-md-4">'
 html +=                 '<p><input id="cuttingDownBL" type="checkbox" onchange="calculateBierdequels() " checked> Вырубка</p>'
 html +=             '</div>'
 html +=         '</div> '
-html +=         '<div class="col-md-12">'				
+html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Кашировка</label>'
 html +=             '<div>'
 html +=                 '<select id="pastingB" name="pasting" onchange="getPastingB()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'
-html +=             '<br/><input type="button" value="Сбросить" onClick="window.location.reload()"><br/>'
-html +=         '</div> '
+html +=         '<div class="col-md-12"><br/></div>'
 html +=     '</div>'
-html +=     '<div class="col-md-4">'
+html +=         '<div class="col-md-12 final-cost-block">'
+html +=             '<label id="final-cost" class="final-cost-description"></label><br/>'
+html +=         '</div>'
+html +=     '<div class="col-md-6">'
 html +=         '<div class="col-md-12">'
 html +=             '<br/><label id="checkB" class="description"></label>'
 html +=         '</div>'
@@ -363,6 +349,57 @@ function getPaperWeightB() {
     }
 }
 
+function getBierdequelsSide1() {
+    var side1 = document.getElementById("side1");
+
+    if (side1.options.length == 0){
+        var jsonB = jsonObj["Paper"]["Bierdequels"]["Side1"];
+        
+        jsonB.forEach(function(elem) { 
+            if(elem.id == '0'){
+                side1.options[side1.options.length] = new Option(elem.name, elem.id, true, true);
+            } else {
+                side1.options[side1.options.length] = new Option(elem.name, elem.id);
+            }   
+        });
+    }
+    calculateBierdequels();
+}
+
+function getBierdequelsSide2() {
+    var side2 = document.getElementById("side2");
+
+    if (side2.options.length == 0){
+        var jsonB = jsonObj["Paper"]["Bierdequels"]["Side2"];
+        
+        jsonB.forEach(function(elem) { 
+            if(elem.id == '4'){
+                side2.options[side2.options.length] = new Option(elem.name, elem.id, true, true);
+            } else {
+                side2.options[side2.options.length] = new Option(elem.name, elem.id);
+            }   
+        });
+    }
+    calculateBierdequels();
+}
+
+function getBierdequelsSize() {
+    var sizeB = document.getElementById("sizeB");
+
+    if (sizeB.options.length == 0){
+        var jsonB = jsonObj["Paper"]["Bierdequels"];
+        
+        jsonB.forEach(function(elem) { 
+            if(elem.id == '0'){
+                sizeB.options[sizeB.options.length] = new Option(elem.name, elem.id, true, true);
+            } else {
+                sizeB.options[sizeB.options.length] = new Option(elem.name, elem.id);
+            }   
+        });
+    }
+    getPaperFormatB(false);
+}
+
 function getRentabilityB() {
     var printedMachine = document.getElementById("printedMachineB").value;
     var rentability = document.getElementById("rentabilityB"); //получаем элемент по его ID
@@ -388,7 +425,7 @@ function getPaperFormatB(firstCall) {
     var paperFormat = document.getElementById("paperFormatB"); //получаем элемент по его ID
     if( paperFormat.options.length == 0 || firstCall == false) {
         firstCall == false ? paperFormat.options.length = 0 : "";
-    var sizeB = document.querySelector('input[name=sizeB]:checked').value;
+    var sizeB = document.getElementById("sizeB").value;
     var printing = Number(document.getElementById('printingB').value);
     var printedMachine = document.getElementById('printedMachineB').value;
     var paperWeightValue = document.getElementById("paperWeightB").value; //получаем value выбранного элемента option по ID элемента select 
@@ -535,7 +572,7 @@ function numberProductPerSheetB(widthPrintedArea, lengthPrintedArea, position, d
 }
 
 function getBierdequelsFormat() {
-    var sizeB = document.querySelector('input[name=sizeB]:checked').value;
+    var sizeB = document.getElementById('sizeB').value;
     
     var widthB = document.getElementById('widthB');
     var lengthB = document.getElementById('lengthB');
@@ -1290,6 +1327,7 @@ request.onreadystatechange = function() {
             getSpring();
             getThermalCover();
             getBierdequelsFormat();
+            getBierdequelsSize();
         }
     }
 }
