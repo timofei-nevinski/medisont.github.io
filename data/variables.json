@@ -155,6 +155,48 @@
             
         ],
 
+        "Flyers": [
+            {
+                "id": "0",
+                "name": "A4",
+                "width": 297,
+                "length": 210
+                
+            },
+            {
+                "id": "1",
+                "name": "A5",
+                "width": 210,
+                "length": 148
+            },
+            {
+                "id": "2",
+                "name": "A6",
+                "width": 148,
+                "length": 105
+            },
+            {
+                "id": "3",
+                "name": "A7",
+                "width": 105,
+                "length": 74
+            },
+            {
+                "id": "4",
+                "name": "Евро 98х210",
+                "width": 98,
+                "length": 210
+            },
+            {
+                "id": "5",
+                "name": "Другой XxY",
+                "width": 0,
+                "length": 0
+            }
+            
+        ],
+
+
         "Bierdequels": [
             {
                 "id": "0",
@@ -668,7 +710,9 @@
         "insertSheetsInBlock": 0.016,
         "cutting": 0.21,
         "numeration": 0.05,
-        "numberNumeration": 0.00728
+        "numberNumeration": 0.00728,
+        "UVVarnishingCostBefore500": 60,
+        "UVVarnishingCostAfter500": 0.07
     },
     "ThermalCover":[
         {
