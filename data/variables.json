@@ -91,6 +91,42 @@
             
         ],
 
+        "Blocks": [
+            
+            {
+                "id": "0",
+                "name": "90x90",
+                "width": 90,
+                "length": 90
+            },
+            {
+                "id": "1",
+                "name": "A4",
+                "width": 297,
+                "length": 210
+                
+            },
+            {
+                "id": "2",
+                "name": "A5",
+                "width": 210,
+                "length": 148
+            },
+            {
+                "id": "3",
+                "name": "A6",
+                "width": 148,
+                "length": 105
+            },
+            {
+                "id": "5",
+                "name": "Другой XxY",
+                "width": 0,
+                "length": 0
+            }
+            
+        ],
+
         "Bierdequels": [
             {
                 "id": "0",
@@ -452,14 +488,6 @@
         ]
     },
 
-    "BierdequelsSide1": [
-        {
-            "id": "0",
-            "name": "Каппа",
-            "price": 1.6,
-            "format": "6"
-        }
-    ],
 
     "PrintingMachine": [
         {
