@@ -1485,7 +1485,7 @@ function calculateBooklets() {
     var paperFormat = document.getElementById("paperFormatBooklets").value;
     var scoring = Number(document.getElementById('scoringBooklets').value);
     var folding = Number(document.getElementById('foldingBooklets').value);
-    var varnishing = +document.querySelector('input[name=varnishingBooklets]:checked').value;
+    var varnishing = document.querySelector('input[name=varnishingBooklets]:checked').value;
     var paperWeightValue = document.getElementById("paperWeightBooklets").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -1498,6 +1498,7 @@ function calculateBooklets() {
     var jsonFP = jsonObj["Paper"]["FittingPager"];
     var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
     var jsonC = jsonObj["Сoefficients"];
+    var jsonPP = jsonObj["PostpressProcessing"]; 
     var checkLabel = "";
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
@@ -1547,11 +1548,10 @@ function calculateBooklets() {
     }
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
-    if(varnishing == 3){
-        printing < 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
     }
-
-    
+    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
     numberOfForms = (face + turnover + varnishing);
    
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
@@ -1620,11 +1620,11 @@ function calculateBooklets() {
     checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
 
 
-    var jsonPP = jsonObj["PostpressProcessing"]; 
+    
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
     allCost += varnishingCost;
-    checkLabel +="Стоимость лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
     allCost += (printing * jsonPP.scoring * scoring);
     checkLabel +="Стоимость биговка: " + (printing * jsonPP.scoring * scoring).toFixed(2) + "$" +  "<br />";
@@ -2186,23 +2186,7 @@ html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
-html +=         '<div class="extremum-slide">'
-html +=             '<div class="col-md-12 padding-none">'
-html +=                 '<div class="col-md-6">'				
-html +=                    '<label><input name="scoringFlyers" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemFlyers(this)"><span class="col-md-11" >Биговка</span> </label>'
-html +=               '</div>'
-html +=               '<div class="col-md-6">'
-html +=                   '<input id="scoringFlyers" class=" element text medium" type="number" min="0" oninput="calculateFlyers()"  maxlength="255" value="0" disabled="true"/> '
-html +=               '</div> '
-html +=            '</div> '
-html +=             '<div class="col-md-12 padding-none">'
-html +=                 '<div class="col-md-6">'				
-html +=                   '<label><input name="foldingFlyers" class="col-md-1 checkbox" checked type="checkbox" onchange="getStateElemFlyers(this)"><span>Фальцовка</span> </label>'
-html +=                 '</div>'
-html +=                 '<div class="col-md-6">'
-html +=                     '<input id="foldingFlyers" class="element text medium" type="number" min="0" oninput="calculateFlyers()"  maxlength="255" value="0" disabled="true"/> '
-html +=                 '</div> '
-html +=             '</div> '
+html +=         '<div class="extremum-slide padding-note">'
 html +=             '<div class="col-md-4">'				
 html +=                 '<label class="description">Ламинат</label>'
 html +=                 '<div>'
@@ -2248,8 +2232,7 @@ function calculateFlyers() {
     var turnoverElem = document.getElementById('turnoverFlyers');
     var laminade = Number(document.getElementById('laminadeFlyers').value);
     var paperFormat = document.getElementById("paperFormatFlyers").value;
-    var scoring = Number(document.getElementById('scoringFlyers').value);
-    var folding = Number(document.getElementById('foldingFlyers').value);
+
     var varnishing = +document.querySelector('input[name=varnishingFlyers]:checked').value;
     var paperWeightValue = document.getElementById("paperWeightFlyers").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
@@ -2264,9 +2247,11 @@ function calculateFlyers() {
     var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
     var jsonC = jsonObj["Сoefficients"];
     var checkLabel = "";
+    var jsonPP = jsonObj["PostpressProcessing"]; 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
 
+    var varnishingCost = 0;
     var numberOfForms = 0;
     var numberOfFittingPaper = 0;
     var numberOfParts = 4;
@@ -2311,9 +2296,12 @@ function calculateFlyers() {
     }
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
     numberOfForms = (face + turnover + varnishing);
-   
+
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
 
     
@@ -2380,18 +2368,14 @@ function calculateFlyers() {
     checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
 
 
-    var jsonPP = jsonObj["PostpressProcessing"]; 
+    
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    if(varnishing == 3){
-        printing < 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
-    }
+    allCost += varnishingCost;
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
-    allCost += (printing * jsonPP.scoring * scoring);
-    checkLabel +="Стоимость биговка: " + (printing * jsonPP.scoring * scoring).toFixed(2) + "$" +  "<br />";
-
-    allCost += (printing * jsonPP.folding * folding);
-    checkLabel +="Стоимость Фальцовка: " + (printing * jsonPP.folding * folding).toFixed(2) + "$" +  "<br />";
+   
+   
 
     var jsonL = jsonObj["Laminade"][laminade];
     allCost += (numberOfPrintedSheets * jsonL.price );
@@ -2483,7 +2467,7 @@ function getPaperFormatFlyers(firstCall) {
         var jsonPF = jsonObj["Paper"]["Format"]; // получаем форматы бумаги
         var formatFlyers = +document.getElementById('formatFlyers').value;
         var printing = Number(document.getElementById('printingFlyers').value);
-        var scoring = document.querySelector('input[name=scoringFlyers]');
+        
 
         var map = new Map();
         var widthPrintedArea = 0;
@@ -2497,17 +2481,6 @@ function getPaperFormatFlyers(firstCall) {
         
         var numberOfPrintedSheets = 0;
 
-        var elemField = document.getElementById("scoringFlyers");
-          
-
-        jsonP.weight >= 170 ? scoring.checked = true : scoring.checked = false;
-           
-        if(scoring.checked) { 
-            elemField.disabled = false; elemField.value = 1;
-        }
-        else {
-            elemField.disabled = true; elemField.value = 0;
-        }
         
 
         paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
@@ -3255,6 +3228,7 @@ function calculatePrintedField() {
     var paperChargingTime = 0;
     var printSpeedRatio = 1;
     var cuttingDownCost = 0;
+    var varnishingCost = 0;
     var coefficientIfSmallPrinting = 0;
     width = width + (allowance * 2) // прибавляем припуски
     length = length + (allowance * 2)
@@ -3266,6 +3240,7 @@ function calculatePrintedField() {
     var jsonC = jsonObj["Сoefficients"];
     var jsonCPF = jsonObj["Paper"]["Format"];
     var jsonCD = jsonObj["CuttingDown"];
+    var jsonPP = jsonObj["PostpressProcessing"]; 
     
     jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
         
@@ -3394,8 +3369,11 @@ function calculatePrintedField() {
     }
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
-    numberOfForms = (face + turnover + varnishing) * montage;
+    numberOfForms = (face + turnover + varnishing)* montage;
     numberOfForms = numberOfForms / rev;
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
     
@@ -3475,12 +3453,14 @@ function calculatePrintedField() {
     var paperCost = paperWeight * jsonP.price  ;
     checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
 
-    var jsonPP = jsonObj["PostpressProcessing"]; 
+    
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    if(varnishing == 3){
-        printing < 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
-    }
+    allCost += varnishingCost;
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
+
+    
 
     allCost += (printing * jsonPP.scoring * scoring);
     checkLabel +="Стоимость биговка: " + (printing * jsonPP.scoring * scoring).toFixed(2) + "$" +  "<br />";
