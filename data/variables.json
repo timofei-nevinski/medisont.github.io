@@ -711,8 +711,8 @@
         "cutting": 0.21,
         "numeration": 0.05,
         "numberNumeration": 0.00728,
-        "UVVarnishingCostBefore500": 60,
-        "UVVarnishingCostAfter500": 0.07
+        "UVVCostBefore500": 60,
+        "UVVCostAfter500": 0.07
     },
     "ThermalCover":[
         {

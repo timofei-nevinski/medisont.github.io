@@ -873,7 +873,7 @@ function calculateBlanks() {
     var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
-    var paperWeight = (paperWidth / 1000) * (paperLength / 1000)  * (jsonP.weight / 1000) * allPaper
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
     checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
 
     checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
@@ -1413,10 +1413,10 @@ html +=         '</div>'
 html +=         '<div class="col-md-12"><br/>'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div class="col-md-12 radio">'
-html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="NO" onchange="getPrintedMachineBooklets()" checked="checked"><span>Нет</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="0" onchange="getPrintedMachineBooklets()" checked="checked"><span>Нет</span> </label>'
 html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="1" onchange="getPrintedMachineBooklets()"><span>Офсетный х1</span> </label>'
 html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="2" onchange="getPrintedMachineBooklets()"><span>Офсетный х2</span> </label>'
-html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="UVV" onchange="getPrintedMachineBooklets()"><span>УФ-лакировка</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="3" onchange="getPrintedMachineBooklets()"><span>УФ-лакировка</span> </label>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
@@ -1485,7 +1485,7 @@ function calculateBooklets() {
     var paperFormat = document.getElementById("paperFormatBooklets").value;
     var scoring = Number(document.getElementById('scoringBooklets').value);
     var folding = Number(document.getElementById('foldingBooklets').value);
-    var varnishing = document.querySelector('input[name=varnishingBooklets]:checked').value;
+    var varnishing = +document.querySelector('input[name=varnishingBooklets]:checked').value;
     var paperWeightValue = document.getElementById("paperWeightBooklets").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -1509,6 +1509,7 @@ function calculateBooklets() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
+    var varnishingCost = 0;
 
     jsonFP.some(function(elem) {
         if(numberOfPrintedSheets <= elem.before) { 
@@ -1546,7 +1547,11 @@ function calculateBooklets() {
     }
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
-    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
+    if(varnishing == 3){
+        printing < 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    }
+
+    
     numberOfForms = (face + turnover + varnishing);
    
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
@@ -1563,7 +1568,7 @@ function calculateBooklets() {
     var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
-    var paperWeight = (paperWidth / 1000) * (paperLength / 1000)  * (jsonP.weight / 1000) * allPaper
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
     checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
 
     checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
@@ -1618,13 +1623,8 @@ function calculateBooklets() {
     var jsonPP = jsonObj["PostpressProcessing"]; 
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    if(varnishing == "3"){
-
-        var varnishingCost = 0;
-        printing < 500 ? varnishingCost = jsonPP.UVVarnishingCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVarnishingCostAfter500) + jsonPP.UVVarnishingCostBefore500);
-        allCost += varnishingCost;
-        checkLabel +="Стоимость лакировки: " + varnishingCost.toFixed(2) + "$" +  "<br />";
-    }
+    allCost += varnishingCost;
+    checkLabel +="Стоимость лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
     allCost += (printing * jsonPP.scoring * scoring);
     checkLabel +="Стоимость биговка: " + (printing * jsonPP.scoring * scoring).toFixed(2) + "$" +  "<br />";
@@ -2178,10 +2178,10 @@ html +=         '</div>'
 html +=         '<div class="col-md-12"><br/>'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div class="col-md-12 radio">'
-html +=                 '<label class="col-md-3"><input name="varnishingFlyers" class="col-md-3 checkbox" type="radio" value="NO" onchange="getPrintedMachineFlyers()" checked="checked"><span>Нет</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingFlyers" class="col-md-3 checkbox" type="radio" value="0" onchange="getPrintedMachineFlyers()" checked="checked"><span>Нет</span> </label>'
 html +=                 '<label class="col-md-3"><input name="varnishingFlyers" class="col-md-3 checkbox" type="radio" value="1" onchange="getPrintedMachineFlyers()"><span>Офсетный х1</span> </label>'
 html +=                 '<label class="col-md-3"><input name="varnishingFlyers" class="col-md-3 checkbox" type="radio" value="2" onchange="getPrintedMachineFlyers()"><span>Офсетный х2</span> </label>'
-html +=                 '<label class="col-md-3"><input name="varnishingFlyers" class="col-md-3 checkbox" type="radio" value="UVV" onchange="getPrintedMachineFlyers()"><span>УФ-лакировка</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingFlyers" class="col-md-3 checkbox" type="radio" value="3" onchange="getPrintedMachineFlyers()"><span>УФ-лакировка</span> </label>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
@@ -2250,7 +2250,7 @@ function calculateFlyers() {
     var paperFormat = document.getElementById("paperFormatFlyers").value;
     var scoring = Number(document.getElementById('scoringFlyers').value);
     var folding = Number(document.getElementById('foldingFlyers').value);
-    var varnishing = document.querySelector('input[name=varnishingFlyers]:checked').value;
+    var varnishing = +document.querySelector('input[name=varnishingFlyers]:checked').value;
     var paperWeightValue = document.getElementById("paperWeightFlyers").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -2328,7 +2328,7 @@ function calculateFlyers() {
     var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
-    var paperWeight = (paperWidth / 1000) * (paperLength / 1000)  * (jsonP.weight / 1000) * allPaper
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
     checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
 
     checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
@@ -2383,12 +2383,8 @@ function calculateFlyers() {
     var jsonPP = jsonObj["PostpressProcessing"]; 
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    if(varnishing == "3"){
-
-        var varnishingCost = 0;
-        printing < 500 ? varnishingCost = jsonPP.UVVarnishingCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVarnishingCostAfter500) + jsonPP.UVVarnishingCostBefore500);
-        allCost += varnishingCost;
-        checkLabel +="Стоимость лакировки: " + varnishingCost.toFixed(2) + "$" +  "<br />";
+    if(varnishing == 3){
+        printing < 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
     }
 
     allCost += (printing * jsonPP.scoring * scoring);
@@ -2880,7 +2876,7 @@ request.onreadystatechange = function() {
             Bierdequels();
             Booklets();
             Blanks();
-            
+            Flyers();
         }
     }
 }
@@ -2901,7 +2897,7 @@ request1.onreadystatechange = function() {
             calculateBierdequels();
             calculateBooklets();
             calculateBlanks(); 
-            
+            calculateFlyers(); 
         }
     }
 }
@@ -2983,10 +2979,10 @@ html +=         '</div>'
 html +=         '<div class="col-md-12"><br/>'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div class="col-md-12 radio">'
-html +=                 '<label class="col-md-3"><input name="varnishing" class="col-md-3 checkbox" type="radio" value="NO" onchange="getPrintedMachine()" checked="checked"><span>Нет</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishing" class="col-md-3 checkbox" type="radio" value="0" onchange="getPrintedMachine()" checked="checked"><span>Нет</span> </label>'
 html +=                 '<label class="col-md-3"><input name="varnishing" class="col-md-3 checkbox" type="radio" value="1" onchange="getPrintedMachine()"><span>Офсетный х1</span> </label>'
 html +=                 '<label class="col-md-3"><input name="varnishing" class="col-md-3 checkbox" type="radio" value="2" onchange="getPrintedMachine()"><span>Офсетный х2</span> </label>'
-html +=                 '<label class="col-md-3"><input name="varnishing" class="col-md-3 checkbox" type="radio" value="UVV" onchange="getPrintedMachine()"><span>УФ-лакировка</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishing" class="col-md-3 checkbox" type="radio" value="3" onchange="getPrintedMachine()"><span>УФ-лакировка</span> </label>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'
@@ -3211,7 +3207,7 @@ function calculatePrintedField() {
     var turnover = Number(document.getElementById('turnover').value);
     var turnoverElem = document.getElementById('turnover');
     var pantone = Number(document.getElementById('pantone').value);
-    var varnishing = document.querySelector('input[name=varnishing]:checked').value;
+    var varnishing = +document.querySelector('input[name=varnishing]:checked').value;
     var rev = document.querySelector('input[name=rev]:checked').value;
     var thermalCover = Number(document.getElementById('thermalCover').value);
     var gluingPVA = Number(document.getElementById("gluingPVA").value); 
@@ -3482,12 +3478,8 @@ function calculatePrintedField() {
     var jsonPP = jsonObj["PostpressProcessing"]; 
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    if(varnishing == "3"){
-
-        var varnishingCost = 0;
-        printing < 500 ? varnishingCost = jsonPP.UVVarnishingCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVarnishingCostAfter500) + jsonPP.UVVarnishingCostBefore500);
-        allCost += varnishingCost;
-        checkLabel +="Стоимость лакировки: " + varnishingCost.toFixed(2) + "$" +  "<br />";
+    if(varnishing == 3){
+        printing < 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((printing - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
     }
 
     allCost += (printing * jsonPP.scoring * scoring);
