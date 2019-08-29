@@ -778,10 +778,10 @@ html += '</div>'
 blanksContainer.innerHTML = html;     
 
 function Blanks() {
-    getBlanksFormat();
-    getPaperWeightBL();
-    getPrintedMachineBL();
+    getPaperWeightBL()
     getPaperFormatBL();
+    getBlanksFormat();
+    getPrintedMachineBL();
     getRentabilityBL();
 }
 
@@ -1140,7 +1140,7 @@ function getPaperFormatBL(firstCall) {
 function numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, position, dev){
 
     var formatBL = +document.getElementById('formatBL').value;
-    var allowance = Number(document.getElementById('allowanceB').value);
+    var allowance = Number(document.getElementById('allowanceBL').value);
     var width = 0;
     var length = 0;
 
@@ -1362,7 +1362,7 @@ html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="allowanceBooklets" class="element text medium" type="number" min="0" oninput="getPaperFormatBooklets(false)" maxlength="255" value="2"/> '
+html +=                 '<input id="allowanceBooklets" class="element text medium" type="number" min="0" onchange="getPaperFormatBooklets(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12">'
@@ -1371,19 +1371,19 @@ html +=         '</div> '
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
-html +=                 '<input id="faceBooklets" class="element text medium" type="number" min="0" oninput="getPrintedMachineBooklets()"  maxlength="255"  value="4" /> '
+html +=                 '<input id="faceBooklets" class="element text medium" type="number" min="0" onchange="getPaperWeightBooklets()"  maxlength="255"  value="4" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
-html +=                 '<input id="turnoverBooklets" class="element text medium" type="number" min="0" oninput="getPrintedMachineBooklets()" maxlength="255" value="4"/> '
+html +=                 '<input id="turnoverBooklets" class="element text medium" type="number" min="0" onchange="getPaperWeightBooklets()" maxlength="255" value="4"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
-html +=                 '<input id="pantoneBooklets" class="element text medium" type="number" min="0" oninput="getPrintedMachineBooklets()" maxlength="255" value="0"/> '
+html +=                 '<input id="pantoneBooklets" class="element text medium" type="number" min="0" onchange="getPrintedMachineBooklets()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-3">'				
@@ -1410,16 +1410,38 @@ html +=             '<div>'
 html +=                 '<select id="rentabilityBooklets" name="rentabilityBooklets" onchange="calculateBooklets()"></select>'
 html +=             '</div>'
 html +=         '</div>'
+html +=         '<div class="col-md-12"><br/>'				
+html +=             '<label  class="description">Лакировка</label>'
+html +=             '<div class="col-md-12 radio">'
+html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="NO" onchange="getPrintedMachineBooklets()" checked="checked"><span>Нет</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="1" onchange="getPrintedMachineBooklets()"><span>Офсетный х1</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="2" onchange="getPrintedMachineBooklets()"><span>Офсетный х2</span> </label>'
+html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="UVV" onchange="getPrintedMachineBooklets()"><span>УФ-лакировка</span> </label>'
+html +=             '</div> '
+html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide">'
-html +=             '<div class="col-md-4 padding-none">'				
-html +=                 '<label class="description">Нумерация</label>'
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-6">'				
+html +=                    '<label><input name="scoringBooklets" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemBooklets(this)"><span class="col-md-11" >Биговка</span> </label>'
+html +=               '</div>'
+html +=               '<div class="col-md-6">'
+html +=                   '<input id="scoringBooklets" class=" element text medium" type="number" min="0" oninput="calculateBooklets()"  maxlength="255" value="0" disabled="true"/> '
+html +=               '</div> '
+html +=            '</div> '
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-6">'				
+html +=                   '<label><input name="foldingBooklets" class="col-md-1 checkbox" checked type="checkbox" onchange="getStateElemBooklets(this)"><span>Фальцовка</span> </label>'
+html +=                 '</div>'
+html +=                 '<div class="col-md-6">'
+html +=                     '<input id="foldingBooklets" class="element text medium" type="number" min="0" oninput="calculateBooklets()"  maxlength="255" value="0" disabled="true"/> '
+html +=                 '</div> '
+html +=             '</div> '
+html +=             '<div class="col-md-4">'				
+html +=                 '<label class="description">Ламинат</label>'
 html +=                 '<div>'
-html +=                     '<select id="numerationBooklets" name="numerationBooklets" onchange="calculateBooklets()">'
-html +=                     '<option value="0">Нет</option>'
-html +=                     '<option value="1">x1</option>'
-html +=                     '<option value="2">x2</option></select>'
+html +=                     '<select id="laminadeBooklets"  name="laminadeBooklets" onchange="getLaminadeBooklets()"></select>'
 html +=                 '</div> '
 html +=             '</div>'
 html +=         '</div>'
@@ -1445,6 +1467,10 @@ function Booklets() {
     getPrintedMachineBooklets();
     getPaperFormatBooklets();
     getRentabilityBooklets();
+    getLaminadeBooklets();
+    getStateElemBooklets(document.querySelector('input[name=foldingBooklets]:checked'));
+    
+    
 }
 
 function calculateBooklets() {
@@ -1455,8 +1481,11 @@ function calculateBooklets() {
     var printedMachine = document.getElementById("printedMachineBooklets").value;
     var rentabilityId = Number(document.getElementById("rentabilityBooklets").value); 
     var turnoverElem = document.getElementById('turnoverBooklets');
+    var laminade = Number(document.getElementById('laminadeBooklets').value);
     var paperFormat = document.getElementById("paperFormatBooklets").value;
-    var numerationBooklets = document.getElementById("numerationBooklets").value;
+    var scoring = Number(document.getElementById('scoringBooklets').value);
+    var folding = Number(document.getElementById('foldingBooklets').value);
+    var varnishing = document.querySelector('input[name=varnishingBooklets]:checked').value;
     var paperWeightValue = document.getElementById("paperWeightBooklets").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -1487,7 +1516,6 @@ function calculateBooklets() {
             return true;
         }
     });
-
     
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProducts()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
@@ -1518,10 +1546,11 @@ function calculateBooklets() {
     }
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
-    
-    numberOfForms = (face + turnover);
-    
+    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
+    numberOfForms = (face + turnover + varnishing);
+   
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
+
     
     checkLabel +="Цена формы: " + jsonPM.formPrice + "$" +  "<br />";
     var formCost = jsonPM.formPrice * numberOfForms;
@@ -1549,12 +1578,12 @@ function calculateBooklets() {
 
     if(jsonP.weight >= 300 || paperType == "Carton"){
         printSpeedRatio = jsonPM.printSpeedRatio;
-    }
+    } 
 
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
 
     if(jsonPM.printSpeed != 0){
-        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections);
+        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
 
         var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
         var dateChanging = new Date(null);
@@ -1585,17 +1614,45 @@ function calculateBooklets() {
     var paperCost = paperWeight * jsonP.price  ;
     checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
 
+
     var jsonPP = jsonObj["PostpressProcessing"]; 
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    allCost += (printing * jsonPP.numeration * numerationBooklets);
-    checkLabel +="Стоимость нумерации: " + (printing * jsonPP.numeration * numerationBooklets).toFixed(2) + "$" +  "<br />";
+    allCost += (printing * jsonPP.scoring * scoring);
+    checkLabel +="Стоимость биговка: " + (printing * jsonPP.scoring * scoring).toFixed(2) + "$" +  "<br />";
+
+    allCost += (printing * jsonPP.folding * folding);
+    checkLabel +="Стоимость Фальцовка: " + (printing * jsonPP.folding * folding).toFixed(2) + "$" +  "<br />";
+
+    var jsonL = jsonObj["Laminade"][laminade];
+    allCost += (numberOfPrintedSheets * jsonL.price );
+    checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
     finalCostBooklets.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
+}
+
+function getStateElemBooklets(elem){
+    if(elem != true){
+        var elemField = document.getElementById(elem.name);
+        if(elem.checked) { 
+            if(elem.name == "foldingBooklets") {
+                elemField.disabled = false; elemField.value = 1;
+            } 
+            else {
+                elemField.disabled = false; elemField.value = 1;
+            }
+        } else {
+            elemField.disabled = true; elemField.value = 0;
+        }
+        calculateBooklets();
+        
+    };
+
+
 }
 
 function getRentabilityBooklets() {
@@ -1616,6 +1673,17 @@ function getRentabilityBooklets() {
             }
         });
     }
+}
+
+function getLaminadeBooklets() {
+    var laminade = document.getElementById("laminadeBooklets"); //получаем элемент по его ID
+    if (laminade.options.length == 0){
+        var jsonL = jsonObj["Laminade"]; 
+        jsonL.forEach(function(elem) {
+            laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+        });
+    }
+    calculateBooklets();
 }
 
 function getBookletsFormat() {
@@ -1646,6 +1714,7 @@ function getPaperFormatBooklets(firstCall) {
         var jsonPF = jsonObj["Paper"]["Format"]; // получаем форматы бумаги
         var formatBooklets = +document.getElementById('formatBooklets').value;
         var printing = Number(document.getElementById('printingBooklets').value);
+        var scoring = document.querySelector('input[name=scoringBooklets]');
 
         var map = new Map();
         var widthPrintedArea = 0;
@@ -1659,11 +1728,24 @@ function getPaperFormatBooklets(firstCall) {
         
         var numberOfPrintedSheets = 0;
 
+        var elemField = document.getElementById("scoringBooklets");
+          
+
+        jsonP.weight >= 170 ? scoring.checked = true : scoring.checked = false;
+           
+        if(scoring.checked) { 
+            elemField.disabled = false; elemField.value = 1;
+        }
+        else {
+            elemField.disabled = true; elemField.value = 0;
+        }
+        
+
         paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBooklets != 5){
+                    if(formatBooklets != 3){
                         widthBooklets.disabled = true;
                         lengthBooklets.disabled = true;
                         
@@ -1842,8 +1924,14 @@ function numberProductPerSheetBooklets(widthPrintedArea, lengthPrintedArea, posi
 
 function getPaperWeightBooklets() {
     var paperWeight = document.getElementById("paperWeightBooklets");
+    var face = Number(document.getElementById('faceBooklets').value);
+    var turnover = Number(document.getElementById('turnoverBooklets').value);
+    var paperWeightValue = document.getElementById("paperWeightBooklets").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperTypeBooklets = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    var paperWeightBooklets = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
 
-    if (paperWeight.options.length == 0){
+    if( paperWeight.options.length == 0 || face == 1 && turnover == 1 && paperTypeBooklets !="Offset" && paperWeightBooklets!= "1") {
+        face == 1 && turnover == 1 ? paperWeight.options.length = 0 : "";
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
         var jsonMat = jsonObj["Paper"]["Mat"];
@@ -1857,14 +1945,30 @@ function getPaperWeightBooklets() {
         getTypePaper(jsonCarton, paperWeight, "Carton");
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
-                if(papetType == "Offset" && elem.id =="1"){
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                
+                
+                if(face == 1 && turnover == 1){
+                    if(papetType == "Offset" && elem.id =="1"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
                 } else {
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+
+
+                    if(papetType == "Glossy" && elem.id =="3"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
                 }
+
             });
         }
+        
+        
     }
+    
     getPaperFormatBooklets(false);
 }
 
@@ -1929,6 +2033,7 @@ function getPrintedMachineBooklets(){
     var face = Number(document.getElementById('faceBooklets').value);
     var turnover = Number(document.getElementById('turnoverBooklets').value);
     var pantone = Number(document.getElementById('pantoneBooklets').value); 
+    var varnishing = document.querySelector('input[name=varnishingBooklets]:checked').value;
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
@@ -1950,8 +2055,8 @@ function getPrintedMachineBooklets(){
             else {
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
-        } else if(face == 1 && pantone == 0){
-            if(paperType == "Offset"){
+        } else if(face == 1 && turnover == 1){
+            if(paperType == "Offset" && varnishing == "NO"){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -1965,13 +2070,6 @@ function getPrintedMachineBooklets(){
                 else {
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
-            }
-        } else if(face == 1 && pantone == 1 && paperType == "Offset"){
-            if(elem.id == '1'){ 
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }
-            else {
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
         } 
         else {
@@ -1997,17 +2095,9 @@ request.onreadystatechange = function() {
             jsonObj = request.response; 
             
             getPaperWeight();
-            
-            
             getPrintedMachine();
-            
-            
-            getPaperFormat(true);
-            
-            
+            getPaperFormat(true);   
             getRentability();
-            
-            
             getStateElem(true);
             getLaminade();
             getPasting();
@@ -2015,8 +2105,9 @@ request.onreadystatechange = function() {
             getSpring();
             getThermalCover();
             Bierdequels();
-            Blanks();
             Booklets();
+            Blanks();
+            
         }
     }
 }
@@ -2035,8 +2126,9 @@ request1.onreadystatechange = function() {
             jsonObjDollar = request1.response.Cur_OfficialRate; 
             calculatePrintedField();
             calculateBierdequels();
+            calculateBooklets();
             calculateBlanks(); 
-            calculateBooklets(); 
+            
         }
     }
 }
