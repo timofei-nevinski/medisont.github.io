@@ -195,7 +195,20 @@
             }
             
         ],
-
+        "Folders": [
+            {
+                "id": "0",
+                "name": "340x500",
+                "width": 340,
+                "length": 500
+            },
+            {
+                "id": "1",
+                "name": "Другой XxY",
+                "width": 0,
+                "length": 0
+            }
+        ],
 
         "Bierdequels": [
             {
