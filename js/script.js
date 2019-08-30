@@ -1389,7 +1389,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
-html +=                 '<select id="paperWeightBooklets" name="paperWeightBooklets" onchange="getPaperWeightBooklets(false)"></select>'
+html +=                 '<select id="paperWeightBooklets" name="paperWeightBooklets" onchange="getPaperWeightBooklets()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
@@ -1942,7 +1942,7 @@ function getPaperWeightBooklets() {
     var paperTypeBooklets = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperWeightBooklets = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
 
-    if( paperWeight.options.length == 0 || face == 1 && turnover == 1 && paperTypeBooklets !="Offset" && paperWeightBooklets!= "1") {
+    if( paperWeight.options.length == 0 || face == 1 && turnover == 1 ) {
         face == 1 && turnover == 1 ? paperWeight.options.length = 0 : "";
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -1958,16 +1958,21 @@ function getPaperWeightBooklets() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-                
-                if(face == 1 && turnover == 1){
+                if(face == 1 && turnover == 1 ){
                     if(papetType == "Offset" && elem.id =="1"){
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                     } else {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
-                } else {
-
-
+                    
+                } else if(face == 1 && turnover == 1 && paperWeightValue != "Offset_1"){
+                    if(papetType == paperTypeBooklets && elem.id == paperWeightBooklets){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
+                } 
+                else {
                     if(papetType == "Glossy" && elem.id =="3"){
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                     } else {
@@ -2887,7 +2892,7 @@ html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="allowanceFolders" class="element text medium" type="number" min="0" oninput="getPaperFormatFolders(false)" maxlength="255" value="2"/> '
+html +=                 '<input id="allowanceFolders" class="element text medium" type="number" min="0" oninput="getPaperFormatFolders(false)" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12">'
@@ -2896,13 +2901,13 @@ html +=         '</div> '
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
-html +=                 '<input id="faceFolders" class="element text medium" type="number" min="0" oninput="getPaperWeightFolders()"  maxlength="255"  value="4" /> '
+html +=                 '<input id="faceFolders" class="element text medium" type="number" min="0" oninput="getPaperWeightFolders()"  maxlength="255"  value="1" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
-html +=                 '<input id="turnoverFolders" class="element text medium" type="number" min="0" oninput="getPaperWeightFolders()" maxlength="255" value="4"/> '
+html +=                 '<input id="turnoverFolders" class="element text medium" type="number" min="0" oninput="getPaperWeightFolders()" maxlength="255" value="0"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
@@ -3207,7 +3212,7 @@ function getLaminadeFolders() {
     if (laminade.options.length == 0){
         var jsonL = jsonObj["Laminade"]; 
         jsonL.forEach(function(elem) {
-            if(elem.id = "1"){
+            if(elem.id == "1"){
                 laminade.options[laminade.options.length] = new Option(elem.name, elem.id, true, true);
             } else {
                 laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
@@ -3458,8 +3463,8 @@ function getPaperWeightFolders() {
     var paperTypeFolders = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperWeightFolders = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
 
-    if( paperWeight.options.length == 0 ) {
-        
+    if( paperWeight.options.length == 0 || face == 4 && turnover == 4 ) {
+        face == 4 && turnover == 4 ? paperWeight.options.length = 0 : "";
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
         var jsonMat = jsonObj["Paper"]["Mat"];
@@ -3474,16 +3479,20 @@ function getPaperWeightFolders() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-                
-                if(face == 4 && turnover == 4){
-                    if(papetType == "Carton" && elem.id =="5"){
+                if(face == 4 && turnover == 4 && paperWeightValue != "Carton_5"){
+                    if(papetType == paperTypeFolders && elem.id == paperWeightFolders){
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                     } else {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
-                } else {
-
-
+                } else if(face == 4 && turnover == 4){
+                        if(papetType == "Carton" && elem.id =="5"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
+                } 
+                else {
                     if(papetType == "Carton" && elem.id =="2"){
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                     } else {
