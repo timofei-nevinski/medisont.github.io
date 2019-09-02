@@ -1946,8 +1946,9 @@ function getPaperWeightBooklets() {
     var paperWeightValue = document.getElementById("paperWeightBooklets").value; //получаем value выбранного элемента option по ID элемента select 
     var paperTypeBooklets = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperWeightBooklets = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
+    var defcalc = paperWeight.getAttribute("defcalcBooklets");
 
-    if( paperWeight.options.length == 0 || face == 1 && turnover == 1 ) {
+    if( paperWeight.options.length == 0 || face == 1 && turnover == 1 && defcalc == "false") {
         face == 1 && turnover == 1 ? paperWeight.options.length = 0 : "";
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -1963,19 +1964,13 @@ function getPaperWeightBooklets() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-                if(face == 1 && turnover == 1 ){
+                if(face == 1 && turnover == 1 && defcalc == "false"){
                     if(papetType == "Offset" && elem.id =="1"){
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                     } else {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
-                    
-                } else if(face == 1 && turnover == 1 && paperWeightValue != "Offset_1"){
-                    if(papetType == paperTypeBooklets && elem.id == paperWeightBooklets){
-                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
-                    } else {
-                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
-                    }
+                    htmlObj.setAttribute("defcalcBooklets", true)
                 } 
                 else {
                     if(papetType == "Glossy" && elem.id =="3"){
@@ -1983,6 +1978,7 @@ function getPaperWeightBooklets() {
                     } else {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
+                    htmlObj.setAttribute("defcalcBooklets", false)
                 }
 
             });
@@ -3467,8 +3463,8 @@ function getPaperWeightFolders() {
     var paperWeightValue = document.getElementById("paperWeightFolders").value; //получаем value выбранного элемента option по ID элемента select 
     var paperTypeFolders = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperWeightFolders = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
-
-    if( paperWeight.options.length == 0 || face == 4 && turnover == 4 ) {
+    var defcalc = paperWeight.getAttribute("defcalcFolders");
+    if( paperWeight.options.length == 0 || face == 4 && turnover == 4 && defcalc == "false") {
         face == 4 && turnover == 4 ? paperWeight.options.length = 0 : "";
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -3484,18 +3480,13 @@ function getPaperWeightFolders() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-                if(face == 4 && turnover == 4 && paperWeightValue != "Carton_5"){
-                    if(papetType == paperTypeFolders && elem.id == paperWeightFolders){
+                if(face == 4 && turnover == 4 && defcalc == "false"){
+                    if(papetType == "Carton" && elem.id =="5"){
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                     } else {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
-                } else if(face == 4 && turnover == 4){
-                        if(papetType == "Carton" && elem.id =="5"){
-                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
-                        } else {
-                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
-                        }
+                    htmlObj.setAttribute("defcalcFolders", true)
                 } 
                 else {
                     if(papetType == "Carton" && elem.id =="2"){
@@ -3503,11 +3494,13 @@ function getPaperWeightFolders() {
                     } else {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
+                    htmlObj.setAttribute("defcalcFolders", false)
                 }
 
             });
-        }
+        } 
     }
+    
     
     getPaperFormatFolders(false);
 }
