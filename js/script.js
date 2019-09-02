@@ -1410,13 +1410,16 @@ html +=             '<div>'
 html +=                 '<select id="rentabilityBooklets" name="rentabilityBooklets" onchange="calculateBooklets()"></select>'
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/>'				
+html +=         '<div class="col-md-3">'				
 html +=             '<label  class="description">Лакировка</label>'
-html +=             '<div class="col-md-12 radio">'
-html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="0" onchange="getPrintedMachineBooklets()" checked="checked"><span>Нет</span> </label>'
-html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="1" onchange="getPrintedMachineBooklets()"><span>Офсетный х1</span> </label>'
-html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="2" onchange="getPrintedMachineBooklets()"><span>Офсетный х2</span> </label>'
-html +=                 '<label class="col-md-3"><input name="varnishingBooklets" class="col-md-3 checkbox" type="radio" value="3" onchange="getPrintedMachineBooklets()"><span>УФ-лакировка</span> </label>'
+html +=             '<div>'
+html +=                 '<select id="varnishingBooklets" name="varnishingBooklets" onchange="getPrintedMachineBooklets()">'
+html +=                     '<option value="0">Нет</option>'
+html +=                     '<option value="1">Офсетный x1</option>'
+html +=                     '<option value="2">Офсетный x2</option>'
+html +=                     '<option value="3">УФ-лакировка x1</option>'
+html +=                     '<option value="4">УФ-лакировка x2</option>'
+html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
@@ -1484,7 +1487,7 @@ function calculateBooklets() {
     var paperFormat = document.getElementById("paperFormatBooklets").value;
     var scoring = Number(document.getElementById('scoringBooklets').value);
     var folding = Number(document.getElementById('foldingBooklets').value);
-    var varnishing = document.querySelector('input[name=varnishingBooklets]:checked').value;
+    var varnishing = document.getElementById('varnishingBooklets').value;
     var paperWeightValue = document.getElementById("paperWeightBooklets").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -1549,6 +1552,8 @@ function calculateBooklets() {
 
     if(varnishing == "3"){
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    } else if (varnishing == "4"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
     numberOfForms = (face + turnover + varnishing);
@@ -2057,7 +2062,7 @@ function getPrintedMachineBooklets(){
     var face = Number(document.getElementById('faceBooklets').value);
     var turnover = Number(document.getElementById('turnoverBooklets').value);
     var pantone = Number(document.getElementById('pantoneBooklets').value); 
-    var varnishing = document.querySelector('input[name=varnishingBooklets]:checked').value;
+    var varnishing = document.getElementById('varnishingBooklets').value;
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
@@ -2316,7 +2321,7 @@ function calculateFlyers() {
 
     if(varnishing == "3"){
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
-    } else if (varnishing = "4"){
+    } else if (varnishing == "4"){
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
@@ -3078,7 +3083,7 @@ function calculateFolders() {
 
     if(varnishing == "3"){
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
-    } else if (varnishing = "4"){
+    } else if (varnishing == "4"){
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
