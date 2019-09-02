@@ -84,7 +84,7 @@
             },
             {
                 "id": "5",
-                "name": "Другой",
+                "name": "Другой XxY",
                 "width": 100,
                 "length": 100
             }
@@ -209,6 +209,32 @@
                 "length": 0
             }
         ],
+        "Magnets": [
+            {
+                "id": "0",
+                "name": "50x50",
+                "width": 50,
+                "length": 50
+            },
+            {
+                "id": "1",
+                "name": "50x90",
+                "width": 50,
+                "length": 90
+            },
+            {
+                "id": "2",
+                "name": "70x100",
+                "width": 70,
+                "length": 100
+            },
+            {
+                "id": "3",
+                "name": "Другой XxY",
+                "width": 0,
+                "length": 0
+            }
+        ],
 
         "Bierdequels": [
             {
@@ -231,7 +257,7 @@
             },
             {
                 "id": "3",
-                "name": "ХхУ другой",
+                "name": "Другой XxY",
                 "width": 0,
                 "length": 0
             },
@@ -535,6 +561,14 @@
                 "name": "Каппа",
                 "price": 1.6,
                 "format": "6"
+            }
+        ],
+        "MagneticVinyl": [
+            {
+                "id": "0",
+                "name": "Магнитный винил",
+                "price": 1.5,
+                "format": "5"
             }
         ],
         "FittingPager": [
