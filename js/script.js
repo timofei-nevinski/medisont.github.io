@@ -3766,12 +3766,15 @@ function calculateMagnets() {
     var finalCostMagnets = document.getElementById('final-costMagnets');
     var labelCheck = document.getElementById('checkMagnets');
     var printing = Number(document.getElementById('printingMagnets').value);
-    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsMagnets());
+    var paperFormat = document.getElementById("paperFormatMagnets").value;
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsMagnets(paperFormat));
+    var vinylFormat = 8;
+    var numberOfPrintedVilylSheets = Math.ceil(printing / getNumberOfProductsMagnets(vinylFormat));
     var printedMachine = document.getElementById("printedMachineMagnets").value;
     var rentabilityId = Number(document.getElementById("rentabilityMagnets").value); 
     var turnoverElem = document.getElementById('turnoverMagnets');
     var pasting = Number(document.getElementById("pastingMagnets").value);
-    var paperFormat = document.getElementById("paperFormatMagnets").value;
+    
 
     var varnishing = document.getElementById('varnishingMagnets').value;
     var paperWeightValue = document.getElementById("paperWeightMagnets").value; //получаем value выбранного элемента option по ID элемента select 
@@ -3807,8 +3810,11 @@ function calculateMagnets() {
         }
     });
     
-    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsMagnets()+ "<br />";
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsMagnets(paperFormat)+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+
+    checkLabel += "Количесвто изделий на листе винила: " + getNumberOfProductsMagnets(vinylFormat)+ "<br />";
+    checkLabel += "Количество печатных листов: " + numberOfPrintedVinylSheets + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
@@ -4128,10 +4134,10 @@ function getPaperWeightMagnets() {
     getPaperFormatMagnets(false);
 }
 
-function getNumberOfProductsMagnets() {
+function getNumberOfProductsMagnets(paperFormat) {
 
     var allowance = document.getElementById('allowanceMagnets').value;
-    var paperFormatB = document.getElementById("paperFormatMagnets").value; //получаем элемент по его ID
+    
     var printedMachine = document.getElementById("printedMachineMagnets").value;
     var labelCheck = document.getElementById('checkMagnetsField');
     var printing = Number(document.getElementById('printingMagnets').value);
@@ -4146,7 +4152,7 @@ function getNumberOfProductsMagnets() {
         
         jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
             
-            if(elem.id == paperFormatB){
+            if(elem.id == paperFormat){
                 paperWidth = elem.width;
                 paperLength = elem.length;
 

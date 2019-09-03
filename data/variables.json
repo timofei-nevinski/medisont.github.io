@@ -48,6 +48,12 @@
                 "name": "72x104",
                 "width": 720,
                 "length": 1040
+            },
+            {
+                "id": "8",
+                "name": "450x305",
+                "width": 450,
+                "length": 305
             }
         ],
         "Blanks": [
