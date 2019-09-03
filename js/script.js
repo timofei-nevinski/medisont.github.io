@@ -3636,7 +3636,7 @@ var magnetsContainer = document.getElementById("magnetsContainer");
 var html = '<div class="row">'
 html +=     '<div class="col-md-12">'	
 html +=         '<div class="col-md-12">'
-html +=             '<h2>Папки</h2>'
+html +=             '<h2>Магниты</h2>'
 html +=         '</div> '
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Тираж, шт </label>'
@@ -3751,7 +3751,6 @@ html +=             '<div class="col-md-12 block">'
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
 html +=                 '<br/><label id="checkMagnetsField" class="description col-md-12"></label>'
-html +=                 '<br/><label id="checkMagnetsFieldVinyl" class="description col-md-12"></label>'
 html +=                 '<br/><label id="checkMagnets" class="description col-md-12"></label>'
 html +=             '</div><br/>'
 html +=         '</div>'
@@ -3772,10 +3771,10 @@ function calculateMagnets() {
     var finalCostMagnets = document.getElementById('final-costMagnets');
     var labelCheck = document.getElementById('checkMagnets');
     var printing = Number(document.getElementById('printingMagnets').value);
-    var paperFormat = document.getElementById("paperFormatMagnets").value;
-    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsMagnets(paperFormat, true));
-    var vinylFormat = 8;
-    var numberOfPrintedVinylSheets = Math.ceil(printing / getNumberOfProductsMagnets(vinylFormat, false));
+    var paperFormat = +document.getElementById("paperFormatMagnets").value;
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsMagnets());
+
+    var numberOfPrintedVinylSheets = numberOfPrintedSheets;
     var printedMachine = document.getElementById("printedMachineMagnets").value;
     var rentabilityId = Number(document.getElementById("rentabilityMagnets").value); 
     var turnoverElem = document.getElementById('turnoverMagnets');
@@ -3817,10 +3816,9 @@ function calculateMagnets() {
         }
     });
     
-    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsMagnets(paperFormat, true)+ "<br />";
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsMagnets()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
 
-    checkLabel += "Количесвто изделий на листе винила: " + getNumberOfProductsMagnets(vinylFormat, false)+ "<br />";
     checkLabel += "Количество листов винила: " + numberOfPrintedVinylSheets + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
@@ -4156,18 +4154,17 @@ function getPaperWeightMagnets() {
     getPaperFormatMagnets(false);
 }
 
-function getNumberOfProductsMagnets(paperFormat, paperType) {
+function getNumberOfProductsMagnets() {
 
     var allowance = document.getElementById('allowanceMagnets').value;
-    
+    var paperFormat = document.getElementById("paperFormatMagnets").value;
     var printedMachine = document.getElementById("printedMachineMagnets").value;
     var labelCheck = document.getElementById('checkMagnetsField');
-    var labelCheckVinyl = document.getElementById('checkMagnetsFieldVinyl');
+    
     var printing = Number(document.getElementById('printingMagnets').value);
     var numberOfPrintedSheets = 0;
     var numberOfParts = 0;
     var checkLabel = "";
-    var checkLabelVinyl = "";
     
         var widthPrintedArea = 0;
         var lengthPrintedArea = 0;
@@ -4184,7 +4181,7 @@ function getNumberOfProductsMagnets(paperFormat, paperType) {
                 paperLength += (allowance * 2)
     
                 widthPrintedArea = (elem.width / 2) - 2; 
-                lengthPrintedArea = (elem.length / 2) -2;
+                lengthPrintedArea = (elem.length / 2) - 10;
                 numberOfParts = 4;
             }
         });
@@ -4203,25 +4200,12 @@ function getNumberOfProductsMagnets(paperFormat, paperType) {
             }
         });
 
-        if(paperType == true){
-            checkLabel += "Режем на " + numberOfParts +" части" + "<br />";
-            checkLabel += "Размер запечатываемого поля: " + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
-            checkLabel +="Количество изделий на листе при расположении в ширину: " + numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
-            checkLabel +="Печатных листов при расположении в ширину: " + Math.ceil(printing / numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
-            checkLabel +="Количество изделий на листе при расположении в длинну: " + numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
-            checkLabel +="Печатных листов при расположении в длинну: " + Math.ceil(printing / numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />";
-            
-        } else {
-            checkLabelVinyl += "Режем винил на " + numberOfParts +" части" + "<br />";
-            checkLabelVinyl += "Размер запечатываемого поля листа винила: " + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
-            checkLabelVinyl +="Количество изделий на листе винил  при расположении в ширину: " + numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
-            checkLabelVinyl +="Печатных листов винила  при расположении в ширину: " + Math.ceil(printing / numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
-            checkLabelVinyl +="Количество изделий на листе винил  при расположении в длинну: " + numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
-            checkLabelVinyl +="Печатных листов винила при расположении в длинну: " + Math.ceil(printing / numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />";
-            
-        }
-
-        
+        checkLabel += "Режем на " + numberOfParts +" части" + "<br />";
+        checkLabel += "Размер запечатываемого поля: " + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
+        checkLabel +="Количество изделий на листе при расположении в ширину: " + numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
+        checkLabel +="Печатных листов при расположении в ширину: " + Math.ceil(printing / numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
+        checkLabel +="Количество изделий на листе при расположении в длинну: " + numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
+        checkLabel +="Печатных листов при расположении в длинну: " + Math.ceil(printing / numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />";
 
         if(numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
             numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, "L", true);
@@ -4234,15 +4218,8 @@ function getNumberOfProductsMagnets(paperFormat, paperType) {
         } else {
             numberOfPrintedSheets = "Ошибка"
         }
-
-
-        if(paperType){
-            labelCheck.innerHTML = checkLabel;
-        } else {
-            labelCheckVinyl.innerHTML = checkLabelVinyl;
-        }
         
-        
+        labelCheck.innerHTML = checkLabel;
         
     return numberOfPrintedSheets;
 }
