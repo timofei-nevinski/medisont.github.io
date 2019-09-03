@@ -771,6 +771,7 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label class="description">Количество резов на лист: <label id="checkBLCuts" ></label></label>'
 html +=                 '<br/><label id="checkBL" class="description"></label>'
 html +=             '</div><br/>'
 html +=         '</div>'
@@ -791,6 +792,7 @@ function calculateBlanks() {
     var printing = Number(document.getElementById('printingBL').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProducts());
     var printedMachine = document.getElementById("printedMachineBL").value;
+    var cut = Number(document.getElementById('checkBLCuts').textContent);
     var rentabilityId = Number(document.getElementById("rentabilityBL").value); 
     var turnoverElem = document.getElementById('turnoverBL');
     var paperFormat = document.getElementById("paperFormatBL").value;
@@ -850,7 +852,7 @@ function calculateBlanks() {
 
     checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
     checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
-    var cutCost = numberOfPrintedSheets / jsonPM.ream * jsonPM.cutPrice;
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
 
     if(cutCost < jsonC.minCutPrice){
         cutCost = jsonC.minCutPrice;
@@ -935,6 +937,19 @@ function calculateBlanks() {
     finalCostBL.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
+}
+function getNumberOfCutsBL(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkBLCuts');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
 }
 
 function getRentabilityBL() {
@@ -1177,6 +1192,8 @@ function numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, position, 
             numberProduct = "Ошибка"
         }
     }
+
+    getNumberOfCutsBL(Math.trunc(numberWidth), Math.trunc(numberLength), allowance)
 
     return numberProduct
 }
@@ -1458,6 +1475,7 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label class="description">Количество резов на лист: <label id="checkBookletsCuts" ></label></label>'
 html +=                 '<br/><label id="checkBookletsField" class="description"></label>'
 html +=                 '<br/><label id="checkBooklets" class="description"></label>'
 html +=             '</div><br/>'
@@ -1483,6 +1501,7 @@ function calculateBooklets() {
     var printedMachine = document.getElementById("printedMachineBooklets").value;
     var rentabilityId = Number(document.getElementById("rentabilityBooklets").value); 
     var turnoverElem = document.getElementById('turnoverBooklets');
+    var cut = document.getElementById('checkBookletsCuts').textContent;
     var laminade = Number(document.getElementById('laminadeBooklets').value);
     var paperFormat = document.getElementById("paperFormatBooklets").value;
     var scoring = Number(document.getElementById('scoringBooklets').value);
@@ -1543,7 +1562,7 @@ function calculateBooklets() {
 
     checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
     checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
-    var cutCost = numberOfPrintedSheets / jsonPM.ream * jsonPM.cutPrice;
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
 
     if(cutCost < jsonC.minCutPrice){
         cutCost = jsonC.minCutPrice;
@@ -1645,6 +1664,20 @@ function calculateBooklets() {
     finalCostBooklets.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
+}
+
+function getNumberOfCutsBooklets(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkBookletsCuts');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
 }
 
 function getStateElemBooklets(elem){
@@ -1934,7 +1967,7 @@ function numberProductPerSheetBooklets(widthPrintedArea, lengthPrintedArea, posi
        
     }
 
- 
+    getNumberOfCutsBooklets(Math.trunc(numberWidth), Math.trunc(numberLength), allowance)
 
     return numberProduct
 }
@@ -2224,6 +2257,7 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label class="description">Количество резов на лист: <label id="checkFlyersCuts" ></label></label>'
 html +=                 '<br/><label id="checkFlyersField" class="description"></label>'
 html +=                 '<br/><label id="checkFlyers" class="description"></label>'
 html +=             '</div><br/>'
@@ -2251,7 +2285,7 @@ function calculateFlyers() {
     var turnoverElem = document.getElementById('turnoverFlyers');
     var laminade = Number(document.getElementById('laminadeFlyers').value);
     var paperFormat = document.getElementById("paperFormatFlyers").value;
-
+    var cut = Number(document.getElementById('checkFlyersCuts').textContent);
     var varnishing = document.getElementById('varnishingFlyers').value;
     var paperWeightValue = document.getElementById("paperWeightFlyers").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
@@ -2308,7 +2342,7 @@ function calculateFlyers() {
 
     checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
     checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
-    var cutCost = numberOfPrintedSheets / jsonPM.ream * jsonPM.cutPrice;
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
 
     if(cutCost < jsonC.minCutPrice){
         cutCost = jsonC.minCutPrice;
@@ -2407,6 +2441,20 @@ function calculateFlyers() {
     finalCostFlyers.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
+}
+
+function getNumberOfCutsFlyers(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkFlyersCuts');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
 }
 
 function getStateElemFlyers(elem){
@@ -2680,6 +2728,8 @@ function numberProductPerSheetFlyers(widthPrintedArea, lengthPrintedArea, positi
             numberProduct = "Ошибка"
         }
     }
+
+    getNumberOfCutsFlyers(Math.trunc(numberWidth), Math.trunc(numberLength), allowance)
 
     return numberProduct
 }
@@ -3729,7 +3779,7 @@ html +=             '<h3 class="extremum-click">Послепечатная об�
 html +=         '<div class="extremum-slide padding-note">'
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
-html +=                    '<label><input id="cuttingDownMagnets" name="cuttingDownMagnets" class="col-md-1 checkbox"  type="checkbox" onchange="calculateMagnets()" checked><span class="col-md-11" >Вырубка</span> </label>'
+html +=                    '<label><input id="cuttingDownMagnets" name="cuttingDownMagnets" class="col-md-1 checkbox"  type="checkbox" onchange="calculateMagnets()"><span class="col-md-11" >Вырубка</span> </label>'
 html +=                 '</div>'
 html +=             '</div>'
 html +=             '<div class="col-md-4 padding-none">'				
@@ -3750,6 +3800,7 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label class="description col-md-12">Количество резов на лист: <label id="checkMagnetsCuts" ></label></label>'
 html +=                 '<br/><label id="checkMagnetsField" class="description col-md-12"></label>'
 html +=                 '<br/><label id="checkMagnets" class="description col-md-12"></label>'
 html +=             '</div><br/>'
@@ -3773,7 +3824,7 @@ function calculateMagnets() {
     var printing = Number(document.getElementById('printingMagnets').value);
     var paperFormat = +document.getElementById("paperFormatMagnets").value;
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsMagnets());
-
+    var cut = Number(document.getElementById('checkMagnetsCuts').textContent);
     var numberOfPrintedVinylSheets = numberOfPrintedSheets;
     var printedMachine = document.getElementById("printedMachineMagnets").value;
     var rentabilityId = Number(document.getElementById("rentabilityMagnets").value); 
@@ -3840,7 +3891,10 @@ function calculateMagnets() {
 
     checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
     checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
-    var cutCost = numberOfPrintedSheets / jsonPM.ream * jsonPM.cutPrice;
+
+    
+
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
 
     if(cutCost < jsonC.minCutPrice){
         cutCost = jsonC.minCutPrice;
@@ -3952,6 +4006,20 @@ function calculateMagnets() {
     labelCheck.innerHTML = checkLabel;
 }
 
+function getNumberOfCutsMagnets(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkMagnetsCuts');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
+}
+
 function getStateElemMagnets(elem){
     if(elem != true){
         var elemField = document.getElementById(elem.name);
@@ -4050,10 +4118,7 @@ function getPaperFormatMagnets(firstCall) {
         var allowance = Number(document.getElementById('allowanceMagnets').value);
         var width = 0;
         var length = 0;
-        
         var numberOfPrintedSheets = 0;
-
-        
 
         paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
             jsonPF.forEach(function(elem) { 
@@ -4069,29 +4134,23 @@ function getPaperFormatMagnets(firstCall) {
                     }
                     else {
                         widthMagnets.disabled = false;
-                        lengthMagnets.disabled = false;
-
-                        
+                        lengthMagnets.disabled = false;   
                     }
 
-                  
-                   
                     if(elem.id == "5" ){ 
                         paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                     }
-                   
-                                
+             
                 }
             });
         });
     }
-
     
-    
-    getPrintedMachineMagnets();
-    
+    getPrintedMachineMagnets();  
 
 }
+
+
 
 function numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, position, dev){
 
@@ -4133,6 +4192,8 @@ function numberProductPerSheetMagnets(widthPrintedArea, lengthPrintedArea, posit
             numberProduct = "Ошибка"
         }
     }
+
+    getNumberOfCutsMagnets(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
 
     return numberProduct
 }
@@ -4377,7 +4438,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Резов на печатный лист</label>'
 html +=             '<div>'
-html +=                 '<input id="cut" class="element text medium" type="number" min="0" oninput="calculatePrintedField()" maxlength="255" value="6"/> '
+html +=                 '<input id="cut" class="element text medium" type="number" min="0" oninput="setFlagOnInput()" flag="false" maxlength="255" /> '
 html +=             '</div>'
 html +=         '</div>'	
 html +=         '<div class="col-md-4">'
@@ -4627,6 +4688,13 @@ numInput.forEach(function(elem) {
     }, false)
 });
 
+function setFlagOnInput(){
+    
+    var cut = document.getElementById('cut');
+    cut.setAttribute("flag", true);
+    calculatePrintedField();
+}
+
 
 function calculatePrintedField() {
     var labelCheck = document.getElementById('check');
@@ -4671,7 +4739,7 @@ function calculatePrintedField() {
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; //получаем необходимы тип бумаги по его ID
-
+    
     var timeOfOnePantone = 0; 
     var chemistryPrice = 0;
     var printSpeed = 0;
@@ -5046,6 +5114,24 @@ function getStateElem(elem){
     }
 }
 
+function getNumberOfCuts(numberWidth, numberLength, allowance){
+
+    var cut = document.getElementById('cut');
+    if(cut.getAttribute("flag") == "false"){
+        var numberOfCuts = 4;
+
+        if(allowance==0){
+            numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+        }
+        else {
+            numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+        }
+        cut.value = numberOfCuts;
+    }
+    
+    
+}
+
 function getRev(numberOfProduct){
     var rev = document.querySelector('input[name=rev]:checked').value;
     var ownRev = document.getElementById('ownRev');
@@ -5170,6 +5256,9 @@ function numberProductPerSheet(widthPrintedArea, lengthPrintedArea, position, re
     if(rev){
         getRev(Math.trunc(numberLength));
     }
+    
+    getNumberOfCuts(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
+
     return numberProduct
 }
 
