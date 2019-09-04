@@ -242,6 +242,57 @@
             }
         ],
 
+        "Packages": [
+            {
+                "id": "0",
+                "name": "150х230х60",
+                "width": 432,
+                "length": 310
+            },
+            {
+                "id": "1",
+                "name": "220х310х70",
+                "width": 301,
+                "length": 395
+            },
+            {
+                "id": "2",
+                "name": "230x330x80",
+                "width": 425,
+                "length": 325
+            },
+            {
+                "id": "3",
+                "name": "240x345x100",
+                "width": 352,
+                "length": 445
+            },
+            {
+                "id": "4",
+                "name": "245x345x60",
+                "width": 317,
+                "length": 425
+            },
+            {
+                "id": "5",
+                "name": "220x250x100",
+                "width": 332,
+                "length": 350
+            },
+            {
+                "id": "6",
+                "name": "200x200x100",
+                "width": 312,
+                "length": 295
+            },
+            {
+                "id": "7",
+                "name": "100x350x100",
+                "width": 212,
+                "length": 445
+            }
+        ],
+
         "Bierdequels": [
             {
                 "id": "0",
