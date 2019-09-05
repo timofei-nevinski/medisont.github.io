@@ -4420,18 +4420,6 @@ html +=             '<div>'
 html +=                 '<select id="rentabilityPackages" name="rentabilityPackages" onchange="calculatePackages()"></select>'
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'				
-html +=             '<label  class="description">Лакировка</label>'
-html +=             '<div>'
-html +=                 '<select id="varnishingPackages" name="varnishingPackages" onchange="getPrintedMachinePackages()">'
-html +=                     '<option value="0">Нет</option>'
-html +=                     '<option value="1">Офсетный x1</option>'
-html +=                     '<option value="2">Офсетный x2</option>'
-html +=                     '<option value="3">УФ-лакировка x1</option>'
-html +=                     '<option value="4">УФ-лакировка x2</option>'
-html +=                     '</select>'
-html +=             '</div> '
-html +=         '</div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide padding-note">'
@@ -4452,8 +4440,8 @@ html +=                 '<label  class="description">Люверсы</label>'
 html +=                 '<div>'
 html +=                     '<select id="grommetPackages" name="grommetPackages" onchange="calculatePackages()">'
 html +=                         '<option value="0">Нет</option>'
-html +=                         '<option value="1">Серебро</option>'
-html +=                         '<option value="2">Золото</option>'
+html +=                         '<option value="4">Серебро</option>'
+html +=                         '<option value="4">Золото</option>'
 html +=                     '</select>'
 html +=                 '</div> '
 html +=             '</div>'
@@ -4498,7 +4486,6 @@ function calculatePackages() {
     var laminade = Number(document.getElementById('laminadePackages').value);
     var paperFormat = document.getElementById("paperFormatPackages").value;
     var cut = Number(document.getElementById('checkPackagesCuts').textContent);
-    var varnishing = document.getElementById('varnishingPackages').value;
     var paperWeightValue = document.getElementById("paperWeightPackages").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -4507,6 +4494,8 @@ function calculatePackages() {
     var turnover = Number(document.getElementById('turnoverPackages').value);
     var pantone = Number(document.getElementById('pantonePackages').value);
     var buildPackage = document.getElementById('buildPackagePackages');
+    var grommet = Number(document.getElementById('grommetPackages').value);
+    var typePackages = +document.querySelector('input[name=typePackages]:checked').value;
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
@@ -4533,6 +4522,10 @@ function calculatePackages() {
         }
     });
     
+
+    typePackages == 2 ? numberOfPrintedSheets *= 2 : "";
+    typePackages == 3 ? numberOfPrintedSheets *= 2 : "";
+
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsPackages()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
 
@@ -4562,13 +4555,8 @@ function calculatePackages() {
     }
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
-    if(varnishing == "3"){
-        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
-    } else if (varnishing == "4"){
-        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
-    }
-    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
-    numberOfForms = (face + turnover + varnishing);
+    numberOfForms = (face + turnover);
+    typePackages == 3 ? numberOfForms *= 2 : "";
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
 
@@ -4581,7 +4569,11 @@ function calculatePackages() {
     var allFittingPaper = numberOfFittingPaper * numberOfForms;
     checkLabel +="Бумага на приладку : " + allFittingPaper +  "<br /><hr>";
 
-    var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    var allPaper = 0;
+
+    typePackages == 1 ? allPaper = Math.ceil(((numberOfPrintedSheets + allFittingPaper) / numberOfParts) + numberOfPrintedSheets):  allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    
+    
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
     var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
@@ -4604,7 +4596,7 @@ function calculatePackages() {
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
 
     if(jsonPM.printSpeed != 0){
-        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
+        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) ;
 
         var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
         var dateChanging = new Date(null);
@@ -4656,6 +4648,8 @@ function calculatePackages() {
     allCost += (printing * buildPackagePrice)
     checkLabel +="Стоимость сборки пакетов: " + (printing * buildPackagePrice).toFixed(2) + "$" +  "<br />";
 
+    allCost += (printing * jsonPP.grommet *grommet);
+    checkLabel +="Стоимость люверс: " + (printing * jsonPP.grommet * grommet).toFixed(2) + "$" +  "<br />";
 
     var jsonL = jsonObj["Laminade"][laminade];
     allCost += (numberOfPrintedSheets * jsonL.price );
@@ -4948,7 +4942,7 @@ function getPrintedMachinePackages(){
     var face = Number(document.getElementById('facePackages').value);
     var turnover = Number(document.getElementById('turnoverPackages').value);
     var pantone = Number(document.getElementById('pantonePackages').value); 
-    var varnishing = document.getElementById('varnishingPackages').value;
+    
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
@@ -4971,7 +4965,7 @@ function getPrintedMachinePackages(){
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
         } else if(face == 1 && turnover == 1){
-            if(paperType == "Offset" && varnishing == "0"){
+            if(paperType == "Offset" ){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
