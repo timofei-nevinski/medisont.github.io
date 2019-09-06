@@ -4346,7 +4346,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-4">'	
 html +=             '<label class="description">Красочность</label>'			
 html +=             '<div>'
-html +=                 '<select id="colorfulnessPackages" name="colorfulnessPackages" onchange="calculatePackages()">'
+html +=                 '<select id="colorfulnessPackages" name="colorfulnessPackages" onchange="getPrintedMachinePackages()">'
 html +=                     '<option value="0">Полноцвет + глянцевый ламинат</option>'
 html +=                     '<option value="1">Полноцвет + матовый ламинат</option>'
 html +=                     '<option value="2">1 пантон + глянцевый ламинат</option>'
@@ -4461,12 +4461,7 @@ function calculatePackages() {
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
 
-    jsonFP.some(function(elem) {
-        if(numberOfPrintedSheets <= elem.before) { 
-            numberOfFittingPaper = elem.numberPaper;
-            return true;
-        }
-    });
+   
 
     if(colorfulnessPackages == 0){
         face = 4;
@@ -4536,6 +4531,13 @@ function calculatePackages() {
     checkLabel +="Цена формы: " + jsonPM.formPrice + "$" +  "<br />";
     var formCost = jsonPM.formPrice * numberOfForms;
     checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
+
+    jsonFP.some(function(elem) {
+        if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        }
+    });
 
     checkLabel +="Количество бумаги на приладку одной формы : " + numberOfFittingPaper +  "<br />";
     var allFittingPaper = numberOfFittingPaper * numberOfForms;
@@ -4921,7 +4923,7 @@ function getPrintedMachinePackages(){
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
             }
-        } else if(face == 1 && pantone == 1 && paperType == "Offset"){
+        } else if(face == 1 && pantone == 1){
             if(elem.id == '1'){ 
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
             }
@@ -5363,7 +5365,8 @@ function calculatePrintedField() {
     var coefficientIfSmallPrinting = 0;
     width = width + (allowance * 2) // прибавляем припуски
     length = length + (allowance * 2)
-
+    
+    var numberOfFittingPaper = 0;
     var widthPrintedArea = 0;
     var lengthPrintedArea = 0;
     var checkLabel = "";
@@ -5466,7 +5469,7 @@ function calculatePrintedField() {
     }
 
 
-    var numberOfFittingPaper = 0;
+    
     jsonFP.some(function(elem) {
         if(numberOfPrintedSheets <= elem.before) { 
             numberOfFittingPaper = elem.numberPaper;
