@@ -4948,7 +4948,7 @@ var envelopesContainer = document.getElementById("envelopesContainer");
 var html = '<div class="row">'
 html +=     '<div class="col-md-12">'	
 html +=         '<div class="col-md-12">'
-html +=             '<h2>Пакеты</h2>'
+html +=             '<h2>Конверты почтовые</h2>'
 html +=         '</div> '
 html +=         '<div class="col-md-4">'				
 html +=             '<label class="description">Тираж, шт </label>'
@@ -5169,8 +5169,8 @@ function getEnvelopesFormat() {
     var formatEnvelopes = document.getElementById("formatEnvelopes");
     formatEnvelopes.options.length = 0;
 
-    var jsonPB = jsonObj["Envelopes"];
-    jsonPB.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
+    var jsonE = jsonObj["Paper"]["Envelopes"];
+    jsonE.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
         if(elem.id == '0'){
             formatEnvelopes.options[formatEnvelopes.options.length] = new Option(elem.name, elem.id, true, true);
         } else {
