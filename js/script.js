@@ -4993,7 +4993,6 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
-html +=                 '<br/><label class="description">Количество резов на лист: <label id="checkEnvelopesCuts" ></label></label>'
 html +=                 '<br/><label id="checkEnvelopesField" class="description"></label>'
 html +=                 '<br/><label id="checkEnvelopes" class="description"></label>'
 html +=             '</div><br/>'
@@ -5015,7 +5014,7 @@ function calculateEnvelopes() {
     var printedMachine = document.getElementById("printedMachineEnvelopes").value;
     var rentabilityId = Number(document.getElementById("rentabilityEnvelopes").value); 
 
-    var formatEnvelopes = document.getElementById("formatEnvelopes").value;
+    var formatEnvelopes = +document.getElementById("formatEnvelopes").value;
     var colorfulnessEnvelopes = Number(document.getElementById('colorfulnessEnvelopes').value);
 
     var numberOfForms = 0;
@@ -5025,12 +5024,11 @@ function calculateEnvelopes() {
     var printSpeedRatio = 1;
     var face = 0;
     var turnover = 0;
-    var pantone = 0;
     var laminade = 0;
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
-    var jsonE = jsonObj["Envelopes"][formatEnvelopes];
+    var jsonE = jsonObj["Paper"]["Envelopes"][formatEnvelopes];
     var jsonC = jsonObj["Сoefficients"];
     var checkLabel = "";
     var jsonPP = jsonObj["PostpressProcessing"]; 
@@ -5050,8 +5048,7 @@ function calculateEnvelopes() {
         turnover = 0;
     } 
 
-    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsEnvelopes()+ "<br />";
-    checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+    checkLabel += "Количесвто изделий на листе: " + printing + "<br />";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
@@ -5085,7 +5082,7 @@ function calculateEnvelopes() {
     var allFittingPaper = numberOfFittingPaper * numberOfForms;
     checkLabel +="Бумага на приладку : " + allFittingPaper +  "<br /><hr>";
 
-    var allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    var allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) );
     
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
@@ -5097,12 +5094,6 @@ function calculateEnvelopes() {
         date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
     checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
 
-    checkLabel +="Время на 1 пантон: " + jsonPM.timeOfOnePantone + " сек" + "<br />";
-    var timeOfPantones = pantone * jsonPM.timeOfOnePantone;  //время печати
-    checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
-
-
-
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
 
     if(jsonPM.printSpeed != 0){
@@ -5113,12 +5104,12 @@ function calculateEnvelopes() {
         dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
         checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
 
-        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
+        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations)  + chargingTime;  //время печати
         var date1 = new Date(null);
         date1.setSeconds(printTime1); // specify value for SECONDS here
         checkLabel +="Время печати без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
 
-        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
+        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting  + chargingTime;  //время печати
         var date = new Date(null);
         date.setSeconds(printTime); // specify value for SECONDS here
         checkLabel +="Время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
@@ -5132,9 +5123,9 @@ function calculateEnvelopes() {
     checkLabel +="Стоимость печати: " + printingCost.toFixed(2) + "$" +  "<br />";
 
     var envelopesCost = printing * jsonE.price;
-    checkLabel +="Стоимость конвертов: " + printingCost.toFixed(2) + "$" +  "<br />";
+    checkLabel +="Стоимость конвертов: " + envelopesCost.toFixed(2) + "$" +  "<br />";
     
-    var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
+    var allCost = chemistryCost + formCost + printingCost + envelopesCost;
 
     
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
@@ -5146,7 +5137,7 @@ function calculateEnvelopes() {
 
 function getRentabilityEnvelopes() {
     var printedMachine = document.getElementById("printedMachineEnvelopes").value;
-    var rentability = document.getElementById("rentabilityEnvelopes"); //получаем элемент по его ID
+    var rentability = document.getElementById("rentabilityEnvelopes"); //получаем элемент зфтещтупо его ID
     if (rentability.options.length == 0){
         var jsonPM = jsonObj["PrintingMachine"];
         jsonPM.forEach(function(elem) {
@@ -5187,17 +5178,57 @@ function getEnvelopesFormat() {
 
 function getPrintedMachineEnvelopes(){
     var printedMachine = document.getElementById("printedMachineEnvelopes");
+    var colorfulnessPackages = Number(document.getElementById('colorfulnessEnvelopes').value);
+    var face = 0;
+    var turnover = 0;
+ 
+
+    if(colorfulnessPackages == 0){
+        face = 4;
+        turnover = 0;
+    } else if(colorfulnessPackages == 1){
+        face = 4;
+        turnover = 0;
+    } else if(colorfulnessPackages == 2){
+        face = 1;
+        turnover = 0;
+    } else {
+        face = 1;
+        turnover = 0;
+    }
+    
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
-    var paperWeightValue = document.getElementById("paperWeightEnvelopes").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperWeightValue = document.getElementById("paperWeightPackages").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
-        if(elem.id == '0'){
-            printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-        }  
-          
+
+        if(face > 2){
+            if(elem.id == '0'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 2){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } 
+        else {
+            if(elem.id == '1'){
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }  
+            else{
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            } 
+        }     
     });
+    
     
     calculateEnvelopes();
 }
