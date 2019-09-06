@@ -5187,12 +5187,9 @@ function getPrintedMachineEnvelopes(){
         face = 4;
         turnover = 0;
     } else if(colorfulnessPackages == 1){
-        face = 4;
+        face = 2;
         turnover = 0;
-    } else if(colorfulnessPackages == 2){
-        face = 1;
-        turnover = 0;
-    } else {
+    }  else {
         face = 1;
         turnover = 0;
     }
