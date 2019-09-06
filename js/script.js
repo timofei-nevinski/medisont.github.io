@@ -4330,7 +4330,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-4">'				
 html +=             '<label class="description">Формат</label>'
 html +=             '<div>'
-html +=                 '<select id="formatPackages" name="formatPackages" onchange="getPaperFormatPackages(false)"></select>'
+html +=                 '<select id="formatPackages" name="formatPackages" onchange="calculatePackages()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-4">'	
@@ -4490,9 +4490,10 @@ function calculatePackages() {
         laminade = 3;
     }
     
-
-    typePackages == 1 ? numberOfPrintedSheets *= 2 : "";
-    typePackages == 2 ? numberOfPrintedSheets *= 2 : "";
+    if(formatPackages != 0){
+        typePackages == 1 ? numberOfPrintedSheets *= 2 : "";
+        typePackages == 2 ? numberOfPrintedSheets *= 2 : "";
+    }
 
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsPackages()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
@@ -4524,7 +4525,10 @@ function calculatePackages() {
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
     numberOfForms = (face + turnover);
-    typePackages == 2 ? numberOfForms *= 2 : "";
+
+    if(formatPackages != 0){
+        typePackages == 2 ? numberOfForms *= 2 : "";
+    }
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
 
@@ -4539,8 +4543,12 @@ function calculatePackages() {
 
     var allPaper = 0;
 
-    typePackages == 0 ? allPaper = Math.ceil(((numberOfPrintedSheets + allFittingPaper) / numberOfParts) + numberOfPrintedSheets):  allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
-    
+    if(formatPackages != 0){
+        typePackages == 0 ? allPaper = Math.ceil(((numberOfPrintedSheets * 2 + allFittingPaper) / numberOfParts)):  allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    } else {
+        allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    }
+
     
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
@@ -4632,10 +4640,12 @@ function calculatePackages() {
 
 function getNumberOfCutsPackages(numberWidth, numberLength){
     var cuts = document.getElementById('checkPackagesCuts');
+    var formatPackages = document.getElementById("formatPackages").value;
     var numberOfCuts = 4;
 
-   
-        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    
+        
+        formatPackages == 0 ? numberOfCuts = 6 : numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
     
     
     cuts.textContent = numberOfCuts;
