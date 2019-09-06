@@ -799,7 +799,9 @@
         "materials": 1.02,
         "outsideWork": 1.4,
         "minCutPrice": 5,
-        "dollarCoeff": 1.05
+        "dollarCoeff": 1.05,
+        "printSpeedRatioEnvelopes": 0.5
+        
     },
     "PostpressProcessing": {
         "scoring": 0.01,

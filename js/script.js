@@ -5093,8 +5093,8 @@ function calculateEnvelopes() {
     var date0 = new Date(null);
         date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
     checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
-    printSpeedRatio = jsonPM.printSpeedRatio;
-    checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
+
+    checkLabel +="Скорость печати: " + (jsonPM.printSpeed * jsonC.printSpeedRatioEnvelopes) + "<br />";
 
     if(jsonPM.printSpeed != 0){
         var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) ;
