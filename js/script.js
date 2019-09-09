@@ -2568,8 +2568,9 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
     
-                    width = Number(document.getElementById('widthCuttingEnvelopes').value);
-                    length = Number(document.getElementById('lengthCuttingEnvelopes').value);
+                    var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
+                    width = jsonPCuttingEnvelopes.width;
+                    length = jsonPCuttingEnvelopes.length;
 
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
@@ -2697,8 +2698,9 @@ function numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedAr
     var width = 0;
     var length = 0;
 
-    width = Number(document.getElementById('widthCuttingEnvelopes').value);
-    length = Number(document.getElementById('lengthCuttingEnvelopes').value);
+    var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
+                        width = jsonPCuttingEnvelopes.width;
+                        length = jsonPCuttingEnvelopes.length;
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
