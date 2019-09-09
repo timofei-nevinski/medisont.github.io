@@ -2146,7 +2146,7 @@ var cuttingEnvelopesContainer = document.getElementById("cuttingEnvelopesContain
 var html = '<div class="row">'
 html +=     '<div class="col-md-12">'	
 html +=         '<div class="col-md-12">'
-html +=             '<h2>Конверты вырубные</h2>'
+html +=             '<h2>Папки</h2>'
 html +=         '</div> '
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Тираж, шт </label>'
@@ -2157,26 +2157,26 @@ html +=         '</div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Формат</label>'
 html +=             '<div>'
-html +=                 '<select id="formatCuttingEnvelopes" name="formatCuttingEnvelopes" onchange="calculateCuttingEnvelopes()"></select>'
+html +=                 '<select id="formatCuttingEnvelopes" name="formatCuttingEnvelopes" onchange="getPaperFormatCuttingEnvelopes(false)"></select>'
 html +=             '</div> '
-html +=         '</div>'
+html +=         '</div>'	
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Ширина, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="widthCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255"  value="100" /> '
+html +=                 '<input id="widthCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255"  value="210" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Длинна, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="lengthCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255" value="100"/> '
+html +=                 '<input id="lengthCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255" value="297"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="allowanceCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255" value="2"/> '
+html +=                 '<input id="allowanceCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12">'
@@ -2200,10 +2200,28 @@ html +=             '<div>'
 html +=                 '<input id="pantoneCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPrintedMachineCuttingEnvelopes()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label class="description">Бумага</label>'
+html +=             '<div>'
+html +=                 '<select id="paperWeightCuttingEnvelopes" name="paperWeightCuttingEnvelopes" onchange="getPaperWeightCuttingEnvelopes()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-3">'	
+html +=         '<label class="description">Размер бумаги</label>'
+html +=             '<div>'
+html +=                 '<select id="paperFormatCuttingEnvelopes" name="paperFormatCuttingEnvelopes" onchange="getPaperFormatCuttingEnvelopes()"></select>'
+html +=             '</div> '
+html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Печатная машина</label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineCuttingEnvelopes" name="printedMachineCuttingEnvelopes" onchange="calculateCuttingEnvelopes()"></select>'
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-3">'
+html +=             '<label class="description">Рентабельность</label>'
+html +=             '<div>'
+html +=                 '<select id="rentabilityCuttingEnvelopes" name="rentabilityCuttingEnvelopes" onchange="calculateCuttingEnvelopes()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-3">'				
@@ -2212,39 +2230,44 @@ html +=             '<div>'
 html +=                 '<select id="varnishingCuttingEnvelopes" name="varnishingCuttingEnvelopes" onchange="getPrintedMachineCuttingEnvelopes()">'
 html +=                     '<option value="0">Нет</option>'
 html +=                     '<option value="1">Офсетный x1</option>'
+html +=                     '<option value="2">Офсетный x2</option>'
 html +=                     '<option value="3">УФ-лакировка x1</option>'
+html +=                     '<option value="4">УФ-лакировка x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-3">'
-html +=             '<label class="description">Рентабельность</label>'
-html +=             '<div>'
-html +=                 '<select id="rentabilityCuttingEnvelopes" name="rentabilityCuttingEnvelopes" onchange="calculateCuttingEnvelopes()"></select>'
-html +=             '</div>'
-html +=         '</div>' 
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide padding-note">'
-html +=             '<div class="col-md-12 padding-none">'
+html +=             '<div class="col-md-6 padding-none">'
 html +=                 '<div class="col-md-6">'				
-html +=                    '<label><input id="cuttingDownCuttingEnvelopes" name="cuttingDownCuttingEnvelopes" checked class="col-md-1 checkbox"  type="checkbox" onchange="calculateCuttingEnvelopes()"><span class="col-md-11" >Вырубка</span> </label>'
+html +=                    '<label><input id="cuttingDownCuttingEnvelopes" name="cuttingDownCuttingEnvelopes" class="col-md-1 checkbox"  type="checkbox" onchange="calculateCuttingEnvelopes()" checked><span class="col-md-11" >Вырубка</span> </label>'
 html +=                 '</div>'
 html +=             '</div>'
+html +=             '<div class="col-md-12 padding-none">'				
+html +=                 '<div class="col-md-6">'
+html +=                     '<label class="description">Ламинат</label>'
+html +=                 '</div> '
+html +=                 '<div class="col-md-6">'
+html +=                     '<select id="laminadeCuttingEnvelopes"  name="laminadeCuttingEnvelopes" onchange="getLaminadeCuttingEnvelopes()"></select>'
+html +=                 '</div> '
+html +=             '</div>'
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-6">'				
+html +=                     '<label><input name="scotchCuttingEnvelopes" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemCuttingEnvelopes(this)"><span>Cклейка скотч, см</span> </label>'
+html +=                 '</div>'
+html +=                 '<div class="col-md-6">'
+html +=                     '<input id="scotchCuttingEnvelopes" class="element text medium" type="number" step="0.5" min="0" oninput="calculateCuttingEnvelopes()"   value="0" disabled="true"/> '
+html +=                 '</div> '
+html +=             '</div> '
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                     '<label><input name="stampCuttingEnvelopes" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemCuttingEnvelopes(this)"><span>Штамп</span> </label>'
 html +=                 '</div>'
 html +=                 '<div class="col-md-6">'
-html +=                     '<input id="stampCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="calculateCuttingEnvelopes()"  maxlength="255" value="0" disabled="true"/> '
+html +=                     '<input id="stampCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="calculateCuttingEnvelopes()"  max="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
-html +=             '<div class="col-md-4">'				
-html +=                 '<label class="description">Ламинат</label>'
-html +=                 '<div>'
-html +=                     '<select id="laminadeCuttingEnvelopes"  name="laminadeCuttingEnvelopes" onchange="getLaminadeCuttingEnvelopes()"></select>'
-html +=                 '</div> '
-html +=             '</div>'
-html +=             '<div class="col-md-12"><br/></div>'
 html +=         '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'
@@ -2267,53 +2290,65 @@ function CuttingEnvelopes() {
     getCuttingEnvelopesFormat();
     getPaperWeightCuttingEnvelopes();
     getPrintedMachineCuttingEnvelopes();
+    getPaperFormatCuttingEnvelopes();
     getRentabilityCuttingEnvelopes();
+    getLaminadeCuttingEnvelopes();
     getStateElemCuttingEnvelopes(true);
+    getScotchCuttingEnvelopes();
 }
 
 function calculateCuttingEnvelopes() {
     var finalCostCuttingEnvelopes = document.getElementById('final-costCuttingEnvelopes');
     var labelCheck = document.getElementById('checkCuttingEnvelopes');
     var printing = Number(document.getElementById('printingCuttingEnvelopes').value);
-    var numberOfPrintedSheets = printing;
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsCuttingEnvelopes());
     var printedMachine = document.getElementById("printedMachineCuttingEnvelopes").value;
     var rentabilityId = Number(document.getElementById("rentabilityCuttingEnvelopes").value); 
-
-    var formatCuttingEnvelopes = +document.getElementById("formatCuttingEnvelopes").value;
-    var colorfulnessCuttingEnvelopes = Number(document.getElementById('colorfulnessCuttingEnvelopes').value);
-
-    var numberOfForms = 0;
-    var numberOfFittingPaper = 0;
-    var numberOfParts = 4;
-    var numberOfFittingPaper = 0;
-    var printSpeedRatio = 1;
-    var face = 0;
-    var turnover = 0;
-    var laminade = 0;
-
+    var turnoverElem = document.getElementById('turnoverCuttingEnvelopes');
+    var laminade = Number(document.getElementById('laminadeCuttingEnvelopes').value);
+    var paperFormat = document.getElementById("paperFormatCuttingEnvelopes").value;
+    var stamp = +document.getElementById('stampCuttingEnvelopes').value;
+    var scotch = Number(document.getElementById('scotchCuttingEnvelopes').value);
+    var varnishing = document.getElementById('varnishingCuttingEnvelopes').value;
+    var paperWeightValue = document.getElementById("paperWeightCuttingEnvelopes").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+    
+    var face = Number(document.getElementById('faceCuttingEnvelopes').value);
+    var turnover = Number(document.getElementById('turnoverCuttingEnvelopes').value);
+    var pantone = Number(document.getElementById('pantoneCuttingEnvelopes').value);
+    var cuttingDown = document.getElementById("cuttingDownCuttingEnvelopes");
+    
+    var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
-    var jsonE = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
+    var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
     var jsonC = jsonObj["Сoefficients"];
-    var checkLabel = "";
+    var jsonCD = jsonObj["CuttingDown"];
     var jsonPP = jsonObj["PostpressProcessing"]; 
+    var jsonG = jsonObj["Gluing"][0];
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
 
-   
+    var checkLabel = "";
+    var varnishingCost = 0;
+    var numberOfForms = 0;
+    var numberOfFittingPaper = 0;
+    var numberOfParts = 4;
+    var numberOfKappas = 0;
+    var cuttingDownCost = 0;
+    var numberOfFittingPaper = 0;
+    var printSpeedRatio = 1;
 
-    if(colorfulnessCuttingEnvelopes == 0){
-        face = 4;
-        turnover = 0;
-    } else if(colorfulnessCuttingEnvelopes == 1){
-        face = 2;
-        turnover = 0;
-    } else if(colorfulnessCuttingEnvelopes == 2){
-        face = 1;
-        turnover = 0;
-    } 
-
-    checkLabel += "Количесвто изделий на листе: " + printing + "<br />";
+    jsonFP.some(function(elem) {
+        if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        }
+    });
+    
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsCuttingEnvelopes()+ "<br />";
+    checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
@@ -2322,12 +2357,32 @@ function calculateCuttingEnvelopes() {
         rentabilityPrice = rentabilityPrice * jsonPM.coefficientIfSmallPrinting;
     }
 
+    if(paperType == "Adhesive"){
+        turnoverElem.value = 0;
+        turnover = 0;
+        numberOfParts = 2;
+    }
    
     checkLabel +="Цена химии за 1000 печатных листов: " + jsonPM.chemistryPrice + "$" +  "<br />";
     var chemistryCost = numberOfPrintedSheets / 1000 * jsonPM.chemistryPrice // стоимость химии
     checkLabel +="Стоимость химии: " + chemistryCost.toFixed(2) + "$" +  "<br />";
 
-    numberOfForms = (face + turnover);
+    checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
+    checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * jsonPM.cutPrice;
+
+    if(cutCost < jsonC.minCutPrice){
+        cutCost = jsonC.minCutPrice;
+    }
+    checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
+
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    } else if (varnishing == "4"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
+    }
+    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
+    numberOfForms = (face + turnover + varnishing);
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
 
@@ -2336,45 +2391,46 @@ function calculateCuttingEnvelopes() {
     var formCost = jsonPM.formPrice * numberOfForms;
     checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
 
-    jsonFP.some(function(elem) {
-        if(numberOfPrintedSheets <= elem.before) { 
-            numberOfFittingPaper = elem.numberPaper;
-            return true;
-        }
-    });
-
     checkLabel +="Количество бумаги на приладку одной формы : " + numberOfFittingPaper +  "<br />";
     var allFittingPaper = numberOfFittingPaper * numberOfForms;
     checkLabel +="Бумага на приладку : " + allFittingPaper +  "<br /><hr>";
 
-    var allPaper = Math.ceil((numberOfPrintedSheets + allFittingPaper) );
-    
+    var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
     checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
 
-    
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
+    checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
 
     checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
     var fitting = jsonPM.fittingTime * numberOfForms;
     var date0 = new Date(null);
         date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
     checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
-    printSpeedRatio = jsonC.printSpeedRatioCuttingEnvelopes;
+
+    checkLabel +="Время на 1 пантон: " + jsonPM.timeOfOnePantone + " сек" + "<br />";
+    var timeOfPantones = pantone * jsonPM.timeOfOnePantone;  //время печати
+    checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
+
+    if(jsonP.weight >= 300 || paperType == "Carton"){
+        printSpeedRatio = jsonPM.printSpeedRatio;
+    } 
+
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
 
     if(jsonPM.printSpeed != 0){
-        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) ;
+        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
 
         var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
         var dateChanging = new Date(null);
         dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
         checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
 
-        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations)  + chargingTime;  //время печати
+        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
         var date1 = new Date(null);
         date1.setSeconds(printTime1); // specify value for SECONDS here
         checkLabel +="Время печати без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
 
-        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting  + chargingTime;  //время печати
+        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
         var date = new Date(null);
         date.setSeconds(printTime); // specify value for SECONDS here
         checkLabel +="Время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
@@ -2387,51 +2443,46 @@ function calculateCuttingEnvelopes() {
     var printingCost = (rentabilityPrice / 3600)  * printTime;
     checkLabel +="Стоимость печати: " + printingCost.toFixed(2) + "$" +  "<br />";
 
-    var cuttingCuttingEnvelopesCost = printing * jsonE.price;
-    checkLabel +="Стоимость конвертов: " + cuttingCuttingEnvelopesCost.toFixed(2) + "$" +  "<br />";
     
-    var allCost = chemistryCost + formCost + printingCost + cuttingCuttingEnvelopesCost;
+    checkLabel +="Cтоимость за кг: " + jsonP.price + "<br />";
+
+    var paperCost = paperWeight * jsonP.price  ;
+    checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
+
 
     
+    var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
+
+    allCost += varnishingCost;
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
+    if(cuttingDown.checked){
+        for(let elem of jsonCD){
+            if(numberOfPrintedSheets < elem.before){
+                cuttingDownCost = elem.price ;
+                break;
+            } 
+        }
+    }
+
+    allCost += cuttingDownCost;
+    checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
+   
+    allCost += stamp;
+    checkLabel +="Стоимость штампования: " + stamp.toFixed(2) + "$" +  "<br />";
+
+    var jsonL = jsonObj["Laminade"][laminade];
+    allCost += (numberOfPrintedSheets * jsonL.price );
+    checkLabel +="Стоимость ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
+    
+    allCost += (printing * scotch * jsonG.scotch)
+    checkLabel +="Стоимость склейки Скотч: " + (printing * scotch * jsonG.scotch).toFixed(2) + "$" +  "<br />";
+
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
     finalCostCuttingEnvelopes.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
-}
-
-function getRentabilityCuttingEnvelopes() {
-    var printedMachine = document.getElementById("printedMachineCuttingEnvelopes").value;
-    var rentability = document.getElementById("rentabilityCuttingEnvelopes"); //получаем элемент зфтещтупо его ID
-    if (rentability.options.length == 0){
-        var jsonPM = jsonObj["PrintingMachine"];
-        jsonPM.forEach(function(elem) {
-            if(printedMachine == elem.id){
-                var jsonPMR = jsonObj["PrintingMachine"][elem.id]["Rentability"];
-                jsonPMR.forEach(function(rent){
-                    if(rent.id == elem.defaultRentabilityId){
-                        rentability.options[rentability.options.length] = new Option(rent.name, rent.id, true, true);
-                    } else {
-                        rentability.options[rentability.options.length] = new Option(rent.name, rent.id);
-                    }
-                });
-            }
-        });
-    }
-}
-
-function getNumberOfCutsCuttingEnvelopes(numberWidth, numberLength, allowance){
-    var cuts = document.getElementById('checkCuttingEnvelopesCuts');
-    var numberOfCuts = 4;
-
-    if(allowance==0){
-        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
-    }
-    else {
-        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
-    }
-    
-    cuts.textContent = numberOfCuts;
 }
 
 function getStateElemCuttingEnvelopes(elem){
@@ -2451,24 +2502,48 @@ function getStateElemCuttingEnvelopes(elem){
     };
 }
 
+function getRentabilityCuttingEnvelopes() {
+    var printedMachine = document.getElementById("printedMachineCuttingEnvelopes").value;
+    var rentability = document.getElementById("rentabilityCuttingEnvelopes"); //получаем элемент по его ID
+    if (rentability.options.length == 0){
+        var jsonPM = jsonObj["PrintingMachine"];
+        jsonPM.forEach(function(elem) {
+            if(printedMachine == elem.id){
+                var jsonPMR = jsonObj["PrintingMachine"][elem.id]["Rentability"];
+                jsonPMR.forEach(function(rent){
+                    if(rent.id == elem.defaultRentabilityId){
+                        rentability.options[rentability.options.length] = new Option(rent.name, rent.id, true, true);
+                    } else {
+                        rentability.options[rentability.options.length] = new Option(rent.name, rent.id);
+                    }
+                });
+            }
+        });
+    }
+}
+
 function getLaminadeCuttingEnvelopes() {
     var laminade = document.getElementById("laminadeCuttingEnvelopes"); //получаем элемент по его ID
     if (laminade.options.length == 0){
         var jsonL = jsonObj["Laminade"]; 
         jsonL.forEach(function(elem) {
-            laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+            if(elem.id == "0"){
+                laminade.options[laminade.options.length] = new Option(elem.name, elem.id, true, true);
+            } else {
+                laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+            }
+           
         });
     }
     calculateCuttingEnvelopes();
 }
 
-
 function getCuttingEnvelopesFormat() {
     var formatCuttingEnvelopes = document.getElementById("formatCuttingEnvelopes");
     formatCuttingEnvelopes.options.length = 0;
 
-    var jsonE = jsonObj["Paper"]["CuttingEnvelopes"];
-    jsonE.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
+    var jsonPB = jsonObj["Paper"]["CuttingEnvelopes"];
+    jsonPB.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
         if(elem.id == '0'){
             formatCuttingEnvelopes.options[formatCuttingEnvelopes.options.length] = new Option(elem.name, elem.id, true, true);
         } else {
@@ -2477,75 +2552,6 @@ function getCuttingEnvelopesFormat() {
     });
 }
 
-
-function numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, position, dev){
-
-    var formatCuttingEnvelopes = +document.getElementById('formatCuttingEnvelopes').value;
-  
-    var width = 0;
-    var length = 0;
-    var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
-    width = jsonPCuttingEnvelopes.width;
-    length = jsonPCuttingEnvelopes.length;
-    
-
-    
-        
-    if(position == "W"){
-        if (widthPrintedArea >= width && lengthPrintedArea >= length ){
-            numberWidth = widthPrintedArea / width;
-            numberLength = lengthPrintedArea / length;
-            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength)); // получаем количество изделий на листе
-        } else {
-            numberProduct = "Ошибка"
-        }
-    } else {
-        if (widthPrintedArea >= length && lengthPrintedArea >= width ){
-            numberWidth = widthPrintedArea / length;
-            numberLength = lengthPrintedArea / width;
-            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength));
-        } else {
-            numberProduct = "Ошибка"
-        }
-    }
-
-    getNumberOfCutsCuttingEnvelopes(Math.trunc(numberWidth), Math.trunc(numberLength))
-
-    return numberProduct
-}
-
-function getPaperWeightCuttingEnvelopes() {
-    var paperWeight = document.getElementById("paperWeightCuttingEnvelopes");
-    var paperWeightValue = document.getElementById("paperWeightCuttingEnvelopes").value; //получаем value выбранного элемента option по ID элемента select 
-    var paperTypeCuttingEnvelopes = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
-    var paperWeightCuttingEnvelopes = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
-
-
-    if( paperWeight.options.length == 0 ) {
-        
-        var jsonGlossy = jsonObj["Paper"]["Glossy"];
-        var jsonMat = jsonObj["Paper"]["Mat"];
-        
-        var jsonCarton = jsonObj["Paper"]["Carton"];
-
-        getTypePaper(jsonGlossy, paperWeight, "Glossy");
-        getTypePaper(jsonMat, paperWeight, "Mat");
-        
-        function getTypePaper(objJSON, htmlObj, papetType){
-            objJSON.forEach(function(elem) {
-
-                if(papetType == "Glossy" && elem.id =="4"){
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
-                } else if (papetType == "Mat" && elem.id =="4"){
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
-                }
-
-            });
-        }
-    }
-    
-    getPrintedMachineCuttingEnvelopes();
-}
 function getPaperFormatCuttingEnvelopes(firstCall) {
     var paperFormat = document.getElementById("paperFormatCuttingEnvelopes"); //получаем элемент по его ID
     
@@ -2580,7 +2586,7 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatCuttingEnvelopes != 5){
+                    if(formatCuttingEnvelopes != 8){
                         widthCuttingEnvelopes.disabled = true;
                         lengthCuttingEnvelopes.disabled = true;
                         
@@ -2713,11 +2719,7 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
         });
     }
 
-    
-    
     getPrintedMachineCuttingEnvelopes();
-    
-
 }
 
 function numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, position, dev){
@@ -2727,7 +2729,7 @@ function numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedAr
     var width = 0;
     var length = 0;
 
-    if(formatCuttingEnvelopes != 5){
+    if(formatCuttingEnvelopes != 8){
         
         var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
         width = jsonPCuttingEnvelopes.width;
@@ -2761,37 +2763,148 @@ function numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedAr
         }
     }
 
-    getNumberOfCutsCuttingEnvelopes(Math.trunc(numberWidth), Math.trunc(numberLength), allowance)
-
     return numberProduct
+}
+
+function getPaperWeightCuttingEnvelopes() {
+    var paperWeight = document.getElementById("paperWeightCuttingEnvelopes");
+    var face = Number(document.getElementById('faceCuttingEnvelopes').value);
+    var turnover = Number(document.getElementById('turnoverCuttingEnvelopes').value);
+    var paperWeightValue = document.getElementById("paperWeightCuttingEnvelopes").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperTypeCuttingEnvelopes = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    var paperWeightCuttingEnvelopes = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем тип бумаги
+    var defcalc = paperWeight.getAttribute("defcalcCuttingEnvelopes");
+    if( paperWeight.options.length == 0 || face == 4 && turnover == 4 && defcalc == "false") {
+        face == 4 && turnover == 4 ? paperWeight.options.length = 0 : "";
+        var jsonOffset = jsonObj["Paper"]["Offset"];
+        var jsonGlossy = jsonObj["Paper"]["Glossy"];
+        var jsonMat = jsonObj["Paper"]["Mat"];
+        var jsonAdhesive = jsonObj["Paper"]["Adhesive"];
+        var jsonCarton = jsonObj["Paper"]["Carton"];
+
+        getTypePaper(jsonOffset, paperWeight, "Offset");
+        getTypePaper(jsonGlossy, paperWeight, "Glossy");
+        getTypePaper(jsonMat, paperWeight, "Mat");
+        getTypePaper(jsonAdhesive, paperWeight, "Adhesive");
+        getTypePaper(jsonCarton, paperWeight, "Carton");
+        function getTypePaper(objJSON, htmlObj, papetType){
+            objJSON.forEach(function(elem) {
+                
+                if(face == 4 && turnover == 4 && defcalc == "false"){
+                    if(papetType == "Carton" && elem.id =="5"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
+                    htmlObj.setAttribute("defcalcCuttingEnvelopes", true)
+                } 
+                else {
+                    if(papetType == "Carton" && elem.id =="2"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
+                    htmlObj.setAttribute("defcalcCuttingEnvelopes", false)
+                }
+
+            });
+        } 
+    }
+    
+    getPaperFormatCuttingEnvelopes(false);
+}
+
+function getNumberOfProductsCuttingEnvelopes() {
+
+    var allowance = document.getElementById('allowanceCuttingEnvelopes').value;
+    var paperFormatB = document.getElementById("paperFormatCuttingEnvelopes").value; //получаем элемент по его ID
+    var printedMachine = document.getElementById("printedMachineCuttingEnvelopes").value;
+    var labelCheck = document.getElementById('checkCuttingEnvelopesField');
+    var printing = Number(document.getElementById('printingCuttingEnvelopes').value);
+    var numberOfPrintedSheets = 0;
+    var numberOfParts = 0;
+    var checkLabel = "";
+    
+        var widthPrintedArea = 0;
+        var lengthPrintedArea = 0;
+
+        var jsonCPF = jsonObj["Paper"]["Format"];
+        
+        jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+            
+            if(elem.id == paperFormatB){
+                paperWidth = elem.width;
+                paperLength = elem.length;
+
+                paperWidth += (allowance * 2) // прибавляем припуски
+                paperLength += (allowance * 2)
+    
+                widthPrintedArea = (elem.width / 2) - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 4;
+            }
+        });
+
+        var jsonPM = jsonObj["PrintingMachine"];
+        jsonPM.forEach(function(elem) {
+            if(elem.id == printedMachine) { // для большей и меньшей стороны{}
+
+                if (widthPrintedArea > lengthPrintedArea){
+                    lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                    widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                } else {
+                    lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                    widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                }
+            }
+        });
+
+        checkLabel += "Размер запечатываемого поля:" + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
+        checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
+        checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
+        checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
+        checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />";
+        
+
+        if(numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+            numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", true);
+
+        } else if(numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+            numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", true)
+        }
+        else if(numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+            numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", true)
+        } else {
+            numberOfPrintedSheets = "Ошибка"
+        }
+        
+        labelCheck.innerHTML = checkLabel;
+        
+    return numberOfPrintedSheets;
+}
+
+function getScotchCuttingEnvelopes() {
+    var formatCuttingEnvelopes = +document.getElementById("formatCuttingEnvelopes").value;
+    var scotch = +document.getElementById("scotchCuttingEnvelopes");
+    var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
+
+    if(jsonPCuttingEnvelopes != 0){
+        scotch.disabled = false;
+        scotch.value = jsonPCuttingEnvelopes.scotch;
+    } else {
+        scotch.disabled = true;
+        scotch.value = 0;
+    }
+
 }
 
 
 function getPrintedMachineCuttingEnvelopes(){
     var printedMachine = document.getElementById("printedMachineCuttingEnvelopes");
-    var colorfulnessCuttingEnvelopes = Number(document.getElementById('colorfulnessCuttingEnvelopes').value);
-    var face = 0;
-    var turnover = 0;
-    var pantone = 0;
-
-    if(colorfulnessCuttingEnvelopes == 0){
-        face = 4;
-        turnover = 0;
-        pantone = 0;
-    } else if(colorfulnessCuttingEnvelopes == 1){
-        face = 4;
-        turnover = 0;
-        pantone = 0;
-    } else if(colorfulnessCuttingEnvelopes == 2){
-        face = 1;
-        turnover = 0;
-        pantone = 1;
-    } else {
-        face = 1;
-        turnover = 0;
-        pantone = 1;
-    }
-    
+    var face = Number(document.getElementById('faceCuttingEnvelopes').value);
+    var turnover = Number(document.getElementById('turnoverCuttingEnvelopes').value);
+    var pantone = Number(document.getElementById('pantoneCuttingEnvelopes').value); 
+    var varnishing = document.getElementById('varnishingCuttingEnvelopes').value;
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
@@ -2799,52 +2912,31 @@ function getPrintedMachineCuttingEnvelopes(){
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
 
-        if(face > 2){
-            if(elem.id == '0'){ 
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }
-            else {
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
-            }
-        } else if(face == 2){
-            if(elem.id == '1'){ 
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }
-            else {
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
-            }
-        } else if(face == 1 && pantone == 0){
-            if(paperType == "Offset" && varnishing == "NO"){
-                if(elem.id == '2'){ 
+        if(elem.id != "2"){
+            if(face > 2){
+                if(elem.id == '0'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
                 else {
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
-            } else {
+            } else if(face == 2){
                 if(elem.id == '1'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
                 else {
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
-            }
-        } else if(face == 1 && pantone == 1){
-            if(elem.id == '1'){ 
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }
-            else {
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
-            }
-        } 
-        else {
-            if(elem.id == '1'){
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }  
-            else{
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             } 
-        }     
+            else {
+                if(elem.id == '1'){
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }  
+                else{
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                } 
+            }   
+        } 
     });
     
     calculateCuttingEnvelopes();
@@ -3723,7 +3815,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<label><input name="stampFolders" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemFolders(this)"><span>Штамп</span> </label>'
 html +=                 '</div>'
 html +=                 '<div class="col-md-6">'
-html +=                     '<input id="stampFolders" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
+html +=                     '<input id="stampFolders" class="element text medium" type="number" min="0" oninput="calculateFolders()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
 html +=             '<div class="col-md-4">'				
@@ -3770,8 +3862,9 @@ function calculateFolders() {
     var turnoverElem = document.getElementById('turnoverFolders');
     var laminade = Number(document.getElementById('laminadeFolders').value);
     var paperFormat = document.getElementById("paperFormatFolders").value;
-
+    var cuttingDown = document.getElementById("cuttingDownFolders");
     var varnishing = document.getElementById('varnishingFolders').value;
+    var stamp = +document.getElementById('stampFolders').value;
     var paperWeightValue = document.getElementById("paperWeightFolders").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
@@ -3784,6 +3877,7 @@ function calculateFolders() {
     var jsonFP = jsonObj["Paper"]["FittingPager"];
     var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
     var jsonC = jsonObj["Сoefficients"];
+    var jsonCD = jsonObj["CuttingDown"];
     var checkLabel = "";
     var jsonPP = jsonObj["PostpressProcessing"]; 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
@@ -3914,9 +4008,22 @@ function calculateFolders() {
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
+    if(cuttingDown.checked){
+        for(let elem of jsonCD){
+            if(numberOfPrintedSheets < elem.before){
+                cuttingDownCost = elem.price ;
+                break;
+            } 
+        }
+    }
    
-   
+    allCost += cuttingDownCost;
+    checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
 
+    allCost += stamp;
+    checkLabel +="Стоимость штампования: " + stamp + "$" +  "<br />";
+   
+   
     var jsonL = jsonObj["Laminade"][laminade];
     allCost += (numberOfPrintedSheets * jsonL.price );
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
@@ -5909,29 +6016,31 @@ function getPrintedMachineEnvelopes(){
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
 
-        if(face > 2){
-            if(elem.id == '0'){ 
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }
-            else {
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
-            }
-        } else if(face == 2){
-            if(elem.id == '1'){ 
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }
-            else {
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
-            }
-        } 
-        else {
-            if(elem.id == '1'){
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
-            }  
-            else{
-                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+        if(elem.id != "2"){
+            if(face > 2){
+                if(elem.id == '0'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            } else if(face == 2){
+                if(elem.id == '1'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
             } 
-        }     
+            else {
+                if(elem.id == '1'){
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }  
+                else{
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                } 
+            }   
+        }    
     });
     
     
@@ -5965,6 +6074,7 @@ request.onreadystatechange = function() {
             Magnets();
             Packages();
             Envelopes();
+            CuttingEnvelopes();
         }
     }
 }
@@ -5990,6 +6100,7 @@ request1.onreadystatechange = function() {
             calculateMagnets(); 
             calculatePackages();
             calculateEnvelopes();
+            calculateCuttingEnvelopes();
         }
     }
 }
@@ -6278,12 +6389,20 @@ var numInput = document.querySelectorAll('input');
 // Listen for input event on numInput.
 numInput.forEach(function(elem) {
     elem.addEventListener('input', function(){
-        // Let match only digits.
-        var num = this.value.match(/^\d+$/);
-        if (num === null) {
-            // If we have no match, value will be empty.
-            this.value = "";
+        if(elem.hasAttribute('step')){
+            var num = this.value.match(/^[0-9]{1,2}([,.][0-9]{1,2})?$/);
+            if (num === null) {
+                // If we have no match, value will be empty.
+                this.value = "";
+            }
+        } else {
+            var num = this.value.match(/^\d+$/);
+            if (num === null) {
+                // If we have no match, value will be empty.
+                this.value = "";
+            }
         }
+        // Let match only digits.
     }, false)
 });
 
