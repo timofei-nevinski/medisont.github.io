@@ -618,63 +618,64 @@
                 "name": "240х126",
                 "width": 420,
                 "length": 298,
-                "scotch": 0
+                "scotch": 0,
+                "numberOfProducts": 1
             },
             {
                 "id": "1",
                 "name": "245x125",
                 "width": 321,
                 "length": 258,
-                "scotch": 3.5
+                "scotch": 3.5,
+                "numberOfProducts": 1
             },
             {
                 "id": "2",
                 "name": "220x120",
                 "width": 494,
                 "length": 330,
-                "scotch": 12
+                "scotch": 12,
+                "numberOfProducts": 2
             },
             {
                 "id": "3",
                 "name": "225x105",
                 "width": 474,
                 "length": 320,
-                "scotch": 5
+                "scotch": 5,
+                "numberOfProducts": 2
             },
             {
                 "id": "4",
                 "name": "225x118",
                 "width": 499,
                 "length": 320,
-                "scotch": 4
+                "scotch": 4,
+                "numberOfProducts": 2
             },
             {
                 "id": "5",
                 "name": "215x101",
                 "width": 434,
                 "length": 272,
-                "scotch": 0
+                "scotch": 0,
+                "numberOfProducts": 2
             },
             {
                 "id": "6",
                 "name": "220x110",
                 "width": 494,
                 "length": 260,
-                "scotch": 20
+                "scotch": 20,
+                "numberOfProducts": 2
             },
             {
                 "id": "7",
                 "name": "80x100",
                 "width": 497,
                 "length": 283,
-                "scotch": 0
-            },
-            {
-                "id": "8",
-                "name": "Другой XxY",
-                "width": 0,
-                "length": 0,
-                "scotch": 0
+                "scotch": 0,
+                "numberOfProducts": 4
             }
         ],
         "Kappa": [

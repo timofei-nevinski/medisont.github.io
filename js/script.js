@@ -2160,25 +2160,6 @@ html +=             '<div>'
 html +=                 '<select id="formatCuttingEnvelopes" name="formatCuttingEnvelopes" onchange="getPaperFormatCuttingEnvelopes(false)"></select>'
 html +=             '</div> '
 html +=         '</div>'	
-html +=         '<div class="col-md-3">'				
-html +=             '<label class="description">Ширина, мм </label>'
-html +=             '<div>'
-html +=                 '<input id="widthCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255"  value="210" /> '
-html +=             '</div> '
-html +=         '</div>'
-html +=         '<div class="col-md-3">'	
-html +=         '<label class="description">Длинна, мм </label>'
-html +=             '<div>'
-html +=                 '<input id="lengthCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255" value="297"/> '
-html +=             '</div> '
-html +=         '</div>'
-html +=         '<div class="col-md-12"></div>'
-html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Припуски, мм </label>'
-html +=             '<div>'
-html +=                 '<input id="allowanceCuttingEnvelopes" class="element text medium" type="number" min="0" oninput="getPaperFormatCuttingEnvelopes(false)" maxlength="255" value="0"/> '
-html +=             '</div>'
-html +=         '</div>'
 html +=         '<div class="col-md-12">'
 html +=             '<h3>Красочность</h3>'
 html +=         '</div> '		
@@ -2293,8 +2274,8 @@ function CuttingEnvelopes() {
     getPaperFormatCuttingEnvelopes();
     getRentabilityCuttingEnvelopes();
     getLaminadeCuttingEnvelopes();
-    getStateElemCuttingEnvelopes(true);
     getScotchCuttingEnvelopes();
+    getStateElemCuttingEnvelopes(true);
 }
 
 function calculateCuttingEnvelopes() {
@@ -2527,12 +2508,13 @@ function getLaminadeCuttingEnvelopes() {
     if (laminade.options.length == 0){
         var jsonL = jsonObj["Laminade"]; 
         jsonL.forEach(function(elem) {
-            if(elem.id == "0"){
-                laminade.options[laminade.options.length] = new Option(elem.name, elem.id, true, true);
-            } else {
-                laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+            if(elem.id == 0 || elem.id == 1 || elem.id == 3 || elem.id == 5){
+                if(elem.id == "0"){
+                    laminade.options[laminade.options.length] = new Option(elem.name, elem.id, true, true);
+                } else {
+                    laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+                }
             }
-           
         });
     }
     calculateCuttingEnvelopes();
@@ -2574,7 +2556,7 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
         var printing = Number(document.getElementById('printingCuttingEnvelopes').value);
         var widthCuttingEnvelopes = document.getElementById('widthCuttingEnvelopes');
         var lengthCuttingEnvelopes = document.getElementById('lengthCuttingEnvelopes');
-        var allowance = Number(document.getElementById('allowanceCuttingEnvelopes').value);
+        var allowance = 0;
         var width = 0;
         var length = 0;
         
@@ -2585,23 +2567,9 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
         paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
-
-                    if(formatCuttingEnvelopes != 8){
-                        widthCuttingEnvelopes.disabled = true;
-                        lengthCuttingEnvelopes.disabled = true;
-                        
-                        var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
-                        width = jsonPCuttingEnvelopes.width;
-                        length = jsonPCuttingEnvelopes.length;
-                    }
-                    else {
-                        widthCuttingEnvelopes.disabled = false;
-                        lengthCuttingEnvelopes.disabled = false;
-                        
-                        width = Number(document.getElementById('widthCuttingEnvelopes').value);
-                        length = Number(document.getElementById('lengthCuttingEnvelopes').value);
-                        
-                    }
+    
+                    width = Number(document.getElementById('widthCuttingEnvelopes').value);
+                    length = Number(document.getElementById('lengthCuttingEnvelopes').value);
 
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
@@ -2718,30 +2686,19 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
             });
         });
     }
-
+    getScotchCuttingEnvelopes();
     getPrintedMachineCuttingEnvelopes();
 }
 
 function numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, position, dev){
 
     var formatCuttingEnvelopes = +document.getElementById('formatCuttingEnvelopes').value;
-    var allowance = Number(document.getElementById('allowanceCuttingEnvelopes').value);
+    var allowance = 0;
     var width = 0;
     var length = 0;
 
-    if(formatCuttingEnvelopes != 8){
-        
-        var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
-        width = jsonPCuttingEnvelopes.width;
-        length = jsonPCuttingEnvelopes.length;
-    }
-    else {
-
-        width = Number(document.getElementById('widthCuttingEnvelopes').value);
-        length = Number(document.getElementById('lengthCuttingEnvelopes').value);
-        
-    }
-
+    width = Number(document.getElementById('widthCuttingEnvelopes').value);
+    length = Number(document.getElementById('lengthCuttingEnvelopes').value);
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
@@ -2815,85 +2772,28 @@ function getPaperWeightCuttingEnvelopes() {
 }
 
 function getNumberOfProductsCuttingEnvelopes() {
-
-    var allowance = document.getElementById('allowanceCuttingEnvelopes').value;
-    var paperFormatB = document.getElementById("paperFormatCuttingEnvelopes").value; //получаем элемент по его ID
-    var printedMachine = document.getElementById("printedMachineCuttingEnvelopes").value;
-    var labelCheck = document.getElementById('checkCuttingEnvelopesField');
-    var printing = Number(document.getElementById('printingCuttingEnvelopes').value);
-    var numberOfPrintedSheets = 0;
-    var numberOfParts = 0;
-    var checkLabel = "";
     
-        var widthPrintedArea = 0;
-        var lengthPrintedArea = 0;
+    var formatCuttingEnvelopes = +document.getElementById("formatCuttingEnvelopes").value;
+    var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
 
-        var jsonCPF = jsonObj["Paper"]["Format"];
-        
-        jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
-            
-            if(elem.id == paperFormatB){
-                paperWidth = elem.width;
-                paperLength = elem.length;
 
-                paperWidth += (allowance * 2) // прибавляем припуски
-                paperLength += (allowance * 2)
-    
-                widthPrintedArea = (elem.width / 2) - 2; 
-                lengthPrintedArea = (elem.length / 2) -2;
-                numberOfParts = 4;
-            }
-        });
-
-        var jsonPM = jsonObj["PrintingMachine"];
-        jsonPM.forEach(function(elem) {
-            if(elem.id == printedMachine) { // для большей и меньшей стороны{}
-
-                if (widthPrintedArea > lengthPrintedArea){
-                    lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
-                    widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
-                } else {
-                    lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
-                    widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
-                }
-            }
-        });
-
-        checkLabel += "Размер запечатываемого поля:" + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
-        checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
-        checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
-        checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
-        checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />";
-        
-
-        if(numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
-            numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", true);
-
-        } else if(numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
-            numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", true)
-        }
-        else if(numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
-            numberOfPrintedSheets = numberProductPerSheetCuttingEnvelopes(widthPrintedArea, lengthPrintedArea, "W", true)
-        } else {
-            numberOfPrintedSheets = "Ошибка"
-        }
-        
-        labelCheck.innerHTML = checkLabel;
-        
-    return numberOfPrintedSheets;
+    return jsonPCuttingEnvelopes.numberOfProducts;
 }
 
 function getScotchCuttingEnvelopes() {
     var formatCuttingEnvelopes = +document.getElementById("formatCuttingEnvelopes").value;
-    var scotch = +document.getElementById("scotchCuttingEnvelopes");
+    var scotch = document.getElementById("scotchCuttingEnvelopes");
+    var scotchChecked = document.querySelector('input[name=scotchCuttingEnvelopes]');
     var jsonPCuttingEnvelopes = jsonObj["Paper"]["CuttingEnvelopes"][formatCuttingEnvelopes];
 
-    if(jsonPCuttingEnvelopes != 0){
-        scotch.disabled = false;
-        scotch.value = jsonPCuttingEnvelopes.scotch;
-    } else {
-        scotch.disabled = true;
+    if(jsonPCuttingEnvelopes.scotch == 0){
+        scotchChecked.checked = false;
         scotch.value = 0;
+        scotch.disabled = true
+    } else {
+        scotchChecked.checked = true;
+        scotch.value = jsonPCuttingEnvelopes.scotch;
+        scotch.disabled = false
     }
 
 }
