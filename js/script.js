@@ -3694,7 +3694,7 @@ html +=                 '<div class="col-md-6">'
 html +=                     '<label><input name="stampFolders" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemFolders(this)"><span>Штамп</span> </label>'
 html +=                 '</div>'
 html +=                 '<div class="col-md-6">'
-html +=                     '<input id="stampFolders" class="element text medium" type="number" min="0" oninput="calculateFolders()"  maxlength="255" value="0" disabled="true"/> '
+html +=                     '<input id="stampFolders" class="element text medium" type="number" min="0" oninput="calculateFolders()" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
 html +=             '<div class="col-md-4">'				
@@ -6236,7 +6236,7 @@ var numInput = document.querySelectorAll('input');
 numInput.forEach(function(elem) {
     elem.addEventListener('input', function(){
         if(elem.hasAttribute('step')){
-            var num = this.value.match(/^[0-9]{1,2}([,.][0-9]{1,2})?$/);
+            var num = this.value.match(/^[0-9]+*([,.][0-9]+*)?$/);
             if (num === null) {
                 // If we have no match, value will be empty.
                 this.value = "";
