@@ -304,8 +304,8 @@ function calculateBierdequels() {
     checkLabel +="Стоимость Ламинирования: " + lamCost.toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalcost.innerHTML ="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalcost.innerHTML ="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -932,8 +932,8 @@ function calculateBlanks() {
     checkLabel +="Стоимость нумерации: " + (printing * jsonPP.numeration * numerationBL).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostBL.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostBL.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -1659,8 +1659,8 @@ function calculateBooklets() {
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostBooklets.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostBooklets.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -2456,8 +2456,8 @@ function calculateCuttingEnvelopes() {
     checkLabel +="Стоимость склейки Скотч: " + (printing * scotch * jsonG.scotch).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + ((allCost * jsonObjDollar) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalCostCuttingEnvelopes.innerHTML = "Общая стоимость, руб: " + ((allCost * jsonObjDollar) + stamp).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
+    finalCostCuttingEnvelopes.innerHTML = "Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -3107,8 +3107,8 @@ function calculateFlyers() {
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostFlyers.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostFlyers.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -3893,8 +3893,8 @@ function calculateFolders() {
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + ((allCost * jsonObjDollar) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalCostFolders.innerHTML = "Общая стоимость, руб: " + ((allCost * jsonObjDollar) + stamp).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
+    finalCostFolders.innerHTML = "Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -4645,8 +4645,8 @@ function calculateMagnets() {
 
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostMagnets.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostMagnets.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -5286,8 +5286,8 @@ function calculatePackages() {
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostPackages.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostPackages.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -5781,8 +5781,8 @@ function calculateEnvelopes() {
 
     
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostEnvelopes.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostEnvelopes.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -6182,8 +6182,8 @@ function calculateStickers() {
 
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
-    finalCostStickers.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * jsonObjDollar).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    finalCostStickers.innerHTML = "Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar* jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -6345,6 +6345,8 @@ function getPaperFormatStickers(firstCall) {
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
+                    if(printedMachine != ""){
+
                     
                         var jsonCPF = jsonObj["Paper"]["Format"];
 
@@ -6375,7 +6377,7 @@ function getPaperFormatStickers(firstCall) {
 
                                 } else {
                                     jsonPM.forEach(function(elem) {
-                                        if(elem.id != "" || elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                        if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
                                             if (widthPrintedArea > lengthPrintedArea){
                                                 lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
                                                 widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
@@ -6428,7 +6430,7 @@ function getPaperFormatStickers(firstCall) {
                                 
                             }
                         });
-                    
+                    }
                 }
             });
         });
@@ -6548,6 +6550,10 @@ function getNumberOfProductsStickers() {
             }
         });
 
+        if(printedMachine != "") {
+
+        
+
         var jsonPM = jsonObj["PrintingMachine"];
         var jsonPL = jsonObj["Plotter"];
         if (formatStickers == 5){
@@ -6565,7 +6571,7 @@ function getNumberOfProductsStickers() {
 
         } else {
             jsonPM.forEach(function(elem) {
-                if(elem.id != "" || elem.id == printedMachine) { // для большей и меньшей стороны{}
+                if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
                     if (widthPrintedArea > lengthPrintedArea){
                         lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
                         widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
@@ -6595,7 +6601,7 @@ function getNumberOfProductsStickers() {
         } else {
             numberOfPrintedSheets = "Ошибка"
         }
-        
+    }
         labelCheck.innerHTML = checkLabel;
         
     return numberOfPrintedSheets;
@@ -7269,7 +7275,7 @@ function calculatePrintedField() {
     if(printSpeed != 0){
         var iterations = Math.ceil(face / numberOfSections) + Math.ceil(turnover / numberOfSections) + varnishing;
 
-        var chargingTime = (paperChargingTime * iterations);
+        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / paperChargingTime) * iterations ) * 60;
         var dateChanging = new Date(null);
         dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
         checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
