@@ -6174,7 +6174,7 @@ function calculateStickers() {
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
     allCost += (printing * jsonPP.cutting * cutting);
-    checkLabel +="Стоимость Надрезки: " + (printing * jsonPP.cutting * cutting).toFixed(2) + "$" +  "<br />";
+    checkLabel +="Стоимость Надрезки: " + (numberOfPrintedSheets * jsonPP.cutting * cutting).toFixed(2) + "$" +  "<br />";
 
     var jsonL = jsonObj["Laminade"][laminade];
     allCost += (numberOfPrintedSheets * jsonL.price );
