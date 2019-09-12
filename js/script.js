@@ -5922,7 +5922,7 @@ html +=                 '<input id="allowanceStickers" class="element text mediu
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-4 extremum-slide">'
-html +=             '<label class="description"> </label>'
+html +=             '<div class="col-md-12"><br/><br/></div>'
 html +=             '<div class="col-md-12">'				
 html +=                 '<label><input  id="fullImprint" name="fullImprint" class="col-md-1 checkbox"  type="checkbox" onchange="getPaperFormatStickers(false)"><span>Плотная запечатка</span></label>'
 html +=             '</div>'
@@ -6356,18 +6356,34 @@ function getPaperFormatStickers(firstCall) {
                                 }
 
                                 var jsonPM = jsonObj["PrintingMachine"];
-                                var jsonPL = jsonObj["Plotter"][fullImprint];
-                                jsonPM.forEach(function(elem) {
-                                    if(elem.id != "" || elem.id == printedMachine) { // для большей и меньшей стороны{}
-                                        if (widthPrintedArea > lengthPrintedArea){
-                                            lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
-                                            widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
-                                        } else {
-                                            lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
-                                            widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                var jsonPL = jsonObj["Plotter"];
+                                if (formatStickers == "5"){
+                                    jsonPL.forEach(function(elem) {
+                                        if(elem.id == fullImprint) { // для большей и меньшей стороны{}
+                                            if (widthPrintedArea > lengthPrintedArea){
+                                                lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                                                widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                                            } else {
+                                                lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                                                widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+
+                                } else {
+                                    jsonPM.forEach(function(elem) {
+                                        if(elem.id != "" || elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                            if (widthPrintedArea > lengthPrintedArea){
+                                                lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                                                widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                                            } else {
+                                                lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                                                widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                            }
+                                        }
+                                    });
+                                }
+                                
                                 
                                 if(numberProductPerSheetStickers(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetStickers(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
                                     numberProductPerSheetStickers(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetStickers(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetStickers(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetStickers(widthPrintedArea, lengthPrintedArea, "L", true))
@@ -6491,14 +6507,19 @@ function getNumberOfProductsStickers() {
     var paperFormat = document.getElementById("paperFormatStickers").value;
     var printedMachine = document.getElementById("printedMachineStickers").value;
     var labelCheck = document.getElementById('checkStickersField');
-    
+    var formatStickers = +document.getElementById('formatStickers').value;
     var printing = Number(document.getElementById('printingStickers').value);
+    var fullImprint = document.getElementById('fullImprint');
+
     var numberOfPrintedSheets = 0;
     var numberOfParts = 0;
     var checkLabel = "";
-    
-        var widthPrintedArea = 0;
-        var lengthPrintedArea = 0;
+    var widthPrintedArea = 0;
+    var lengthPrintedArea = 0;
+
+    fullImprint.checked == true ? fullImprint = 1 : fullImprint = 0;
+
+        
 
         var jsonCPF = jsonObj["Paper"]["Format"];
         
@@ -6525,18 +6546,33 @@ function getNumberOfProductsStickers() {
         });
 
         var jsonPM = jsonObj["PrintingMachine"];
-        jsonPM.forEach(function(elem) {
-            if(elem.id == printedMachine) { // для большей и меньшей стороны{}
-
-                if (widthPrintedArea > lengthPrintedArea){
-                    lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
-                    widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
-                } else {
-                    lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
-                    widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+        var jsonPL = jsonObj["Plotter"];
+        if (formatStickers == 5){
+            jsonPL.forEach(function(elem) {
+                if(elem.id == fullImprint) { // для большей и меньшей стороны{}
+                    if (widthPrintedArea > lengthPrintedArea){
+                        lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                        widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                    } else {
+                        lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                        widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                    }
                 }
-            }
-        });
+            });
+
+        } else {
+            jsonPM.forEach(function(elem) {
+                if(elem.id != "" || elem.id == printedMachine) { // для большей и меньшей стороны{}
+                    if (widthPrintedArea > lengthPrintedArea){
+                        lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                        widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                    } else {
+                        lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                        widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                    }
+                }
+            });
+        }
 
         checkLabel += "Режем на " + numberOfParts +" части" + "<br />";
         checkLabel += "Размер запечатываемого поля: " + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
