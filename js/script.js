@@ -5924,7 +5924,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-4 extremum-slide">'
 html +=             '<div class="col-md-12"><br/><br/></div>'
 html +=             '<div class="col-md-12">'				
-html +=                 '<label><input  id="fullImprint" name="fullImprint" class="col-md-1 checkbox"  type="checkbox" onchange="getPaperFormatStickers(false)"><span>Плотная запечатка</span></label>'
+html +=                 '<label><input  id="fullImprint"  name="fullImprint" class="col-md-1 checkbox"  type="checkbox" onchange="getPaperFormatStickers(false)"><span>Плотная запечатка</span></label>'
 html +=             '</div>'
 html +=         '</div> '
 html +=         '<div class="col-md-12">'
@@ -6302,7 +6302,7 @@ function getPaperFormatStickers(firstCall) {
         var length = 0;
         var numberOfPrintedSheets = 0;
 
-        fullImprint.checked == true ? fullImprint = 1 : fullImprint = 0;
+        
 
         paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
             jsonPF.forEach(function(elem) { 
@@ -6315,9 +6315,11 @@ function getPaperFormatStickers(firstCall) {
                         if(formatStickers == 5){
                             cutting.disabled = false;
                             cuttingCheckbox.checked = true;
+                            fullImprint.disabled = false;
                         } else {
                             cutting.disabled = true;
                             cuttingCheckbox.checked = false;
+                            
                         }
                         
                         width = Number(document.getElementById('widthStickers').value);
@@ -6328,6 +6330,7 @@ function getPaperFormatStickers(firstCall) {
                         if(formatStickers != 5){
                             cutting.disabled = true;
                             cuttingCheckbox.checked = false;
+                            fullImprint.disabled = true;
                         }
 
                         widthStickers.disabled = true;
@@ -6354,7 +6357,7 @@ function getPaperFormatStickers(firstCall) {
                                     widthPrintedArea = (elem.width) - 2; 
                                     lengthPrintedArea = (elem.length) -2;
                                 }
-
+                                fullImprint.checked == true ? fullImprint = 1 : fullImprint = 0;
                                 var jsonPM = jsonObj["PrintingMachine"];
                                 var jsonPL = jsonObj["Plotter"];
                                 if (formatStickers == "5"){
