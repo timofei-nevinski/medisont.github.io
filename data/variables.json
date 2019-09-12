@@ -57,9 +57,15 @@
             },
             {
                 "id": "9",
-                "name": "45x320",
+                "name": "45x32",
                 "width": 450,
                 "length": 320
+            },
+            {
+                "id": "10",
+                "name": "65x45",
+                "width": 650,
+                "length": 450
             }
         ],
         "Blanks": [
@@ -141,25 +147,32 @@
         "Booklets": [
             {
                 "id": "0",
+                "name": "A3",
+                "width": 420,
+                "length": 297
+                
+            },
+            {
+                "id": "1",
                 "name": "A4",
                 "width": 297,
                 "length": 210
                 
             },
             {
-                "id": "1",
+                "id": "2",
                 "name": "A5",
                 "width": 210,
                 "length": 148
             },
             {
-                "id": "2",
+                "id": "3",
                 "name": "A6",
                 "width": 148,
                 "length": 105
             },
             {
-                "id": "3",
+                "id": "4",
                 "name": "Другой XxY",
                 "width": 0,
                 "length": 0
@@ -170,37 +183,44 @@
         "Flyers": [
             {
                 "id": "0",
+                "name": "A3",
+                "width": 420,
+                "length": 297
+                
+            },
+            {
+                "id": "1",
                 "name": "A4",
                 "width": 297,
                 "length": 210
                 
             },
             {
-                "id": "1",
+                "id": "2",
                 "name": "A5",
                 "width": 210,
                 "length": 148
             },
             {
-                "id": "2",
+                "id": "3",
                 "name": "A6",
                 "width": 148,
                 "length": 105
             },
             {
-                "id": "3",
+                "id": "4",
                 "name": "A7",
                 "width": 105,
                 "length": 74
             },
             {
-                "id": "4",
+                "id": "5",
                 "name": "Евро 98х210",
                 "width": 98,
                 "length": 210
             },
             {
-                "id": "5",
+                "id": "6",
                 "name": "Другой XxY",
                 "width": 0,
                 "length": 0
@@ -211,37 +231,44 @@
         "Stickers": [
             {
                 "id": "0",
+                "name": "A3",
+                "width": 420,
+                "length": 297
+                
+            },
+            {
+                "id": "1",
                 "name": "A4",
                 "width": 297,
                 "length": 210
                 
             },
             {
-                "id": "1",
+                "id": "2",
                 "name": "A5",
                 "width": 210,
                 "length": 148
             },
             {
-                "id": "2",
+                "id": "3",
                 "name": "A6",
                 "width": 148,
                 "length": 105
             },
             {
-                "id": "3",
+                "id": "4",
                 "name": "A7",
                 "width": 105,
                 "length": 74
             },
             {
-                "id": "4",
+                "id": "5",
                 "name": "Фигурная",
                 "width": 0,
                 "length": 0
             },
             {
-                "id": "5",
+                "id": "6",
                 "name": "Другой XxY",
                 "width": 0,
                 "length": 0
@@ -591,7 +618,7 @@
                 "name": "Самоклеящаяся бумага 190 г.",
                 "weight": 190,
                 "price": 1.345,
-                "format": "0,1"
+                "format": "0,1,10"
             }
         ],
         "AdhesiveTape": [
@@ -939,6 +966,24 @@
 
         }
     ],
+    "Plotter":[
+         {
+        "id": "0",
+        "name": "Обычная запечатка",
+        "flap": 14,
+        "scale": 35,
+        "sideField": 14
+        },
+
+        {
+            "id": "1",
+            "name": "Плотная запечатка",
+            "flap": 23,
+            "scale": 45,
+            "sideField": 23
+        }
+    ],
+
     "Сoefficients": {
         "materials": 1.02,
         "outsideWork": 1.4,
