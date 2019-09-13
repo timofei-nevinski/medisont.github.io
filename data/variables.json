@@ -290,6 +290,27 @@
                 "length": 0
             }
         ],
+
+        "Wobblers": [
+            {
+                "id": "0",
+                "name": "Круг 90 мм",
+                "width": 90,
+                "length": 90
+            },
+            {
+                "id": "1",
+                "name": "Круг 100 мм",
+                "width": 100,
+                "length": 100
+            },
+            {
+                "id": "2",
+                "name": "Другой XxY",
+                "width": 0,
+                "length": 0
+            }
+        ],
         "Magnets": [
             {
                 "id": "0",
