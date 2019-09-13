@@ -7847,20 +7847,20 @@ html +=         '</div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Ширина, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="widthWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255"  value="210" /> '
+html +=                 '<input id="widthWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255"  value="200" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=         '<label class="description">Длинна, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="lengthWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255" value="297"/> '
+html +=                 '<input id="lengthWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255" value="200"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="allowanceWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255" value="0"/> '
+html +=                 '<input id="allowanceWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12">'
@@ -7945,6 +7945,7 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
+html +=                 '<br/><label class="description">Количество резов на лист: <label id="checkWobblersCuts" ></label></label>'
 html +=                 '<br/><label id="checkWobblersField" class="description"></label>'
 html +=                 '<br/><label id="checkWobblers" class="description"></label>'
 html +=             '</div><br/>'
@@ -7973,6 +7974,7 @@ function calculateWobblers() {
     var laminade = Number(document.getElementById('laminadeWobblers').value);
     var paperFormat = document.getElementById("paperFormatWobblers").value;
     var cuttingDown = document.getElementById("cuttingDownWobblers");
+    var cut = Number(document.getElementById('checkWobblersCuts').textContent);
     var varnishing = document.getElementById('varnishingWobblers').value;
     var paperWeightValue = document.getElementById("paperWeightWobblers").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
@@ -8030,7 +8032,7 @@ function calculateWobblers() {
 
     checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
     checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
-    var cutCost = numberOfPrintedSheets / jsonPM.ream * jsonPM.cutPrice;
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
 
     if(cutCost < jsonC.minCutPrice){
         cutCost = jsonC.minCutPrice;
@@ -8109,6 +8111,9 @@ function calculateWobblers() {
     
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
+    allCost += cuttingDownCost;
+    checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
+
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
@@ -8121,9 +8126,11 @@ function calculateWobblers() {
         }
     }
    
-    allCost += cuttingDownCost;
-    checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
+    allCost += jsonPP.wobblerLegPrice * printing;
+    checkLabel +="Стоимость ножек для воблеров: " + (jsonPP.wobblerLegPrice * printing).toFixed(2) + "$" +  "<br />";
 
+    allCost += jsonPP.stickWobblerLeg * printing;
+    checkLabel +="Стоимость работы по приклейк воблеров: " + (jsonPP.stickWobblerLeg * printing).toFixed(2) + "$" +  "<br />";
    
     var jsonL = jsonObj["Laminade"][laminade];
     allCost += (numberOfPrintedSheets * jsonL.price );
@@ -8153,6 +8160,20 @@ function getStateElemWobblers(elem){
     };
 }
 
+function getNumberOfCutsWobblers(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkWobblersCuts');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
+}
+
 function getRentabilityWobblers() {
     var printedMachine = document.getElementById("printedMachineWobblers").value;
     var rentability = document.getElementById("rentabilityWobblers"); //получаем элемент по его ID
@@ -8178,7 +8199,7 @@ function getLaminadeWobblers() {
     if (laminade.options.length == 0){
         var jsonL = jsonObj["Laminade"]; 
         jsonL.forEach(function(elem) {
-            if(elem.id == "1"){
+            if(elem.id == "0"){
                 laminade.options[laminade.options.length] = new Option(elem.name, elem.id, true, true);
             } else {
                 laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
@@ -8303,7 +8324,7 @@ function getPaperFormatWobblers(firstCall) {
 
                                 var jsonPM = jsonObj["PrintingMachine"];
                                 jsonPM.forEach(function(elem) {
-                                    if(elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                    if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
                                         if (widthPrintedArea > lengthPrintedArea){
                                             lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
                                             widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
@@ -8400,6 +8421,8 @@ function numberProductPerSheetWobblers(widthPrintedArea, lengthPrintedArea, posi
         }
     }
 
+    getNumberOfCutsWobblers(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
+
     return numberProduct
 }
 
@@ -8466,7 +8489,7 @@ function getNumberOfProductsWobblers() {
 
     var jsonPM = jsonObj["PrintingMachine"];
     jsonPM.forEach(function(elem) {
-        if(elem.id == printedMachine) { // для большей и меньшей стороны{}
+        if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
 
             if (widthPrintedArea > lengthPrintedArea){
                 lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
