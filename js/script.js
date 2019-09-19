@@ -5659,6 +5659,12 @@ html +=                     '<option value="2">1+0</option>'
 html +=                 '</select>'
 html +=             '</div> '
 html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=             '<label class="description">Пантонов</label>'
+html +=             '<div>'
+html +=                 '<input id="pantoneEnvelopes" class="element text medium" type="number" min="0" oninput="getPrintedMachineEnvelopes()" maxlength="255" value="0"/> '
+html +=             '</div>'
+html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'		
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description">Печатная машина</label>'
@@ -5698,7 +5704,7 @@ function calculateEnvelopes() {
     var numberOfPrintedSheets = printing;
     var printedMachine = document.getElementById("printedMachineEnvelopes").value;
     var rentabilityId = Number(document.getElementById("rentabilityEnvelopes").value); 
-
+    var pantone = Number(document.getElementById('pantoneEnvelopes').value);
     var formatEnvelopes = +document.getElementById("formatEnvelopes").value;
     var colorfulnessEnvelopes = Number(document.getElementById('colorfulnessEnvelopes').value);
 
@@ -5779,6 +5785,11 @@ function calculateEnvelopes() {
         date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
     checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
     printSpeedRatio = jsonC.printSpeedRatioEnvelopes;
+
+    checkLabel +="Время на 1 пантон: " + timeOfOnePantone + " сек" + "<br />";
+    var timeOfPantones = pantone * timeOfOnePantone;  //время печати
+    checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
+    
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
 
     if(jsonPM.printSpeed != 0){
