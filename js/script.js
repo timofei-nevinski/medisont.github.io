@@ -272,7 +272,6 @@ function calculateBierdequels() {
     checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
 
     side2==4 ? pasting = 1 : pasting = 2;
-    
 
     var jsonPast = jsonObj["Pasting"][pasting];
     allCost += (numberOfPrintedSheets * jsonPast.price );
