@@ -1432,7 +1432,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=         '<label class="description">Размер бумаги</label>'
 html +=             '<div>'
-html +=                 '<select id="paperFormatBooklets" name="paperFormatBooklets" onchange="getPaperFormatBooklets(false)"></select>'
+html +=                 '<select id="paperFormatBooklets" name="paperFormatBooklets" onchange="getPaperFormatBooklets()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
@@ -4402,12 +4402,6 @@ html +=                 '<input id="faceMagnets" class="element text medium" typ
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Оборот</label>'
-html +=             '<div>'
-html +=                 '<input id="turnoverMagnets" class="element text medium" type="number" min="0" oninput="getPaperWeightMagnets()" max="4" value="0"/> '
-html +=             '</div> '
-html +=         '</div>'
-html +=         '<div class="col-md-2">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
 html +=                 '<input id="pantoneMagnets" class="element text medium" type="number" min="0" oninput="getPrintedMachineMagnets()" maxlength="255" value="0"/> '
@@ -4453,6 +4447,13 @@ html +=         '<div class="col-md-12 block">'
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide padding-note">'
 html +=             '<div class="col-md-12 padding-none">'
+html +=             '<div class="col-md-4">'				
+html +=                 '<label class="description">Ламинат</label>'
+html +=                 '<div>'
+html +=                     '<select id="laminadeMagnets"  name="laminadeMagnets" onchange="getLaminadeMagnets()"></select>'
+html +=                 '</div> '
+html +=             '</div>'
+html +=             '<div class="col-md-12"><br/></div>'
 html +=                 '<div class="col-md-6">'				
 html +=                    '<label><input id="cuttingDownMagnets" name="cuttingDownMagnets" class="col-md-1 checkbox"  type="checkbox" onchange="calculateMagnets()"><span class="col-md-11" >Вырубка</span> </label>'
 html +=                 '</div>'
@@ -4478,6 +4479,7 @@ function Magnets() {
     getPrintedMachineMagnets();
     getPaperFormatMagnets();
     getRentabilityMagnets();
+    getLaminadeMagnets();
     getStateElemMagnets(true);
 }
 
@@ -4491,17 +4493,14 @@ function calculateMagnets() {
     var numberOfPrintedVinylSheets = numberOfPrintedSheets;
     var printedMachine = document.getElementById("printedMachineMagnets").value;
     var rentabilityId = Number(document.getElementById("rentabilityMagnets").value); 
-    var turnoverElem = document.getElementById('turnoverMagnets');
-    
-    
-
+    var laminade = Number(document.getElementById('laminadeMagnets').value);
     var varnishing = document.getElementById('varnishingMagnets').value;
     var paperWeightValue = document.getElementById("paperWeightMagnets").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
     var face = Number(document.getElementById('faceMagnets').value);
-    var turnover = Number(document.getElementById('turnoverMagnets').value);
+    
     var pantone = Number(document.getElementById('pantoneMagnets').value);
     var cuttingDown = document.getElementById("cuttingDownMagnets");
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
@@ -4523,6 +4522,7 @@ function calculateMagnets() {
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
     var pasting = 1;
+    var turnover = 0;
 
     jsonFP.some(function(elem) {
         if(numberOfPrintedSheets <= elem.before) { 
@@ -4541,12 +4541,6 @@ function calculateMagnets() {
 
     if(numberOfPrintedSheets < 300){
         rentabilityPrice = rentabilityPrice * jsonPM.coefficientIfSmallPrinting;
-    }
-
-    if(paperType == "Adhesive"){
-        turnoverElem.value = 0;
-        turnover = 0;
-        numberOfParts = 2;
     }
    
     checkLabel +="Цена химии за 1000 печатных листов: " + jsonPM.chemistryPrice + "$" +  "<br />";
@@ -4653,7 +4647,9 @@ function calculateMagnets() {
     allCost += cuttingDownCost;
     checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
     
-    
+    var jsonL = jsonObj["Laminade"][laminade];
+    allCost += (numberOfPrintedSheets * jsonL.price );
+    checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
@@ -4699,6 +4695,18 @@ function getStateElemMagnets(elem){
         }
         calculateMagnets(); 
     };
+}
+
+function getLaminadeMagnets() {
+    var laminade = document.getElementById("laminadeMagnets"); //получаем элемент по его ID
+    if (laminade.options.length == 0){
+        var jsonL = jsonObj["Laminade"]; 
+        jsonL.forEach(function(elem) {
+            if(elem.id == "0" || elem.id == "1" || elem.id == "3" || elem.id == "5")
+            laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+        });
+    }
+    calculateMagnets();
 }
 
 function getRentabilityMagnets() {
@@ -4932,7 +4940,7 @@ function getNumberOfProductsMagnets() {
 function getPrintedMachineMagnets(){
     var printedMachine = document.getElementById("printedMachineMagnets");
     var face = Number(document.getElementById('faceMagnets').value);
-    var turnover = Number(document.getElementById('turnoverMagnets').value);
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneMagnets').value); 
     var varnishing = document.getElementById('varnishingMagnets').value;
 
@@ -5786,8 +5794,8 @@ function calculateEnvelopes() {
     checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
     printSpeedRatio = jsonC.printSpeedRatioEnvelopes;
 
-    checkLabel +="Время на 1 пантон: " + timeOfOnePantone + " сек" + "<br />";
-    var timeOfPantones = pantone * timeOfOnePantone;  //время печати
+    checkLabel +="Время на 1 пантон: " + jsonPM.timeOfOnePantone + " сек" + "<br />";
+    var timeOfPantones = pantone * jsonPM.timeOfOnePantone;  //время печати
     checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
     
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
