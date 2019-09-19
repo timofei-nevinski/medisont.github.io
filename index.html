@@ -83,7 +83,7 @@
     <script>
       $(document).ready(function() {
         $('.block').on('click', '.extremum-click', function() {
-          $.when( $(this).siblings('.extremum-slide').slideToggle(200)).then(function(){appendHeight() }); 
+          $.when( $(this).siblings('.extremum-slide').slideToggle(1)).then(function(){appendHeight() }); 
         });
         var isMobile = false; //initiate as false
 // device detection
@@ -113,7 +113,7 @@
       
 
       function dropDown() {
-        $(this).siblings('.extremum-slide').slideToggle(500);
+        $(this).siblings('.extremum-slide').slideToggle(1);
       }
 
       function appendHeight() {
