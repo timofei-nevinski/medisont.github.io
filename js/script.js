@@ -85,18 +85,19 @@ html +=         '<div class="col-md-12"><br/></div>'
 html +=         '<div class="col-md-12 block padding-none">'				
 html +=             '<div class="col-md-12"><h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3></div>'
 html +=         '<div class="extremum-slide padding-none">'
-html +=             '<div class="col-md-4">'				
-html +=                 '<label class="description">Кашировка</label>'
-html +=                 '<div>'
-html +=                     '<select id="pastingB" name="pastingB" onchange="getPastingB()"></select>'
-html +=                 '</div> '
-html +=             '</div>'
-html +=             '<div class="col-md-12"><br/></div>'
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-6">'				
 html +=                    '<label><input id="cuttingDownB" name="cuttingDownB" class="col-md-1 checkbox"  type="checkbox" onchange="calculateBierdequels()" checked><span class="col-md-11" >Вырубка</span> </label>'
 html +=                 '</div>'
 html +=             '</div>'
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-4">'				
+html +=                     '<label><input name="stampB" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemB(this)"><span>Штамп</span> </label>'
+html +=                 '</div>'
+html +=                 '<div class="col-md-1 padding-none">'
+html +=                     '<input id="stampB" class="element text medium" type="number" min="0" oninput="calculateBierdequels()"   value="0" disabled="true"/> '
+html +=                 '</div> '
+html +=             '</div> '
 html +=         '</div>'
 html +=     '</div>'
 html +=  '</div>'
@@ -117,11 +118,11 @@ function Bierdequels() {
     getPaperWeightB();
     getPaperFormatB();
     getRentabilityB();
-    getPastingB();
     getBierdequelsFormat();
     getBierdequelsSize();
     getBierdequelsSide1();
     getBierdequelsSide2();
+    getStateElemB(true);
 }
  
 
@@ -140,7 +141,7 @@ function calculateBierdequels() {
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
-    var pasting = Number(document.getElementById("pastingB").value);
+    var stamp = +document.getElementById('stampB').value;
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
@@ -156,6 +157,7 @@ function calculateBierdequels() {
     var numberOfParts = 4;
     var numberOfKappas = 0;
     var cuttingDownCost = 0;
+    var pasting = 0;
 
     jsonFP.some(function(elem) {
         if(numberOfPrintedSheets <= elem.before) { 
@@ -259,7 +261,7 @@ function calculateBierdequels() {
 
     if(cuttingDown.checked){
         for(let elem of jsonCD){
-            if(numberOfKappas < elem.before){
+            if(numberOfPrintedSheets < elem.before){
                 cuttingDownCost = elem.price ;
                 break;
             } 
@@ -269,6 +271,7 @@ function calculateBierdequels() {
     allCost += cuttingDownCost;
     checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
 
+    side2==4 ? pasting = 1 : pasting = 2;
     
 
     var jsonPast = jsonObj["Pasting"][pasting];
@@ -306,40 +309,32 @@ function calculateBierdequels() {
     
     allCost += lamCost;
     checkLabel +="Стоимость Ламинирования: " + lamCost.toFixed(2) + "$" +  "<br />";
+    checkLabel +="Стоимость штампования: " + stamp + " BYN" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalcost.innerHTML ="Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
+    finalcost.innerHTML ="Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
+
+  
 
     labelCheck.innerHTML = checkLabel;
 }
 
-function getPastingB() {
-    var pasting = document.getElementById('pastingB');
-    var side2 = document.getElementById('side2').value;
-    pasting.options.length = 0;
-        var jsonL = jsonObj["Pasting"]; 
-        jsonL.forEach(function(elem) {
-            if(elem.id != '0'){
-                if(side2 != 4){
-                    if(elem.id == "2"){
-                        pasting.options[pasting.options.length] = new Option(elem.name, elem.id, true, true);
-                    }
-                    else {
-                        pasting.options[pasting.options.length] = new Option(elem.name, elem.id);
-                    }
-                } else {
-                    if(elem.id == "1"){
-                        pasting.options[pasting.options.length] = new Option(elem.name, elem.id, true, true);
-                    }
-                    else {
-                        pasting.options[pasting.options.length] = new Option(elem.name, elem.id);
-                    }
-                }
+function getStateElemB(elem){
+    if(elem != true){
+        var elemField = document.getElementById(elem.name);
+        if(elem.checked) { 
+            if(elem.name == "stampB") {
+                elemField.disabled = false; elemField.value = 0;
+            } 
+            else {
+                elemField.disabled = false; elemField.value = 1;
             }
-        });
-    
-    calculateBierdequels();
+        } else {
+            elemField.disabled = true; elemField.value = 0;
+        }
+        calculateBierdequels(); 
+    };
 }
 
 function getPrintedMachineB(){
@@ -987,7 +982,7 @@ function getBlanksFormat() {
 
     var jsonPB = jsonObj["Paper"]["Blanks"];
     jsonPB.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
-        if(elem.id == '0'){
+        if(elem.id == '3'){
             formatBL.options[formatBL.options.length] = new Option(elem.name, elem.id, true, true);
         } else {
             formatBL.options[formatBL.options.length] = new Option(elem.name, elem.id);
