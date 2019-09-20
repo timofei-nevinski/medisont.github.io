@@ -1743,7 +1743,7 @@ function getBookletsFormat() {
 
     var jsonPB = jsonObj["Paper"]["Booklets"];
     jsonPB.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
-        if(elem.id == '0'){
+        if(elem.id == '1'){
             formatBooklets.options[formatBooklets.options.length] = new Option(elem.name, elem.id, true, true);
         } else {
             formatBooklets.options[formatBooklets.options.length] = new Option(elem.name, elem.id);
