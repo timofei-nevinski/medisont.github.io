@@ -6776,7 +6776,7 @@ var homeContainer = document.getElementById("homeContainer");
 var html = '<div class="row">'
 html +=         '<div class="col-md-12">'				
 html +=             '<div class="col-md-6">'
-html +=                 '<h2>Универсальный калькулятор</h2>'
+html +=                 '<h2>Универсальный</h2>'
 html +=             '</div>'
 html +=             '<div class="col-md-6">'
 html +=                 '<label id="final-cost" class="final-cost-description"></label>'
