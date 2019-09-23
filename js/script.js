@@ -310,9 +310,9 @@ function calculateBierdequels() {
     checkLabel +="Стоимость Ламинирования: " + lamCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Стоимость штампования: " + stamp + " BYN" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalcost.innerHTML ="цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
+    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " BYN" +  "<br />";
+    finalcost.innerHTML ="Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed();
 
   
 
@@ -936,7 +936,7 @@ function calculateBlanks() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostBL.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalCostBL.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -1667,7 +1667,7 @@ function calculateBooklets() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostBooklets.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalCostBooklets.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -2467,7 +2467,7 @@ function calculateCuttingEnvelopes() {
 
     checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalCostCuttingEnvelopes.innerHTML = "цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
+    finalCostCuttingEnvelopes.innerHTML = "Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -3121,7 +3121,7 @@ function calculateFlyers() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostFlyers.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalCostFlyers.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -3189,7 +3189,7 @@ function getFlyersFormat() {
 
     var jsonPB = jsonObj["Paper"]["Flyers"];
     jsonPB.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
-        if(elem.id == '0'){
+        if(elem.id == '1'){
             formatFlyers.options[formatFlyers.options.length] = new Option(elem.name, elem.id, true, true);
         } else {
             formatFlyers.options[formatFlyers.options.length] = new Option(elem.name, elem.id);
@@ -3911,7 +3911,7 @@ function calculateFolders() {
 
     checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalCostFolders.innerHTML = "цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
+    finalCostFolders.innerHTML = "Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -4661,7 +4661,7 @@ function calculateMagnets() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostMagnets.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalCostMagnets.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -5321,7 +5321,7 @@ function calculatePackages() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostPackages.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalCostPackages.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -5834,7 +5834,7 @@ function calculateEnvelopes() {
     
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostEnvelopes.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalCostEnvelopes.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -6239,7 +6239,7 @@ function calculateStickers() {
 
     checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostStickers.innerHTML = "цена: " + (allCost.toFixed(1) * (jsonObjDollar* jsonC.dollarCoeff)).toFixed(2);
+    finalCostStickers.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar* jsonC.dollarCoeff)).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -6776,7 +6776,7 @@ var homeContainer = document.getElementById("homeContainer");
 var html = '<div class="row">'
 html +=         '<div class="col-md-12">'				
 html +=             '<div class="col-md-6">'
-html +=                 '<h2>Универсальный</h2>'
+html +=                 '<h2>Универсальный калькулятор</h2>'
 html +=             '</div>'
 html +=             '<div class="col-md-6">'
 html +=                 '<label id="final-cost" class="final-cost-description"></label>'
@@ -7456,7 +7456,7 @@ function calculatePrintedField() {
 
     checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
 
-    finalcost.innerHTML ="цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalcost.innerHTML ="Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
 
     if (numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "W", false) == numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) && numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) == 0) {
         getPaperFormat(false)
@@ -8200,7 +8200,7 @@ function calculateWobblers() {
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed(2)+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed(2) + " BYN" +  "<br />";
-    finalCostWobblers.innerHTML = "цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed(2);
+    finalCostWobblers.innerHTML = "Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed(2);
 
     labelCheck.innerHTML = checkLabel;
 }
