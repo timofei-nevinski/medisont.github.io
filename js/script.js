@@ -406,7 +406,7 @@ function getBierdequelsSize() {
         var jsonB = jsonObj["Paper"]["Bierdequels"];
         
         jsonB.forEach(function(elem) { 
-            if(elem.id != '4'){
+            if(elem.id == '0' || elem.id == '1' || elem.id == '2'|| elem.id == '3'){
                 if(elem.id == '0'){
                     sizeB.options[sizeB.options.length] = new Option(elem.name, elem.id, true, true);
                 } else {
@@ -781,18 +781,18 @@ html += '</div>'
 blanksContainer.innerHTML = html;     
 
 function Blanks() {
-    getPaperWeightBL()
-    getPaperFormatBL();
     getBlanksFormat();
+    getPaperWeightBL();
     getPrintedMachineBL();
     getRentabilityBL();
+    getPaperFormatBL(false);
 }
 
 function calculateBlanks() {
     var finalCostBL = document.getElementById('final-costBL');
     var labelCheck = document.getElementById('checkBL');
     var printing = Number(document.getElementById('printingBL').value);
-    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProducts());
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBlanks());
     var printedMachine = document.getElementById("printedMachineBL").value;
     var cut = Number(document.getElementById('checkBLCuts').textContent);
     var rentabilityId = Number(document.getElementById("rentabilityBL").value); 
@@ -832,7 +832,7 @@ function calculateBlanks() {
     });
 
     
-    checkLabel += "Количесвто изделий на листе: " + getNumberOfProducts()+ "<br />";
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBlanks()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
@@ -995,6 +995,7 @@ function getPaperFormatBL(firstCall) {
     
     if( paperFormat.options.length == 0 || firstCall == false) {
         firstCall == false ? paperFormat.options.length = 0 : "";
+
         var paperWeightValue = document.getElementById("paperWeightBL").value; //получаем value выбранного элемента option по ID элемента select 
         var printedMachine = document.getElementById('printedMachineBL').value;
         var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
@@ -1041,109 +1042,112 @@ function getPaperFormatBL(firstCall) {
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
-                    if (width == length && width >= 200 && width <= 220){
-                        if(elem.id == '7' ){ //id=7 72х104
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
-                        }
-                        else {
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
-                        }
-                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500) {
-                        if(elem.id == '7' ){ //id=7 72х104
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
-                        }
-                        else {
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
-                        }
-                    } 
-                    else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
-                        if(elem.id == '7' ){ //id=7 72х104
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
-                        }
-                        else {
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
-                        }
-                    } 
-                    else {
-                        var jsonCPF = jsonObj["Paper"]["Format"];
+                    
 
-                        jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
-                            if(elem.id == formatId){
-                                if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
-                                    widthPrintedArea = elem.width - 2; 
-                                    lengthPrintedArea = (elem.length / 2) -2;
-                                } else if (elem.id == "7"){
-                                    if (width == length && width >= 200 && width <= 220){
-                                        widthPrintedArea = (elem.width / 3) - 2; 
+                        if (width == length && width >= 200 && width <= 220){
+                            if(elem.id == '7' ){ //id=7 72х104
+                                paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                            }
+                            else {
+                                paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                            }
+                        } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500) {
+                            if(elem.id == '7' ){ //id=7 72х104
+                                paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                            }
+                            else {
+                                paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                            }
+                        } 
+                        else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                            if(elem.id == '7' ){ //id=7 72х104
+                                paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                            }
+                            else {
+                                paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                            }
+                        } 
+                        else {
+                            var jsonCPF = jsonObj["Paper"]["Format"];
+
+                            jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+                                if(elem.id == formatId){
+                                    if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                                        widthPrintedArea = elem.width - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
-                                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
-                                        widthPrintedArea = (elem.width / 3) - 2; 
-                                        lengthPrintedArea = (elem.length / 2) -2;
-                                    } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
-                                        widthPrintedArea = (elem.width / 3) - 2; 
-                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (elem.id == "7"){
+                                        if (width == length && width >= 200 && width <= 220){
+                                            widthPrintedArea = (elem.width / 3) - 2; 
+                                            lengthPrintedArea = (elem.length / 2) -2;
+                                        } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
+                                            widthPrintedArea = (elem.width / 3) - 2; 
+                                            lengthPrintedArea = (elem.length / 2) -2;
+                                        } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                                            widthPrintedArea = (elem.width / 3) - 2; 
+                                            lengthPrintedArea = (elem.length / 2) -2;
+                                        } else {
+                                            widthPrintedArea = (elem.width / 2) - 2; 
+                                            lengthPrintedArea = (elem.length / 2) -2;
+                                        }
                                     } else {
                                         widthPrintedArea = (elem.width / 2) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
                                     }
-                                } else {
-                                    widthPrintedArea = (elem.width / 2) - 2; 
-                                    lengthPrintedArea = (elem.length / 2) -2;
-                                }
 
-                                var jsonPM = jsonObj["PrintingMachine"];
-                                jsonPM.forEach(function(elem) {
-                                    if(elem.id == printedMachine) { // для большей и меньшей стороны{}
-                                        if (widthPrintedArea > lengthPrintedArea){
-                                            lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
-                                            widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
-                                        } else {
-                                            lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
-                                            widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                    var jsonPM = jsonObj["PrintingMachine"];
+                                    jsonPM.forEach(function(elem) {
+                                        if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                            if (widthPrintedArea > lengthPrintedArea){
+                                                lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                                                widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                                            } else {
+                                                lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                                                widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                            }
+                                        }
+                                    });
+
+                                    if(numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+                                        numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", true))
+                                    } else if(numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+                                        numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", true))
+                                    }
+                                    else if(numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+                                        numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", true))
+                                    } else {
+                                        numberOfPrintedSheets = "Ошибка"
+                                    }
+
+                                    isNaN(numberOfPrintedSheets)? numberOfPrintedSheets = Infinity : "";
+
+                                    map.set(formatId, +numberOfPrintedSheets);
+
+                                    var maxK = 0,
+                                        maxV = 0,
+                                        i = 0;
+                                    for (let [key, value] of map) {     // get data sorted
+                                        if(i == 0){
+                                            maxV=value;
+                                            maxK = key;
+                                            i++;
+                                        }
+                                        else{
+                                            if (maxV > value){
+                                                maxV = value;
+                                                maxK = key;
+                                            } 
                                         }
                                     }
-                                });
-
-                                if(numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
-                                    numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", true))
-                                } else if(numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
-                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", true))
-                                }
-                                else if(numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
-                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, "W", true))
-                                } else {
-                                    numberOfPrintedSheets = "Ошибка"
-                                }
-
-                                isNaN(numberOfPrintedSheets)? numberOfPrintedSheets = Infinity : "";
-
-                                map.set(formatId, +numberOfPrintedSheets);
-
-                                var maxK = 0,
-                                    maxV = 0,
-                                    i = 0;
-                                for (let [key, value] of map) {     // get data sorted
-                                    if(i == 0){
-                                        maxV=value;
-                                        maxK = key;
-                                        i++;
+                                    if(elem.id == maxK ){ 
+                                        paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                                     }
-                                    else{
-                                        if (maxV > value){
-                                            maxV = value;
-                                            maxK = key;
-                                        } 
+                                    else {
+                                        paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
                                     }
                                 }
-                                if(elem.id == maxK ){ 
-                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
-                                }
-                                else {
-                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
-                                }
-                            }
-                        });
-                    }
+                            });
+                        }
+                    
                 }
             });
         });
@@ -1176,24 +1180,27 @@ function numberProductPerSheetBL(widthPrintedArea, lengthPrintedArea, position, 
 
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
+
+   
         
-    if(position == "W"){
-        if (widthPrintedArea >= width && lengthPrintedArea >= length ){
-            numberWidth = widthPrintedArea / width;
-            numberLength = lengthPrintedArea / length;
-            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength)); // получаем количество изделий на листе
+        if(position == "W"){
+            if (widthPrintedArea >= width && lengthPrintedArea >= length ){
+                numberWidth = widthPrintedArea / width;
+                numberLength = lengthPrintedArea / length;
+                numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength)); // получаем количество изделий на листе
+            } else {
+                numberProduct = "Ошибка"
+            }
         } else {
-            numberProduct = "Ошибка"
+            if (widthPrintedArea >= length && lengthPrintedArea >= width ){
+                numberWidth = widthPrintedArea / length;
+                numberLength = lengthPrintedArea / width;
+                numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength));
+            } else {
+                numberProduct = "Ошибка"
+            }
         }
-    } else {
-        if (widthPrintedArea >= length && lengthPrintedArea >= width ){
-            numberWidth = widthPrintedArea / length;
-            numberLength = lengthPrintedArea / width;
-            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength));
-        } else {
-            numberProduct = "Ошибка"
-        }
-    }
+    
 
     getNumberOfCutsBL(Math.trunc(numberWidth), Math.trunc(numberLength), allowance)
 
@@ -1228,7 +1235,7 @@ function getPaperWeightBL() {
     getPaperFormatBL(false);
 }
 
-function getNumberOfProducts() {
+function getNumberOfProductsBlanks() {
 
     var allowanceB = document.getElementById('allowanceBL').value;
     var paperFormatB = document.getElementById("paperFormatBL").value; //получаем элемент по его ID
@@ -1253,9 +1260,11 @@ function getNumberOfProducts() {
             }
         });
 
+        if(printedMachine != "") {
+
         var jsonPM = jsonObj["PrintingMachine"];
         jsonPM.forEach(function(elem) {
-            if(elem.id == printedMachine) { // для большей и меньшей стороны{}
+            if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
 
                 if (widthPrintedArea > lengthPrintedArea){
                     lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
@@ -1279,6 +1288,7 @@ function getNumberOfProducts() {
             numberOfPrintedSheets = "Ошибка"
         }
     
+    }
     
     return numberOfPrintedSheets;
 }
@@ -3646,7 +3656,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
-html +=                 '<input id="turnoverFolders" class="element text medium" type="number" min="0" oninput="getPaperWeightFolders()" max="4" value="1"/> '
+html +=                 '<input id="turnoverFolders" class="element text medium" type="number" min="0" oninput="getPaperWeightFolders()" max="4" value="0"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
