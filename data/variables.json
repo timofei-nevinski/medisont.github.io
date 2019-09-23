@@ -1,3 +1,4 @@
+
 {
     "Paper": {
         "Format": [
@@ -102,7 +103,7 @@
             },
             {
                 "id": "5",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 100,
                 "length": 100
             }
@@ -138,7 +139,7 @@
             },
             {
                 "id": "5",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -173,7 +174,7 @@
             },
             {
                 "id": "4",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -221,7 +222,7 @@
             },
             {
                 "id": "6",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -269,7 +270,7 @@
             },
             {
                 "id": "6",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -285,7 +286,7 @@
             },
             {
                 "id": "1",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -306,7 +307,7 @@
             },
             {
                 "id": "2",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -332,7 +333,7 @@
             },
             {
                 "id": "3",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             }
@@ -347,13 +348,13 @@
             },
             {
                 "id": "1",
-                "name": "220х310х70",
+                "name": "220х310х70 (с)",
                 "width": 301,
                 "length": 395
             },
             {
                 "id": "2",
-                "name": "230x330x80",
+                "name": "230x330x80 (с)",
                 "width": 425,
                 "length": 325
             },
@@ -410,7 +411,7 @@
             },
             {
                 "id": "3",
-                "name": "Другой XxY",
+                "name": "Другой",
                 "width": 0,
                 "length": 0
             },
@@ -418,29 +419,29 @@
                 "Side1": [
                     {
                         "id": "0",
-                        "name": "4 + ламинация Глянцевая"
+                        "name": "4 + Глянцевый лам."
                     },
                     {
                         "id": "1",
-                        "name": "4 + ламинация Матовая"
+                        "name": "4 + Матовый лам."
                     }
                 ],
                 "Side2": [
                     {
                         "id": "0",
-                        "name": "4 + ламинация Глянцевая"
+                        "name": "4 + Глянцевый лам."
                     },
                     {
                         "id": "1",
-                        "name": "4 + ламинация Матовая"
+                        "name": "4 + Матовый лам."
                     },
                     {
                         "id": "2",
-                        "name": "Белый + ламинация Глянцевая"
+                        "name": "Белый + Глянцевый лам."
                     },
                     {
                         "id": "3",
-                        "name": "Белый + ламинация Матовая"
+                        "name": "Белый + Матовый лам."
                     },
                     {
                         "id": "4",
@@ -471,7 +472,7 @@
             "id": "2",
             "name": "Офсетная 100 г.",
             "weight": 100,
-            "price": 1.18,
+            "price": 1.19,
             "format": "2,3,4,5,6,7"
             
           },
@@ -479,7 +480,7 @@
             "id": "3",
             "name": "Офсетная 120 г.",
             "weight": 120,
-            "price": 1.18,
+            "price": 1.19,
             "format": "2,3,4,5,6,7"
             
           },
@@ -487,7 +488,7 @@
             "id": "4",
             "name": "Офсетная 160 г.",
             "weight": 160,
-            "price": 1.18,
+            "price": 1.19,
             "format": "2,3,4,5,6,7"
             
           },
@@ -495,7 +496,7 @@
             "id": "5",
             "name": "Офсетная 200 г.",
             "weight": 200,
-            "price": 1.18,
+            "price": 1.2,
             "format": "2,3,4,5,6,7"
             
           }
@@ -506,7 +507,7 @@
                 "id": "0",
                 "name": "Глянцевая 90 г.",
                 "weight": 90,
-                "price": 1.345,
+                "price": 1.35,
                 "format": "5,7"
                 
             },
@@ -549,7 +550,7 @@
                 "id": "6",
                 "name": "Глянцевая 250 г.",
                 "weight": 250,
-                "price": 1.31,
+                "price": 1.34,
                 "format": "5,7"
             },
             {
@@ -573,7 +574,7 @@
                 "id": "0",
                 "name": "Матовая 90 г.",
                 "weight": 90,
-                "price": 1.345,
+                "price": 1.35,
                 "format": "5,7"
             },
             {
@@ -615,7 +616,7 @@
                 "id": "6",
                 "name": "Матовая 250 г.",
                 "weight": 250,
-                "price": 1.31,
+                "price": 1.34,
                 "format": "5,7"
             },
             {
@@ -636,9 +637,9 @@
         "Adhesive": [
             {
                 "id": "0",
-                "name": "Самоклеящаяся бумага 190 г.",
+                "name": "Самоклеящаяся бумага",
                 "weight": 190,
-                "price": 1.345,
+                "price": 4.77,
                 "format": "0,1,10"
             }
         ],
@@ -659,14 +660,14 @@
             },
             {
                 "id": "2",
-                "name": "Плёнка матовая прозрачная белая",
+                "name": "Плёнка матовая прозрачная",
                 "weight": 190,
                 "price": 1.44,
                 "format": "9"
             },
             {
                 "id": "3",
-                "name": "Плёнка глянцевая прозрачная белая",
+                "name": "Плёнка глянцевая прозрачная",
                 "weight": 190,
                 "price": 1.44,
                 "format": "9"
@@ -677,28 +678,28 @@
                 "id": "0",
                 "name": "Картон х1 200 г.",
                 "weight": 200,
-                "price": 1.28,
+                "price": 1.75,
                 "format": "5,7"
             },
             {
                 "id": "1",
                 "name": "Картон х1 225 г.",
                 "weight": 225,
-                "price": 1.34,
+                "price": 1.75,
                 "format": "5,7"
             },
             {
                 "id": "2",
                 "name": "Картон х1 250 г.",
                 "weight": 250,
-                "price": 1.31,
+                "price": 1.75,
                 "format": "5,7"
             },
             {
                 "id": "3",
                 "name": "Картон х1 270 г.",
                 "weight": 270,
-                "price": 2,
+                "price": 1.75,
                 "format": "5,7"
             },
             {
@@ -719,23 +720,23 @@
         "Envelopes": [
             {
                 "id": "0",
-                "name": "С6",
-                "price": 0.016279
+                "name": "DL (евро)",
+                "price": 0.02
             },
             {
                 "id": "1",
                 "name": "С5",
-                "price": 0.023256
+                "price": 0.024
             },
             {
                 "id": "2",
                 "name": "С4",
-                "price": 0.04186
+                "price": 0.055
             },
             {
                 "id": "3",
-                "name": "DL (евро)",
-                "price": 0.016279
+                "name": "С6",
+                "price": 0.02
             }
         ],
         "CuttingEnvelopes": [
@@ -864,7 +865,7 @@
             "sideField": 5,
             "chemistryPrice": 1.5,
             "amortization": 1.5,
-            "formPrice": 2.3,
+            "formPrice": 1.7,
             "priceOneHour": 57,
             "printSpeed": 8500,
             "printSpeedRatio": 0.75,
@@ -907,7 +908,7 @@
             "sideField": 5,
             "chemistryPrice": 1.2,
             "amortization": 1.2,
-            "formPrice": 2.3,
+            "formPrice": 1.7,
             "priceOneHour": 38,
             "printSpeed": 7200,
             "printSpeedRatio": 0.75,
@@ -950,7 +951,7 @@
             "sideField": 0,
             "chemistryPrice": 1.2,
             "amortization": 1.2,
-            "formPrice": 2.1,
+            "formPrice": 1.7,
             "priceOneHour": 25,
             "printSpeed": 5000,
             "printSpeedRatio": 1,
@@ -1009,7 +1010,7 @@
         "materials": 1.02,
         "outsideWork": 1.4,
         "minCutPrice": 5,
-        "dollarCoeff": 1.05,
+        "dollarCoeff": 1.02,
         "printSpeedRatioEnvelopes": 0.5
         
     },

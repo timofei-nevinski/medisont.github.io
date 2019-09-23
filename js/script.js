@@ -64,19 +64,19 @@ html +=                 '<select id="paperWeightB" name="paperWeight" onchange="
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatB" name="paperFormat" onchange="getPaperFormatB()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineB" name="printedMachine" onchange="calculateBierdequels() "></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityB" name="rentability" onchange="getRentabilityB()"></select>'
 html +=             '</div> '
@@ -312,7 +312,7 @@ function calculateBierdequels() {
 
     checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " BYN" +  "<br />";
-    finalcost.innerHTML ="Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed();
+    finalcost.innerHTML ="Цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " руб.";
 
   
 
@@ -736,19 +736,19 @@ html +=                 '<select id="paperWeightBL" name="paperWeightBL" onchang
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatBL" name="paperFormatBL" onchange="getPaperFormatBL()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineBL" name="printedMachineBL" onchange="calculateBlanks()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityBL" name="rentabilityBL" onchange="calculateBlanks()"></select>'
 html +=             '</div>'
@@ -934,9 +934,9 @@ function calculateBlanks() {
     allCost += (printing * jsonPP.numeration * numerationBL);
     checkLabel +="Стоимость нумерации: " + (printing * jsonPP.numeration * numerationBL).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostBL.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostBL.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -1430,19 +1430,19 @@ html +=                 '<select id="paperWeightBooklets" name="paperWeightBookl
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatBooklets" name="paperFormatBooklets" onchange="getPaperFormatBooklets()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineBooklets" name="printedMachineBooklets" onchange="calculateBooklets()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityBooklets" name="rentabilityBooklets" onchange="calculateBooklets()"></select>'
 html +=             '</div>'
@@ -1665,9 +1665,9 @@ function calculateBooklets() {
     allCost += (numberOfPrintedSheets * jsonL.price );
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostBooklets.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostBooklets.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -2214,19 +2214,19 @@ html +=                 '<select id="paperWeightCuttingEnvelopes" name="paperWei
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatCuttingEnvelopes" name="paperFormatCuttingEnvelopes" onchange="getPaperFormatCuttingEnvelopes()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineCuttingEnvelopes" name="printedMachineCuttingEnvelopes" onchange="calculateCuttingEnvelopes()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityCuttingEnvelopes" name="rentabilityCuttingEnvelopes" onchange="calculateCuttingEnvelopes()"></select>'
 html +=             '</div>'
@@ -2465,9 +2465,9 @@ function calculateCuttingEnvelopes() {
     allCost += (printing * scotch * jsonG.scotch)
     checkLabel +="Стоимость склейки Скотч: " + (printing * scotch * jsonG.scotch).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalCostCuttingEnvelopes.innerHTML = "Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
+    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " BYN" +  "<br />";
+    finalCostCuttingEnvelopes.innerHTML = "Цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " руб." ;
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -2906,19 +2906,19 @@ html +=                 '<select id="paperWeightFlyers" name="paperWeightFlyers"
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatFlyers" name="paperFormatFlyers" onchange="getPaperFormatFlyers()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineFlyers" name="printedMachineFlyers" onchange="calculateFlyers()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityFlyers" name="rentabilityFlyers" onchange="calculateFlyers()"></select>'
 html +=             '</div>'
@@ -3119,9 +3119,9 @@ function calculateFlyers() {
     allCost += (numberOfPrintedSheets * jsonL.price );
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostFlyers.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostFlyers.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -3675,19 +3675,19 @@ html +=                 '<select id="paperWeightFolders" name="paperWeightFolder
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatFolders" name="paperFormatFolders" onchange="getPaperFormatFolders()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineFolders" name="printedMachineFolders" onchange="calculateFolders()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityFolders" name="rentabilityFolders" onchange="calculateFolders()"></select>'
 html +=             '</div>'
@@ -3909,9 +3909,9 @@ function calculateFolders() {
     allCost += (numberOfPrintedSheets * jsonL.price );
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed(2)+ "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2) + " BYN" +  "<br />";
-    finalCostFolders.innerHTML = "Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed(2);
+    checkLabel +="Общая стоимость: " + (allCost + (stamp / jsonObjDollar)).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " BYN" +  "<br />";
+    finalCostFolders.innerHTML = "Цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + stamp).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -4425,19 +4425,19 @@ html +=                 '<select id="paperWeightMagnets" name="paperWeightMagnet
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatMagnets" name="paperFormatMagnets" onchange="getPaperFormatMagnets()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineMagnets" name="printedMachineMagnets" onchange="calculateMagnets()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityMagnets" name="rentabilityMagnets" onchange="calculateMagnets()"></select>'
 html +=             '</div>'
@@ -4659,9 +4659,9 @@ function calculateMagnets() {
     checkLabel +="Стоимость кашировки: " + (numberOfPrintedSheets * jsonPast.price ).toFixed(2) + "$" +  "<br />";
 
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostMagnets.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostMagnets.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed()+ " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -5044,19 +5044,19 @@ html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'
 html +=         '<div class="col-md-3">'				
-html +=             '<label class="description">Бумага</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperWeightPackages" name="paperWeightPackages" onchange="getPaperWeightPackages()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachinePackages" name="printedMachinePackages" onchange="calculatePackages()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityPackages" name="rentabilityPackages" onchange="calculatePackages()"></select>'
 html +=             '</div>'
@@ -5319,9 +5319,9 @@ function calculatePackages() {
     allCost += (numberOfPrintedSheets * jsonL.price );
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostPackages.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostPackages.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -5675,13 +5675,13 @@ html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'		
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineEnvelopes" name="printedMachineEnvelopes" onchange="calculateEnvelopes()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityEnvelopes" name="rentabilityEnvelopes" onchange="calculateEnvelopes()"></select>'
 html +=             '</div>'
@@ -5832,9 +5832,9 @@ function calculateEnvelopes() {
     var allCost = chemistryCost + formCost + printingCost + envelopesCost;
 
     
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostEnvelopes.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostEnvelopes.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -6007,19 +6007,19 @@ html +=                 '<select id="paperWeightStickers" name="paperWeightStick
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatStickers" name="paperFormatStickers" onchange="getPaperFormatStickers()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineStickers" name="printedMachineStickers" onchange="calculateStickers()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityStickers" name="rentabilityStickers" onchange="calculateStickers()"></select>'
 html +=             '</div>'
@@ -6237,9 +6237,9 @@ function calculateStickers() {
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
-    finalCostStickers.innerHTML = "Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar* jsonC.dollarCoeff)).toFixed(2);
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
+    finalCostStickers.innerHTML = "Цена: " + (allCost.toFixed(1) * (jsonObjDollar* jsonC.dollarCoeff)).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -6868,19 +6868,19 @@ html +=                 '<select id="paperWeight" name="paperWeight" onchange="g
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'
-html +=             '<label  class="description">Размер бумаги</label>'
+html +=             '<label  class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormat" name="paperFormat" onchange="getPaperFormat()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label  class="description">Печатная машина</label>'
+html +=             '<label  class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachine" name="printedMachine" onchange="calculatePrintedField()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-3">'
-html +=             '<label  class="description">Категория</label>'
+html +=             '<label  class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentability" name="rentability" onchange="getRentability()"></select>'
 html +=             '</div> '
@@ -7452,11 +7452,11 @@ function calculatePrintedField() {
 
     checkLabel +="Курс доллара: " + (jsonObjDollar * jsonC.dollarCoeff).toFixed(2) + "/" + Number(jsonObjDollar).toFixed(2)  + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed(2) + "$" +  "<br />";
+    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2) + " BYN" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
 
-    finalcost.innerHTML ="Руб. с НДС: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed(2);
+    finalcost.innerHTML ="Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
 
     if (numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "W", false) == numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) && numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) == 0) {
         getPaperFormat(false)
@@ -7967,19 +7967,19 @@ html +=                 '<select id="paperWeightWobblers" name="paperWeightWobbl
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Размер бумаги</label>'
+html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatWobblers" name="paperFormatWobblers" onchange="getPaperFormatWobblers()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
-html +=             '<label class="description">Печатная машина</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineWobblers" name="printedMachineWobblers" onchange="calculateWobblers()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
-html +=             '<label class="description">Категория</label>'
+html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityWobblers" name="rentabilityWobblers" onchange="calculateWobblers()"></select>'
 html +=             '</div>'
@@ -8198,9 +8198,9 @@ function calculateWobblers() {
     allCost += (numberOfPrintedSheets * jsonL.price );
     checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + (allCost).toFixed(2)+ "$" +  "<br />";
-    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed(2) + " BYN" +  "<br />";
-    finalCostWobblers.innerHTML = "Руб. с НДС: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed(2);
+    checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
+    finalCostWobblers.innerHTML = "Цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " руб.";
 
     labelCheck.innerHTML = checkLabel;
 }
