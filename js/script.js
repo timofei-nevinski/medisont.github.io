@@ -4504,9 +4504,15 @@ function getPaperFormatFlyers(firstCall) {
                         
                     }
 
-                    if(allowance.getAttribute("defAllow") == "false"  && formatFlyers == 5  ){
+                    if(allowance.getAttribute("defAllow") == "false" && formatFlyers == 5){
                         allowance.value = 1;
                         allowance.setAttribute("defAllow", true)
+                    } else if(allowance.getAttribute("defAllow") == "0" && formatFlyers != 5){
+                        allowance.value = 2;
+                        allowance.setAttribute("defAllow", 0)
+                    } else if(allowance.getAttribute("defAllow") == "true" && formatFlyers != 5){
+                        allowance.value = 2;
+                        allowance.setAttribute("defAllow", 1)
                     }
                     
 
