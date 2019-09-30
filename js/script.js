@@ -4023,7 +4023,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="allowanceFlyers" class="element text medium" type="number" min="0" oninput="getPaperFormatFlyers(false)" maxlength="255" value="2"/> '
+html +=                 '<input id="allowanceFlyers" class="element text medium" type="number" defAllow="false" min="0" oninput="getPaperFormatFlyers(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'	
 html +=         '<div class="col-md-12"><br/></div>'
@@ -4352,6 +4352,7 @@ function getNumberOfPartsFlyers() {
         length = jsonPCuttingEnvelopes.length;
     } 
     
+    formatFlyers == 5 ? allowance = 1 : allowance = 2;
 
     width = width + (allowance * 2) // прибавляем припуски
     length = length + (allowance * 2)
@@ -4359,11 +4360,16 @@ function getNumberOfPartsFlyers() {
     if(paperFormat == "0" || paperFormat == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
         numberOfParts = 2;
     } else if (paperFormat == "7"){
-        if (width == length && width >= 165 && width <= 220){
+        if (width == length || width >= 165 && width <= 220){
             numberOfParts = 6;
         } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
             numberOfParts = 6;
         } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
+            numberOfParts = 6;
+        
+        } else if (width == 100 && length <= 212){
+            numberOfParts = 6;
+        } else if (length = 210 && width <= 100) {
             numberOfParts = 6;
         }
         else {
@@ -4469,7 +4475,7 @@ function getPaperFormatFlyers(firstCall) {
         var printing = Number(document.getElementById('printingFlyers').value);
         var widthFlyers = document.getElementById('widthFlyers');
         var lengthFlyers = document.getElementById('lengthFlyers');
-        var allowance = Number(document.getElementById('allowanceFlyers').value);
+        var allowance = document.getElementById('allowanceFlyers');
         var width = 0;
         var length = 0;
         
@@ -4498,10 +4504,18 @@ function getPaperFormatFlyers(firstCall) {
                         
                     }
 
-                    width +=  (allowance * 2) // прибавляем припуски
-                    length += (allowance * 2)
+                    if(allowance.getAttribute("defAllow") == "false"  && formatFlyers == 5  ){
+                        allowance.value = 1;
+                        allowance.setAttribute("defAllow", true)
+                    }
+                    
 
-                    if (width == length && width >= 200 && width <= 220){
+                    
+
+                    width +=  (+allowance.value * 2) // прибавляем припуски
+                    length += (+allowance.value * 2)
+
+                    if (width == length || width >= 200 && width <= 220){
                         if(elem.id == '7' ){ //id=7 72х104
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                         }
@@ -4517,6 +4531,22 @@ function getPaperFormatFlyers(firstCall) {
                         }
                     } 
                     else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else if (width == 100  && length == 212) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else if (length == 212 && width <= 100) {
                         if(elem.id == '7' ){ //id=7 72х104
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                         }
@@ -4540,6 +4570,12 @@ function getPaperFormatFlyers(firstCall) {
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
                                     } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;                                  
+                                    } else if (width == 100 && length == 212){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (length == 100 && width == 212) {
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
                                     } else {
