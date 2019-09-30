@@ -4366,12 +4366,7 @@ function getNumberOfPartsFlyers() {
             numberOfParts = 6;
         } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
             numberOfParts = 6;
-        
-        } else if (width == 100 && length <= 212){
-            numberOfParts = 6;
-        } else if (length = 210 && width <= 100) {
-            numberOfParts = 6;
-        }
+        } 
         else {
             numberOfParts = 4;
         }
@@ -4544,22 +4539,6 @@ function getPaperFormatFlyers(firstCall) {
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
                         }
                     } 
-                    else if (width == 100  && length == 212) {
-                        if(elem.id == '7' ){ //id=7 72х104
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
-                        }
-                        else {
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
-                        }
-                    } 
-                    else if (length == 212 && width <= 100) {
-                        if(elem.id == '7' ){ //id=7 72х104
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
-                        }
-                        else {
-                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
-                        }
-                    } 
                     else {
                         var jsonCPF = jsonObj["Paper"]["Format"];
 
@@ -4578,12 +4557,6 @@ function getPaperFormatFlyers(firstCall) {
                                     } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;                                  
-                                    } else if (width == 100 && length == 212){
-                                        widthPrintedArea = (elem.width / 3) - 2; 
-                                        lengthPrintedArea = (elem.length / 2) -2;
-                                    } else if (length == 100 && width == 212) {
-                                        widthPrintedArea = (elem.width / 3) - 2; 
-                                        lengthPrintedArea = (elem.length / 2) -2;
                                     } else {
                                         widthPrintedArea = (elem.width / 2) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
