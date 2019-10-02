@@ -4118,7 +4118,7 @@ function Flyers() {
     getFlyersFormat();
     getPaperWeightFlyers();
     getPrintedMachineFlyers();
-    getPaperFormatFlyers();
+    getPaperFormatFlyers(false);
     getRentabilityFlyers();
     getLaminadeFlyers();
     getStateElemFlyers(true);
@@ -4360,7 +4360,7 @@ function getNumberOfPartsFlyers() {
     if(paperFormat == "0" || paperFormat == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
         numberOfParts = 2;
     } else if (paperFormat == "7"){
-        if (width == length || width >= 165 && width <= 220){
+        if (width == length || width >= 200 && width <= 220 && length >= 200 && length <= 220){
             numberOfParts = 6;
         } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
             numberOfParts = 6;
@@ -4516,7 +4516,7 @@ function getPaperFormatFlyers(firstCall) {
                     width +=  (+allowance.value * 2) // прибавляем припуски
                     length += (+allowance.value * 2)
 
-                    if (width == length || width >= 200 && width <= 220){
+                    if (width == length || width >= 200 && width <= 220 && length >= 200 && length <= 220){
                         if(elem.id == '7' ){ //id=7 72х104
                             paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
                         }
@@ -4548,7 +4548,7 @@ function getPaperFormatFlyers(firstCall) {
                                     widthPrintedArea = elem.width - 2; 
                                     lengthPrintedArea = (elem.length / 2) -2;
                                 } else if (elem.id == "7"){
-                                    if (width == length && width >= 200 && width <= 220){
+                                    if (width == length || width >= 200 && width <= 220 && length >= 200 && length <= 220){
                                         widthPrintedArea = (elem.width / 3) - 2; 
                                         lengthPrintedArea = (elem.length / 2) -2;
                                     } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
