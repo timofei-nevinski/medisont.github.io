@@ -3530,7 +3530,6 @@ function calculateCuttingEnvelopes() {
     allCost += cuttingDownCost;
     checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
    
-    
     checkLabel +="Стоимость штампования: " + (+stamp.value).toFixed(2) + "BYN" +  "<br />";
 
     var jsonL = jsonObj["Laminade"][+laminade.value];
@@ -8618,11 +8617,8 @@ html +=                 '</div> '
 html +=             '</div> '
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-4">'				
-html +=                     '<label><input name="cuttingDown" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Вырубка</span> </label>'
+html +=                     '<label><input id="cuttingDown"  class="col-md-1 checkbox"  type="checkbox" onchange="calculatePrintedField()"><span>Вырубка</span> </label>'
 html +=                 '</div>'
-html +=                 '<div class="col-md-1 padding-none">'
-html +=                     '<input id="cuttingDown" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
-html +=                 '</div> '
 html +=             '</div> '
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-4">'				
@@ -8717,6 +8713,14 @@ html +=                 '<div class="col-md-1 padding-none">'
 html +=                     '<input id="folding" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
 html +=             '</div> '
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-4">'				
+html +=                     '<label><input name="stamp" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Штамп</span> </label>'
+html +=                 '</div>'
+html +=                 '<div class="col-md-1 padding-none">'
+html +=                     '<input id="stamp" class="element text medium" step=0.1 type="number" min="0" oninput="calculatePrintedField()"  max="255" value="0" disabled="true"/> '
+html +=                 '</div> '
+html +=             '</div> '
 html +=         '</div>'
 html +=     '</div>'
 html += '</div>'
@@ -8771,7 +8775,7 @@ function setFlagOnInput(){
 
 function calculatePrintedField() {
     var labelCheck = document.getElementById('check');
-    var finalcost = document.getElementById('final-cost');
+    var finalCost = document.getElementById('final-cost');
     var printing = Number(document.getElementById('printing').value);
     var paperFormat = document.getElementById('paperFormat'); 
     var printedMachine = document.getElementById('printedMachine');
@@ -8788,8 +8792,7 @@ function calculatePrintedField() {
     var thermalCover = document.getElementById('thermalCover');
     var gluingPVA = document.getElementById("gluingPVA"); 
     var rentabilityId = Number(document.getElementById("rentability").value); 
-    var cuttingDown = document.querySelector('input[name=cuttingDown]');
-    var cuttingDownVal = Number(document.getElementById('cuttingDown').value);
+    var cuttingDown = document.getElementById('cuttingDown');
     var montage = Number(document.getElementById('montage').value);
     var scoring = document.getElementById('scoring');
     var numiration = document.getElementById('numiration');
@@ -8805,6 +8808,7 @@ function calculatePrintedField() {
     var pasting = document.getElementById("pasting");
     var buildPackage = document.getElementById('buildPackage');
     var spring = Number(document.getElementById('spring').value);
+    var stamp = document.getElementById('stamp');
     var glueGun = document.getElementById('glueGun');
     var scotch = document.getElementById('scotch');
     var springNumber = Number(document.getElementById('springNumber').value);
@@ -9102,7 +9106,7 @@ function calculatePrintedField() {
     numberOfPS = numberOfPrintedSheets;
     if(cuttingDown.checked){
         for(let elem of jsonCD){
-            if(cuttingDownVal < elem.before){
+            if(numberOfPrintedSheets < elem.before){
                 cuttingDownCost = elem.price ;
                 break;
             } 
@@ -9111,6 +9115,8 @@ function calculatePrintedField() {
 
     allCost += cuttingDownCost;
     checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
+
+    checkLabel +="Стоимость штампования: " + (+stamp.value).toFixed(2) + "BYN" +  "<br />";
 
     var jsonG = jsonObj["Gluing"][0];
     allCost += (printing * +glueGun .value * jsonG.glueGun)
@@ -9146,11 +9152,9 @@ function calculatePrintedField() {
 
     checkLabel +="Курс доллара: " + (jsonObjDollar * jsonC.dollarCoeff).toFixed(2) + "/" + Number(jsonObjDollar).toFixed(2)  + "$" +  "<br />";
 
-    checkLabel +="Общая стоимость: " + allCost.toFixed() + "$" +  "<br />";
-
-    checkLabel +="Общая стоимость, руб: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " BYN" +  "<br />";
-
-    finalcost.innerHTML ="Цена: " + (allCost.toFixed(1) * (jsonObjDollar * jsonC.dollarCoeff)).toFixed() + " руб.";
+    checkLabel +="Общая стоимость: " + (allCost + (+stamp.value / jsonObjDollar)).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + +stamp.value).toFixed() + " BYN" +  "<br />";
+    finalCost.innerHTML = "Цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff)) + +stamp.value).toFixed() + " руб.";
 
     if (numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "W", false) == numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) && numberProductPerSheet(widthPrintedArea, lengthPrintedArea, "L", false) == 0) {
         getPaperFormat(false)
@@ -9182,6 +9186,7 @@ function calculatePrintedField() {
         var textGlueGun = ""; 
         var textScotch = ""; 
         var textThermalCover = "";
+        var textStamp = "";
 
         numberOfParts  != 6 ? numberOfParts += " части " : numberOfParts += " частей ";
 
@@ -9212,6 +9217,7 @@ function calculatePrintedField() {
         !glueGun.disabled ? textGlueGun = "да"  : textGlueGun = "нет"; 
         !scotch.disabled ? textScotch = "да"  : textScotch = "нет"; 
         rev == 1 ? textRev = ' / Чужой оборот ' : textRev =  ' / Свой оборот ' ; 
+        !stamp.disabled ? textStamp = "да"  : textStamp = "нет"; 
     
         html +=     '<div class="col-md-12 padding-none">'
         html +=         '<label class="description">##/## ' + printedMachine.options[printedMachine.selectedIndex].text + " - " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + ' ##/##</b></label><br/>'
@@ -9240,6 +9246,7 @@ function calculatePrintedField() {
         html +=         '<label class="description">Скобы: ' + textBrace + '</label><br/>';
         html +=         '<label class="description">Скругление: ' + textRounding + '</label><br/>';
         html +=         '<label class="description">Фальцовка: ' + textFolding + '</label><br/>';
+        html +=         '<label class="description">Штамп: ' + textStamp + '</label><br/>';
 
         html +=     '</div> '
 
@@ -9258,8 +9265,9 @@ function getStateElem(elem){
         if(elem.checked) { 
             if(elem.name == "rounding") {
                 elemField.disabled = false; elemField.value = 4;
-            } else if(elem.name == "cuttingDown") {
-                elemField.disabled = false; elemField.value = 4;
+            
+            }  else if(elem.name == "stamp") {
+                elemField.disabled = false; elemField.value = 0;
             } 
             else {
                 elemField.disabled = false; elemField.value = 1;
@@ -9268,13 +9276,6 @@ function getStateElem(elem){
             elemField.disabled = true; elemField.value = 0;
         }
         calculatePrintedField();
-        if(elem.checked) { 
-            if(elem.name == "cuttingDown") {
-                elemField.disabled = false; elemField.value = numberOfPS;
-            } 
-        } else {
-            elemField.disabled = true; elemField.value = 0;
-        }
     }
 }
 
