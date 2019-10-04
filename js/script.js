@@ -8617,8 +8617,11 @@ html +=                 '</div> '
 html +=             '</div> '
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-4">'				
-html +=                     '<label><input id="cuttingDown"  class="col-md-1 checkbox"  type="checkbox" onchange="calculatePrintedField()"><span>Вырубка</span> </label>'
+html +=                     '<label><input name="cuttingDown" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElem(this)"><span>Вырубка</span> </label>'
 html +=                 '</div>'
+html +=                 '<div class="col-md-1 padding-none">'
+html +=                     '<input id="cuttingDown" class="element text medium" type="number" min="0" oninput="calculatePrintedField()"  maxlength="255" value="0" disabled="true"/> '
+html +=                 '</div> '
 html +=             '</div> '
 html +=             '<div class="col-md-12 padding-none">'
 html +=                 '<div class="col-md-4">'				
@@ -8792,7 +8795,8 @@ function calculatePrintedField() {
     var thermalCover = document.getElementById('thermalCover');
     var gluingPVA = document.getElementById("gluingPVA"); 
     var rentabilityId = Number(document.getElementById("rentability").value); 
-    var cuttingDown = document.getElementById('cuttingDown');
+    var cuttingDown = document.querySelector('input[name=cuttingDown]');
+    var cuttingDownVal = Number(document.getElementById('cuttingDown').value);
     var montage = Number(document.getElementById('montage').value);
     var scoring = document.getElementById('scoring');
     var numiration = document.getElementById('numiration');
@@ -9106,7 +9110,7 @@ function calculatePrintedField() {
     numberOfPS = numberOfPrintedSheets;
     if(cuttingDown.checked){
         for(let elem of jsonCD){
-            if(numberOfPrintedSheets < elem.before){
+            if(cuttingDownVal < elem.before){
                 cuttingDownCost = elem.price ;
                 break;
             } 
@@ -9265,7 +9269,8 @@ function getStateElem(elem){
         if(elem.checked) { 
             if(elem.name == "rounding") {
                 elemField.disabled = false; elemField.value = 4;
-            
+            } else if(elem.name == "cuttingDown") {
+                elemField.disabled = false; elemField.value = numberOfPS;
             }  else if(elem.name == "stamp") {
                 elemField.disabled = false; elemField.value = 0;
             } 
@@ -9276,6 +9281,7 @@ function getStateElem(elem){
             elemField.disabled = true; elemField.value = 0;
         }
         calculatePrintedField();
+     
     }
 }
 
