@@ -1399,6 +1399,7 @@ function getPaperFormatB(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value
                                         maxK = key
                                         i++;
@@ -2077,6 +2078,7 @@ function getPaperFormatBlanks(firstCall) {
                                         i = 0;
                                     for (let [key, value] of map) {     // get data sorted
                                         if(i == 0){
+                                            isNaN(value) ? value = Infinity: "";
                                             maxV=value;
                                             maxK = key;
                                             i++;
@@ -2962,6 +2964,7 @@ function getPaperFormatBooklets(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -3819,6 +3822,7 @@ function getPaperFormatCuttingEnvelopes(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -4603,6 +4607,7 @@ function getPaperFormatFlyers(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -5475,6 +5480,7 @@ function getPaperFormatFolders(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -8146,6 +8152,7 @@ function getPaperFormatStickers(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -9545,6 +9552,7 @@ function getPaperFormat(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value
                                         maxK = key
                                         i++;
@@ -10293,6 +10301,7 @@ function getPaperFormatWobblers(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
