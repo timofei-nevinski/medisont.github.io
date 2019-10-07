@@ -192,7 +192,11 @@ function calculateBBMC() {
     var printSpeedRatio = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -944,7 +948,11 @@ function calculateBierdequels() {
     var montage = 0;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -1703,7 +1711,11 @@ function calculateBlanks() {
     var printSpeedRatio = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -2514,7 +2526,11 @@ function calculateBooklets() {
     var varnishingCost = 0;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -3405,7 +3421,11 @@ function calculateCuttingEnvelopes() {
     var printSpeedRatio = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -4167,7 +4187,11 @@ function calculateFlyers() {
     var printSpeedRatio = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -5058,7 +5082,11 @@ function calculateFolders() {
     var printSpeedRatio = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -5899,7 +5927,11 @@ function calculateMagnets() {
     var turnover = 0;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -6691,7 +6723,11 @@ function calculatePackages() {
     checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -7328,7 +7364,11 @@ function calculateEnvelopes() {
     checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -7707,7 +7747,11 @@ function calculateStickers() {
     var pasting = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -8949,7 +8993,11 @@ function calculatePrintedField() {
     }
     
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
@@ -9870,7 +9918,11 @@ function calculateWobblers() {
     var printSpeedRatio = 1;
 
     jsonFP.some(function(elem) {
+        
         if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
             numberOfFittingPaper = elem.numberPaper;
             return true;
         }
