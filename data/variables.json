@@ -894,6 +894,25 @@
         ]
     },
 
+    "RentabilityAllPrintingMachines": [
+        {
+            "id": "0",
+            "name": "А"
+        },
+        {
+            "id": "1",
+            "name": "Х"
+        },
+        {
+            "id": "2",
+            "name": "С"
+        },
+        {
+            "id": "3",
+            "name": "М"
+        }
+    ],
+
 
     "PrintingMachine": [
         {

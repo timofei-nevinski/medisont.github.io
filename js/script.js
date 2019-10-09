@@ -54,29 +54,31 @@ html +=             '<div>'
 html +=                 '<input id="allowanceBBMC" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)" maxlength="255" value="5"/> '
 html +=             '</div>'
 html +=         '</div>'		
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12 middle-header">'
+html +=                 '<h3>Обложка</h3>'
+html +=         '</div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
-html +=                 '<input id="faceBBMC" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC()"  max="4"  value="4" /> '
+html +=                 '<input id="faceBBMC1" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC1()"  max="4"  value="4" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
-html +=                 '<input id="turnoverBBMC" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC()" max="4" value="1"/> '
+html +=                 '<input id="turnoverBBMC1" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC1()" max="4" value="1"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
-html +=                 '<input id="pantoneBBMC" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC()" maxlength="255" value="0"/> '
+html +=                 '<input id="pantoneBBMC1" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC1()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div>'
-html +=                 '<select id="varnishingBBMC" name="varnishingBBMC" onchange="getPrintedMachineBBMC()">'
+html +=                 '<select id="varnishingBBMC1" name="varnishingBBMC1" onchange="getPrintedMachineBBMC1()">'
 html +=                     '<option value="0">Нет</option>'
 html +=                     '<option value="1">Офсетный x1</option>'
 html +=                     '<option value="2">Офсетный x2</option>'
@@ -85,23 +87,23 @@ html +=                     '<option value="4">УФ-лакировка x2</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
-html +=                 '<select id="paperWeightBBMC" name="paperWeightBBMC" onchange="getPaperWeightBBMC()"></select>'
+html +=                 '<select id="paperWeightBBMC1" name="paperWeightBBMC" onchange="getPaperWeightBBMC1()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
-html +=                 '<select id="paperFormatBBMC" name="paperFormatBBMC" onchange="getPaperFormatBBMC()"></select>'
+html +=                 '<select id="paperFormatBBMC1" name="paperFormatBBMC" onchange="getPaperFormatBBMC1()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
-html +=                 '<select id="printedMachineBBMC" name="printedMachineBBMC" onchange="calculateBBMC()"></select>'
+html +=                 '<select id="printedMachineBBMC1" name="printedMachineBBMC" onchange="calculateBBMC()"></select>'
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-2">'
@@ -110,22 +112,167 @@ html +=             '<div>'
 html +=                 '<select id="rentabilityBBMC" name="rentabilityBBMC" onchange="calculateBBMC()"></select>'
 html +=             '</div>'
 html +=         '</div>'
+html +=         '<div class="col-md-12 middle-header">'
+html +=                 '<h3>Блок</h3>'
+html +=         '</div>'
+html +=         '<div class="col-md-2">'				
+html +=             '<label class="description">Лицо</label>'
+html +=             '<div>'
+html +=                 '<input id="faceBBMC2" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC2()"  max="4"  value="4" /> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=         '<label class="description">Оборот</label>'
+html +=             '<div>'
+html +=                 '<input id="turnoverBBMC2" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC2()" max="4" value="1"/> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=             '<label class="description">Пантонов</label>'
+html +=             '<div>'
+html +=                 '<input id="pantoneBBMC2" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC2()" maxlength="255" value="0"/> '
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label  class="description">Лакировка</label>'
+html +=             '<div>'
+html +=                 '<select id="varnishingBBMC2" name="varnishingBBMC" onchange="getPrintedMachineBBMC2()">'
+html +=                     '<option value="0">Нет</option>'
+html +=                     '<option value="1">Офсетный x1</option>'
+html +=                     '<option value="2">Офсетный x2</option>'
+html +=                     '<option value="3">УФ-лакировка x1</option>'
+html +=                     '<option value="4">УФ-лакировка x2</option>'
+html +=                     '</select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label class="description">Бумага</label>'
+html +=             '<div>'
+html +=                 '<select id="paperWeightBBMC2" name="paperWeightBBMC" onchange="getPaperWeightBBMC2()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=         '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="paperFormatBBMC2" name="paperFormatBBMC" onchange="getPaperFormatBBMC2()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-3">'	
+html +=             '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="printedMachineBBMC2" name="printedMachineBBMC" onchange="calculateBBMC2()"></select>'
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-12 middle-header">'
+html +=                 '<h3>Вставки</h3>'
+html +=         '</div>'
+html +=         '<div class="col-md-2">'				
+html +=             '<label class="description">Лицо</label>'
+html +=             '<div>'
+html +=                 '<input id="faceBBMC3" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC3()"  max="4"  value="4" /> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=         '<label class="description">Оборот</label>'
+html +=             '<div>'
+html +=                 '<input id="turnoverBBMC3" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC3()" max="4" value="1"/> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=             '<label class="description">Пантонов</label>'
+html +=             '<div>'
+html +=                 '<input id="pantoneBBMC3" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC3()" maxlength="255" value="0"/> '
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label  class="description">Лакировка</label>'
+html +=             '<div>'
+html +=                 '<select id="varnishingBBMC3" name="varnishingBBMC" onchange="getPrintedMachineBBMC3()">'
+html +=                     '<option value="0">Нет</option>'
+html +=                     '<option value="1">Офсетный x1</option>'
+html +=                     '<option value="2">Офсетный x2</option>'
+html +=                     '<option value="3">УФ-лакировка x1</option>'
+html +=                     '<option value="4">УФ-лакировка x2</option>'
+html +=                     '</select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label class="description">Бумага</label>'
+html +=             '<div>'
+html +=                 '<select id="paperWeightBBMC3" name="paperWeightBBMC" onchange="getPaperWeightBBMC3()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=         '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="paperFormatBBMC3" name="paperFormatBBMC" onchange="getPaperFormatBBMC3()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-3">'	
+html +=             '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="printedMachineBBMC3" name="printedMachineBBMC" onchange="calculateBBMC3()"></select>'
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-12 middle-header">'
+html +=                 '<h3>Форзацы</h3>'
+html +=         '</div>'
+html +=         '<div class="col-md-2">'				
+html +=             '<label class="description">Лицо</label>'
+html +=             '<div>'
+html +=                 '<input id="faceBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()"  max="4"  value="4" /> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=         '<label class="description">Оборот</label>'
+html +=             '<div>'
+html +=                 '<input id="turnoverBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()" max="4" value="1"/> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=             '<label class="description">Пантонов</label>'
+html +=             '<div>'
+html +=                 '<input id="pantoneBBMC4" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC4()" maxlength="255" value="0"/> '
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label  class="description">Лакировка</label>'
+html +=             '<div>'
+html +=                 '<select id="varnishingBBMC4" name="varnishingBBMC" onchange="getPrintedMachineBBMC4()">'
+html +=                     '<option value="0">Нет</option>'
+html +=                     '<option value="1">Офсетный x1</option>'
+html +=                     '<option value="2">Офсетный x2</option>'
+html +=                     '<option value="3">УФ-лакировка x1</option>'
+html +=                     '<option value="4">УФ-лакировка x2</option>'
+html +=                     '</select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-3">'				
+html +=             '<label class="description">Бумага</label>'
+html +=             '<div>'
+html +=                 '<select id="paperWeightBBMC4" name="paperWeightBBMC" onchange="getPaperWeightBBMC4()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-2">'	
+html +=         '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="paperFormatBBMC4" name="paperFormatBBMC" onchange="getPaperFormatBBMC4()"></select>'
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-3">'	
+html +=             '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="printedMachineBBMC4" name="printedMachineBBMC" onchange="calculateBBMC4()"></select>'
+html +=             '</div>'
+html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide padding-none">'
-html +=             '<div class="col-md-4">'				
-html +=                 '<label class="description">Ламинат</label>'
-html +=                 '<div>'
-html +=                     '<select id="laminadeBBMC"  name="laminadeBBMC" onchange="getLaminadeBBMC()"></select>'
-html +=                 '</div> '
-html +=             '</div>'
-html +=             '<div class="col-md-12"><br/></div>'
-html +=             '<div class="col-md-12 padding-none">'
-html +=                 '<div class="col-md-6">'				
-html +=                    '<label><input id="cuttingDownBBMC" name="cuttingDownBBMC" class="col-md-1 checkbox"  type="checkbox" onchange="calculateBBMC()" checked><span class="col-md-11" >Вырубка</span> </label>'
-html +=                 '</div>'
-html +=             '</div>'
+
 html +=         '</div>'
 html +=         '</div>'
 html +=     '</div>'
@@ -133,7 +280,10 @@ html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide">'
-html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts" ></label>'
+html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts1" ></label>'
+html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts2" ></label>'
+html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts3" ></label>'
+html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts4" ></label>'
 html +=                 '<br/><label id="checkBBMCField" class="description"></label>'
 html +=                 '<br/><label id="checkBBMC" class="description"></label>'
 html +=             '</div><br/>'
@@ -143,34 +293,55 @@ bbmcContainer.innerHTML = html;
 
 function BBMC() {
     getBBMCFormat();
-    getPaperWeightBBMC();
-    getPrintedMachineBBMC();
-    getPaperFormatBBMC();
+
+    getPaperWeightBBMC1();
+    getPrintedMachineBBMC1();
+    getPaperFormatBBMC1();
+
+    getPaperWeightBBMC2();
+    getPrintedMachineBBMC2();
+    getPaperFormatBBMC2();
+
+    getPaperWeightBBMC3();
+    getPrintedMachineBBMC3();
+    getPaperFormatBBMC3();
+
+    getPaperWeightBBMC4();
+    getPrintedMachineBBMC4();
+    getPaperFormatBBMC4();
+
     getRentabilityBBMC();
     getLaminadeBBMC();
     getStateElemBBMC(true);
 }
 
-function calculateBBMC() {
-    var finalCostBBMC = document.getElementById('final-costBBMC');
+function fullCalculateBBMC(){
+    calculateBBMC1();
+    calculateBBMC2();
+    calculateBBMC3();
+    calculateBBMC4();
+}
+
+function calculateBBMC1() {
+
     var labelCheck = document.getElementById('checkBBMC');
     var printing = Number(document.getElementById('printingBBMC').value);
-    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC());
-    var printedMachine = document.getElementById("printedMachineBBMC").value;
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC1());
+    var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
-    var turnoverElem = document.getElementById('turnoverBBMC');
-    var laminade = Number(document.getElementById('laminadeBBMC').value);
-    var paperFormat = document.getElementById("paperFormatBBMC").value;
-    var cuttingDown = document.getElementById("cuttingDownBBMC");
-    var cut = Number(document.getElementById('checkBBMCCuts').textContent);
-    var varnishing = document.getElementById('varnishingBBMC').value;
-    var paperWeightValue = document.getElementById("paperWeightBBMC").value; //получаем value выбранного элемента option по ID элемента select 
+    var turnoverElem = document.getElementById('turnoverBBMC1');
+   
+    var paperFormat = document.getElementById("paperFormatBBMC1").value;
+
+    var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
+    var varnishing = document.getElementById('varnishingBBMC1').value;
+    var paperWeightValue = document.getElementById("paperWeightBBMC1").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
-    var face = Number(document.getElementById('faceBBMC').value);
-    var turnover = Number(document.getElementById('turnoverBBMC').value);
-    var pantone = Number(document.getElementById('pantoneBBMC').value);
+    var face = Number(document.getElementById('faceBBMC1').value);
+    var turnover = Number(document.getElementById('turnoverBBMC1').value);
+    var pantone = Number(document.getElementById('pantoneBBMC1').value);
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
@@ -202,7 +373,7 @@ function calculateBBMC() {
         }
     });
     
-    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC()+ "<br />";
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC1()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
@@ -303,34 +474,507 @@ function calculateBBMC() {
     
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    allCost += cuttingDownCost;
-    checkLabel +="Стоимость вырубки: " + cuttingDownCost.toFixed(2) + "$" +  "<br />";
+
 
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
-    if(cuttingDown.checked){
-        for(let elem of jsonCD){
-            if(numberOfPrintedSheets < elem.before){
-                cuttingDownCost = elem.price ;
-                break;
-            } 
+    checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
+
+
+    labelCheck.innerHTML = checkLabel;
+}
+
+function calculateBBMC2() {
+
+    var labelCheck = document.getElementById('checkBBMC');
+    var printing = Number(document.getElementById('printingBBMC').value);
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC2());
+    var printedMachine = document.getElementById("printedMachineBBMC2").value;
+    var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
+    var turnoverElem = document.getElementById('turnoverBBMC2');
+
+    var paperFormat = document.getElementById("paperFormatBBMC2").value;
+
+    var cut = Number(document.getElementById('checkBBMCCuts2').textContent);
+    var varnishing = document.getElementById('varnishingBBMC2').value;
+    var paperWeightValue = document.getElementById("paperWeightBBMC2").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+    var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
+    var face = Number(document.getElementById('faceBBMC2').value);
+    var turnover = Number(document.getElementById('turnoverBBMC2').value);
+    var pantone = Number(document.getElementById('pantoneBBMC2').value);
+
+    var jsonPM = jsonObj["PrintingMachine"][printedMachine];
+    var jsonFP = jsonObj["Paper"]["FittingPager"];
+    var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
+    var jsonC = jsonObj["Сoefficients"];
+    var jsonCD = jsonObj["CuttingDown"];
+    var checkLabel = "";
+    var jsonPP = jsonObj["PostpressProcessing"]; 
+    var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
+    rentabilityPrice = jsonPMR.price;
+
+    var varnishingCost = 0;
+    var numberOfForms = 0;
+    var numberOfFittingPaper = 0;
+    var numberOfParts = 4;
+    var numberOfKappas = 0;
+    var cuttingDownCost = 0;
+    var numberOfFittingPaper = 0;
+    var printSpeedRatio = 1;
+
+    jsonFP.some(function(elem) {
+        
+        if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
         }
+    });
+    
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC2()+ "<br />";
+    checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+
+    var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
+    rentabilityPrice = jsonPMR.price;
+
+    if(numberOfPrintedSheets < 300){
+        rentabilityPrice = rentabilityPrice * jsonPM.coefficientIfSmallPrinting;
+    }
+
+    if(paperType == "Adhesive"){
+        turnoverElem.value = 0;
+        turnover = 0;
+        numberOfParts = 2;
     }
    
-    allCost += jsonPP.wobblerLegPrice * printing;
-    checkLabel +="Стоимость ножек для воблеров: " + (jsonPP.wobblerLegPrice * printing).toFixed(2) + "$" +  "<br />";
+    checkLabel +="Цена химии за 1000 печатных листов: " + jsonPM.chemistryPrice + "$" +  "<br />";
+    var chemistryCost = numberOfPrintedSheets / 1000 * jsonPM.chemistryPrice // стоимость химии
+    checkLabel +="Стоимость химии: " + chemistryCost.toFixed(2) + "$" +  "<br />";
 
-    allCost += jsonPP.stickWobblerLeg * printing;
-    checkLabel +="Стоимость работы по приклейк воблеров: " + (jsonPP.stickWobblerLeg * printing).toFixed(2) + "$" +  "<br />";
-   
-    var jsonL = jsonObj["Laminade"][laminade];
-    allCost += (numberOfPrintedSheets * jsonL.price );
-    checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
+    checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
+    checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
+
+    if(cutCost < jsonC.minCutPrice){
+        cutCost = jsonC.minCutPrice;
+    }
+    checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
+
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    } else if (varnishing == "4"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
+    }
+    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
+    numberOfForms = (face + turnover + varnishing);
+
+    checkLabel +="Количество форм : " + numberOfForms +  "<br />";
+    
+    checkLabel +="Цена формы: " + jsonPM.formPrice + "$" +  "<br />";
+    var formCost = jsonPM.formPrice * numberOfForms;
+    checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
+
+    checkLabel +="Количество бумаги на приладку одной формы : " + numberOfFittingPaper +  "<br />";
+    var allFittingPaper = numberOfFittingPaper * numberOfForms;
+    checkLabel +="Бумага на приладку : " + allFittingPaper +  "<br /><hr>";
+
+    var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
+
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
+    checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
+
+    checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
+    var fitting = jsonPM.fittingTime * numberOfForms;
+    var date0 = new Date(null);
+        date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
+    checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
+
+    checkLabel +="Время на 1 пантон: " + jsonPM.timeOfOnePantone + " сек" + "<br />";
+    var timeOfPantones = pantone * jsonPM.timeOfOnePantone;  //время печати
+    checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
+
+    if(jsonP.weight >= 300 || paperType == "Carton"){
+        printSpeedRatio = jsonPM.printSpeedRatio;
+    } 
+
+    checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
+
+    if(jsonPM.printSpeed != 0){
+        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
+
+        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
+        var dateChanging = new Date(null);
+        dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
+        checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
+
+        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
+        var date1 = new Date(null);
+        date1.setSeconds(printTime1); // specify value for SECONDS here
+        checkLabel +="Время печати без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
+
+        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
+        var date = new Date(null);
+        date.setSeconds(printTime); // specify value for SECONDS here
+        checkLabel +="Время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
+    }
+
+    checkLabel +="Стоимость работы в час: " + rentabilityPrice.toFixed(2) + "$" +  "<br />";
+
+    var printingCost = (rentabilityPrice / 3600)  * printTime;
+    checkLabel +="Стоимость печати: " + printingCost.toFixed(2) + "$" +  "<br />";
+
+    
+    checkLabel +="Cтоимость за кг: " + jsonP.price + "<br />";
+
+    var paperCost = paperWeight * jsonP.price  ;
+    checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
+    
+    var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
+
+
+    allCost += varnishingCost;
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
-    finalCostBBMC.innerHTML = "Цена: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " руб.";
+
+
+    labelCheck.innerHTML = checkLabel;
+}
+
+function calculateBBMC3() {
+
+    var labelCheck = document.getElementById('checkBBMC');
+    var printing = Number(document.getElementById('printingBBMC').value);
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC3());
+    var printedMachine = document.getElementById("printedMachineBBMC3").value;
+    var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
+    var turnoverElem = document.getElementById('turnoverBBMC3');
+
+    var paperFormat = document.getElementById("paperFormatBBMC3").value;
+
+    var cut = Number(document.getElementById('checkBBMCCuts3').textContent);
+    var varnishing = document.getElementById('varnishingBBMC3').value;
+    var paperWeightValue = document.getElementById("paperWeightBBMC3").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+    var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
+    var face = Number(document.getElementById('faceBBMC3').value);
+    var turnover = Number(document.getElementById('turnoverBBMC3').value);
+    var pantone = Number(document.getElementById('pantoneBBMC3').value);
+
+    var jsonPM = jsonObj["PrintingMachine"][printedMachine];
+    var jsonFP = jsonObj["Paper"]["FittingPager"];
+    var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
+    var jsonC = jsonObj["Сoefficients"];
+    var jsonCD = jsonObj["CuttingDown"];
+    var checkLabel = "";
+    var jsonPP = jsonObj["PostpressProcessing"]; 
+    var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
+    rentabilityPrice = jsonPMR.price;
+
+    var varnishingCost = 0;
+    var numberOfForms = 0;
+    var numberOfFittingPaper = 0;
+    var numberOfParts = 4;
+    var numberOfKappas = 0;
+    var cuttingDownCost = 0;
+    var numberOfFittingPaper = 0;
+    var printSpeedRatio = 1;
+
+    jsonFP.some(function(elem) {
+        
+        if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        }
+    });
+    
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC3()+ "<br />";
+    checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+
+    var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
+    rentabilityPrice = jsonPMR.price;
+
+    if(numberOfPrintedSheets < 300){
+        rentabilityPrice = rentabilityPrice * jsonPM.coefficientIfSmallPrinting;
+    }
+
+    if(paperType == "Adhesive"){
+        turnoverElem.value = 0;
+        turnover = 0;
+        numberOfParts = 2;
+    }
+   
+    checkLabel +="Цена химии за 1000 печатных листов: " + jsonPM.chemistryPrice + "$" +  "<br />";
+    var chemistryCost = numberOfPrintedSheets / 1000 * jsonPM.chemistryPrice // стоимость химии
+    checkLabel +="Стоимость химии: " + chemistryCost.toFixed(2) + "$" +  "<br />";
+
+    checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
+    checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
+
+    if(cutCost < jsonC.minCutPrice){
+        cutCost = jsonC.minCutPrice;
+    }
+    checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
+
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    } else if (varnishing == "4"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
+    }
+    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
+    numberOfForms = (face + turnover + varnishing);
+
+    checkLabel +="Количество форм : " + numberOfForms +  "<br />";
+    
+    checkLabel +="Цена формы: " + jsonPM.formPrice + "$" +  "<br />";
+    var formCost = jsonPM.formPrice * numberOfForms;
+    checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
+
+    checkLabel +="Количество бумаги на приладку одной формы : " + numberOfFittingPaper +  "<br />";
+    var allFittingPaper = numberOfFittingPaper * numberOfForms;
+    checkLabel +="Бумага на приладку : " + allFittingPaper +  "<br /><hr>";
+
+    var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
+
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
+    checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
+
+    checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
+    var fitting = jsonPM.fittingTime * numberOfForms;
+    var date0 = new Date(null);
+        date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
+    checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
+
+    checkLabel +="Время на 1 пантон: " + jsonPM.timeOfOnePantone + " сек" + "<br />";
+    var timeOfPantones = pantone * jsonPM.timeOfOnePantone;  //время печати
+    checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
+
+    if(jsonP.weight >= 300 || paperType == "Carton"){
+        printSpeedRatio = jsonPM.printSpeedRatio;
+    } 
+
+    checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
+
+    if(jsonPM.printSpeed != 0){
+        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
+
+        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
+        var dateChanging = new Date(null);
+        dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
+        checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
+
+        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
+        var date1 = new Date(null);
+        date1.setSeconds(printTime1); // specify value for SECONDS here
+        checkLabel +="Время печати без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
+
+        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
+        var date = new Date(null);
+        date.setSeconds(printTime); // specify value for SECONDS here
+        checkLabel +="Время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
+    }
+
+    checkLabel +="Стоимость работы в час: " + rentabilityPrice.toFixed(2) + "$" +  "<br />";
+
+    var printingCost = (rentabilityPrice / 3600)  * printTime;
+    checkLabel +="Стоимость печати: " + printingCost.toFixed(2) + "$" +  "<br />";
+
+    
+    checkLabel +="Cтоимость за кг: " + jsonP.price + "<br />";
+
+    var paperCost = paperWeight * jsonP.price  ;
+    checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
+    
+    var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
+
+
+
+    allCost += varnishingCost;
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
+    checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
+
+
+    labelCheck.innerHTML = checkLabel;
+}
+
+function calculateBBMC4() {
+
+    var labelCheck = document.getElementById('checkBBMC');
+    var printing = Number(document.getElementById('printingBBMC').value);
+    var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC4());
+    var printedMachine = document.getElementById("printedMachineBBMC4").value;
+    var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
+    var turnoverElem = document.getElementById('turnoverBBMC4');
+
+    var paperFormat = document.getElementById("paperFormatBBMC4").value;
+
+    var cut = Number(document.getElementById('checkBBMCCuts4').textContent);
+    var varnishing = document.getElementById('varnishingBBMC4').value;
+    var paperWeightValue = document.getElementById("paperWeightBBMC4").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+    var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
+    var face = Number(document.getElementById('faceBBMC4').value);
+    var turnover = Number(document.getElementById('turnoverBBMC4').value);
+    var pantone = Number(document.getElementById('pantoneBBMC4').value);
+
+    var jsonPM = jsonObj["PrintingMachine"][printedMachine];
+    var jsonFP = jsonObj["Paper"]["FittingPager"];
+    var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
+    var jsonC = jsonObj["Сoefficients"];
+    var jsonCD = jsonObj["CuttingDown"];
+    var checkLabel = "";
+    var jsonPP = jsonObj["PostpressProcessing"]; 
+    var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
+    rentabilityPrice = jsonPMR.price;
+
+    var varnishingCost = 0;
+    var numberOfForms = 0;
+    var numberOfFittingPaper = 0;
+    var numberOfParts = 4;
+    var numberOfKappas = 0;
+    var cuttingDownCost = 0;
+    var numberOfFittingPaper = 0;
+    var printSpeedRatio = 1;
+
+    jsonFP.some(function(elem) {
+        
+        if(numberOfPrintedSheets <= elem.before) { 
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        } else if (elem.id == jsonFP.length-1 && numberOfPrintedSheets > elem.before) {
+            numberOfFittingPaper = elem.numberPaper;
+            return true;
+        }
+    });
+    
+    checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC4()+ "<br />";
+    checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+
+    var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
+    rentabilityPrice = jsonPMR.price;
+
+    if(numberOfPrintedSheets < 300){
+        rentabilityPrice = rentabilityPrice * jsonPM.coefficientIfSmallPrinting;
+    }
+
+    if(paperType == "Adhesive"){
+        turnoverElem.value = 0;
+        turnover = 0;
+        numberOfParts = 2;
+    }
+   
+    checkLabel +="Цена химии за 1000 печатных листов: " + jsonPM.chemistryPrice + "$" +  "<br />";
+    var chemistryCost = numberOfPrintedSheets / 1000 * jsonPM.chemistryPrice // стоимость химии
+    checkLabel +="Стоимость химии: " + chemistryCost.toFixed(2) + "$" +  "<br />";
+
+    checkLabel +="Привертка: " + jsonPM.ream +  "<br />";
+    checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
+    var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
+
+    if(cutCost < jsonC.minCutPrice){
+        cutCost = jsonC.minCutPrice;
+    }
+    checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
+
+    if(varnishing == "3"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
+    } else if (varnishing == "4"){
+        numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
+    }
+    varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
+    numberOfForms = (face + turnover + varnishing);
+
+    checkLabel +="Количество форм : " + numberOfForms +  "<br />";
+    
+    checkLabel +="Цена формы: " + jsonPM.formPrice + "$" +  "<br />";
+    var formCost = jsonPM.formPrice * numberOfForms;
+    checkLabel +="Стоимость форм: " + formCost.toFixed(1) + "$" +  "<br />";
+
+    checkLabel +="Количество бумаги на приладку одной формы : " + numberOfFittingPaper +  "<br />";
+    var allFittingPaper = numberOfFittingPaper * numberOfForms;
+    checkLabel +="Бумага на приладку : " + allFittingPaper +  "<br /><hr>";
+
+    var allPaper =  Math.ceil((numberOfPrintedSheets + allFittingPaper) / numberOfParts);
+    checkLabel +="Всего бумаги на тираж: " + allPaper + "<br />";
+
+    var paperWeight = (jsonCPF.width / 1000) * (jsonCPF.length / 1000)  * (jsonP.weight / 1000) * allPaper
+    checkLabel +="Вес бумаги в кг: " + paperWeight.toFixed(2) + "<br />";
+
+    checkLabel +="Время на приладку одной формы : " + jsonPM.fittingTime + " сек" + "<br />";
+    var fitting = jsonPM.fittingTime * numberOfForms;
+    var date0 = new Date(null);
+        date0.setSeconds(Math.ceil(fitting)); // specify value for SECONDS here
+    checkLabel +="Время приладки: " + date0.getUTCHours() + " ч " + date0.getMinutes() + " м " + date0.getSeconds() + " сек" + "<br />"
+
+    checkLabel +="Время на 1 пантон: " + jsonPM.timeOfOnePantone + " сек" + "<br />";
+    var timeOfPantones = pantone * jsonPM.timeOfOnePantone;  //время печати
+    checkLabel +="Время на пантоны: " + timeOfPantones + " сек" + "<br />";
+
+    if(jsonP.weight >= 300 || paperType == "Carton"){
+        printSpeedRatio = jsonPM.printSpeedRatio;
+    } 
+
+    checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
+
+    if(jsonPM.printSpeed != 0){
+        var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
+
+        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
+        var dateChanging = new Date(null);
+        dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
+        checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
+
+        var printTime1 = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio))  * 3600 ) * iterations) + timeOfPantones + chargingTime;  //время печати
+        var date1 = new Date(null);
+        date1.setSeconds(printTime1); // specify value for SECONDS here
+        checkLabel +="Время печати без приладки: " + date1.getUTCHours() + " ч " + date1.getMinutes() + " м " + date1.getSeconds() + " сек" + "<br />";
+
+        var printTime = (((numberOfPrintedSheets / (jsonPM.printSpeed * printSpeedRatio)) * 3600) * iterations) + fitting + timeOfPantones + chargingTime;  //время печати
+        var date = new Date(null);
+        date.setSeconds(printTime); // specify value for SECONDS here
+        checkLabel +="Время печати с приладкой: " + date.getUTCHours() + " ч " + date.getMinutes() + " м " + date.getSeconds() + " сек" + "<br /><hr>";
+    }
+
+    checkLabel +="Стоимость работы в час: " + rentabilityPrice.toFixed(2) + "$" +  "<br />";
+
+    var printingCost = (rentabilityPrice / 3600)  * printTime;
+    checkLabel +="Стоимость печати: " + printingCost.toFixed(2) + "$" +  "<br />";
+
+    
+    checkLabel +="Cтоимость за кг: " + jsonP.price + "<br />";
+
+    var paperCost = paperWeight * jsonP.price  ;
+    checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
+    
+    var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
+
+
+
+    allCost += varnishingCost;
+    checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
+
+    checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
+    checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
+
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -348,12 +992,57 @@ function getStateElemBBMC(elem){
         } else {
             elemField.disabled = true; elemField.value = 0;
         }
-        calculateBBMC(); 
+        calculateBBMC1();
+        calculateBBMC2(); 
+        calculateBBMC3(); 
+        calculateBBMC4();  
     };
 }
 
-function getNumberOfCutsBBMC(numberWidth, numberLength, allowance){
-    var cuts = document.getElementById('checkBBMCCuts');
+function getNumberOfCutsBBMC1(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkBBMCCuts1');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
+}
+
+function getNumberOfCutsBBMC2(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkBBMCCuts2');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
+}
+
+function getNumberOfCutsBBMC3(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkBBMCCuts3');
+    var numberOfCuts = 4;
+
+    if(allowance==0){
+        numberOfCuts += (numberWidth - 1) + (numberLength - 1);
+    }
+    else {
+        numberOfCuts += (numberWidth - 1) * 2 + (numberLength - 1) * 2;
+    }
+    
+    cuts.textContent = numberOfCuts;
+}
+
+function getNumberOfCutsBBMC4(numberWidth, numberLength, allowance){
+    var cuts = document.getElementById('checkBBMCCuts4');
     var numberOfCuts = 4;
 
     if(allowance==0){
@@ -367,20 +1056,15 @@ function getNumberOfCutsBBMC(numberWidth, numberLength, allowance){
 }
 
 function getRentabilityBBMC() {
-    var printedMachine = document.getElementById("printedMachineBBMC").value;
+    
     var rentability = document.getElementById("rentabilityBBMC"); //получаем элемент по его ID
     if (rentability.options.length == 0){
-        var jsonPM = jsonObj["PrintingMachine"];
-        jsonPM.forEach(function(elem) {
-            if(printedMachine == elem.id){
-                var jsonPMR = jsonObj["PrintingMachine"][elem.id]["Rentability"];
-                jsonPMR.forEach(function(rent){
-                    if(rent.id == elem.defaultRentabilityId){
-                        rentability.options[rentability.options.length] = new Option(rent.name, rent.id, true, true);
-                    } else {
-                        rentability.options[rentability.options.length] = new Option(rent.name, rent.id);
-                    }
-                });
+        var jsonRAPM = jsonObj["RentabilityAllPrintingMachines"];
+        jsonRAPM.forEach(function(rent){
+            if(rent.id == elem.defaultRentabilityId){
+                rentability.options[rentability.options.length] = new Option(rent.name, rent.id, true, true);
+            } else {
+                rentability.options[rentability.options.length] = new Option(rent.name, rent.id);
             }
         });
     }
@@ -398,7 +1082,10 @@ function getLaminadeBBMC() {
             }
         });
     }
-    calculateBBMC();
+    calculateBBMC1();
+        calculateBBMC2(); 
+        calculateBBMC3(); 
+        calculateBBMC4(); 
 }
 
 function getBBMCFormat() {
@@ -415,20 +1102,19 @@ function getBBMCFormat() {
     });
 }
 
-function getPaperFormatBBMC(firstCall) {
-    var paperFormat = document.getElementById("paperFormatBBMC"); //получаем элемент по его ID
+function getPaperFormatBBMC1(firstCall) {
+    var paperFormat = document.getElementById("paperFormatBBMC1"); //получаем элемент по его ID
     
     if( paperFormat.options.length == 0 || firstCall == false) {
         firstCall == false ? paperFormat.options.length = 0 : "";
-        var paperWeightValue = document.getElementById("paperWeightBBMC").value; //получаем value выбранного элемента option по ID элемента select 
-        var printedMachine = document.getElementById('printedMachineBBMC').value;
+        var paperWeightValue = document.getElementById("paperWeightBBMC1").value; //получаем value выбранного элемента option по ID элемента select 
+        var printedMachine = document.getElementById('printedMachineBBMC1').value;
         var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
         var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
         var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; //получаем необходимы тип бумаги по его ID
         var paperFormatId = jsonP.format.split(","); //получаем ID поддерживаемых форматов выбранной бумаги
         var jsonPF = jsonObj["Paper"]["Format"]; // получаем форматы бумаги
         var formatBBMC = +document.getElementById('formatBBMC').value;
-        var printing = Number(document.getElementById('printingBBMC').value);
         var printing = Number(document.getElementById('printingBBMC').value);
         var widthBBMC = document.getElementById('widthBBMC');
         var lengthBBMC = document.getElementById('lengthBBMC');
@@ -528,13 +1214,13 @@ function getPaperFormatBBMC(firstCall) {
                                     }
                                 });
                                 
-                                if(numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
-                                    numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", true))
-                                } else if(numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
-                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", true))
+                                if(numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+                                    numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", true))
+                                } else if(numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", true))
                                 }
-                                else if(numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
-                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", true))
+                                else if(numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", true))
                                 } else {
                                     numberOfPrintedSheets = "Ошибка"
                                 }
@@ -573,10 +1259,488 @@ function getPaperFormatBBMC(firstCall) {
             });
         });
     }
-    getPrintedMachineBBMC();
+    getPrintedMachineBBMC1();
 }
 
-function numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, position, dev){
+function getPaperFormatBBMC2(firstCall) {
+    var paperFormat = document.getElementById("paperFormatBBMC2"); //получаем элемент по его ID
+    
+    if( paperFormat.options.length == 0 || firstCall == false) {
+        firstCall == false ? paperFormat.options.length = 0 : "";
+        var paperWeightValue = document.getElementById("paperWeightBBMC2").value; //получаем value выбранного элемента option по ID элемента select 
+        var printedMachine = document.getElementById('printedMachineBBMC2').value;
+        var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+        var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+        var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; //получаем необходимы тип бумаги по его ID
+        var paperFormatId = jsonP.format.split(","); //получаем ID поддерживаемых форматов выбранной бумаги
+        var jsonPF = jsonObj["Paper"]["Format"]; // получаем форматы бумаги
+        var formatBBMC = +document.getElementById('formatBBMC').value;
+        var printing = Number(document.getElementById('printingBBMC').value);
+        var widthBBMC = document.getElementById('widthBBMC');
+        var lengthBBMC = document.getElementById('lengthBBMC');
+        var allowance = Number(document.getElementById('allowanceBBMC').value);
+
+        var map = new Map();
+        var widthPrintedArea = 0;
+        var lengthPrintedArea = 0;
+        var width = 0;
+        var length = 0;
+        var numberOfPrintedSheets = 0;
+
+        paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
+            jsonPF.forEach(function(elem) { 
+                if(formatId == elem.id){
+
+                    if(formatBBMC != 5){
+                        widthBBMC.disabled = true;
+                        lengthBBMC.disabled = true;
+                        
+                        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+                        width = jsonPBBMC.width;
+                        length = jsonPBBMC.length;
+                    }
+                    else {
+                        widthBBMC.disabled = false;
+                        lengthBBMC.disabled = false;
+                        
+                        width = Number(document.getElementById('widthBBMC').value);
+                        length = Number(document.getElementById('lengthBBMC').value);
+                    }
+
+                    width *= 2;
+                    width +=  (allowance * 2) // прибавляем припуски
+                    length += (allowance * 2)
+
+                    if (width == length && width >= 200 && width <= 220){
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else {
+                        var jsonCPF = jsonObj["Paper"]["Format"];
+
+                        jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+                            if(elem.id == formatId){
+                                if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                                    widthPrintedArea = elem.width - 2; 
+                                    lengthPrintedArea = (elem.length / 2) -2;
+                                } else if (elem.id == "7"){
+                                    if (width == length && width >= 200 && width <= 220){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else {
+                                        widthPrintedArea = (elem.width / 2) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    }
+                                } else {
+                                    widthPrintedArea = (elem.width / 2) - 2; 
+                                    lengthPrintedArea = (elem.length / 2) -2;
+                                }
+
+                                var jsonPM = jsonObj["PrintingMachine"];
+                                jsonPM.forEach(function(elem) {
+                                    if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                        if (widthPrintedArea > lengthPrintedArea){
+                                            lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                                            widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                                        } else {
+                                            lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                                            widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                        }
+                                    }
+                                });
+                                
+                                if(numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+                                    numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", true))
+                                } else if(numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", true))
+                                }
+                                else if(numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", true))
+                                } else {
+                                    numberOfPrintedSheets = "Ошибка"
+                                }
+
+                                isNaN(numberOfPrintedSheets)? numberOfPrintedSheets = Infinity : "";
+
+                                map.set(formatId, +numberOfPrintedSheets);
+
+                                var maxK = 0,
+                                    maxV = 0,
+                                    i = 0;
+                                for (let [key, value] of map) {     // get data sorted
+                                    if(i == 0){
+                                        maxV=value;
+                                        maxK = key;
+                                        i++;
+                                    }
+                                    else{
+                                        if (maxV > value){
+                                            maxV = value;
+                                            maxK = key;
+                                        } 
+                                    }
+                                }
+                                if(elem.id == maxK ){ 
+                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                                }
+                                else {
+                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                                }
+                                
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+    getPrintedMachineBBMC2();
+}
+function getPaperFormatBBMC3(firstCall) {
+    var paperFormat = document.getElementById("paperFormatBBMC3"); //получаем элемент по его ID
+    
+    if( paperFormat.options.length == 0 || firstCall == false) {
+        firstCall == false ? paperFormat.options.length = 0 : "";
+        var paperWeightValue = document.getElementById("paperWeightBBMC3").value; //получаем value выбранного элемента option по ID элемента select 
+        var printedMachine = document.getElementById('printedMachineBBMC3').value;
+        var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+        var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+        var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; //получаем необходимы тип бумаги по его ID
+        var paperFormatId = jsonP.format.split(","); //получаем ID поддерживаемых форматов выбранной бумаги
+        var jsonPF = jsonObj["Paper"]["Format"]; // получаем форматы бумаги
+        var formatBBMC = +document.getElementById('formatBBMC').value;
+        var printing = Number(document.getElementById('printingBBMC').value);
+        var widthBBMC = document.getElementById('widthBBMC');
+        var lengthBBMC = document.getElementById('lengthBBMC');
+        var allowance = Number(document.getElementById('allowanceBBMC').value);
+
+        var map = new Map();
+        var widthPrintedArea = 0;
+        var lengthPrintedArea = 0;
+        var width = 0;
+        var length = 0;
+        var numberOfPrintedSheets = 0;
+
+        paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
+            jsonPF.forEach(function(elem) { 
+                if(formatId == elem.id){
+
+                    if(formatBBMC != 5){
+                        widthBBMC.disabled = true;
+                        lengthBBMC.disabled = true;
+                        
+                        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+                        width = jsonPBBMC.width;
+                        length = jsonPBBMC.length;
+                    }
+                    else {
+                        widthBBMC.disabled = false;
+                        lengthBBMC.disabled = false;
+                        
+                        width = Number(document.getElementById('widthBBMC').value);
+                        length = Number(document.getElementById('lengthBBMC').value);
+                    }
+
+                    width *= 2;
+                    width +=  (allowance * 2) // прибавляем припуски
+                    length += (allowance * 2)
+
+                    if (width == length && width >= 200 && width <= 220){
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else {
+                        var jsonCPF = jsonObj["Paper"]["Format"];
+
+                        jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+                            if(elem.id == formatId){
+                                if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                                    widthPrintedArea = elem.width - 2; 
+                                    lengthPrintedArea = (elem.length / 2) -2;
+                                } else if (elem.id == "7"){
+                                    if (width == length && width >= 200 && width <= 220){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else {
+                                        widthPrintedArea = (elem.width / 2) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    }
+                                } else {
+                                    widthPrintedArea = (elem.width / 2) - 2; 
+                                    lengthPrintedArea = (elem.length / 2) -2;
+                                }
+
+                                var jsonPM = jsonObj["PrintingMachine"];
+                                jsonPM.forEach(function(elem) {
+                                    if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                        if (widthPrintedArea > lengthPrintedArea){
+                                            lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                                            widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                                        } else {
+                                            lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                                            widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                        }
+                                    }
+                                });
+                                
+                                if(numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+                                    numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", true))
+                                } else if(numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", true))
+                                }
+                                else if(numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", true))
+                                } else {
+                                    numberOfPrintedSheets = "Ошибка"
+                                }
+
+                                isNaN(numberOfPrintedSheets)? numberOfPrintedSheets = Infinity : "";
+
+                                map.set(formatId, +numberOfPrintedSheets);
+
+                                var maxK = 0,
+                                    maxV = 0,
+                                    i = 0;
+                                for (let [key, value] of map) {     // get data sorted
+                                    if(i == 0){
+                                        maxV=value;
+                                        maxK = key;
+                                        i++;
+                                    }
+                                    else{
+                                        if (maxV > value){
+                                            maxV = value;
+                                            maxK = key;
+                                        } 
+                                    }
+                                }
+                                if(elem.id == maxK ){ 
+                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                                }
+                                else {
+                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                                }
+                                
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+    getPrintedMachineBBMC3();
+}
+function getPaperFormatBBMC4(firstCall) {
+    var paperFormat = document.getElementById("paperFormatBBMC4"); //получаем элемент по его ID
+    
+    if( paperFormat.options.length == 0 || firstCall == false) {
+        firstCall == false ? paperFormat.options.length = 0 : "";
+        var paperWeightValue = document.getElementById("paperWeightBBMC4").value; //получаем value выбранного элемента option по ID элемента select 
+        var printedMachine = document.getElementById('printedMachineBBMC4').value;
+        var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+        var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+        var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; //получаем необходимы тип бумаги по его ID
+        var paperFormatId = jsonP.format.split(","); //получаем ID поддерживаемых форматов выбранной бумаги
+        var jsonPF = jsonObj["Paper"]["Format"]; // получаем форматы бумаги
+        var formatBBMC = +document.getElementById('formatBBMC').value;
+        var printing = Number(document.getElementById('printingBBMC').value);
+        var widthBBMC = document.getElementById('widthBBMC');
+        var lengthBBMC = document.getElementById('lengthBBMC');
+        var allowance = Number(document.getElementById('allowanceBBMC').value);
+
+        var map = new Map();
+        var widthPrintedArea = 0;
+        var lengthPrintedArea = 0;
+        var width = 0;
+        var length = 0;
+        var numberOfPrintedSheets = 0;
+
+        paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
+            jsonPF.forEach(function(elem) { 
+                if(formatId == elem.id){
+
+                    if(formatBBMC != 5){
+                        widthBBMC.disabled = true;
+                        lengthBBMC.disabled = true;
+                        
+                        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+                        width = jsonPBBMC.width;
+                        length = jsonPBBMC.length;
+                    }
+                    else {
+                        widthBBMC.disabled = false;
+                        lengthBBMC.disabled = false;
+                        
+                        width = Number(document.getElementById('widthBBMC').value);
+                        length = Number(document.getElementById('lengthBBMC').value);
+                    }
+
+                    width *= 2;
+                    width +=  (allowance * 2) // прибавляем припуски
+                    length += (allowance * 2)
+
+                    if (width == length && width >= 200 && width <= 220){
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                        if(elem.id == '7' ){ //id=7 72х104
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                        }
+                        else {
+                            paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                        }
+                    } 
+                    else {
+                        var jsonCPF = jsonObj["Paper"]["Format"];
+
+                        jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+                            if(elem.id == formatId){
+                                if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                                    widthPrintedArea = elem.width - 2; 
+                                    lengthPrintedArea = (elem.length / 2) -2;
+                                } else if (elem.id == "7"){
+                                    if (width == length && width >= 200 && width <= 220){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (width >= 200 && width <= 220 && length >= 400 && length <= 500){
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else if (length >= 200 && length <= 220 && width >= 400 && width <= 500) {
+                                        widthPrintedArea = (elem.width / 3) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    } else {
+                                        widthPrintedArea = (elem.width / 2) - 2; 
+                                        lengthPrintedArea = (elem.length / 2) -2;
+                                    }
+                                } else {
+                                    widthPrintedArea = (elem.width / 2) - 2; 
+                                    lengthPrintedArea = (elem.length / 2) -2;
+                                }
+
+                                var jsonPM = jsonObj["PrintingMachine"];
+                                jsonPM.forEach(function(elem) {
+                                    if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+                                        if (widthPrintedArea > lengthPrintedArea){
+                                            lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                                            widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+                                        } else {
+                                            lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                                            widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+                                        }
+                                    }
+                                });
+                                
+                                if(numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+                                    numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", true)) : numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", true))
+                                } else if(numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", true))
+                                }
+                                else if(numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+                                    numberOfPrintedSheets = Math.ceil(printing / numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", true))
+                                } else {
+                                    numberOfPrintedSheets = "Ошибка"
+                                }
+
+                                isNaN(numberOfPrintedSheets)? numberOfPrintedSheets = Infinity : "";
+
+                                map.set(formatId, +numberOfPrintedSheets);
+
+                                var maxK = 0,
+                                    maxV = 0,
+                                    i = 0;
+                                for (let [key, value] of map) {     // get data sorted
+                                    if(i == 0){
+                                        maxV=value;
+                                        maxK = key;
+                                        i++;
+                                    }
+                                    else{
+                                        if (maxV > value){
+                                            maxV = value;
+                                            maxK = key;
+                                        } 
+                                    }
+                                }
+                                if(elem.id == maxK ){ 
+                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id, true, true);
+                                }
+                                else {
+                                    paperFormat.options[paperFormat.options.length] = new Option(elem.name, elem.id);
+                                }
+                                
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }
+    getPrintedMachineBBMC4();
+}
+
+function numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, position, dev){
 
     var formatBBMC = +document.getElementById('formatBBMC').value;
     var allowance = Number(document.getElementById('allowanceBBMC').value);
@@ -615,15 +1779,147 @@ function numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, position
         }
     }
 
-    getNumberOfCutsBBMC(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
+    getNumberOfCutsBBMC1(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
 
     return numberProduct
 }
 
-function getPaperWeightBBMC() {
-    var paperWeight = document.getElementById("paperWeightBBMC");
-    var face = Number(document.getElementById('faceBBMC').value);
-    var turnover = Number(document.getElementById('turnoverBBMC').value);
+function numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, position, dev){
+
+    var formatBBMC = +document.getElementById('formatBBMC').value;
+    var allowance = Number(document.getElementById('allowanceBBMC').value);
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 5){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+    width *= 2;
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
+        
+    if(position == "W"){
+        if (widthPrintedArea >= width && lengthPrintedArea >= length ){
+            numberWidth = widthPrintedArea / width;
+            numberLength = lengthPrintedArea / length;
+            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength)); // получаем количество изделий на листе
+        } else {
+            numberProduct = "Ошибка"
+        }
+    } else {
+        if (widthPrintedArea >= length && lengthPrintedArea >= width ){
+            numberWidth = widthPrintedArea / length;
+            numberLength = lengthPrintedArea / width;
+            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength));
+        } else {
+            numberProduct = "Ошибка"
+        }
+    }
+
+    getNumberOfCutsBBMC2(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
+
+    return numberProduct
+}
+
+function numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, position, dev){
+
+    var formatBBMC = +document.getElementById('formatBBMC').value;
+    var allowance = Number(document.getElementById('allowanceBBMC').value);
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 5){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+    width *= 2;
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
+        
+    if(position == "W"){
+        if (widthPrintedArea >= width && lengthPrintedArea >= length ){
+            numberWidth = widthPrintedArea / width;
+            numberLength = lengthPrintedArea / length;
+            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength)); // получаем количество изделий на листе
+        } else {
+            numberProduct = "Ошибка"
+        }
+    } else {
+        if (widthPrintedArea >= length && lengthPrintedArea >= width ){
+            numberWidth = widthPrintedArea / length;
+            numberLength = lengthPrintedArea / width;
+            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength));
+        } else {
+            numberProduct = "Ошибка"
+        }
+    }
+
+    getNumberOfCutsBBMC3(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
+
+    return numberProduct
+}
+
+function numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, position, dev){
+
+    var formatBBMC = +document.getElementById('formatBBMC').value;
+    var allowance = Number(document.getElementById('allowanceBBMC').value);
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 5){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+    width *= 2;
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
+        
+    if(position == "W"){
+        if (widthPrintedArea >= width && lengthPrintedArea >= length ){
+            numberWidth = widthPrintedArea / width;
+            numberLength = lengthPrintedArea / length;
+            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength)); // получаем количество изделий на листе
+        } else {
+            numberProduct = "Ошибка"
+        }
+    } else {
+        if (widthPrintedArea >= length && lengthPrintedArea >= width ){
+            numberWidth = widthPrintedArea / length;
+            numberLength = lengthPrintedArea / width;
+            numberProduct = (Math.trunc(numberWidth) *  Math.trunc(numberLength));
+        } else {
+            numberProduct = "Ошибка"
+        }
+    }
+
+    getNumberOfCutsBBMC4(Math.trunc(numberWidth), Math.trunc(numberLength), allowance);
+
+    return numberProduct
+}
+
+function getPaperWeightBBMC1() {
+    var paperWeight = document.getElementById("paperWeightBBMC1");
+    var face = Number(document.getElementById('faceBBMC1').value);
+    var turnover = Number(document.getElementById('turnoverBBMC1').value);
 
     if( paperWeight.options.length == 0 ) {
 
@@ -648,14 +1944,104 @@ function getPaperWeightBBMC() {
             });
         } 
     }
-    getPaperFormatBBMC(false);
+    getPaperFormatBBMC1(false);
+}
+function getPaperWeightBBMC2() {
+    var paperWeight = document.getElementById("paperWeightBBMC2");
+    var face = Number(document.getElementById('faceBBMC2').value);
+    var turnover = Number(document.getElementById('turnoverBBMC2').value);
+
+    if( paperWeight.options.length == 0 ) {
+
+        var jsonOffset = jsonObj["Paper"]["Offset"];
+        var jsonGlossy = jsonObj["Paper"]["Glossy"];
+        var jsonMat = jsonObj["Paper"]["Mat"];
+        var jsonCarton = jsonObj["Paper"]["Carton"];
+
+        getTypePaper(jsonOffset, paperWeight, "Offset");
+        getTypePaper(jsonGlossy, paperWeight, "Glossy");
+        getTypePaper(jsonMat, paperWeight, "Mat");
+        getTypePaper(jsonCarton, paperWeight, "Carton");
+        
+        function getTypePaper(objJSON, htmlObj, papetType){
+            objJSON.forEach(function(elem) {
+                
+                if(papetType == "Mat" && elem.id =="7"){
+                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                } else {
+                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                }
+            });
+        } 
+    }
+    getPaperFormatBBMC2(false);
+}
+function getPaperWeightBBMC3() {
+    var paperWeight = document.getElementById("paperWeightBBMC3");
+    var face = Number(document.getElementById('faceBBMC3').value);
+    var turnover = Number(document.getElementById('turnoverBBMC3').value);
+
+    if( paperWeight.options.length == 0 ) {
+
+        var jsonOffset = jsonObj["Paper"]["Offset"];
+        var jsonGlossy = jsonObj["Paper"]["Glossy"];
+        var jsonMat = jsonObj["Paper"]["Mat"];
+        var jsonCarton = jsonObj["Paper"]["Carton"];
+
+        getTypePaper(jsonOffset, paperWeight, "Offset");
+        getTypePaper(jsonGlossy, paperWeight, "Glossy");
+        getTypePaper(jsonMat, paperWeight, "Mat");
+        getTypePaper(jsonCarton, paperWeight, "Carton");
+        
+        function getTypePaper(objJSON, htmlObj, papetType){
+            objJSON.forEach(function(elem) {
+                
+                if(papetType == "Mat" && elem.id =="7"){
+                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                } else {
+                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                }
+            });
+        } 
+    }
+    getPaperFormatBBMC3(false);
+}
+function getPaperWeightBBMC4() {
+    var paperWeight = document.getElementById("paperWeightBBMC4");
+    var face = Number(document.getElementById('faceBBMC4').value);
+    var turnover = Number(document.getElementById('turnoverBBMC4').value);
+
+    if( paperWeight.options.length == 0 ) {
+
+        var jsonOffset = jsonObj["Paper"]["Offset"];
+        var jsonGlossy = jsonObj["Paper"]["Glossy"];
+        var jsonMat = jsonObj["Paper"]["Mat"];
+        var jsonCarton = jsonObj["Paper"]["Carton"];
+
+        getTypePaper(jsonOffset, paperWeight, "Offset");
+        getTypePaper(jsonGlossy, paperWeight, "Glossy");
+        getTypePaper(jsonMat, paperWeight, "Mat");
+        getTypePaper(jsonCarton, paperWeight, "Carton");
+        
+        function getTypePaper(objJSON, htmlObj, papetType){
+            objJSON.forEach(function(elem) {
+                
+                if(papetType == "Mat" && elem.id =="7"){
+                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                } else {
+                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                }
+            });
+        } 
+    }
+    getPaperFormatBBMC4(false);
 }
 
-function getNumberOfProductsBBMC() {
+function getNumberOfProductsBBMC1() {
 
     var allowance = document.getElementById('allowanceBBMC').value;
-    var paperFormatB = document.getElementById("paperFormatBBMC").value; //получаем элемент по его ID
-    var printedMachine = document.getElementById("printedMachineBBMC").value;
+    var paperFormatB = document.getElementById("paperFormatBBMC1").value; //получаем элемент по его ID
+    var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var labelCheck = document.getElementById('checkBBMCField');
     var printing = Number(document.getElementById('printingBBMC').value);
 
@@ -696,19 +2082,220 @@ function getNumberOfProductsBBMC() {
     });
 
     checkLabel += "Размер запечатываемого поля:" + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
-    checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
-    checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
-    checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
-    checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />"; 
+    checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />"; 
 
-    if(numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
-        numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", true);
+    if(numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+        numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", true);
 
-    } else if(numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
-        numberOfPrintedSheets = numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", true)
+    } else if(numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+        numberOfPrintedSheets = numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", true)
     }
-    else if(numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
-        numberOfPrintedSheets = numberProductPerSheetBBMC(widthPrintedArea, lengthPrintedArea, "W", true)
+    else if(numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+        numberOfPrintedSheets = numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, "W", true)
+    } else {
+        numberOfPrintedSheets = "Ошибка"
+    }
+    
+    labelCheck.innerHTML = checkLabel;
+        
+    return numberOfPrintedSheets;
+}
+
+function getNumberOfProductsBBMC2() {
+
+    var allowance = document.getElementById('allowanceBBMC').value;
+    var paperFormatB = document.getElementById("paperFormatBBMC2").value; //получаем элемент по его ID
+    var printedMachine = document.getElementById("printedMachineBBMC2").value;
+    var labelCheck = document.getElementById('checkBBMCField');
+    var printing = Number(document.getElementById('printingBBMC').value);
+
+    var numberOfPrintedSheets = 0;
+    var checkLabel = "";
+    var widthPrintedArea = 0;
+    var lengthPrintedArea = 0;
+
+    var jsonCPF = jsonObj["Paper"]["Format"];
+        
+    jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+        
+        if(elem.id == paperFormatB){
+            paperWidth = elem.width;
+            paperLength = elem.length;
+
+            paperWidth += (allowance * 2) // прибавляем припуски
+            paperLength += (allowance * 2)
+
+            widthPrintedArea = (elem.width / 2) - 2; 
+            lengthPrintedArea = (elem.length / 2) -2;
+            numberOfParts = 4;
+        }
+    });
+
+    var jsonPM = jsonObj["PrintingMachine"];
+    jsonPM.forEach(function(elem) {
+        if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+
+            if (widthPrintedArea > lengthPrintedArea){
+                lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+            } else {
+                lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+            }
+        }
+    });
+
+    checkLabel += "Размер запечатываемого поля:" + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />"; 
+
+    if(numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+        numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", true);
+
+    } else if(numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+        numberOfPrintedSheets = numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", true)
+    }
+    else if(numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+        numberOfPrintedSheets = numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, "W", true)
+    } else {
+        numberOfPrintedSheets = "Ошибка"
+    }
+    
+    labelCheck.innerHTML = checkLabel;
+        
+    return numberOfPrintedSheets;
+}
+
+function getNumberOfProductsBBMC3() {
+
+    var allowance = document.getElementById('allowanceBBMC').value;
+    var paperFormatB = document.getElementById("paperFormatBBMC3").value; //получаем элемент по его ID
+    var printedMachine = document.getElementById("printedMachineBBMC3").value;
+    var labelCheck = document.getElementById('checkBBMCField');
+    var printing = Number(document.getElementById('printingBBMC').value);
+
+    var numberOfPrintedSheets = 0;
+    var checkLabel = "";
+    var widthPrintedArea = 0;
+    var lengthPrintedArea = 0;
+
+    var jsonCPF = jsonObj["Paper"]["Format"];
+        
+    jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+        
+        if(elem.id == paperFormatB){
+            paperWidth = elem.width;
+            paperLength = elem.length;
+
+            paperWidth += (allowance * 2) // прибавляем припуски
+            paperLength += (allowance * 2)
+
+            widthPrintedArea = (elem.width / 2) - 2; 
+            lengthPrintedArea = (elem.length / 2) -2;
+            numberOfParts = 4;
+        }
+    });
+
+    var jsonPM = jsonObj["PrintingMachine"];
+    jsonPM.forEach(function(elem) {
+        if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+
+            if (widthPrintedArea > lengthPrintedArea){
+                lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+            } else {
+                lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+            }
+        }
+    });
+
+    checkLabel += "Размер запечатываемого поля:" + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />"; 
+
+    if(numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+        numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", true);
+
+    } else if(numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+        numberOfPrintedSheets = numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", true)
+    }
+    else if(numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+        numberOfPrintedSheets = numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, "W", true)
+    } else {
+        numberOfPrintedSheets = "Ошибка"
+    }
+    
+    labelCheck.innerHTML = checkLabel;
+        
+    return numberOfPrintedSheets;
+}
+
+function getNumberOfProductsBBMC4() {
+
+    var allowance = document.getElementById('allowanceBBMC').value;
+    var paperFormatB = document.getElementById("paperFormatBBMC4").value; //получаем элемент по его ID
+    var printedMachine = document.getElementById("printedMachineBBMC4").value;
+    var labelCheck = document.getElementById('checkBBMCField');
+    var printing = Number(document.getElementById('printingBBMC').value);
+
+    var numberOfPrintedSheets = 0;
+    var checkLabel = "";
+    var widthPrintedArea = 0;
+    var lengthPrintedArea = 0;
+
+    var jsonCPF = jsonObj["Paper"]["Format"];
+        
+    jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
+        
+        if(elem.id == paperFormatB){
+            paperWidth = elem.width;
+            paperLength = elem.length;
+
+            paperWidth += (allowance * 2) // прибавляем припуски
+            paperLength += (allowance * 2)
+
+            widthPrintedArea = (elem.width / 2) - 2; 
+            lengthPrintedArea = (elem.length / 2) -2;
+            numberOfParts = 4;
+        }
+    });
+
+    var jsonPM = jsonObj["PrintingMachine"];
+    jsonPM.forEach(function(elem) {
+        if(printedMachine != "" && elem.id == printedMachine) { // для большей и меньшей стороны{}
+
+            if (widthPrintedArea > lengthPrintedArea){
+                lengthPrintedArea = lengthPrintedArea - (elem.flap + elem.scale) ;
+                widthPrintedArea = widthPrintedArea - (elem.sideField * 2);
+            } else {
+                lengthPrintedArea = lengthPrintedArea - (elem.sideField * 2);
+                widthPrintedArea = widthPrintedArea - (elem.flap + elem.scale);
+            }
+        }
+    });
+
+    checkLabel += "Размер запечатываемого поля:" + String(widthPrintedArea) +"x"+ String(lengthPrintedArea) + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в ширину:" + numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в ширину:" + Math.ceil(printing / numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false))  + "<br />";
+    checkLabel +="Количество изделий на листе при расположении в длинну:" + numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) + "<br />";
+    checkLabel +="Печатных листов при расположении в длинну:" + Math.ceil(printing / numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false)) + "<br />"; 
+
+    if(numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) != "Ошибка" && numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) != "Ошибка"){
+        numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) > numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) ? numberOfPrintedSheets = numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", true) : numberOfPrintedSheets = numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", true);
+
+    } else if(numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", false) == "Ошибка"){
+        numberOfPrintedSheets = numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", true)
+    }
+    else if(numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "L", false) == "Ошибка") {
+        numberOfPrintedSheets = numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, "W", true)
     } else {
         numberOfPrintedSheets = "Ошибка"
     }
@@ -719,16 +2306,16 @@ function getNumberOfProductsBBMC() {
 }
 
 
-function getPrintedMachineBBMC(){
-    var printedMachine = document.getElementById("printedMachineBBMC");
-    var face = Number(document.getElementById('faceBBMC').value);
-    var turnover = Number(document.getElementById('turnoverBBMC').value);
-    var pantone = Number(document.getElementById('pantoneBBMC').value); 
-    var varnishing = document.getElementById('varnishingBBMC').value;
+function getPrintedMachineBBMC1(){
+    var printedMachine = document.getElementById('printedMachineBBMC1');
+    var face = Number(document.getElementById('faceBBMC1').value);
+    var turnover = Number(document.getElementById('turnoverBBMC1').value);
+    var pantone = Number(document.getElementById('pantoneBBMC1').value); 
+    var varnishing = document.getElementById('varnishingBBMC1').value;
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
-    var paperWeightValue = document.getElementById("paperWeightBBMC").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperWeightValue = document.getElementById("paperWeightBBMC1").value; //получаем value выбранного элемента option по ID элемента select 
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
 
@@ -773,7 +2360,176 @@ function getPrintedMachineBBMC(){
         }    
     });
     
-    calculateBBMC();
+    calculateBBMC1();
+}
+
+function getPrintedMachineBBMC2(){
+    var printedMachine = document.getElementById('printedMachineBBMC2');
+    var face = Number(document.getElementById('faceBBMC2').value);
+    var turnover = Number(document.getElementById('turnoverBBMC2').value);
+    var pantone = Number(document.getElementById('pantoneBBMC2').value); 
+    var varnishing = document.getElementById('varnishingBBMC2').value;
+
+    printedMachine.options.length = 0;
+    var jsonPM = jsonObj["PrintingMachine"];
+    var paperWeightValue = document.getElementById("paperWeightBBMC2").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
+
+        if(face > 2){
+            if(elem.id == '0'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 2){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 1 && turnover == 1){
+            if(paperType == "Offset" && varnishing == "0"){
+                if(elem.id == '2'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            } else {
+                if(elem.id == '1'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            }
+        } 
+        else {
+            if(elem.id == '1'){
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }  
+            else{
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            } 
+        }    
+    });
+    
+    calculateBBMC2();
+}
+function getPrintedMachineBBMC3(){
+    var printedMachine = document.getElementById('printedMachineBBMC3');
+    var face = Number(document.getElementById('faceBBMC3').value);
+    var turnover = Number(document.getElementById('turnoverBBMC3').value);
+    var pantone = Number(document.getElementById('pantoneBBMC3').value); 
+    var varnishing = document.getElementById('varnishingBBMC3').value;
+
+    printedMachine.options.length = 0;
+    var jsonPM = jsonObj["PrintingMachine"];
+    var paperWeightValue = document.getElementById("paperWeightBBMC3").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
+
+        if(face > 2){
+            if(elem.id == '0'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 2){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 1 && turnover == 1){
+            if(paperType == "Offset" && varnishing == "0"){
+                if(elem.id == '2'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            } else {
+                if(elem.id == '1'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            }
+        } 
+        else {
+            if(elem.id == '1'){
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }  
+            else{
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            } 
+        }    
+    });
+    
+    calculateBBMC3();
+}
+function getPrintedMachineBBMC4(){
+    var printedMachine = document.getElementById('printedMachineBBMC4');
+    var face = Number(document.getElementById('faceBBMC4').value);
+    var turnover = Number(document.getElementById('turnoverBBMC4').value);
+    var pantone = Number(document.getElementById('pantoneBBMC4').value); 
+    var varnishing = document.getElementById('varnishingBBMC4').value;
+
+    printedMachine.options.length = 0;
+    var jsonPM = jsonObj["PrintingMachine"];
+    var paperWeightValue = document.getElementById("paperWeightBBMC4").value; //получаем value выбранного элемента option по ID элемента select 
+    var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
+    jsonPM.forEach(function(elem) {  // id 0 = Ryobi 524, id 1 = Ryobi 522, id 2 = Ромайор
+
+        if(face > 2){
+            if(elem.id == '0'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 2){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
+        } else if(face == 1 && turnover == 1){
+            if(paperType == "Offset" && varnishing == "0"){
+                if(elem.id == '2'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            } else {
+                if(elem.id == '1'){ 
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+                }
+                else {
+                    printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+                }
+            }
+        } 
+        else {
+            if(elem.id == '1'){
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }  
+            else{
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            } 
+        }    
+    });
+    
+    calculateBBMC4();
 }
 //бирдекели
 var bierdequelContainer = document.getElementById("bierdequelContainer");
@@ -820,7 +2576,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceB" class="element text medium" type="number" min="0" oninput="getPaperFormatB(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-4">'				
 html +=             '<label class="description">1-сторона</label>'			
 html +=             '<div>'
@@ -833,7 +2589,7 @@ html +=             '<div>'
 html +=                 '<select id="side2" name="side2" onchange="getBierdequelsSide2()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -1587,7 +3343,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceBlanks" class="element text medium" type="number" min="0" oninput="getPaperFormatBlanks(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'	
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -1606,7 +3362,7 @@ html +=             '<div>'
 html +=                 '<input id="pantoneBlanks" class="element text medium" type="number" min="0" oninput="getPrintedMachineBlanks()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -2369,7 +4125,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceBooklets" class="element text medium" type="number" min="0" oninput="getPaperFormatBooklets(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'	
+html +=         '<div class="col-md-12"></div>'	
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -2400,7 +4156,7 @@ html +=                     '<option value="4">УФ-лакировка x2</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -3257,7 +5013,7 @@ html +=             '<div>'
 html +=                 '<select id="formatCuttingEnvelopes" name="formatCuttingEnvelopes" onchange="getPaperFormatCuttingEnvelopes(false)"></select>'
 html +=             '</div> '
 html +=         '</div>'	
-html +=         '<div class="col-md-12"><br/></div>'	
+html +=         '<div class="col-md-12"></div>'	
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -3288,7 +5044,7 @@ html +=                     '<option value="4">УФ-лакировка x2</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -4049,7 +5805,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceFlyers" class="element text medium" type="number" defAllow="false" min="0" oninput="getPaperFormatFlyers(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'	
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -4080,7 +5836,7 @@ html +=                     '<option value="4">УФ-лакировка x2</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -4929,7 +6685,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceFolders" class="element text medium" type="number" min="0" oninput="getPaperFormatFolders(false)" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'		
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -4960,7 +6716,7 @@ html +=                     '<option value="4">УФ-лакировка x2</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -5788,7 +7544,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceMagnets" class="element text medium" type="number" min="0" oninput="getPaperFormatMagnets(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'		
+html +=         '<div class="col-md-12"></div>'		
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -5811,7 +7567,7 @@ html +=                     '<option value="3">УФ-лакировка x1</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -6527,7 +8283,7 @@ html +=                     '<option value="2">Разные 2 стороны</op
 html +=                 '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-4">'	
 html +=             '<label class="description">Красочность</label>'			
 html +=             '<div>'
@@ -6539,7 +8295,7 @@ html +=                     '<option value="3">1 пантон + матовый �
 html +=                 '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
@@ -7241,7 +8997,7 @@ html +=             '<div>'
 html +=                 '<select id="formatEnvelopes" name="formatEnvelopes" onchange="calculateEnvelopes()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-2">'	
 html +=             '<label class="description">Красочность</label>'			
 html +=             '<div>'
@@ -7258,7 +9014,7 @@ html +=             '<div>'
 html +=                 '<input id="pantoneEnvelopes" class="element text medium" type="number" min="0" oninput="getPrintedMachineEnvelopes()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'		
+html +=         '<div class="col-md-12"></div>'		
 html +=         '<div class="col-md-3">'	
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
@@ -7614,7 +9370,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceStickers" class="element text medium" type="number" min="0" oninput="getPaperFormatStickers(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'	
+html +=         '<div class="col-md-12"></div>'	
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -7633,7 +9389,7 @@ html +=             '<div class="col-md-12">'
 html +=                 '<label><input  id="fullImprint"  name="fullImprint" class="col-md-1 checkbox"  type="checkbox" onchange="getPaperFormatStickers(false)"><span>Плотная запечатка</span></label>'
 html +=             '</div>'
 html +=         '</div> '	
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-5">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -8489,7 +10245,7 @@ request1.onreadystatechange = function() {
             calculateCuttingEnvelopes();
             calculateStickers();
             calculateWobblers();
-            calculateBBMC();
+            fullCalculateBBMC();
         }
     }
 }
@@ -8548,7 +10304,7 @@ html +=             '<div>'
 html +=                 '<input id="cut" class="element text medium" type="number" min="0" oninput="setFlagOnInput()" flag="false" maxlength="255" /> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'			
+html +=         '<div class="col-md-12"></div>'			
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -8586,7 +10342,7 @@ html +=                 '<label class="col-md-6"><input name="rev" class="col-md
 html +=                 '<label class="col-md-6"><input name="rev" class="col-md-3 checkbox" id="ownRev" type="radio" value="2" onchange="calculatePrintedField()" > <span class="col-md-9">Свой</span></label>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'
 html +=             '<label  class="description">Бумага</label>'
 html +=             '<div>'
@@ -9772,7 +11528,7 @@ html +=             '<div>'
 html +=                 '<input id="allowanceWobblers" class="element text medium" type="number" min="0" oninput="getPaperFormatWobblers(false)" maxlength="255" value="2"/> '
 html +=             '</div>'
 html +=         '</div>'		
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
@@ -9803,7 +11559,7 @@ html +=                     '<option value="4">УФ-лакировка x2</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"><br/></div>'
+html +=         '<div class="col-md-12"></div>'
 html +=         '<div class="col-md-3">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
