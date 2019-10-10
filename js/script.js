@@ -582,7 +582,7 @@ function calculateBBMC2() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
-    var montage = Math.ceil(pages / getNumberOfProductsBBMC2());
+    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * 2));
 
     jsonFP.some(function(elem) {
         
@@ -1433,7 +1433,9 @@ function getPaperFormatBBMC2(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
-                    width *= 2;
+                    
+
+                    
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -1927,7 +1929,7 @@ function numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    width *= 2;
+    
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
