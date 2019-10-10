@@ -53,29 +53,43 @@ html +=             '<label class="description">Припуски, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="allowanceBBMC" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)" maxlength="255" value="5"/> '
 html +=             '</div>'
-html +=         '</div>'		
+html +=         '</div>'	
+html +=         '<div class="col-md-2">'
+html +=             '<label class="description"><br/></label>'
+html +=             '<div>'
+html +=                 '<select id="rentabilityBBMC" name="rentabilityBBMC" onchange="calculateBBMC()"></select>'
+html +=             '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-3">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Обложка</h3>'
 html +=         '</div>'
-html +=         '<div class="col-md-2">'				
+html +=         '<div class="col-md-12">'				
+html +=             '<label class="description">Страниц</label>'
+html +=             '<div>'
+html +=                 '<input id="pagesBBMC1" class="element text medium" type="number" min="0" oninput="calculateBBMC1()"    value="4" /> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
 html +=                 '<input id="faceBBMC1" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC1()"  max="4"  value="4" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
 html +=                 '<input id="turnoverBBMC1" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC1()" max="4" value="1"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
 html +=                 '<input id="pantoneBBMC1" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC1()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div>'
 html +=                 '<select id="varnishingBBMC1" name="varnishingBBMC1" onchange="getPrintedMachineBBMC1()">'
@@ -88,202 +102,228 @@ html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
 html +=                 '<select id="paperWeightBBMC1" name="paperWeightBBMC" onchange="getPaperWeightBBMC1()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatBBMC1" name="paperFormatBBMC" onchange="getPaperFormatBBMC1()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-3">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineBBMC1" name="printedMachineBBMC" onchange="calculateBBMC()"></select>'
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-2">'
-html +=             '<label class="description"><br/></label>'
-html +=             '<div>'
-html +=                 '<select id="rentabilityBBMC" name="rentabilityBBMC" onchange="calculateBBMC()"></select>'
-html +=             '</div>'
 html +=         '</div>'
+html +=         '<div class="col-md-3">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Блок</h3>'
 html +=         '</div>'
-html +=         '<div class="col-md-2">'				
-html +=             '<label class="description">Лицо</label>'
+html +=         '<div class="col-md-12">'				
+html +=             '<label class="description">Страниц</label>'
 html +=             '<div>'
-html +=                 '<input id="faceBBMC2" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC2()"  max="4"  value="1" /> '
+html +=                 '<input id="pagesBBMC2" class="element text medium" type="number" min="0" oninput="calculateBBMC2()"    value="200" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Оборот</label>'
+html +=         '<div class="col-md-12">'					
+html +=             '<label class="description">Красочность</label>'			
 html +=             '<div>'
-html +=                 '<input id="turnoverBBMC2" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC2()" max="4" value="0"/> '
+html +=                 '<select id="colorfulnessBBMC2" name="colorfulnessBBMC2" onchange="getPrintedMachineBBMC2()">'
+html +=                     '<option value="0">ч/б</option>'
+html +=                     '<option value="1">цвет</option>'
+html +=                     '<option value="2">2+2</option>'
+html +=                 '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
 html +=                 '<input id="pantoneBBMC2" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC2()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div>'
 html +=                 '<select id="varnishingBBMC2" name="varnishingBBMC" onchange="getPrintedMachineBBMC2()">'
 html +=                     '<option value="0">Нет</option>'
 html +=                     '<option value="1">Офсетный x1</option>'
 html +=                     '<option value="2">Офсетный x2</option>'
-html +=                     '<option value="3">УФ-лакировка x1</option>'
-html +=                     '<option value="4">УФ-лакировка x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
 html +=                 '<select id="paperWeightBBMC2" name="paperWeightBBMC" onchange="getPaperWeightBBMC2()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatBBMC2" name="paperFormatBBMC" onchange="getPaperFormatBBMC2()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-3">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineBBMC2" name="printedMachineBBMC" onchange="calculateBBMC2()"></select>'
 html +=             '</div>'
 html +=         '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-3">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Вставки</h3>'
 html +=         '</div>'
-html +=         '<div class="col-md-2">'				
-html +=             '<label class="description">Лицо</label>'
+html +=         '<div class="col-md-12">'				
+html +=             '<label class="description">Страниц</label>'
 html +=             '<div>'
-html +=                 '<input id="faceBBMC3" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC3()"  max="4"  value="0" /> '
+html +=                 '<input id="pagesBBMC3" class="element text medium" type="number" min="0" oninput="calculateBBMC4()"    value="0" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
-html +=         '<label class="description">Оборот</label>'
+html +=         '<div class="col-md-12">'					
+html +=             '<label class="description">Красочность</label>'			
 html +=             '<div>'
-html +=                 '<input id="turnoverBBMC3" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC3()" max="4" value="0"/> '
+html +=                 '<select id="colorfulnessBBMC3" name="colorfulnessBBMC3" onchange="getPrintedMachineBBMC3()">'
+html +=                     '<option value="0">нет</option>'
+html +=                     '<option value="1">ч/б</option>'
+html +=                     '<option value="2">цвет</option>'
+html +=                     '<option value="3">2+2</option>'
+html +=                 '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
 html +=                 '<input id="pantoneBBMC3" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC3()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div>'
 html +=                 '<select id="varnishingBBMC3" name="varnishingBBMC" onchange="getPrintedMachineBBMC3()">'
 html +=                     '<option value="0">Нет</option>'
 html +=                     '<option value="1">Офсетный x1</option>'
-html +=                     '<option value="3">УФ-лакировка x1</option>'
+html +=                     '<option value="2">Офсетный x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
 html +=                 '<select id="paperWeightBBMC3" name="paperWeightBBMC" onchange="getPaperWeightBBMC3()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatBBMC3" name="paperFormatBBMC" onchange="getPaperFormatBBMC3()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-3">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineBBMC3" name="printedMachineBBMC" onchange="calculateBBMC3()"></select>'
 html +=             '</div>'
 html +=         '</div>'
+html +=         '</div>'
+html +=         '<div class="col-md-3">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Форзацы</h3>'
 html +=         '</div>'
-html +=         '<div class="col-md-2">'				
+html +=         '<div class="col-md-12">'				
+html +=             '<label class="description">Страниц</label>'
+html +=             '<div>'
+html +=                 '<input id="pagesBBMC4" class="element text medium" type="number" min="0" oninput="calculateBBMC4()"    value="0" /> '
+html +=             '</div> '
+html +=         '</div>'
+html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
-html +=                 '<input id="faceBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()"  max="4"  value="4" /> '
+html +=                 '<input id="faceBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()"  max="4"  value="0" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
-html +=                 '<input id="turnoverBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()" max="4" value="1"/> '
+html +=                 '<input id="turnoverBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()" max="4" value="0"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description">Пантонов</label>'
 html +=             '<div>'
 html +=                 '<input id="pantoneBBMC4" class="element text medium" type="number" min="0" oninput="getPrintedMachineBBMC4()" maxlength="255" value="0"/> '
 html +=             '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label  class="description">Лакировка</label>'
 html +=             '<div>'
 html +=                 '<select id="varnishingBBMC4" name="varnishingBBMC" onchange="getPrintedMachineBBMC4()">'
 html +=                     '<option value="0">Нет</option>'
 html +=                     '<option value="1">Офсетный x1</option>'
 html +=                     '<option value="2">Офсетный x2</option>'
-html +=                     '<option value="3">УФ-лакировка x1</option>'
-html +=                     '<option value="4">УФ-лакировка x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
-html +=         '<div class="col-md-3">'				
+html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
 html +=                 '<select id="paperWeightBBMC4" name="paperWeightBBMC" onchange="getPaperWeightBBMC4()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-12">'	
 html +=         '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="paperFormatBBMC4" name="paperFormatBBMC" onchange="getPaperFormatBBMC4()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-3">'	
+html +=         '<div class="col-md-12">'	
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="printedMachineBBMC4" name="printedMachineBBMC" onchange="calculateBBMC4()"></select>'
 html +=             '</div>'
 html +=         '</div>'
+html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide padding-none">'
-
 html +=         '</div>'
 html +=         '</div>'
 html +=     '</div>'
 html +=         '<div class="col-md-12">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
-html +=             '<div class="extremum-slide">'
+html +=             '<div class="extremum-slide"><br/>'
+html +=                 '<h4 class="description">Обложка</h4>'
+html +=                 '<label id="checkBBMCField1" class="description"></label><br/>'
 html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts1" ></label>'
+html +=                 '<br/><label id="checkBBMC1" class="description"></label>'
+
+html +=                 '<h4 class="description">Блок</h4>'
+html +=                 '<label id="checkBBMCField2" class="description"></label><br/>'
 html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts2" ></label>'
+html +=                 '<br/><label id="checkBBMC2" class="description"></label>'
+
+html +=                 '<h4 class="description">Вставки</h4>'
+html +=                 '<label id="checkBBMCField3" class="description"></label><br/>'
 html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts3" ></label>'
+html +=                 '<br/><label id="checkBBMC3" class="description"></label>'
+
+html +=                 '<h4 class="description">Форзацы</h4>'
+html +=                 '<label id="checkBBMCField4" class="description"></label><br/>'
 html +=                 '<label class="description">Количество резов на лист: <label id="checkBBMCCuts4" ></label>'
-html +=                 '<br/><label id="checkBBMCField" class="description"></label>'
-html +=                 '<br/><label id="checkBBMC" class="description"></label>'
+html +=                 '<br/><label id="checkBBMC4" class="description"></label>'
+
+
 html +=             '</div><br/>'
 html +=         '</div>'
 html += '</div>'
@@ -294,19 +334,19 @@ function BBMC() {
 
     getPaperWeightBBMC1();
     getPrintedMachineBBMC1();
-    getPaperFormatBBMC1();
+    getPaperFormatBBMC1(false);
 
     getPaperWeightBBMC2();
     getPrintedMachineBBMC2();
-    getPaperFormatBBMC2();
+    getPaperFormatBBMC2(false);
 
     getPaperWeightBBMC3();
     getPrintedMachineBBMC3();
-    getPaperFormatBBMC3();
+    getPaperFormatBBMC3(false);
 
     getPaperWeightBBMC4();
     getPrintedMachineBBMC4();
-    getPaperFormatBBMC4();
+    getPaperFormatBBMC4(false);
 
     getRentabilityBBMC();
 
@@ -321,9 +361,16 @@ function fullCalculateBBMC(){
     calculateBBMC4();
 }
 
+function getPaperFormatBBMC(flag){
+    getPaperFormatBBMC1(flag);
+    getPaperFormatBBMC2(flag);
+    getPaperFormatBBMC3(flag);
+    getPaperFormatBBMC4(flag);
+}
+
 function calculateBBMC1() {
 
-    var labelCheck = document.getElementById('checkBBMC');
+    var labelCheck = document.getElementById('checkBBMC1');
     var printing = Number(document.getElementById('printingBBMC').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC1());
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
@@ -487,12 +534,12 @@ function calculateBBMC1() {
 
 function calculateBBMC2() {
 
-    var labelCheck = document.getElementById('checkBBMC');
+    var labelCheck = document.getElementById('checkBBMC2');
     var printing = Number(document.getElementById('printingBBMC').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC2());
     var printedMachine = document.getElementById("printedMachineBBMC2").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
-    var turnoverElem = document.getElementById('turnoverBBMC2');
+
 
     var paperFormat = document.getElementById("paperFormatBBMC2").value;
 
@@ -502,9 +549,21 @@ function calculateBBMC2() {
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
-    var face = Number(document.getElementById('faceBBMC2').value);
-    var turnover = Number(document.getElementById('turnoverBBMC2').value);
+    var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC2").value;
+    var face = 0;
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC2').value);
+
+    if(colorfulnessBBMC == 0){
+        face = 1;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 1){
+        face = 4;
+        turnover = 4;
+    } else if(colorfulnessBBMC == 2){
+        face = 2;
+        turnover = 2;
+    } 
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
@@ -651,7 +710,7 @@ function calculateBBMC2() {
 
 function calculateBBMC3() {
 
-    var labelCheck = document.getElementById('checkBBMC');
+    var labelCheck = document.getElementById('checkBBMC3');
     var printing = Number(document.getElementById('printingBBMC').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC3());
     var printedMachine = document.getElementById("printedMachineBBMC3").value;
@@ -666,9 +725,25 @@ function calculateBBMC3() {
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
-    var face = Number(document.getElementById('faceBBMC3').value);
-    var turnover = Number(document.getElementById('turnoverBBMC3').value);
+    var face = 0;
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC3').value);
+    var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC3").value;
+
+    if(colorfulnessBBMC == 0){
+        face = 0;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 1){
+        face = 1;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 2){
+        face = 4;
+        turnover = 4;
+    }
+    else if(colorfulnessBBMC == 2){
+        face = 2;
+        turnover = 2;
+    }
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
@@ -815,7 +890,7 @@ function calculateBBMC3() {
 
 function calculateBBMC4() {
 
-    var labelCheck = document.getElementById('checkBBMC');
+    var labelCheck = document.getElementById('checkBBMC4');
     var printing = Number(document.getElementById('printingBBMC').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC4());
     var printedMachine = document.getElementById("printedMachineBBMC4").value;
@@ -1104,6 +1179,7 @@ function setDefaulParam() {
             turnover.value = 4;
             break;
     } 
+    getPaperWeightBBMC1(true);
     fullCalculateBBMC();
 }
 
@@ -1168,7 +1244,7 @@ function getPaperFormatBBMC1(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
-                    width *= 2;
+                    
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -1487,7 +1563,7 @@ function getPaperFormatBBMC3(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
-                    width *= 2;
+                    
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -1646,7 +1722,7 @@ function getPaperFormatBBMC4(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
-                    width *= 2;
+                    
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -1778,7 +1854,7 @@ function numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    width *= 2;
+    
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
@@ -1866,7 +1942,7 @@ function numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    width *= 2;
+    
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
@@ -1910,7 +1986,7 @@ function numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    width *= 2;
+    
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
@@ -1937,12 +2013,12 @@ function numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, positio
     return numberProduct
 }
 
-function getPaperWeightBBMC1() {
+function getPaperWeightBBMC1(flag) {
     var paperWeight = document.getElementById("paperWeightBBMC1");
-    var face = Number(document.getElementById('faceBBMC1').value);
-    var turnover = Number(document.getElementById('turnoverBBMC1').value);
+    var binding = Number(document.getElementById('bindingBBMC').value);
 
-    if( paperWeight.options.length == 0 ) {
+    if( paperWeight.options.length == 0 || flag == true) {
+        paperWeight.options.length = 0;
 
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -1956,11 +2032,36 @@ function getPaperWeightBBMC1() {
         
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
-                
-                if(papetType == "Mat" && elem.id =="7"){
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
-                } else {
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+
+                switch(binding){
+                    case 0:
+                        if(papetType == "Carton" && elem.id =="2"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
+                        break;
+                    case 1:
+                        if(papetType == "Glossy" && elem.id =="3"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
+                        break;
+                    case 2:
+                        if(papetType == "Glossy" && elem.id =="5"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
+                        break;
+                    case 3:
+                        if(papetType == "Glossy" && elem.id =="8"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
+                        break;
                 }
             });
         } 
@@ -1969,10 +2070,8 @@ function getPaperWeightBBMC1() {
 }
 function getPaperWeightBBMC2() {
     var paperWeight = document.getElementById("paperWeightBBMC2");
-    var face = Number(document.getElementById('faceBBMC2').value);
-    var turnover = Number(document.getElementById('turnoverBBMC2').value);
 
-    if( paperWeight.options.length == 0 ) {
+    if( paperWeight.options.length == 0) {
 
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -1999,8 +2098,7 @@ function getPaperWeightBBMC2() {
 }
 function getPaperWeightBBMC3() {
     var paperWeight = document.getElementById("paperWeightBBMC3");
-    var face = Number(document.getElementById('faceBBMC3').value);
-    var turnover = Number(document.getElementById('turnoverBBMC3').value);
+
 
     if( paperWeight.options.length == 0 ) {
 
@@ -2029,8 +2127,6 @@ function getPaperWeightBBMC3() {
 }
 function getPaperWeightBBMC4() {
     var paperWeight = document.getElementById("paperWeightBBMC4");
-    var face = Number(document.getElementById('faceBBMC4').value);
-    var turnover = Number(document.getElementById('turnoverBBMC4').value);
 
     if( paperWeight.options.length == 0 ) {
 
@@ -2063,7 +2159,7 @@ function getNumberOfProductsBBMC1() {
     var allowance = document.getElementById('allowanceBBMC').value;
     var paperFormatB = document.getElementById("paperFormatBBMC1").value; //получаем элемент по его ID
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
-    var labelCheck = document.getElementById('checkBBMCField');
+    var labelCheck = document.getElementById('checkBBMCField1');
     var printing = Number(document.getElementById('printingBBMC').value);
 
     var numberOfPrintedSheets = 0;
@@ -2130,7 +2226,7 @@ function getNumberOfProductsBBMC2() {
     var allowance = document.getElementById('allowanceBBMC').value;
     var paperFormatB = document.getElementById("paperFormatBBMC2").value; //получаем элемент по его ID
     var printedMachine = document.getElementById("printedMachineBBMC2").value;
-    var labelCheck = document.getElementById('checkBBMCField');
+    var labelCheck = document.getElementById('checkBBMCField2');
     var printing = Number(document.getElementById('printingBBMC').value);
 
     var numberOfPrintedSheets = 0;
@@ -2197,7 +2293,7 @@ function getNumberOfProductsBBMC3() {
     var allowance = document.getElementById('allowanceBBMC').value;
     var paperFormatB = document.getElementById("paperFormatBBMC3").value; //получаем элемент по его ID
     var printedMachine = document.getElementById("printedMachineBBMC3").value;
-    var labelCheck = document.getElementById('checkBBMCField');
+    var labelCheck = document.getElementById('checkBBMCField3');
     var printing = Number(document.getElementById('printingBBMC').value);
 
     var numberOfPrintedSheets = 0;
@@ -2264,7 +2360,7 @@ function getNumberOfProductsBBMC4() {
     var allowance = document.getElementById('allowanceBBMC').value;
     var paperFormatB = document.getElementById("paperFormatBBMC4").value; //получаем элемент по его ID
     var printedMachine = document.getElementById("printedMachineBBMC4").value;
-    var labelCheck = document.getElementById('checkBBMCField');
+    var labelCheck = document.getElementById('checkBBMCField4');
     var printing = Number(document.getElementById('printingBBMC').value);
 
     var numberOfPrintedSheets = 0;
@@ -2386,10 +2482,22 @@ function getPrintedMachineBBMC1(){
 
 function getPrintedMachineBBMC2(){
     var printedMachine = document.getElementById('printedMachineBBMC2');
-    var face = Number(document.getElementById('faceBBMC2').value);
-    var turnover = Number(document.getElementById('turnoverBBMC2').value);
+    var face = 0;
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC2').value); 
     var varnishing = document.getElementById('varnishingBBMC2').value;
+    var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC2").value;
+
+    if(colorfulnessBBMC == 0){
+        face = 1;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 1){
+        face = 4;
+        turnover = 4;
+    } else if(colorfulnessBBMC == 2){
+        face = 2;
+        turnover = 2;
+    } 
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
@@ -2442,10 +2550,26 @@ function getPrintedMachineBBMC2(){
 }
 function getPrintedMachineBBMC3(){
     var printedMachine = document.getElementById('printedMachineBBMC3');
-    var face = Number(document.getElementById('faceBBMC3').value);
-    var turnover = Number(document.getElementById('turnoverBBMC3').value);
+    var face = 0;
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC3').value); 
     var varnishing = document.getElementById('varnishingBBMC3').value;
+    var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC3").value;
+
+    if(colorfulnessBBMC == 0){
+        face = 0;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 1){
+        face = 1;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 2){
+        face = 4;
+        turnover = 4;
+    }
+    else if(colorfulnessBBMC == 2){
+        face = 2;
+        turnover = 2;
+    }
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
