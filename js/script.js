@@ -61,7 +61,7 @@ html +=                 '<select id="rentabilityBBMC" name="rentabilityBBMC" onc
 html +=             '</div>'
 html +=         '</div>'
 html +=         '<div class="col-md-12"></div>'
-html +=         '<div class="col-md-3">'
+html +=         '<div class="col-md-3 padding-none">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Обложка</h3>'
 html +=         '</div>'
@@ -71,13 +71,13 @@ html +=             '<div>'
 html +=                 '<input id="pagesBBMC1" class="element text medium" type="number" min="0" oninput="calculateBBMC1()"    value="4" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'				
+html +=         '<div class="col-md-6">'				
 html +=             '<label class="description">Лицо</label>'
 html +=             '<div>'
 html +=                 '<input id="faceBBMC1" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC1()"  max="4"  value="4" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'	
+html +=         '<div class="col-md-6">'	
 html +=         '<label class="description">Оборот</label>'
 html +=             '<div>'
 html +=                 '<input id="turnoverBBMC1" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC1()" max="4" value="1"/> '
@@ -121,7 +121,7 @@ html +=                 '<select id="printedMachineBBMC1" name="printedMachineBB
 html +=             '</div>'
 html +=         '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'
+html +=         '<div class="col-md-3 padding-none">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Блок</h3>'
 html +=         '</div>'
@@ -177,7 +177,7 @@ html +=                 '<select id="printedMachineBBMC2" name="printedMachineBB
 html +=             '</div>'
 html +=         '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'
+html +=         '<div class="col-md-3 padding-none">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Вставки</h3>'
 html +=         '</div>'
@@ -234,7 +234,7 @@ html +=                 '<select id="printedMachineBBMC3" name="printedMachineBB
 html +=             '</div>'
 html +=         '</div>'
 html +=         '</div>'
-html +=         '<div class="col-md-3">'
+html +=         '<div class="col-md-3 padding-none">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Форзацы</h3>'
 html +=         '</div>'
@@ -244,16 +244,15 @@ html +=             '<div>'
 html +=                 '<input id="pagesBBMC4" class="element text medium" type="number" min="0" oninput="calculateBBMC4()"    value="0" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12">'				
-html +=             '<label class="description">Лицо</label>'
+html +=         '<div class="col-md-12">'					
+html +=             '<label class="description">Красочность</label>'			
 html +=             '<div>'
-html +=                 '<input id="faceBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()"  max="4"  value="0" /> '
-html +=             '</div> '
-html +=         '</div>'
-html +=         '<div class="col-md-12">'	
-html +=         '<label class="description">Оборот</label>'
-html +=             '<div>'
-html +=                 '<input id="turnoverBBMC4" class="element text medium" type="number" min="0" oninput="getPaperWeightBBMC4()" max="4" value="0"/> '
+html +=                 '<select id="colorfulnessBBMC4" name="colorfulnessBBMC2" onchange="getPrintedMachineBBMC4()">'
+html +=                     '<option value="0">нет</option>'
+html +=                     '<option value="1">белые</option>'
+html +=                     '<option value="2">печать х1</option>'
+html +=                     '<option value="3">печать х2</option>'
+html +=                 '</select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'	
@@ -376,9 +375,8 @@ function calculateBBMC1() {
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
     var turnoverElem = document.getElementById('turnoverBBMC1');
-   
+    var pages = Number(document.getElementById('pagesBBMC1').value);
     var paperFormat = document.getElementById("paperFormatBBMC1").value;
-
     var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
     var varnishing = document.getElementById('varnishingBBMC1').value;
     var paperWeightValue = document.getElementById("paperWeightBBMC1").value; //получаем value выбранного элемента option по ID элемента select 
@@ -407,6 +405,7 @@ function calculateBBMC1() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
+    var montage = 0;
 
     jsonFP.some(function(elem) {
         
@@ -542,7 +541,7 @@ function calculateBBMC2() {
 
 
     var paperFormat = document.getElementById("paperFormatBBMC2").value;
-
+    var pages = +document.getElementById("pagesBBMC2").value;
     var cut = Number(document.getElementById('checkBBMCCuts2').textContent);
     var varnishing = document.getElementById('varnishingBBMC2').value;
     var paperWeightValue = document.getElementById("paperWeightBBMC2").value; //получаем value выбранного элемента option по ID элемента select 
@@ -583,6 +582,7 @@ function calculateBBMC2() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
+    var montage = Math.ceil(pages / getNumberOfProductsBBMC2());
 
     jsonFP.some(function(elem) {
         
@@ -594,9 +594,13 @@ function calculateBBMC2() {
             return true;
         }
     });
+
+    numberOfPrintedSheets *= montage
     
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC2()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+    
+    checkLabel += "Количество монтажей: " + montage + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
@@ -630,7 +634,7 @@ function calculateBBMC2() {
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
-    numberOfForms = (face + turnover + varnishing);
+    numberOfForms = (face + turnover + varnishing) * montage;
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
     
@@ -905,9 +909,25 @@ function calculateBBMC4() {
     var paperType = paperWeightValue.split("_")[0]; //из value выбранного элемента option получаем тип бумаги
     var paperTypeFormatId = paperWeightValue.split("_")[1]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
     var jsonP = jsonObj["Paper"][paperType][paperTypeFormatId]; 
-    var face = Number(document.getElementById('faceBBMC4').value);
-    var turnover = Number(document.getElementById('turnoverBBMC4').value);
+    var face = 0;
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC4').value);
+    var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC4").value;
+
+    if(colorfulnessBBMC == 0){
+        face = 0;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 1){
+        face = 0;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 2){
+        face = 4;
+        turnover = 0;
+    } 
+    else if(colorfulnessBBMC == 3){
+        face = 4;
+        turnover = 4;
+    } 
 
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
@@ -1159,26 +1179,35 @@ function setDefaulParam() {
             face.value = 4;
             var turnover = document.getElementById("turnoverBBMC1");
             turnover.value = 0;
+            var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
+            colorfulnessBBMC.value = 0;
             break;
         case 1:
             var face = document.getElementById("faceBBMC1");
             face.value = 4;
             var turnover = document.getElementById("turnoverBBMC1");
             turnover.value = 1;
+            var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
+            colorfulnessBBMC.value = 1;
             break;
         case 2:
             var face = document.getElementById("faceBBMC1");
             face.value = 4;
             var turnover = document.getElementById("turnoverBBMC1");
             turnover.value = 4;
+            var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
+            colorfulnessBBMC.value = 0;
             break;
         case 3: 
             var face = document.getElementById("faceBBMC1");
             face.value = 4;
             var turnover = document.getElementById("turnoverBBMC1");
             turnover.value = 4;
+            var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
+            colorfulnessBBMC.value = 0;
             break;
     } 
+
     getPaperWeightBBMC1(true);
     fullCalculateBBMC();
 }
@@ -2143,7 +2172,7 @@ function getPaperWeightBBMC4() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-                if(papetType == "Mat" && elem.id =="7"){
+                if(papetType == "Offset" && elem.id =="3"){
                     htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
                 } else {
                     htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
@@ -2450,8 +2479,8 @@ function getPrintedMachineBBMC1(){
             else {
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
-        } else if(face == 1 && turnover == 1){
-            if(paperType == "Offset" && varnishing == "0"){
+        } else if(face == 1 && pantone == 0){
+            if(paperType == "Offset" && varnishing == 0){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -2466,6 +2495,13 @@ function getPrintedMachineBBMC1(){
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
             }
+        } else if(face == 1 && pantone == 1){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
         } 
         else {
             if(elem.id == '1'){
@@ -2474,7 +2510,7 @@ function getPrintedMachineBBMC1(){
             else{
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             } 
-        }    
+        }     
     });
     
     calculateBBMC1();
@@ -2484,19 +2520,22 @@ function getPrintedMachineBBMC2(){
     var printedMachine = document.getElementById('printedMachineBBMC2');
     var face = 0;
     var turnover = 0;
-    var pantone = Number(document.getElementById('pantoneBBMC2').value); 
+    var pantone = document.getElementById('pantoneBBMC2'); 
     var varnishing = document.getElementById('varnishingBBMC2').value;
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC2").value;
 
     if(colorfulnessBBMC == 0){
         face = 1;
         turnover = 0;
+        pantone.value = 0;
     } else if(colorfulnessBBMC == 1){
         face = 4;
         turnover = 4;
+        pantone.value = 0;
     } else if(colorfulnessBBMC == 2){
         face = 2;
         turnover = 2;
+        pantone.value = 1;
     } 
 
     printedMachine.options.length = 0;
@@ -2519,8 +2558,8 @@ function getPrintedMachineBBMC2(){
             else {
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
-        } else if(face == 1 && turnover == 1){
-            if(paperType == "Offset" && varnishing == "0"){
+        } else if(face == 1 && pantone.value == 0){
+            if(paperType == "Offset" && varnishing == 0){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -2535,6 +2574,13 @@ function getPrintedMachineBBMC2(){
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
             }
+        } else if(face == 1 && pantone.value == 1){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
         } 
         else {
             if(elem.id == '1'){
@@ -2543,7 +2589,7 @@ function getPrintedMachineBBMC2(){
             else{
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             } 
-        }    
+        }     
     });
     
     calculateBBMC2();
@@ -2591,8 +2637,8 @@ function getPrintedMachineBBMC3(){
             else {
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
-        } else if(face == 1 && turnover == 1){
-            if(paperType == "Offset" && varnishing == "0"){
+        } else if(face == 1 && pantone == 0){
+            if(paperType == "Offset" && varnishing == 0){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -2607,6 +2653,13 @@ function getPrintedMachineBBMC3(){
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
             }
+        } else if(face == 1 && pantone == 1){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
         } 
         else {
             if(elem.id == '1'){
@@ -2615,17 +2668,33 @@ function getPrintedMachineBBMC3(){
             else{
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             } 
-        }    
+        }     
     });
     
     calculateBBMC3();
 }
 function getPrintedMachineBBMC4(){
     var printedMachine = document.getElementById('printedMachineBBMC4');
-    var face = Number(document.getElementById('faceBBMC4').value);
-    var turnover = Number(document.getElementById('turnoverBBMC4').value);
+    var face = 0;
+    var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC4').value); 
     var varnishing = document.getElementById('varnishingBBMC4').value;
+    var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC4").value;
+
+    if(colorfulnessBBMC == 0){
+        face = 0;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 1){
+        face = 0;
+        turnover = 0;
+    } else if(colorfulnessBBMC == 2){
+        face = 4;
+        turnover = 0;
+    }
+    else if(colorfulnessBBMC == 2){
+        face = 4;
+        turnover = 4;
+    }
 
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
@@ -2647,8 +2716,8 @@ function getPrintedMachineBBMC4(){
             else {
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
-        } else if(face == 1 && turnover == 1){
-            if(paperType == "Offset" && varnishing == "0"){
+        } else if(face == 1 && pantone == 0){
+            if(paperType == "Offset" && varnishing == 0){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -2663,6 +2732,13 @@ function getPrintedMachineBBMC4(){
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
                 }
             }
+        } else if(face == 1 && pantone == 1){
+            if(elem.id == '1'){ 
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
+            }
+            else {
+                printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
+            }
         } 
         else {
             if(elem.id == '1'){
@@ -2671,7 +2747,7 @@ function getPrintedMachineBBMC4(){
             else{
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             } 
-        }    
+        }     
     });
     
     calculateBBMC4();
@@ -9080,7 +9156,7 @@ function getPrintedMachinePackages(){
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
         } else if(face == 1 && pantone == 0){
-            if(paperType == "Offset" && varnishing == "NO"){
+            if(paperType == "Offset" ){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -11593,7 +11669,7 @@ function getPrintedMachine(){
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
         } else if(face == 1 && pantone == 0){
-            if(paperType == "Offset" && varnishing == "NO"){
+            if(paperType == "Offset" && varnishing == 0){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
@@ -12461,7 +12537,7 @@ function getPrintedMachineWobblers(){
                 printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id);
             }
         } else if(face == 1 && turnover == 1){
-            if(paperType == "Offset" && varnishing == "0"){
+            if(paperType == "Offset" && varnishing == 0){
                 if(elem.id == '2'){ 
                     printedMachine.options[printedMachine.options.length] = new Option(elem.name, elem.id, true, true);
                 }
