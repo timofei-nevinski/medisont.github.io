@@ -184,7 +184,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Страниц</label>'
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC3" class="element text medium" type="number" min="0" oninput="calculateBBMC4()"    value="0" /> '
+html +=                 '<input id="pagesBBMC3" class="element text medium" type="number" min="0" oninput="calculateBBMC3()"    value="0" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'					
@@ -722,7 +722,7 @@ function calculateBBMC3() {
     var turnoverElem = document.getElementById('turnoverBBMC3');
 
     var paperFormat = document.getElementById("paperFormatBBMC3").value;
-
+    var pages = +document.getElementById("pagesBBMC3").value;
     var cut = Number(document.getElementById('checkBBMCCuts3').textContent);
     var varnishing = document.getElementById('varnishingBBMC3').value;
     var paperWeightValue = document.getElementById("paperWeightBBMC3").value; //получаем value выбранного элемента option по ID элемента select 
@@ -733,6 +733,7 @@ function calculateBBMC3() {
     var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC3').value);
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC3").value;
+    var montage = Math.ceil(pages / (getNumberOfProductsBBMC3() * 2));
 
     if(colorfulnessBBMC == 0){
         face = 0;
@@ -778,9 +779,13 @@ function calculateBBMC3() {
             return true;
         }
     });
+
+    numberOfPrintedSheets *= montage;
     
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC3()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
+
+    checkLabel += "Количество монтажей: " + montage + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
     rentabilityPrice = jsonPMR.price;
@@ -814,7 +819,7 @@ function calculateBBMC3() {
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
-    numberOfForms = (face + turnover + varnishing);
+    numberOfForms = (face + turnover + varnishing) * montage;
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
     
@@ -1973,7 +1978,7 @@ function numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    
+    width = width * 2;
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
