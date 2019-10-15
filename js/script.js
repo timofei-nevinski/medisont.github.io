@@ -40,12 +40,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label  class="description">Переплёт</label>'
 html +=             '<div>'
-html +=                 '<select id="bindingBBMC" name="bindingBBMC" onchange="setDefaulParam()">'
-html +=                     '<option value="0">Термо</option>'
-html +=                     '<option value="1">7БЦ</option>'
-html +=                     '<option value="2">Скобы</option>'
-html +=                     '<option value="3">Пружина</option>'
-html +=                     '</select>'
+html +=                 '<select id="bindingBBMC" name="bindingBBMC" onchange="setDefaulParam()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
@@ -330,7 +325,7 @@ bbmcContainer.innerHTML = html;
 
 function BBMC() {
     getBBMCFormat();
-
+    getBindingBBMC();
     getPaperWeightBBMC1();
     getPrintedMachineBBMC1();
     getPaperFormatBBMC1(false);
@@ -1110,6 +1105,19 @@ function getStateElemBBMC(elem){
     };
 }
 
+function getBindingBBMC(){
+    var binding = document.getElementById("bindingBBMC"); 
+    var jsonPMR = jsonObj["BindingBBMC"];
+
+    if (binding.options.length == 0){
+        jsonPMR.forEach(function(elem){
+
+            binding.options[binding.options.length] = new Option(elem.name, elem.id);
+            
+        });
+    }
+}
+
 function getNumberOfCutsBBMC1(numberWidth, numberLength, allowance){
     var cuts = document.getElementById('checkBBMCCuts1');
     var numberOfCuts = 4;
@@ -1262,7 +1270,8 @@ function getPaperFormatBBMC1(firstCall) {
         var widthBBMC = document.getElementById('widthBBMC');
         var lengthBBMC = document.getElementById('lengthBBMC');
         var allowance = Number(document.getElementById('allowanceBBMC').value);
-
+        var binding = document.getElementById("bindingBBMC"); 
+        var jsonBND = jsonObj["BindingBBMC"];
         var map = new Map();
         var widthPrintedArea = 0;
         var lengthPrintedArea = 0;
@@ -1290,9 +1299,24 @@ function getPaperFormatBBMC1(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
+                    switch(+bindingBBMC.value) {
+                        case 0:
+                            width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
+                            length += jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
+                            break;
+                        case 1:
+                            width = jsonBND[1].bend + (width-2) + jsonBND[1].parting + root + jsonBND[1].parting + (width-2) + jsonBND[1].bend;
+                            length += jsonBND[1].bend + jsonBND[1].overmeasure + length + jsonBND[1].overmeasure + jsonBND[1].bend;
+                            break;
+                        case 2:
+                            width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
+                            length += jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
+                            break;
+                        case 3:
+                            break;
+                    }
                     
-                    width +=  (allowance * 2) // прибавляем припуски
-                    length += (allowance * 2)
+                    
 
                     if (width == length && width >= 200 && width <= 220){
                         if(elem.id == '7' ){ //id=7 72х104
@@ -2118,7 +2142,7 @@ function getPaperWeightBBMC1(flag) {
 }
 function getPaperWeightBBMC2() {
     var paperWeight = document.getElementById("paperWeightBBMC2");
-
+    var binding = +document.getElementById("bindingBBMC").value;
     if( paperWeight.options.length == 0) {
 
         var jsonOffset = jsonObj["Paper"]["Offset"];
@@ -2133,12 +2157,22 @@ function getPaperWeightBBMC2() {
         
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
-                
-                if(papetType == "Offset" && elem.id =="1"){
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+
+                if(binding != 3 && elem.depth > 0){
+                    if(papetType == "Offset" && elem.id =="1"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
                 } else {
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    if(papetType == "Offset" && elem.id =="1"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
                 }
+                
+                
             });
         } 
     }
