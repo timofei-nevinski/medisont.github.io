@@ -900,7 +900,13 @@ function calculateBBMC3() {
 function calculateBBMC4() {
 
     var labelCheck = document.getElementById('checkBBMC4');
-    var printing = Number(document.getElementById('printingBBMC').value);
+    var binding = +document.getElementById('bindingBBMC').value;
+    if(binding == 1){
+        var printing = (Number(document.getElementById('printingBBMC').value)*2);
+    }
+    else {
+        var printing = 0;
+    }
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC4());
     var printedMachine = document.getElementById("printedMachineBBMC4").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
@@ -988,9 +994,15 @@ function calculateBBMC4() {
     checkLabel +="Цена одного реза: " + jsonPM.cutPrice + "$" +  "<br />";
     var cutCost = numberOfPrintedSheets / jsonPM.ream * cut * jsonPM.cutPrice;
 
-    if(cutCost < jsonC.minCutPrice){
-        cutCost = jsonC.minCutPrice;
+    if(binding == 1){
+        if(cutCost < jsonC.minCutPrice){
+            cutCost = jsonC.minCutPrice;
+        }
     }
+    else {
+        cutCost = 0;
+    }
+    
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
 
     if(varnishing == "3"){
@@ -1758,7 +1770,7 @@ function getPaperFormatBBMC4(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
-                    
+                    width *=2;
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -2022,7 +2034,7 @@ function numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    
+    width *=2;
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
