@@ -326,6 +326,7 @@ bbmcContainer.innerHTML = html;
 function BBMC() {
     getBBMCFormat();
     getBindingBBMC();
+
     getPaperWeightBBMC1();
     getPrintedMachineBBMC1();
     getPaperFormatBBMC1(false);
@@ -2197,11 +2198,21 @@ function getPaperWeightBBMC3() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-                if(papetType == "Glossy" && elem.id =="2"){
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+
+                if(binding != 3 && elem.depth > 0){
+                    if(papetType == "Glossy" && elem.id =="2"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
                 } else {
-                    htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    if(papetType == "Glossy" && elem.id =="2"){
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                    } else {
+                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                    }
                 }
+                
             });
         } 
     }
