@@ -63,7 +63,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Страниц</label>'
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC1" class="element text medium" type="number" min="0" oninput="calculateBBMC1()"    value="4" /> '
+html +=                 '<input id="pagesBBMC1" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="4" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-6">'				
@@ -123,7 +123,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC2" class="element text medium" type="number" min="0" oninput="calculateBBMC2()"    value="200" /> '
+html +=                 '<input id="pagesBBMC2" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="200" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'					
@@ -179,7 +179,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC3" class="element text medium" type="number" min="0" oninput="calculateBBMC3()"    value="0" /> '
+html +=                 '<input id="pagesBBMC3" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="0" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'					
@@ -236,7 +236,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC4" class="element text medium" type="number" min="0" oninput="calculateBBMC4()"    value="0" /> '
+html +=                 '<input id="pagesBBMC4" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="0" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'					
@@ -327,9 +327,7 @@ function BBMC() {
     getBBMCFormat();
     getBindingBBMC();
 
-    getPaperWeightBBMC1();
-    getPrintedMachineBBMC1();
-    getPaperFormatBBMC1(false);
+    
 
     getPaperWeightBBMC2();
     getPrintedMachineBBMC2();
@@ -343,6 +341,10 @@ function BBMC() {
     getPrintedMachineBBMC4();
     getPaperFormatBBMC4(false);
 
+    getPaperWeightBBMC1();
+    getPrintedMachineBBMC1();
+    getPaperFormatBBMC1(false);
+
     getRentabilityBBMC();
 
     getStateElemBBMC(true);
@@ -350,17 +352,19 @@ function BBMC() {
 }
 
 function fullCalculateBBMC(){
-    calculateBBMC1();
+    
     calculateBBMC2();
     calculateBBMC3();
     calculateBBMC4();
+    calculateBBMC1();
 }
 
 function getPaperFormatBBMC(flag){
-    getPaperFormatBBMC1(flag);
+    
     getPaperFormatBBMC2(flag);
     getPaperFormatBBMC3(flag);
     getPaperFormatBBMC4(flag);
+    getPaperFormatBBMC1(flag);
 }
 
 function calculateBBMC1() {
@@ -1275,11 +1279,9 @@ function getPaperFormatBBMC1(firstCall) {
         var jsonBND = jsonObj["Paper"]["BindingBBMC"];
 
         var paperWeight2 = document.getElementById("paperWeightBBMC2").value; 
-        var paperType2 = paperWeight2.split("_")[0]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
-        var jsonP2 = jsonObj["Paper"][paperType2]
+        var jsonP2 = jsonObj["Paper"][paperWeight2.split("_")[0]][paperWeight2.split("_")[1]]
         var paperWeight3 = document.getElementById("paperWeightBBMC3").value; 
-        var paperType3 = paperWeight3.split("_")[0]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
-        var jsonP3 = jsonObj["Paper"][paperType3]
+        var jsonP3 = jsonObj["Paper"][paperWeight3.split("_")[0]][paperWeight3.split("_")[1]]
 
         var pages1 = +document.getElementById("pagesBBMC1").value;
         var pages2 = +document.getElementById("pagesBBMC2").value;
@@ -1318,17 +1320,17 @@ function getPaperFormatBBMC1(firstCall) {
                         case 0:
                             root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[0].spineRoot;
                             width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
-                            length += jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
+                            length = jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
                             break;
                         case 1:
                             root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[1].spineRoot;
                             width = jsonBND[1].bend + (width-2) + jsonBND[1].parting + root + jsonBND[1].parting + (width-2) + jsonBND[1].bend;
-                            length += jsonBND[1].bend + jsonBND[1].overmeasure + length + jsonBND[1].overmeasure + jsonBND[1].bend;
+                            length = jsonBND[1].bend + jsonBND[1].overmeasure + length + jsonBND[1].overmeasure + jsonBND[1].bend;
                             break;
                         case 2:
                             root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[2].spineRoot;
                             width = jsonBND[2].overmeasure + width + root + width + jsonBND[2].overmeasure;
-                            length += jsonBND[2].overmeasure + length + jsonBND[2].overmeasure;
+                            length = jsonBND[2].overmeasure + length + jsonBND[2].overmeasure;
                             break;
                         case 3:
                             break;
