@@ -432,23 +432,27 @@
             {
                 "id": "0",
                 "name": "Термо",
-                "overmeasure": 5
+                "overmeasure": 5,
+                "spineRoot": 1
             },
             {
                 "id": "1",
                 "name": "7БЦ",
                 "bend": 20,
                 "parting": 9,
-                "overmeasure": 3
+                "overmeasure": 3,
+                "spineRoot": 4
             },
             {
                 "id": "2",
                 "name": "Скобы",
-                "overmeasure": 5
+                "overmeasure": 5,
+                "spineRoot": 1
             },
             {
                 "id": "3",
                 "name": "Пружина"
+                
             }
         ],
 

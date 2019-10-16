@@ -1108,7 +1108,7 @@ function getStateElemBBMC(elem){
 
 function getBindingBBMC(){
     var binding = document.getElementById("bindingBBMC"); 
-    var jsonPMR = jsonObj["BindingBBMC"];
+    var jsonPMR = jsonObj["Paper"]["BindingBBMC"];
 
     if (binding.options.length == 0){
         jsonPMR.forEach(function(elem){
@@ -1272,14 +1272,28 @@ function getPaperFormatBBMC1(firstCall) {
         var lengthBBMC = document.getElementById('lengthBBMC');
         var allowance = Number(document.getElementById('allowanceBBMC').value);
         var binding = document.getElementById("bindingBBMC"); 
-        var jsonBND = jsonObj["BindingBBMC"];
+        var jsonBND = jsonObj["Paper"]["BindingBBMC"];
+
+        var paperWeight2 = document.getElementById("paperWeightBBMC2").value; 
+        var paperType2 = paperWeight2.split("_")[0]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+        var jsonP2 = jsonObj["Paper"][paperType2]
+        var paperWeight3 = document.getElementById("paperWeightBBMC3").value; 
+        var paperType3 = paperWeight3.split("_")[0]; //из value выбранного элемента option получаем ID форматов поддерживаемых выбранным типом бумаги
+        var jsonP3 = jsonObj["Paper"][paperType3]
+
+        var pages1 = +document.getElementById("pagesBBMC1").value;
+        var pages2 = +document.getElementById("pagesBBMC2").value;
+        var pages3 = +document.getElementById("pagesBBMC3").value;
+        var pages4 = +document.getElementById("pagesBBMC4").value;
+
+
         var map = new Map();
         var widthPrintedArea = 0;
         var lengthPrintedArea = 0;
         var width = 0;
         var length = 0;
         var numberOfPrintedSheets = 0;
-
+        var root = 0;
         paperFormatId.forEach(function(formatId){ //проходимся по массиву formatID и находим какие id есть у каджого типа бумаги
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
@@ -1302,16 +1316,19 @@ function getPaperFormatBBMC1(firstCall) {
 
                     switch(+bindingBBMC.value) {
                         case 0:
+                            root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[0].spineRoot;
                             width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
                             length += jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
                             break;
                         case 1:
+                            root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[1].spineRoot;
                             width = jsonBND[1].bend + (width-2) + jsonBND[1].parting + root + jsonBND[1].parting + (width-2) + jsonBND[1].bend;
                             length += jsonBND[1].bend + jsonBND[1].overmeasure + length + jsonBND[1].overmeasure + jsonBND[1].bend;
                             break;
                         case 2:
-                            width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
-                            length += jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
+                            root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[2].spineRoot;
+                            width = jsonBND[2].overmeasure + width + root + width + jsonBND[2].overmeasure;
+                            length += jsonBND[2].overmeasure + length + jsonBND[2].overmeasure;
                             break;
                         case 3:
                             break;
@@ -1447,7 +1464,7 @@ function getPaperFormatBBMC2(firstCall) {
         var widthBBMC = document.getElementById('widthBBMC');
         var lengthBBMC = document.getElementById('lengthBBMC');
         var allowance = Number(document.getElementById('allowanceBBMC').value);
-
+        var binding = document.getElementById("bindingBBMC"); 
         var map = new Map();
         var widthPrintedArea = 0;
         var lengthPrintedArea = 0;
@@ -2181,7 +2198,7 @@ function getPaperWeightBBMC2() {
 }
 function getPaperWeightBBMC3() {
     var paperWeight = document.getElementById("paperWeightBBMC3");
-
+    var binding = document.getElementById("bindingBBMC"); 
 
     if( paperWeight.options.length == 0 ) {
 
