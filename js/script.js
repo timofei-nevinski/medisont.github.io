@@ -60,10 +60,10 @@ html +=         '<div class="col-md-3 padding-none">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Обложка</h3>'
 html +=         '</div>'
-html +=         '<div class="col-md-12">'				
-html +=             '<label class="description">Страниц</label>'
+html +=         '<div class="col-md-12">'
+html +=             '<label class="description"><br/></label>'				
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC1" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="4" /> '
+html +=                 '<input class="hidden-input" readonly/>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-6">'				
@@ -121,7 +121,7 @@ html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Блок</h3>'
 html +=         '</div>'
 html +=         '<div class="col-md-12">'				
-html +=             '<label class="description"><br/></label>'
+html +=             '<label class="description">Страниц</label>'
 html +=             '<div>'
 html +=                 '<input id="pagesBBMC2" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="200" /> '
 html +=             '</div> '
@@ -233,10 +233,10 @@ html +=         '<div class="col-md-3 padding-none">'
 html +=         '<div class="col-md-12 middle-header">'
 html +=                 '<h3>Форзацы</h3>'
 html +=         '</div>'
-html +=         '<div class="col-md-12">'				
-html +=             '<label class="description"><br/></label>'
+html +=         '<div class="col-md-12">'
+html +=             '<label class="description"><br/></label>'				
 html +=             '<div>'
-html +=                 '<input id="pagesBBMC4" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)"    value="0" /> '
+html +=                 '<input class="hidden-input" readonly/>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-12">'					
@@ -367,6 +367,13 @@ function getPaperFormatBBMC(flag){
     getPaperFormatBBMC1(flag);
 }
 
+function getPaperWeightBBMC(){
+    getPaperWeightBBMC1();
+    getPaperWeightBBMC2();
+    getPaperWeightBBMC3();
+    getPaperWeightBBMC4();
+}
+
 function calculateBBMC1() {
 
     var labelCheck = document.getElementById('checkBBMC1');
@@ -375,7 +382,7 @@ function calculateBBMC1() {
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
     var turnoverElem = document.getElementById('turnoverBBMC1');
-    var pages = Number(document.getElementById('pagesBBMC1').value);
+    
     var paperFormat = document.getElementById("paperFormatBBMC1").value;
     var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
     var varnishing = document.getElementById('varnishingBBMC1').value;
@@ -1211,6 +1218,7 @@ function setDefaulParam() {
             turnover.value = 0;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
+            
             break;
         case 1:
             var face = document.getElementById("faceBBMC1");
@@ -1219,6 +1227,7 @@ function setDefaulParam() {
             turnover.value = 1;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 1;
+            
             break;
         case 2:
             var face = document.getElementById("faceBBMC1");
@@ -1227,6 +1236,7 @@ function setDefaulParam() {
             turnover.value = 4;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
+           
             break;
         case 3: 
             var face = document.getElementById("faceBBMC1");
@@ -1235,11 +1245,11 @@ function setDefaulParam() {
             turnover.value = 4;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
+            
             break;
     } 
 
-    getPaperWeightBBMC1(true);
-    fullCalculateBBMC();
+    getPaperWeightBBMC();
 }
 
 
@@ -1283,10 +1293,10 @@ function getPaperFormatBBMC1(firstCall) {
         var paperWeight3 = document.getElementById("paperWeightBBMC3").value; 
         var jsonP3 = jsonObj["Paper"][paperWeight3.split("_")[0]][paperWeight3.split("_")[1]]
 
-        var pages1 = +document.getElementById("pagesBBMC1").value;
+        
         var pages2 = +document.getElementById("pagesBBMC2").value;
         var pages3 = +document.getElementById("pagesBBMC3").value;
-        var pages4 = +document.getElementById("pagesBBMC4").value;
+        
 
 
         var map = new Map();
@@ -2162,8 +2172,8 @@ function getPaperWeightBBMC1(flag) {
 }
 function getPaperWeightBBMC2() {
     var paperWeight = document.getElementById("paperWeightBBMC2");
-    var binding = +document.getElementById("bindingBBMC").value;
-    if( paperWeight.options.length == 0) {
+    var binding = document.getElementById("bindingBBMC");
+    if( paperWeight.options.length == 0 || binding.value == 3) {
 
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -2178,11 +2188,13 @@ function getPaperWeightBBMC2() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
 
-                if(binding != 3 && elem.depth > 0){
-                    if(papetType == "Offset" && elem.id =="1"){
-                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
-                    } else {
-                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                if(binding.value != 3){
+                    if( (elem.depth) != undefined){
+                        if(papetType == "Offset" && elem.id =="1"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
                     }
                 } else {
                     if(papetType == "Offset" && elem.id =="1"){
@@ -2202,7 +2214,7 @@ function getPaperWeightBBMC3() {
     var paperWeight = document.getElementById("paperWeightBBMC3");
     var binding = document.getElementById("bindingBBMC"); 
 
-    if( paperWeight.options.length == 0 ) {
+    if( paperWeight.options.length == 0  || binding.value == 3) {
 
         var jsonOffset = jsonObj["Paper"]["Offset"];
         var jsonGlossy = jsonObj["Paper"]["Glossy"];
@@ -2217,12 +2229,13 @@ function getPaperWeightBBMC3() {
         function getTypePaper(objJSON, htmlObj, papetType){
             objJSON.forEach(function(elem) {
                 
-
-                if(binding != 3 && elem.depth > 0){
-                    if(papetType == "Glossy" && elem.id =="2"){
-                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
-                    } else {
-                        htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                if(binding.value != 3){
+                    if( (elem.depth) != undefined){
+                        if(papetType == "Glossy" && elem.id =="2"){
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id, true, true);
+                        } else {
+                            htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
+                        }
                     }
                 } else {
                     if(papetType == "Glossy" && elem.id =="2"){
@@ -2231,7 +2244,6 @@ function getPaperWeightBBMC3() {
                         htmlObj.options[htmlObj.options.length] = new Option(elem.name, papetType + "_" + elem.id);
                     }
                 }
-                
             });
         } 
     }
