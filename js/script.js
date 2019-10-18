@@ -608,7 +608,7 @@ function calculateBBMC2() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
-    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC1")));
+    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC2")));
 
     jsonFP.some(function(elem) {
         
