@@ -621,8 +621,7 @@ function calculateBBMC2() {
         }
     });
 
-    numberOfPrintedSheets *= montage
-    
+    numberOfPrintedSheets *= 2;    
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC2()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
     
