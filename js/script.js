@@ -374,6 +374,8 @@ function getPaperWeightBBMC(){
     getPaperWeightBBMC4();
 }
 
+
+
 function calculateBBMC1() {
 
     var labelCheck = document.getElementById('checkBBMC1');
@@ -589,7 +591,7 @@ function calculateBBMC2() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
-    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * 2));
+    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC1")));
 
     jsonFP.some(function(elem) {
         
@@ -1310,7 +1312,7 @@ function getPaperFormatBBMC1(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 5){
+                    if(formatBBMC != 6){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1431,6 +1433,7 @@ function getPaperFormatBBMC1(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -1457,6 +1460,47 @@ function getPaperFormatBBMC1(firstCall) {
         });
     }
     getPrintedMachineBBMC1();
+}
+
+function getNumberOfPartsBBMC(paperFormat) {
+    var paperFormat = document.getElementById(paperFormat).value; 
+    var formatBBMC = +document.getElementById('formatBBMC').value;
+    var width = 0;
+    var length = 0;
+    var allowance = 0;
+    var numberOfParts = 0;
+
+    if(formatBBMC == 1){
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    } else {
+        var jsonPCuttingEnvelopes = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPCuttingEnvelopes.width;
+        length = jsonPCuttingEnvelopes.length;
+    } 
+    
+
+    width = width + (allowance * 2) // прибавляем припуски
+    length = length + (allowance * 2)
+
+    if(paperFormat == "0" || paperFormat == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+        numberOfParts = 2;
+    } else if (paperFormat == "7"){
+        if (width == length && width >= 165 && width <= 220){
+            numberOfParts = 6;
+        } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
+            numberOfParts = 6;
+        } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
+            numberOfParts = 6;
+        }
+        else {
+            numberOfParts = 4;
+        }
+    } else {
+        numberOfParts = 4;
+    }
+
+    return numberOfParts
 }
 
 function getPaperFormatBBMC2(firstCall) {
@@ -1488,7 +1532,7 @@ function getPaperFormatBBMC2(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 5){
+                    if(formatBBMC != 6){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1506,7 +1550,7 @@ function getPaperFormatBBMC2(firstCall) {
 
                     
 
-                    
+                    width *=2;
                     width +=  (allowance * 2) // прибавляем припуски
                     length += (allowance * 2)
 
@@ -1593,6 +1637,7 @@ function getPaperFormatBBMC2(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -1649,7 +1694,7 @@ function getPaperFormatBBMC3(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 5){
+                    if(formatBBMC != 6){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1752,6 +1797,7 @@ function getPaperFormatBBMC3(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -1808,7 +1854,7 @@ function getPaperFormatBBMC4(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 5){
+                    if(formatBBMC != 6){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1911,6 +1957,7 @@ function getPaperFormatBBMC4(firstCall) {
                                     i = 0;
                                 for (let [key, value] of map) {     // get data sorted
                                     if(i == 0){
+                                        isNaN(value) ? value = Infinity: "";
                                         maxV=value;
                                         maxK = key;
                                         i++;
@@ -1957,7 +2004,7 @@ function numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 5){
+    if(formatBBMC != 6){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2018,7 +2065,7 @@ function numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 5){
+    if(formatBBMC != 6){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2028,7 +2075,7 @@ function numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, positio
         length = Number(document.getElementById('lengthBBMC').value);
     }
 
-    
+    width *=2;
     width +=  (allowance * 2) // прибавляем припуски
     length += (allowance * 2)
         
@@ -2062,7 +2109,7 @@ function numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 5){
+    if(formatBBMC != 6){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2106,7 +2153,7 @@ function numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 5){
+    if(formatBBMC != 6){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2581,7 +2628,7 @@ function getPrintedMachineBBMC1(){
     var turnover = Number(document.getElementById('turnoverBBMC1').value);
     var pantone = Number(document.getElementById('pantoneBBMC1').value); 
     var varnishing = document.getElementById('varnishingBBMC1').value;
-
+    var oldValue = +printedMachine.value;
     printedMachine.options.length = 0;
     var jsonPM = jsonObj["PrintingMachine"];
     var paperWeightValue = document.getElementById("paperWeightBBMC1").value; //получаем value выбранного элемента option по ID элемента select 
@@ -2636,7 +2683,12 @@ function getPrintedMachineBBMC1(){
         }     
     });
     
-    calculateBBMC1();
+    if(oldValue == +printedMachine.value){
+        calculateBBMC1();
+    }
+    else{
+        getPaperFormatBBMC1(false);
+    }
 }
 
 function getPrintedMachineBBMC2(){
@@ -2646,6 +2698,7 @@ function getPrintedMachineBBMC2(){
     var pantone = document.getElementById('pantoneBBMC2'); 
     var varnishing = document.getElementById('varnishingBBMC2').value;
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC2").value;
+    var oldValue = +printedMachine.value;
 
     if(colorfulnessBBMC == 0){
         face = 1;
@@ -2715,7 +2768,12 @@ function getPrintedMachineBBMC2(){
         }     
     });
     
-    calculateBBMC2();
+    if(oldValue == printedMachine.value){
+        calculateBBMC2();
+    }
+    else{
+        getPaperFormatBBMC2(false);
+    }
 }
 function getPrintedMachineBBMC3(){
     var printedMachine = document.getElementById('printedMachineBBMC3');
@@ -2724,6 +2782,7 @@ function getPrintedMachineBBMC3(){
     var pantone = Number(document.getElementById('pantoneBBMC3').value); 
     var varnishing = document.getElementById('varnishingBBMC3').value;
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC3").value;
+    var oldValue = +printedMachine.value;
 
     if(colorfulnessBBMC == 0){
         face = 0;
@@ -2794,15 +2853,22 @@ function getPrintedMachineBBMC3(){
         }     
     });
     
-    calculateBBMC3();
+     if(oldValue == +printedMachine.value){
+        calculateBBMC3();
+    }
+    else{
+        getPaperFormatBBMC3(false);
+    }
 }
 function getPrintedMachineBBMC4(){
     var printedMachine = document.getElementById('printedMachineBBMC4');
+
     var face = 0;
     var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC4').value); 
     var varnishing = document.getElementById('varnishingBBMC4').value;
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC4").value;
+    var oldValue = +printedMachine.value;
 
     if(colorfulnessBBMC == 0){
         face = 0;
@@ -2872,8 +2938,15 @@ function getPrintedMachineBBMC4(){
             } 
         }     
     });
+
+    if(oldValue == +printedMachine.value){
+        calculateBBMC4();
+    }
+    else{
+        getPaperFormatBBMC4(false);
+    }
     
-    calculateBBMC4();
+    
 }
 //бирдекели
 var bierdequelContainer = document.getElementById("bierdequelContainer");
