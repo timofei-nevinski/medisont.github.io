@@ -496,10 +496,27 @@ function calculateBBMC1() {
 
     checkLabel +="Скорость печати: " + (jsonPM.printSpeed * printSpeedRatio) + "<br />";
 
+    var paperChargingTime = jsonPM.paperChargingTime;
+
+    var coeff = 1;
+
+    if(jsonP.weight <= 170){
+        coeff = Math.ceil((allFittingPaper + numberOfPrintedSheets) / 3000);
+        paperChargingTime += (120 * coeff);
+
+    } else if(jsonP.weight >= 200 && jsonP.weight <= 250) {
+        coeff = Math.ceil((allFittingPaper + numberOfPrintedSheets) / 1900);
+        paperChargingTime += (90 * coeff);
+    }
+    else if (jsonP.weight >=300 || paperType == "Carton"){
+        coeff = Math.ceil((allFittingPaper + numberOfPrintedSheets) / 850);
+        paperChargingTime += (60 * coeff);
+    }
+
     if(jsonPM.printSpeed != 0){
         var iterations = Math.ceil(face / jsonPM.numberOfSections) + Math.ceil(turnover / jsonPM.numberOfSections) + varnishing;
 
-        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / jsonPM.paperChargingTime) * iterations) * 60;
+        var chargingTime = (((allFittingPaper + numberOfPrintedSheets) / paperChargingTime) * iterations) * 60;
         var dateChanging = new Date(null);
         dateChanging.setSeconds(chargingTime); // specify value for SECONDS here
         checkLabel +="Время на зарядку бумаги: " + dateChanging.getUTCHours() + " ч " + dateChanging.getMinutes() + " м " + dateChanging.getSeconds() + " сек" + "<br />";
