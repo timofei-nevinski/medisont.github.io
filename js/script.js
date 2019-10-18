@@ -1326,7 +1326,7 @@ function getPaperFormatBBMC1(firstCall) {
                         length = Number(document.getElementById('lengthBBMC').value);
                     }
 
-                    switch(+bindingBBMC.value) {
+                    switch(+binding.value) {
                         case 0:
                             root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[0].spineRoot;
                             width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
@@ -1943,6 +1943,17 @@ function numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, positio
 
     var formatBBMC = +document.getElementById('formatBBMC').value;
     var allowance = Number(document.getElementById('allowanceBBMC').value);
+    var binding = document.getElementById("bindingBBMC"); 
+    var jsonBND = jsonObj["Paper"]["BindingBBMC"];
+
+    var paperWeight2 = document.getElementById("paperWeightBBMC2").value; 
+    var jsonP2 = jsonObj["Paper"][paperWeight2.split("_")[0]][paperWeight2.split("_")[1]]
+    var paperWeight3 = document.getElementById("paperWeightBBMC3").value; 
+    var jsonP3 = jsonObj["Paper"][paperWeight3.split("_")[0]][paperWeight3.split("_")[1]]
+
+    
+    var pages2 = +document.getElementById("pagesBBMC2").value;
+    var pages3 = +document.getElementById("pagesBBMC3").value;
     var width = 0;
     var length = 0;
 
@@ -1957,8 +1968,25 @@ function numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, positio
     }
 
     
-    width +=  (allowance * 2) // прибавляем припуски
-    length += (allowance * 2)
+    switch(+bindingBBMC.value) {
+        case 0:
+            root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[0].spineRoot;
+            width = jsonBND[0].overmeasure + width + root + width + jsonBND[0].overmeasure;
+            length = jsonBND[0].overmeasure + length + jsonBND[0].overmeasure;
+            break;
+        case 1:
+            root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[1].spineRoot;
+            width = jsonBND[1].bend + (width-2) + jsonBND[1].parting + root + jsonBND[1].parting + (width-2) + jsonBND[1].bend;
+            length = jsonBND[1].bend + jsonBND[1].overmeasure + length + jsonBND[1].overmeasure + jsonBND[1].bend;
+            break;
+        case 2:
+            root = (jsonP2.depth * pages2) + (jsonP3.depth * pages3) + jsonBND[2].spineRoot;
+            width = jsonBND[2].overmeasure + width + root + width + jsonBND[2].overmeasure;
+            length = jsonBND[2].overmeasure + length + jsonBND[2].overmeasure;
+            break;
+        case 3:
+            break;
+    }
         
     if(position == "W"){
         if (widthPrintedArea >= width && lengthPrintedArea >= length ){
