@@ -581,7 +581,7 @@ function calculateBBMC2() {
 
     if(colorfulnessBBMC == 0){
         face = 1;
-        turnover = 0;
+        turnover = 1;
     } else if(colorfulnessBBMC == 1){
         face = 4;
         turnover = 4;
@@ -766,7 +766,7 @@ function calculateBBMC3() {
         turnover = 0;
     } else if(colorfulnessBBMC == 1){
         face = 1;
-        turnover = 0;
+        turnover = 1;
     } else if(colorfulnessBBMC == 2){
         face = 4;
         turnover = 4;
