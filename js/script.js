@@ -10065,7 +10065,7 @@ function calculateStickers() {
     
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
-    allCost += (printing * jsonPP.cutting * +cutting.value);
+    allCost += (numberOfPrintedSheets * jsonPP.cutting * +cutting.value);
     checkLabel +="Стоимость Надрезки: " + (numberOfPrintedSheets * jsonPP.cutting * +cutting.value).toFixed(2) + "$" +  "<br />";
 
     var jsonL = jsonObj["Laminade"][+laminade.value];
@@ -11386,8 +11386,8 @@ function calculatePrintedField() {
     allCost += (numberOfPrintedSheets * jsonPast.price );
     checkLabel +="Стоимость Кашировки: " + (numberOfPrintedSheets * jsonPast.price ).toFixed(2) + "$" +  "<br />";
 
-    allCost += (printing * jsonPP.cutting * +cutting.value);
-    checkLabel +="Стоимость Надрезки: " + (printing * jsonPP.cutting * +cutting.value).toFixed(2) + "$" +  "<br />";
+    allCost += (numberOfPrintedSheets * jsonPP.cutting * +cutting.value);
+    checkLabel +="Стоимость Надрезки: " + (numberOfPrintedSheets * jsonPP.cutting * +cutting.value).toFixed(2) + "$" +  "<br />";
 
     allCost += (printing * jsonPP.insertSheetsInBlock * +insertSheetsInBlock.value);
     checkLabel +="Стоимость вставки листов в блок: " + (printing * jsonPP.insertSheetsInBlock * +insertSheetsInBlock.value).toFixed(2) + "$" +  "<br />";
