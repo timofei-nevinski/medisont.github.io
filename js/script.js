@@ -564,8 +564,6 @@ function calculateBBMC2() {
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC2());
     var printedMachine = document.getElementById("printedMachineBBMC2").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
-
-
     var paperFormat = document.getElementById("paperFormatBBMC2").value;
     var pages = +document.getElementById("pagesBBMC2").value;
     var cut = Number(document.getElementById('checkBBMCCuts2').textContent);
@@ -760,7 +758,7 @@ function calculateBBMC3() {
     var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC3').value);
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC3").value;
-    var montage = Math.ceil(pages / (getNumberOfProductsBBMC3() * 2));
+    var montage = Math.ceil(pages / (getNumberOfProductsBBMC3() * getNumberOfPartsBBMC("paperFormatBBMC3")));
 
     if(colorfulnessBBMC == 0){
         face = 0;
@@ -807,11 +805,12 @@ function calculateBBMC3() {
         }
     });
 
-    numberOfPrintedSheets *= montage;
+    numberOfPrintedSheets *= (montage * 2);
     
+    checkLabel += "Режем на: " + getNumberOfPartsBBMC("paperFormatBBMC3")+ "<br />";
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC3()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
-
+    
     checkLabel += "Количество монтажей: " + montage + "<br /><hr>";
 
     var jsonPMR = jsonObj["PrintingMachine"][printedMachine]["Rentability"][rentabilityId];
