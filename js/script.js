@@ -581,7 +581,7 @@ function calculateBBMC2() {
 
     if(colorfulnessBBMC == 0){
         face = 1;
-        turnover = 0;
+        turnover = 1;
     } else if(colorfulnessBBMC == 1){
         face = 4;
         turnover = 4;
@@ -608,7 +608,7 @@ function calculateBBMC2() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
-    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC1")));
+    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC2")));
 
     jsonFP.some(function(elem) {
         
@@ -621,8 +621,7 @@ function calculateBBMC2() {
         }
     });
 
-    numberOfPrintedSheets *= montage
-    
+    numberOfPrintedSheets *= 2;    
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC2()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
     
@@ -766,7 +765,7 @@ function calculateBBMC3() {
         turnover = 0;
     } else if(colorfulnessBBMC == 1){
         face = 1;
-        turnover = 0;
+        turnover = 1;
     } else if(colorfulnessBBMC == 2){
         face = 4;
         turnover = 4;
