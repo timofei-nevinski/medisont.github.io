@@ -621,7 +621,9 @@ function calculateBBMC2() {
         }
     });
 
-    numberOfPrintedSheets *= 2;    
+    numberOfPrintedSheets *= (montage * 2);
+    
+    checkLabel += "Режем на: " + getNumberOfPartsBBMC("paperFormatBBMC2")+ "<br />";
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC2()+ "<br />";
     checkLabel += "Количество печатных листов: " + numberOfPrintedSheets + "<br /><hr>";
     
@@ -2376,26 +2378,65 @@ function getNumberOfProductsBBMC1() {
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var labelCheck = document.getElementById('checkBBMCField1');
     var printing = Number(document.getElementById('printingBBMC').value);
-
+    var formatBBMC = document.getElementById('formatBBMC').value;
+    var paperFormat = document.getElementById("paperFormatBBMC1").value; //получаем элемент по его ID
     var numberOfPrintedSheets = 0;
     var checkLabel = "";
     var widthPrintedArea = 0;
     var lengthPrintedArea = 0;
 
     var jsonCPF = jsonObj["Paper"]["Format"];
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 6){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
         
     jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
         
-        if(elem.id == paperFormatB){
+        if(elem.id == paperFormat){
             paperWidth = elem.width;
             paperLength = elem.length;
 
-            paperWidth += (allowance * 2) // прибавляем припуски
-            paperLength += (allowance * 2)
-
-            widthPrintedArea = (elem.width / 2) - 2; 
-            lengthPrintedArea = (elem.length / 2) -2;
-            numberOfParts = 4;
+            if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                widthPrintedArea = elem.width - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 2;
+            } else if (elem.id == "7"){
+                if (width == length && width >= 165 && width <= 220){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                }
+                else {
+                    widthPrintedArea = (elem.width / 2) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 4;
+                }
+            } else {
+                widthPrintedArea = (elem.width / 2) - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 4;
+            }
         }
     });
 
@@ -2439,30 +2480,68 @@ function getNumberOfProductsBBMC1() {
 function getNumberOfProductsBBMC2() {
 
     var allowance = document.getElementById('allowanceBBMC').value;
-    var paperFormatB = document.getElementById("paperFormatBBMC2").value; //получаем элемент по его ID
     var printedMachine = document.getElementById("printedMachineBBMC2").value;
     var labelCheck = document.getElementById('checkBBMCField2');
     var printing = Number(document.getElementById('printingBBMC').value);
-
+    var formatBBMC = document.getElementById('formatBBMC').value;
+    var paperFormat = document.getElementById("paperFormatBBMC2").value; //получаем элемент по его ID
     var numberOfPrintedSheets = 0;
     var checkLabel = "";
     var widthPrintedArea = 0;
     var lengthPrintedArea = 0;
 
     var jsonCPF = jsonObj["Paper"]["Format"];
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 6){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+    width = width * 2;
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
         
     jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
         
-        if(elem.id == paperFormatB){
+        if(elem.id == paperFormat){
             paperWidth = elem.width;
             paperLength = elem.length;
 
-            paperWidth += (allowance * 2) // прибавляем припуски
-            paperLength += (allowance * 2)
-
-            widthPrintedArea = (elem.width / 2) - 2; 
-            lengthPrintedArea = (elem.length / 2) -2;
-            numberOfParts = 4;
+            if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                widthPrintedArea = elem.width - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 2;
+            } else if (elem.id == "7"){
+                if (width == length && width >= 165 && width <= 220){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                }
+                else {
+                    widthPrintedArea = (elem.width / 2) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 4;
+                }
+            } else {
+                widthPrintedArea = (elem.width / 2) - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 4;
+            }
         }
     });
 
@@ -2510,26 +2589,65 @@ function getNumberOfProductsBBMC3() {
     var printedMachine = document.getElementById("printedMachineBBMC3").value;
     var labelCheck = document.getElementById('checkBBMCField3');
     var printing = Number(document.getElementById('printingBBMC').value);
-
+    var formatBBMC = document.getElementById('formatBBMC').value;
+    var paperFormat = document.getElementById("paperFormatBBMC3").value; //получаем элемент по его ID
     var numberOfPrintedSheets = 0;
     var checkLabel = "";
     var widthPrintedArea = 0;
     var lengthPrintedArea = 0;
 
     var jsonCPF = jsonObj["Paper"]["Format"];
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 6){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+    width = width * 2;
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
         
     jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
         
-        if(elem.id == paperFormatB){
+        if(elem.id == paperFormat){
             paperWidth = elem.width;
             paperLength = elem.length;
 
-            paperWidth += (allowance * 2) // прибавляем припуски
-            paperLength += (allowance * 2)
-
-            widthPrintedArea = (elem.width / 2) - 2; 
-            lengthPrintedArea = (elem.length / 2) -2;
-            numberOfParts = 4;
+            if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                widthPrintedArea = elem.width - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 2;
+            } else if (elem.id == "7"){
+                if (width == length && width >= 165 && width <= 220){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                }
+                else {
+                    widthPrintedArea = (elem.width / 2) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 4;
+                }
+            } else {
+                widthPrintedArea = (elem.width / 2) - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 4;
+            }
         }
     });
 
@@ -2577,26 +2695,65 @@ function getNumberOfProductsBBMC4() {
     var printedMachine = document.getElementById("printedMachineBBMC4").value;
     var labelCheck = document.getElementById('checkBBMCField4');
     var printing = Number(document.getElementById('printingBBMC').value);
-
+    var formatBBMC = document.getElementById('formatBBMC').value;
+    var paperFormat = document.getElementById("paperFormatBBMC4").value; //получаем элемент по его ID
     var numberOfPrintedSheets = 0;
     var checkLabel = "";
     var widthPrintedArea = 0;
     var lengthPrintedArea = 0;
 
     var jsonCPF = jsonObj["Paper"]["Format"];
+    var width = 0;
+    var length = 0;
+
+    if(formatBBMC != 6){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
+
+
+    width +=  (allowance * 2) // прибавляем припуски
+    length += (allowance * 2)
         
     jsonCPF.forEach(function(elem) { //вычисляем размер запечатываемой области, делим лист на 4, для этого каждый размер делим на 2, подчищаем 2мм,
         
-        if(elem.id == paperFormatB){
+        if(elem.id == paperFormat){
             paperWidth = elem.width;
             paperLength = elem.length;
 
-            paperWidth += (allowance * 2) // прибавляем припуски
-            paperLength += (allowance * 2)
-
-            widthPrintedArea = (elem.width / 2) - 2; 
-            lengthPrintedArea = (elem.length / 2) -2;
-            numberOfParts = 4;
+            if(elem.id == "0" || elem.id == "1"){ // 0 и 1 это id для форматов самоклеящейся бумаги
+                widthPrintedArea = elem.width - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 2;
+            } else if (elem.id == "7"){
+                if (width == length && width >= 165 && width <= 220){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (width >= 165 && width <= 220 && length >= 400 && length <= 500){
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                } else if (length >= 165 && length <= 220 && width >= 400 && width <= 500) {
+                    widthPrintedArea = (elem.width / 3) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 6;
+                }
+                else {
+                    widthPrintedArea = (elem.width / 2) - 2; 
+                    lengthPrintedArea = (elem.length / 2) -2;
+                    numberOfParts = 4;
+                }
+            } else {
+                widthPrintedArea = (elem.width / 2) - 2; 
+                lengthPrintedArea = (elem.length / 2) -2;
+                numberOfParts = 4;
+            }
         }
     });
 
