@@ -90,9 +90,7 @@ html +=             '<div>'
 html +=                 '<select id="varnishingBBMC1" name="varnishingBBMC1" onchange="getPrintedMachineBBMC1()">'
 html +=                     '<option value="0">Нет</option>'
 html +=                     '<option value="1">Офсетный x1</option>'
-html +=                     '<option value="2">Офсетный x2</option>'
 html +=                     '<option value="3">УФ-лакировка x1</option>'
-html +=                     '<option value="4">УФ-лакировка x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
@@ -368,7 +366,7 @@ function getPaperFormatBBMC(flag){
 }
 
 function getPaperWeightBBMC(){
-    getPaperWeightBBMC1();
+    getPaperWeightBBMC1(true);
     getPaperWeightBBMC2();
     getPaperWeightBBMC3();
     getPaperWeightBBMC4();
@@ -606,7 +604,7 @@ function calculateBBMC2() {
     var cuttingDownCost = 0;
     var numberOfFittingPaper = 0;
     var printSpeedRatio = 1;
-    var montage = Math.ceil(pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC2")));
+    var montage = pages / (getNumberOfProductsBBMC2() * getNumberOfPartsBBMC("paperFormatBBMC2"));
 
     jsonFP.some(function(elem) {
         
@@ -758,7 +756,7 @@ function calculateBBMC3() {
     var turnover = 0;
     var pantone = Number(document.getElementById('pantoneBBMC3').value);
     var colorfulnessBBMC = +document.getElementById("colorfulnessBBMC3").value;
-    var montage = Math.ceil(pages / (getNumberOfProductsBBMC3() * getNumberOfPartsBBMC("paperFormatBBMC3")));
+    var montage = pages / (getNumberOfProductsBBMC3() * getNumberOfPartsBBMC("paperFormatBBMC3"));
 
     if(colorfulnessBBMC == 0){
         face = 0;
@@ -1228,7 +1226,7 @@ function getRentabilityBBMC() {
 
 function setDefaulParam() {
     var bindingBBMC = +document.getElementById("bindingBBMC").value;
-
+    var varnishingBBMC1 = document.getElementById("varnishingBBMC1");
     switch (bindingBBMC) {
         case 0:
             var face = document.getElementById("faceBBMC1");
@@ -1237,7 +1235,7 @@ function setDefaulParam() {
             turnover.value = 0;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
-            
+            varnishingBBMC1.value = 1;
             break;
         case 1:
             var face = document.getElementById("faceBBMC1");
@@ -1246,7 +1244,7 @@ function setDefaulParam() {
             turnover.value = 1;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 1;
-            
+            varnishingBBMC1.value = 1;
             break;
         case 2:
             var face = document.getElementById("faceBBMC1");
@@ -1255,7 +1253,7 @@ function setDefaulParam() {
             turnover.value = 4;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
-           
+            varnishingBBMC1.value = 0;
             break;
         case 3: 
             var face = document.getElementById("faceBBMC1");
@@ -1264,7 +1262,7 @@ function setDefaulParam() {
             turnover.value = 4;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
-            
+            varnishingBBMC1.value = 0;
             break;
     } 
 
