@@ -40,7 +40,7 @@ html +=         '</div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label  class="description">Переплёт</label>'
 html +=             '<div>'
-html +=                 '<select id="bindingBBMC" name="bindingBBMC" onchange="setDefaulParam()"></select>'
+html +=                 '<select id="bindingBBMC" name="bindingBBMC" onchange="setDefaulParamBBMC()"></select>'
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
@@ -288,6 +288,12 @@ html +=         '<div class="col-md-12"><br/></div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=         '<div class="extremum-slide padding-none">'
+html +=             '<div class="col-md-4">'				
+html +=                 '<label class="description">Ламинат</label>'
+html +=                 '<div>'
+html +=                     '<select id="laminadeBBMC"  name="laminadeBBMC" onchange="getLaminadeBBMC()"></select>'
+html +=                 '</div> '
+html +=             '</div>'
 html +=         '</div>'
 html +=         '</div>'
 html +=     '</div>'
@@ -346,7 +352,9 @@ function BBMC() {
     getRentabilityBBMC();
 
     getStateElemBBMC(true);
-    setDefaulParam();
+    getLaminadeBBMC();
+    setDefaulParamBBMC();
+    
 }
 
 function fullCalculateBBMC(){
@@ -382,7 +390,7 @@ function calculateBBMC1() {
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
     var turnoverElem = document.getElementById('turnoverBBMC1');
-    
+    var laminade = document.getElementById('laminadeBBMC');
     var paperFormat = document.getElementById("paperFormatBBMC1").value;
     var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
     var varnishing = document.getElementById('varnishingBBMC1').value;
@@ -544,9 +552,12 @@ function calculateBBMC1() {
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
 
 
-
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
+    var jsonL = jsonObj["Laminade"][+laminade.value];
+    allCost += (numberOfPrintedSheets * jsonL.price );
+    checkLabel +="Стоимость Ламинирования: " + (numberOfPrintedSheets * jsonL.price ).toFixed(2) + "$" +  "<br />";
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
@@ -1224,9 +1235,21 @@ function getRentabilityBBMC() {
     }
 }
 
-function setDefaulParam() {
+function getLaminadeBBMC() {
+    var laminade = document.getElementById("laminadeBBMC"); //получаем элемент по его ID
+    if (laminade.options.length == 0){
+        var jsonL = jsonObj["Laminade"]; 
+        jsonL.forEach(function(elem) {
+            if(elem.id == "0" || elem.id == "1" || elem.id == "3" || elem.id == "5")
+            laminade.options[laminade.options.length] = new Option(elem.name, elem.id);
+        });
+    }
+    fullCalculateBBMC();
+}
+
+function setDefaulParamBBMC() {
     var bindingBBMC = +document.getElementById("bindingBBMC").value;
-    var varnishingBBMC1 = document.getElementById("varnishingBBMC1");
+    var laminade = document.getElementById("laminadeBBMC");
     switch (bindingBBMC) {
         case 0:
             var face = document.getElementById("faceBBMC1");
@@ -1235,7 +1258,7 @@ function setDefaulParam() {
             turnover.value = 0;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
-            varnishingBBMC1.value = 1;
+            laminade.value = 1;
             break;
         case 1:
             var face = document.getElementById("faceBBMC1");
@@ -1244,7 +1267,7 @@ function setDefaulParam() {
             turnover.value = 1;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 1;
-            varnishingBBMC1.value = 1;
+            laminade.value = 1;
             break;
         case 2:
             var face = document.getElementById("faceBBMC1");
@@ -1253,7 +1276,7 @@ function setDefaulParam() {
             turnover.value = 4;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
-            varnishingBBMC1.value = 0;
+            laminade.value = 0;
             break;
         case 3: 
             var face = document.getElementById("faceBBMC1");
@@ -1262,7 +1285,7 @@ function setDefaulParam() {
             turnover.value = 4;
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
-            varnishingBBMC1.value = 0;
+            laminade.value = 0;
             break;
     } 
 
