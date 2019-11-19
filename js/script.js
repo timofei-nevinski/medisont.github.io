@@ -294,6 +294,12 @@ html +=                 '<div>'
 html +=                     '<select id="laminadeBBMC"  name="laminadeBBMC" onchange="getLaminadeBBMC()"></select>'
 html +=                 '</div> '
 html +=             '</div>'
+html +=             '<div class="col-md-3">'				
+html +=                 '<label class="description">Термопереплёт</label>'
+html +=                 '<div>'
+html +=                     '<select id="thermalCoverBBMC" name="thermalCoverBBMC" onchange="getThermalCoverBBMC()"></select>'
+html +=                 '</div> '
+html +=             '</div>'
 html +=         '</div>'
 html +=         '</div>'
 html +=     '</div>'
@@ -353,6 +359,7 @@ function BBMC() {
 
     getStateElemBBMC(true);
     getLaminadeBBMC();
+    getThermalCoverBBMC();
     setDefaulParamBBMC();
     
 }
@@ -390,6 +397,7 @@ function calculateBBMC1() {
     var printedMachine = document.getElementById("printedMachineBBMC1").value;
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
     var turnoverElem = document.getElementById('turnoverBBMC1');
+    var binding = document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById('laminadeBBMC');
     var paperFormat = document.getElementById("paperFormatBBMC1").value;
     var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
@@ -401,7 +409,7 @@ function calculateBBMC1() {
     var face = Number(document.getElementById('faceBBMC1').value);
     var turnover = Number(document.getElementById('turnoverBBMC1').value);
     var pantone = Number(document.getElementById('pantoneBBMC1').value);
-
+    var thermalCover = document.getElementById('thermalCoverBBMC');
     var jsonPM = jsonObj["PrintingMachine"][printedMachine];
     var jsonFP = jsonObj["Paper"]["FittingPager"];
     var jsonCPF = jsonObj["Paper"]["Format"][paperFormat];
@@ -550,6 +558,16 @@ function calculateBBMC1() {
     checkLabel +="Стоимость бумаги: " + paperCost.toFixed(2) + "$" +  "<br />";
     
     var allCost = chemistryCost + cutCost + formCost + printingCost + paperCost;
+
+    if(binding == 0){
+        var jsonTC = jsonObj["ThermalCover"][+thermalCover.value];
+        allCost += (printing * jsonTC.price );
+        checkLabel +="Стоимость Термопереплёта: " + (printing * jsonTC.price ).toFixed(2) + "$" +  "<br />";
+    }
+    else if(binding = 2) {
+        allCost += (printing * jsonPP.brace * 2);
+        checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * 2).toFixed(2) + "$" +  "<br />";
+    }
 
 
     allCost += varnishingCost;
@@ -1247,9 +1265,22 @@ function getLaminadeBBMC() {
     fullCalculateBBMC();
 }
 
+function getThermalCoverBBMC() {
+    var thermalCover = document.getElementById("thermalCoverBBMC");
+    if (thermalCover.options.length == 0){
+        var jsonL = jsonObj["ThermalCover"];
+        jsonL.forEach(function(elem) {
+            thermalCover.options[thermalCover.options.length] = new Option(elem.name, elem.id);
+        });
+    }
+    fullCalculateBBMC();
+}
+
 function setDefaulParamBBMC() {
     var bindingBBMC = +document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById("laminadeBBMC");
+    var thermalCover = document.getElementById("thermalCoverBBMC");
+
     switch (bindingBBMC) {
         case 0:
             var face = document.getElementById("faceBBMC1");
@@ -1259,6 +1290,8 @@ function setDefaulParamBBMC() {
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
             laminade.value = 1;
+            thermalCover.disabled = false;
+            
             break;
         case 1:
             var face = document.getElementById("faceBBMC1");
@@ -1268,6 +1301,8 @@ function setDefaulParamBBMC() {
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 1;
             laminade.value = 1;
+            thermalCover.disabled = true;
+            thermalCover.value = 0;
             break;
         case 2:
             var face = document.getElementById("faceBBMC1");
@@ -1277,6 +1312,8 @@ function setDefaulParamBBMC() {
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
             laminade.value = 0;
+            thermalCover.disabled = true;
+            thermalCover.value = 0;
             break;
         case 3: 
             var face = document.getElementById("faceBBMC1");
@@ -1286,6 +1323,8 @@ function setDefaulParamBBMC() {
             var colorfulnessBBMC = document.getElementById("colorfulnessBBMC4");
             colorfulnessBBMC.value = 0;
             laminade.value = 0;
+            thermalCover.disabled = true;
+            thermalCover.value = 0;
             break;
     } 
 
