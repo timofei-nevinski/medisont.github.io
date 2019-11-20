@@ -1280,7 +1280,7 @@ function setDefaulParamBBMC() {
     var bindingBBMC = +document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById("laminadeBBMC");
     var thermalCover = document.getElementById("thermalCoverBBMC");
-    var formatBBMC = document.hetElementById("formatBBMC");
+    var formatBBMC = document.getElementById("formatBBMC");
     var width = 0;
     var length = 0;
     
