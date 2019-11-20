@@ -22,19 +22,19 @@ html +=         '</div>'
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Формат</label>'
 html +=             '<div>'
-html +=                 '<select id="formatBBMC" name="formatBBMC" onchange="getPaperFormatBBMC(false)"></select>'
+html +=                 '<select id="formatBBMC" name="formatBBMC" onchange="setDefaulParamBBMC()"></select>'
 html +=             '</div> '
 html +=         '</div>'	
 html +=         '<div class="col-md-2">'				
 html +=             '<label class="description">Ширина, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="widthBBMC" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)" maxlength="255"  value="200" /> '
+html +=                 '<input id="widthBBMC" class="element text medium" type="number" min="0" oninput="setDefaulParamBBMC()" maxlength="255"  value="200" /> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'	
 html +=         '<label class="description">Длинна, мм </label>'
 html +=             '<div>'
-html +=                 '<input id="lengthBBMC" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)" maxlength="255" value="200"/> '
+html +=                 '<input id="lengthBBMC" class="element text medium" type="number" min="0" oninput="setDefaulParamBBMC()" maxlength="255" value="200"/> '
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2">'				
@@ -1280,19 +1280,19 @@ function setDefaulParamBBMC() {
     var bindingBBMC = +document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById("laminadeBBMC");
     var thermalCover = document.getElementById("thermalCoverBBMC");
-    var formatBBMC = document.getElementById("formatBBMC");
+    var formatBBMC = +document.getElementById('formatBBMC').value;
     var width = 0;
     var length = 0;
     
-     if(formatBBMC != 6){
-            var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
-            width = jsonPBBMC.width;
-            length = jsonPBBMC.length;
-        }
-        else {
-            width = Number(document.getElementById('widthBBMC').value);
-            length = Number(document.getElementById('lengthBBMC').value);
-        }
+    if(formatBBMC != 6){
+        var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+        width = jsonPBBMC.width;
+        length = jsonPBBMC.length;
+    }
+    else {
+        width = Number(document.getElementById('widthBBMC').value);
+        length = Number(document.getElementById('lengthBBMC').value);
+    }
     
     switch (bindingBBMC) {
         case 0:
@@ -1304,8 +1304,13 @@ function setDefaulParamBBMC() {
             colorfulnessBBMC.value = 0;
             laminade.value = 1;
             thermalCover.disabled = false;
-            if(width<205 || length <290){
-                thermalCover.value = 1;
+            if(width >= 205){
+                if(length >= 290){
+                    thermalCover.value = 1;
+                }
+                else {
+                    thermalCover.value = 2;
+                }
             } else {
                 thermalCover.value = 2;
             }
