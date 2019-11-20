@@ -1280,7 +1280,20 @@ function setDefaulParamBBMC() {
     var bindingBBMC = +document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById("laminadeBBMC");
     var thermalCover = document.getElementById("thermalCoverBBMC");
-
+    var formatBBMC = document.hetElementById("formatBBMC");
+    var width = 0;
+    var length = 0;
+    
+     if(formatBBMC != 6){
+            var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+            width = jsonPBBMC.width;
+            length = jsonPBBMC.length;
+        }
+        else {
+            width = Number(document.getElementById('widthBBMC').value);
+            length = Number(document.getElementById('lengthBBMC').value);
+        }
+    
     switch (bindingBBMC) {
         case 0:
             var face = document.getElementById("faceBBMC1");
@@ -1291,7 +1304,11 @@ function setDefaulParamBBMC() {
             colorfulnessBBMC.value = 0;
             laminade.value = 1;
             thermalCover.disabled = false;
-            
+            if(width<205 || length <290){
+                thermalCover.value = 1;
+            } else {
+                thermalCover.value = 2;
+            }
             break;
         case 1:
             var face = document.getElementById("faceBBMC1");
