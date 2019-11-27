@@ -398,6 +398,7 @@ function calculateBBMC1() {
     var turnoverElem = document.getElementById('turnoverBBMC1');
     var binding = document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById('laminadeBBMC');
+    var formatBBMC = document.getElementById("formatBBMC").value;
     var paperFormat = document.getElementById("paperFormatBBMC1").value;
     var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
     var varnishing = document.getElementById('varnishingBBMC1').value;
@@ -563,23 +564,34 @@ function calculateBBMC1() {
         allCost += (printing * jsonTC.price );
         checkLabel +="Стоимость Термопереплёта: " + (printing * jsonTC.price ).toFixed(2) + "$" +  "<br />";
     }
-    else if(binding = 2) {
-        allCost += (printing * jsonPP.brace * 2);
-        checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * 2).toFixed(2) + "$" +  "<br />";
-
+    else if(binding == 1) {
         var jsonBind = jsonObj["Paper"]["BindingBBMC"];
         var priceCover = 0;
 
+        if(formatBBMC != 5){
+            var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
+            width = jsonPBBMC.width;
+            length = jsonPBBMC.length;
+        }
+        else {
+            width = Number(document.getElementById('widthBBMC').value);
+            length = Number(document.getElementById('lengthBBMC').value);
+        }
+
         if(width >= 205){
-            priceCover = jsonObj["Paper"]["BindingBBMC"][1][2].price
+            priceCover = jsonBind[1].cover[2].price
         } else if (width <= 105){
-            priceCover = jsonObj["Paper"]["BindingBBMC"][1][0].price
+            priceCover = jsonBind[1].cover[0].price
         } else {
-            priceCover = jsonObj["Paper"]["BindingBBMC"][1][1].price
+            priceCover = jsonBind[1].cover[1].price
         }
 
         allCost += printing * priceCover;
         checkLabel +="Стоимость крышек: " + (printing * priceCover).toFixed(2) + "$" +  "<br />";
+    }
+    else if(binding == 2) {
+        allCost += (printing * jsonPP.brace * 2);
+        checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * 2).toFixed(2) + "$" +  "<br />";
     }
 
     
