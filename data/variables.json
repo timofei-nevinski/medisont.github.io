@@ -447,7 +447,24 @@
                 "bend": 20,
                 "parting": 9,
                 "overmeasure": 3,
-                "spineRoot": 4
+                "spineRoot": 4,
+                "cover": [
+                    {
+                        "id": "0",
+                        "format": "A6",
+                        "price": 0.7
+                    },
+                    {
+                        "id": "1",
+                        "format": "A5",
+                        "price": 1
+                    },
+                    {
+                        "id": "2",
+                        "format": "A4",
+                        "price": 1.5
+                    }
+                ]
             },
             {
                 "id": "2",
@@ -1258,6 +1275,22 @@
             "price": 0.5
         }
     ],
+
+    "StitchingNotebooks": [
+        {
+            "id": "0",
+            "paperType": "Offset",
+            "price": 0.042,
+            "numberOfSheet": 32
+        },
+        {
+            "id": "1",
+            "paperType": "Glossy",
+            "price": 0.052,
+            "numberOfSheet": 16
+        }
+    ],
+
     "CuttingDown": [
         {
             "id": "0",

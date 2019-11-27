@@ -1,4 +1,3 @@
-//бланки
 var bbmcContainer = document.getElementById("bbmcContainer");
 var html = '<div class="row">'
 html +=     '<div class="col-md-8">'	
@@ -593,6 +592,7 @@ function calculateBBMC2() {
     var rentabilityId = Number(document.getElementById("rentabilityBBMC").value); 
     var paperFormat = document.getElementById("paperFormatBBMC2").value;
     var pages = +document.getElementById("pagesBBMC2").value;
+    var pages3 = +document.getElementById("pagesBBMC3").value;
     var cut = Number(document.getElementById('checkBBMCCuts2').textContent);
     var varnishing = document.getElementById('varnishingBBMC2').value;
     var paperWeightValue = document.getElementById("paperWeightBBMC2").value; //получаем value выбранного элемента option по ID элемента select 
@@ -755,6 +755,26 @@ function calculateBBMC2() {
 
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
+
+
+    if(binding = 2) {
+        var numberPagesInNotebooks = 0;
+        var priceOneNotebook = 0;
+        var jsonSN = jsonObj["StitchingNotebooks"];
+
+        if(paperType == "Offset"){
+            numberPagesInNotebooks = jsonSN[0].numberOfSheet;
+            priceOneNotebook = jsonSN[0].price;
+        } else {
+            numberPagesInNotebooks = jsonSN[1].numberOfSheet;
+            priceOneNotebook = jsonSN[1].price;
+        }
+        
+        numberOfNotebooks = Math.ceil((pages + pages3) / numberPagesInNotebooks) + 2;
+        checkLabel +="Количество тетрадей в книге: " + numberOfNotebooks + "<br />";
+        allCost += printing * numberOfNotebooks * priceOneNotebook;
+        checkLabel +="Стоимость сшивки тетрадей: " + (printing * numberOfNotebooks * priceOneNotebook).toFixed(2) + "$" + "<br />";
+    }
 
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
