@@ -341,42 +341,37 @@
         "BBMC": [
             {
                 "id": "0",
-                "name": "145x200",
-                "width": 145,
-                "length": 200
-            },
-            {
-                "id": "1",
-                "name": "105x290",
-                "width": 105,
-                "length": 290
-            },
-            {
-                "id": "2",
                 "name": "100x140",
                 "width": 100,
                 "length": 140
             },
             {
-                "id": "3",
+                "id": "1",
+                "name": "145x200",
+                "width": 145,
+                "length": 200
+            },
+            
+            {
+                "id": "2",
                 "name": "165x235",
                 "width": 165,
                 "length": 235
             },
             {
-                "id": "4",
+                "id": "3",
                 "name": "210x210",
                 "width": 210,
                 "length": 210
             },
             {
-                "id": "5",
+                "id": "4",
                 "name": "205x290",
                 "width": 205,
                 "length": 290
             },
             {
-                "id": "6",
+                "id": "5",
                 "name": "Другой",
                 "width": 0,
                 "length": 0

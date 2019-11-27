@@ -566,7 +566,23 @@ function calculateBBMC1() {
     else if(binding = 2) {
         allCost += (printing * jsonPP.brace * 2);
         checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * 2).toFixed(2) + "$" +  "<br />";
+
+        var jsonBind = jsonObj["Paper"]["BindingBBMC"];
+        var priceCover = 0;
+
+        if(width >= 205){
+            priceCover = jsonObj["Paper"]["BindingBBMC"][1][2].price
+        } else if (width <= 105){
+            priceCover = jsonObj["Paper"]["BindingBBMC"][1][0].price
+        } else {
+            priceCover = jsonObj["Paper"]["BindingBBMC"][1][1].price
+        }
+
+        allCost += printing * priceCover;
+        checkLabel +="Стоимость крышек: " + (printing * priceCover).toFixed(2) + "$" +  "<br />";
     }
+
+    
 
 
     allCost += varnishingCost;
@@ -1304,7 +1320,7 @@ function setDefaulParamBBMC() {
     var width = 0;
     var length = 0;
     
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -1431,7 +1447,7 @@ function getPaperFormatBBMC1(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 6){
+                    if(formatBBMC != 5){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1651,7 +1667,7 @@ function getPaperFormatBBMC2(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 6){
+                    if(formatBBMC != 5){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1813,7 +1829,7 @@ function getPaperFormatBBMC3(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 6){
+                    if(formatBBMC != 5){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -1973,7 +1989,7 @@ function getPaperFormatBBMC4(firstCall) {
             jsonPF.forEach(function(elem) { 
                 if(formatId == elem.id){
 
-                    if(formatBBMC != 6){
+                    if(formatBBMC != 5){
                         widthBBMC.disabled = true;
                         lengthBBMC.disabled = true;
                         
@@ -2123,7 +2139,7 @@ function numberProductPerSheetBBMC1(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2184,7 +2200,7 @@ function numberProductPerSheetBBMC2(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2228,7 +2244,7 @@ function numberProductPerSheetBBMC3(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2272,7 +2288,7 @@ function numberProductPerSheetBBMC4(widthPrintedArea, lengthPrintedArea, positio
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2490,7 +2506,7 @@ function getNumberOfProductsBBMC1() {
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2595,7 +2611,7 @@ function getNumberOfProductsBBMC2() {
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2701,7 +2717,7 @@ function getNumberOfProductsBBMC3() {
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
@@ -2807,7 +2823,7 @@ function getNumberOfProductsBBMC4() {
     var width = 0;
     var length = 0;
 
-    if(formatBBMC != 6){
+    if(formatBBMC != 5){
         var jsonPBBMC = jsonObj["Paper"]["BBMC"][formatBBMC];
         width = jsonPBBMC.width;
         length = jsonPBBMC.length;
