@@ -3182,7 +3182,7 @@ function getPrintedMachineBBMC4(){
         face = 4;
         turnover = 0;
     }
-    else if(colorfulnessBBMC == 2){
+    else if(colorfulnessBBMC == 3){
         face = 4;
         turnover = 4;
     }
