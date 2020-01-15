@@ -1,6 +1,6 @@
 var bbmcContainer = document.getElementById("bbmcContainer");
 var html = '<div class="row">'
-html +=     '<div class="col-md-8">'	
+html +=     '<div class="col-md-9">'	
 html +=         '<div class="col-md-12 padding-none">'				
 html +=             '<div class="col-md-6">'
 html +=                 '<h2>Брошюрованые издания</h2>'
@@ -12,43 +12,43 @@ html +=         '</div>'
 html +=         '<div class="col-md-12">'
 html +=             '<hr style="margin:0px; margin-top:10px;"/>'
 html +=         '</div>'	
-html +=         '<div class="col-md-2">'				
+html +=         '<div class="col-md-2 col-padding-min">'				
 html +=             '<label class="description">Тираж, шт </label>'
 html +=             '<div>'
 html +=                 '<input id="printingBBMC" class="element text medium" type="number" pattern="\d+" min="0" oninput="fullCalculateBBMC()"  maxlength="255"  value="500"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'				
+html +=         '<div class="col-md-2 col-padding-min">'				
 html +=             '<label class="description">Формат</label>'
 html +=             '<div>'
 html +=                 '<select id="formatBBMC" name="formatBBMC" onchange="setDefaulParamBBMC()"></select>'
 html +=             '</div> '
 html +=         '</div>'	
-html +=         '<div class="col-md-2">'				
+html +=         '<div class="col-md-2 col-padding-min">'				
 html +=             '<label class="description">Ширина, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="widthBBMC" class="element text medium" type="number" min="0" oninput="setDefaulParamBBMC()" maxlength="255"  value="200" /> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
+html +=         '<div class="col-md-2 col-padding-min">'	
 html +=         '<label class="description">Длинна, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="lengthBBMC" class="element text medium" type="number" min="0" oninput="setDefaulParamBBMC()" maxlength="255" value="200"/> '
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'				
+html +=         '<div class="col-md-2 col-padding-min">'				
 html +=             '<label  class="description">Переплёт</label>'
 html +=             '<div>'
 html +=                 '<select id="bindingBBMC" name="bindingBBMC" onchange="setDefaulParamBBMC()"></select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-2">'	
-html +=             '<label class="description">Припуски, мм </label>'
+html +=         '<div class="col-md-1 col-padding-min">'	
+html +=             '<label class="description">Припуски</label>'
 html +=             '<div>'
 html +=                 '<input id="allowanceBBMC" class="element text medium" type="number" min="0" oninput="getPaperFormatBBMC(false)" maxlength="255" value="5"/> '
 html +=             '</div>'
 html +=         '</div>'	
-html +=         '<div class="col-md-2">'
+html +=         '<div class="col-md-1 col-padding-min">'
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
 html +=                 '<select id="rentabilityBBMC" name="rentabilityBBMC" onchange="fullCalculateBBMC()"></select>'
@@ -93,7 +93,12 @@ html +=                     '<option value="3">УФ-лакировка x1</optio
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-12">'				
+html +=             '<label class="description">Ламинат</label>'
+html +=             '<div>'
+html +=                 '<select id="laminadeBBMC"  name="laminadeBBMC" onchange="getLaminadeBBMC()"></select>'
+html +=             '</div> '
+html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description">Бумага</label>'
 html +=             '<div>'
@@ -149,7 +154,12 @@ html +=                     '<option value="2">Офсетный x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-12">'
+html +=             '<label class="description"><br/></label>'				
+html +=             '<div>'
+html +=                 '<input class="hidden-input" readonly/>'
+html +=             '</div> '
+html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
@@ -206,7 +216,12 @@ html +=                     '<option value="2">Офсетный x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-12">'
+html +=             '<label class="description"><br/></label>'				
+html +=             '<div>'
+html +=                 '<input class="hidden-input" readonly/>'
+html +=             '</div> '
+html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
@@ -263,7 +278,12 @@ html +=                     '<option value="2">Офсетный x2</option>'
 html +=                     '</select>'
 html +=             '</div> '
 html +=         '</div>'
-html +=         '<div class="col-md-12"></div>'
+html +=         '<div class="col-md-12">'
+html +=             '<label class="description"><br/></label>'				
+html +=             '<div>'
+html +=                 '<input class="hidden-input" readonly/>'
+html +=             '</div> '
+html +=         '</div>'
 html +=         '<div class="col-md-12">'				
 html +=             '<label class="description"><br/></label>'
 html +=             '<div>'
@@ -286,14 +306,16 @@ html +=         '</div>'
 html +=         '<div class="col-md-12"><br/></div>'
 html +=         '<div class="col-md-12 block">'				
 html +=             '<h3 class="extremum-click">Послепечатная обработка<i class="fas fa-chevron-down arrow"></i></h3>'
-html +=         '<div class="extremum-slide padding-none">'
-html +=             '<div class="col-md-4">'				
-html +=                 '<label class="description">Ламинат</label>'
-html +=                 '<div>'
-html +=                     '<select id="laminadeBBMC"  name="laminadeBBMC" onchange="getLaminadeBBMC()"></select>'
+html +=         '<div class="extremum-slide padding-none ">'
+html +=             '<div class="col-md-12 padding-none">'
+html +=                 '<div class="col-md-4">'				
+html +=                     '<label><input name="braceBBMC" class="col-md-1 checkbox"  type="checkbox" onchange="getStateElemBBMC(this)"><span>Скобы</span> </label>'
+html +=                 '</div>'
+html +=                 '<div class="col-md-1 padding-none">'
+html +=                     '<input id="braceBBMC" class="element text medium" type="number" min="0" oninput="fullCalculateBBMC()"  maxlength="255" value="0" disabled="true"/> '
 html +=                 '</div> '
-html +=             '</div>'
-html +=             '<div class="col-md-3">'				
+html +=             '</div> '
+html +=             '<div class="col-md-3 display-none">'				
 html +=                 '<label class="description">Термопереплёт</label>'
 html +=                 '<div>'
 html +=                     '<select id="thermalCoverBBMC" name="thermalCoverBBMC" onchange="getThermalCoverBBMC()"></select>'
@@ -302,7 +324,7 @@ html +=             '</div>'
 html +=         '</div>'
 html +=         '</div>'
 html +=     '</div>'
-html +=         '<div class="col-md-4 padding-none">'
+html +=         '<div class="col-md-3 padding-none">'
 html +=             '<div class="col-md-12 block">'				
 html +=                 '<h3 class="extremum-click">Подробная информация<i class="fas fa-chevron-down arrow"></i></h3>'
 html +=             '<div class="extremum-slide"><br/>'
@@ -335,8 +357,6 @@ bbmcContainer.innerHTML = html;
 function BBMC() {
     getBBMCFormat();
     getBindingBBMC();
-
-    
 
     getPaperWeightBBMC2();
     getPrintedMachineBBMC2();
@@ -386,6 +406,16 @@ function getPaperWeightBBMC(){
     getPaperWeightBBMC4();
 }
 
+var cost1 = 0;
+var cost2 = 0;
+var cost3 = 0;
+var cost4 = 0;
+
+function finalCost(c1, c2, c3, c4){
+    var finalCost = document.getElementById('final-costBBMC');
+    var cost = +c1 + +c2 + +c3 + +c4;
+    finalCost.innerHTML = "Цена: " + cost + " руб.";
+}
 
 
 function calculateBBMC1() {
@@ -399,6 +429,7 @@ function calculateBBMC1() {
     var binding = document.getElementById("bindingBBMC").value;
     var laminade = document.getElementById('laminadeBBMC');
     var formatBBMC = document.getElementById("formatBBMC").value;
+    var brace = document.getElementById('braceBBMC');
     var paperFormat = document.getElementById("paperFormatBBMC1").value;
     var cut = Number(document.getElementById('checkBBMCCuts1').textContent);
     var varnishing = document.getElementById('varnishingBBMC1').value;
@@ -588,14 +619,39 @@ function calculateBBMC1() {
 
         allCost += printing * priceCover;
         checkLabel +="Стоимость крышек: " + (printing * priceCover).toFixed(2) + "$" +  "<br />";
+    } 
+    else if (+binding == 2){
+        if(+binding == 2 && brace.disabled == false) {
+            allCost += (printing * jsonPP.brace * +brace.value);
+            checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * +brace.value).toFixed(2) + "$" +  "<br />";
+        }
+        else {
+            let braceCheck = document.querySelector('input[name=braceBBMC]');
+            braceCheck.checked = true;
+            brace.disabled = false;
+            brace.value = 2;
+        }
     }
-    else if(binding == 2) {
-        allCost += (printing * jsonPP.brace * 2);
-        checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * 2).toFixed(2) + "$" +  "<br />";
+    
+    if (+binding == 2 && brace.disabled == true){
+        let braceCheck = document.querySelector('input[name=braceBBMC]');
+        braceCheck.checked = false;
+        brace.disabled = true;
+        brace.value = 0;
     }
+
+     else if(+binding != 2 && brace.disabled == false) {
+        let braceCheck = document.querySelector('input[name=braceBBMC]');
+        braceCheck.checked = true;
+        brace.disabled = false;
+        allCost += (printing * jsonPP.brace * +brace.value);
+        checkLabel +="Стоимость Скоб: " + (printing * jsonPP.brace * +brace.value).toFixed(2) + "$" +  "<br />";
+    }
+    
 
     
 
+     
 
     allCost += varnishingCost;
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
@@ -606,7 +662,8 @@ function calculateBBMC1() {
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
-
+    cost1 = ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed()
+    finalCost(cost1, cost2, cost3, cost4);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -807,7 +864,8 @@ function calculateBBMC2() {
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
-
+    cost2 = ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed()
+    finalCost(cost1, cost2, cost3, cost4);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -912,7 +970,11 @@ function calculateBBMC3() {
     if(cutCost < jsonC.minCutPrice){
         cutCost = jsonC.minCutPrice;
     }
+    pages == 0 ? cutCost=0: ""; 
+
     checkLabel +="Стоимость резки: " + cutCost + "$" +  "<br />";
+
+    
 
     if(varnishing == "3"){
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500);
@@ -993,7 +1055,8 @@ function calculateBBMC3() {
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
-
+    cost3 = ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed()
+    finalCost(cost1, cost2, cost3, cost4);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -1186,7 +1249,8 @@ function calculateBBMC4() {
 
     checkLabel +="Общая стоимость: " + (allCost).toFixed()+ "$" +  "<br />";
     checkLabel +="Общая стоимость, руб: " + ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed() + " BYN" +  "<br />";
-
+    cost4 = ((allCost * (jsonObjDollar * jsonC.dollarCoeff))).toFixed()
+    finalCost(cost1, cost2, cost3, cost4);
 
     labelCheck.innerHTML = checkLabel;
 }
@@ -1197,6 +1261,8 @@ function getStateElemBBMC(elem){
         if(elem.checked) { 
             if(elem.name == "stampBBMC") {
                 elemField.disabled = false; elemField.value = 0;
+            } else if(elem.name == "braceBBMC") {
+                elemField.disabled = false; elemField.value = 2;
             } 
             else {
                 elemField.disabled = false; elemField.value = 1;
@@ -1204,10 +1270,7 @@ function getStateElemBBMC(elem){
         } else {
             elemField.disabled = true; elemField.value = 0;
         }
-        calculateBBMC1();
-        calculateBBMC2(); 
-        calculateBBMC3(); 
-        calculateBBMC4();  
+        fullCalculateBBMC(); 
     };
 }
 
