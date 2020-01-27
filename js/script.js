@@ -669,7 +669,7 @@ function calculateBBMC1() {
 }
 
 function calculateBBMC2() {
-
+    var binding = +document.getElementById('bindingBBMC').value;
     var labelCheck = document.getElementById('checkBBMC2');
     var printing = Number(document.getElementById('printingBBMC').value);
     var numberOfPrintedSheets = Math.ceil(printing / getNumberOfProductsBBMC2());
@@ -730,7 +730,7 @@ function calculateBBMC2() {
             return true;
         }
     });
-    numberOfPrintedSheets *= 4;
+    montage *=2;
     numberOfPrintedSheets *= montage;
     
     checkLabel += "Режем на: " + getNumberOfPartsBBMC("paperFormatBBMC2")+ "<br />";
@@ -842,7 +842,7 @@ function calculateBBMC2() {
     checkLabel +="Стоимость УФ-лакировки: " + varnishingCost.toFixed(2) + "$" + "<br />";
 
 
-    if(binding = 2) {
+    if(binding == 2) {
         var numberPagesInNotebooks = 0;
         var priceOneNotebook = 0;
         var jsonSN = jsonObj["StitchingNotebooks"];
