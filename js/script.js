@@ -31,7 +31,7 @@ html +=                 '<input id="widthBBMC" class="element text medium" type=
 html +=             '</div> '
 html +=         '</div>'
 html +=         '<div class="col-md-2 col-padding-min">'	
-html +=         '<label class="description">Длинна, мм </label>'
+html +=         '<label class="description">Длина, мм </label>'
 html +=             '<div>'
 html +=                 '<input id="lengthBBMC" class="element text medium" type="number" min="0" oninput="setDefaulParamBBMC()" maxlength="255" value="200"/> '
 html +=             '</div> '
@@ -730,8 +730,8 @@ function calculateBBMC2() {
             return true;
         }
     });
-
-    numberOfPrintedSheets *= (montage * 2);
+    numberOfPrintedSheets *= 4;
+    numberOfPrintedSheets *= montage;
     
     checkLabel += "Режем на: " + getNumberOfPartsBBMC("paperFormatBBMC2")+ "<br />";
     checkLabel += "Количесвто изделий на листе: " + getNumberOfProductsBBMC2()+ "<br />";
@@ -771,7 +771,7 @@ function calculateBBMC2() {
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
-    numberOfForms = (face + turnover + varnishing) * montage;
+    numberOfForms = Math.ceil((face + turnover + varnishing) * montage);
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
     
@@ -903,7 +903,7 @@ function calculateBBMC3() {
         face = 4;
         turnover = 4;
     }
-    else if(colorfulnessBBMC == 2){
+    else if(colorfulnessBBMC == 3){
         face = 2;
         turnover = 2;
     }
@@ -982,7 +982,7 @@ function calculateBBMC3() {
         numberOfPrintedSheets <= 500 ? varnishingCost = jsonPP.UVVCostBefore500 * 2 : varnishingCost = (((numberOfPrintedSheets - 500) * jsonPP.UVVCostAfter500) + jsonPP.UVVCostBefore500) * 2;
     }
     varnishing == "1" || varnishing == "2" ? varnishing = Number(varnishing) : varnishing = 0
-    numberOfForms = (face + turnover + varnishing) * montage;
+    numberOfForms = Math.ceil((face + turnover + varnishing) * montage);
 
     checkLabel +="Количество форм : " + numberOfForms +  "<br />";
     
@@ -3159,7 +3159,7 @@ function getPrintedMachineBBMC3(){
         face = 4;
         turnover = 4;
     }
-    else if(colorfulnessBBMC == 2){
+    else if(colorfulnessBBMC == 3){
         face = 2;
         turnover = 2;
     }
