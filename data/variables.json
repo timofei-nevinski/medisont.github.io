@@ -1135,7 +1135,7 @@
         "gluingPVAMore250": 0.12,
         "insertSheetsInBlock": 0.016,
         "cutting": 0.21,
-        "numeration": 0.05,
+        "numeration": 0.015,
         "numberNumeration": 0.00728,
         "UVVCostBefore500": 60,
         "UVVCostAfter500": 0.07,
