@@ -11335,7 +11335,7 @@ var numInput = document.querySelectorAll('input');
 numInput.forEach(function(elem) {
     elem.addEventListener('input', function(){
         if(elem.hasAttribute('step')){
-            var num = this.value.match(/^[0-9]+*([,.][0-9]+*)?$/);
+            var num = this.value;
             if (num === null) {
                 // If we have no match, value will be empty.
                 this.value = "";
