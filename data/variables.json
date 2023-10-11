@@ -541,7 +541,7 @@
             "id": "0",
             "name": "Офсетная 65 г.",
             "weight": 65,
-            "price": 1.18,
+            "price": 1.25,
             "format": "2,3,5,6,7",
             "depth": 0.043
           },
@@ -549,7 +549,7 @@
             "id": "1",
             "name": "Офсетная 80 г.",
             "weight": 80,
-            "price": 1.18,
+            "price": 1.25,
             "format": "2,3,5,6,7",
             "depth": 0.05
             
@@ -558,7 +558,7 @@
             "id": "2",
             "name": "Офсетная 100 г.",
             "weight": 100,
-            "price": 1.19,
+            "price": 2,07,
             "format": "2,3,4,5,6,7"
             
           },
@@ -566,7 +566,7 @@
             "id": "3",
             "name": "Офсетная 120 г.",
             "weight": 120,
-            "price": 1.19,
+            "price": 2,07,
             "format": "2,3,4,5,6,7"
             
           },
@@ -574,7 +574,7 @@
             "id": "4",
             "name": "Офсетная 160 г.",
             "weight": 160,
-            "price": 1.19,
+            "price": 2,07,
             "format": "2,3,4,5,6,7"
             
           },
@@ -582,7 +582,7 @@
             "id": "5",
             "name": "Офсетная 200 г.",
             "weight": 200,
-            "price": 1.2,
+            "price": 2,07,
             "format": "2,3,4,5,6,7"
             
           }
@@ -593,7 +593,7 @@
                 "id": "0",
                 "name": "Глянцевая 90 г.",
                 "weight": 90,
-                "price": 1.35,
+                "price": 1.85,
                 "format": "5,7",
                 "depth": 0.042
             },
@@ -601,7 +601,7 @@
                 "id": "1",
                 "name": "Глянцевая 115 г.",
                 "weight": 115,
-                "price": 1.22,
+                "price": 1,8,
                 "format": "5,7",
                 "depth": 0.044
             },
@@ -609,7 +609,7 @@
                 "id": "2",
                 "name": "Глянцевая 130 г.",
                 "weight": 130,
-                "price": 1.23,
+                "price": 1.8,
                 "format": "5,7",
                 "depth": 0.051
             },
@@ -617,7 +617,7 @@
                 "id": "3",
                 "name": "Глянцевая 150 г.",
                 "weight": 150,
-                "price": 1.27,
+                "price": 1.8,
                 "format": "5,7",
                 "depth": 0.07
             },
@@ -625,14 +625,14 @@
                 "id": "4",
                 "name": "Глянцевая 170 г.",
                 "weight": 170,
-                "price": 1.28,
+                "price": 1.8,
                 "format": "5,7"
             },
             {
                 "id": "5",
                 "name": "Глянцевая 200 г.",
                 "weight": 200,
-                "price": 1.34,
+                "price": 1.86,
                 "format": "5,7",
                 "depth": 0.073
             },
@@ -640,21 +640,21 @@
                 "id": "6",
                 "name": "Глянцевая 250 г.",
                 "weight": 250,
-                "price": 1.34,
+                "price": 1.86,
                 "format": "5,7"
             },
             {
                 "id": "7",
                 "name": "Глянцевая 300 г.",
                 "weight": 300,
-                "price": 1.45,
+                "price": 1.86,
                 "format": "5,7"
             },
             {
                 "id": "8",
                 "name": "Глянцевая 350 г.",
                 "weight": 350,
-                "price": 1.45,
+                "price": 2,28,
                 "format": "5,7"
             }
         ],
@@ -664,63 +664,63 @@
                 "id": "0",
                 "name": "Матовая 90 г.",
                 "weight": 90,
-                "price": 1.35,
+                "price": 1.85,
                 "format": "5,7"
             },
             {
                 "id": "1",
                 "name": "Матовая 115 г.",
                 "weight": 115,
-                "price": 1.22,
+                "price": 1.8,
                 "format": "5,7"
             },
             {
                 "id": "2",
                 "name": "Матовая 130 г.",
                 "weight": 130,
-                "price": 1.23,
+                "price": 1.8,
                 "format": "5,7"
             },
             {
                 "id": "3",
                 "name": "Матовая 150 г.",
                 "weight": 150,
-                "price": 1.27,
+                "price": 1.8,
                 "format": "5,7"
             },
             {
                 "id": "4",
                 "name": "Матовая 170 г.",
                 "weight": 170,
-                "price": 1.28,
+                "price": 1.8,
                 "format": "5,7"
             },
             {
                 "id": "5",
                 "name": "Матовая 200 г.",
                 "weight": 200,
-                "price": 1.34,
+                "price": 1.86,
                 "format": "5,7"
             },
             {
                 "id": "6",
                 "name": "Матовая 250 г.",
                 "weight": 250,
-                "price": 1.34,
+                "price": 1.86,
                 "format": "5,7"
             },
             {
                 "id": "7",
                 "name": "Матовая 300 г.",
                 "weight": 300,
-                "price": 1.45,
+                "price": 1.86,
                 "format": "5,7"
             },
             {
                 "id": "8",
                 "name": "Матовая 350 г.",
                 "weight": 350,
-                "price": 1.45,
+                "price": 2,28,
                 "format": "5,7"
             }
         ],
@@ -729,7 +729,7 @@
                 "id": "0",
                 "name": "Самоклеящаяся бумага",
                 "weight": 190,
-                "price": 4.77,
+                "price": 4.415,
                 "format": "0,1,10"
             }
         ],
@@ -768,42 +768,42 @@
                 "id": "0",
                 "name": "Картон х1 200 г.",
                 "weight": 200,
-                "price": 1.75,
+                "price": 2.0,
                 "format": "5,7"
             },
             {
                 "id": "1",
                 "name": "Картон х1 225 г.",
                 "weight": 225,
-                "price": 1.75,
+                "price": 2.0,
                 "format": "5,7"
             },
             {
                 "id": "2",
                 "name": "Картон х1 250 г.",
                 "weight": 250,
-                "price": 1.75,
+                "price": 2.0,
                 "format": "5,7"
             },
             {
                 "id": "3",
                 "name": "Картон х1 270 г.",
                 "weight": 270,
-                "price": 1.75,
+                "price": 2.0,
                 "format": "5,7"
             },
             {
                 "id": "4",
                 "name": "Картон х2 270 г.",
                 "weight": 270,
-                "price": 2.6,
+                "price": 3.6,
                 "format": "5,7"
             },
             {
                 "id": "5",
                 "name": "Картон х2 300 г.",
                 "weight": 300,
-                "price": 2.6,
+                "price": 3.6,
                 "format": "5,7"
             }
         ],
@@ -811,22 +811,22 @@
             {
                 "id": "0",
                 "name": "DL (евро)",
-                "price": 0.02
+                "price": 0.023
             },
             {
                 "id": "1",
                 "name": "С5",
-                "price": 0.024
+                "price": 0.035
             },
             {
                 "id": "2",
                 "name": "С4",
-                "price": 0.055
+                "price": 0.07
             },
             {
                 "id": "3",
                 "name": "С6",
-                "price": 0.02
+                "price": 0.023
             }
         ],
         "CuttingEnvelopes": [
@@ -899,7 +899,7 @@
             {
                 "id": "0",
                 "name": "Каппа",
-                "price": 1.6,
+                "price": 2.53,
                 "format": "6"
             }
         ],
@@ -974,7 +974,7 @@
             "sideField": 5,
             "chemistryPrice": 1.5,
             "amortization": 1.5,
-            "formPrice": 1.7,
+            "formPrice": 2.4,
             "priceOneHour": 57,
             "printSpeed": 8500,
             "printSpeedRatio": 0.75,
@@ -1017,7 +1017,7 @@
             "sideField": 5,
             "chemistryPrice": 1.2,
             "amortization": 1.2,
-            "formPrice": 1.7,
+            "formPrice": 2.4,
             "priceOneHour": 38,
             "printSpeed": 7200,
             "printSpeedRatio": 0.75,
@@ -1129,7 +1129,7 @@
         "grommet": 0.02,
         "rounding": 0.001,
         "brace": 0.012,
-        "folding": 0.005,
+        "folding": 0.015,
         "compilation": 0.004,
         "gluingPVA": 0.1,
         "gluingPVAMore250": 0.12,
@@ -1169,32 +1169,32 @@
         {
             "id": "1",
             "name": "Глянцевый х1",
-            "price": 0.08
+            "price": 0.1
         },
         {
             "id": "2",
             "name": "Глянцевый х2",
-            "price": 0.16
+            "price": 0.2
         },
         {
             "id": "3",
             "name": "Матовый х1",
-            "price": 0.1
+            "price": 0.115
         },
         {
             "id": "4",
             "name": "Матовый х2",
-            "price": 0.2
+            "price": 0.23
         },
         {
             "id": "5",
             "name": "Сатин х1",
-            "price": 0.15
+            "price": 0.25
         },
         {
             "id": "6",
             "name": "Сатин х2",
-            "price": 0.3
+            "price": 0.5
         }
     ],
     "Spring": [
@@ -1262,12 +1262,12 @@
         {
             "id": "1",
             "name": "x1",
-            "price": 0.25
+            "price": 0.3
         },
         {
             "id": "2",
             "name": "x2",
-            "price": 0.5
+            "price": 0.6
         }
     ],
 
@@ -1275,13 +1275,13 @@
         {
             "id": "0",
             "paperType": "Offset",
-            "price": 0.042,
+            "price": 0.058,
             "numberOfSheet": 32
         },
         {
             "id": "1",
             "paperType": "Glossy",
-            "price": 0.052,
+            "price": 0.078,
             "numberOfSheet": 16
         }
     ],
@@ -1290,152 +1290,152 @@
         {
             "id": "0",
             "before": 100,
-            "price": 25
+            "price": 24
         },
         {
             "id": "1",
             "before": 200,
-            "price": 30
+            "price": 29
         },
         {
             "id": "2",
             "before": 300,
-            "price": 35
+            "price": 34
         },
         {
             "id": "3",
             "before": 400,
-            "price": 40
+            "price": 38
         },
         {
             "id": "4",
             "before": 500,
-            "price": 48
+            "price": 46
         },
         {
             "id": "5",
             "before": 1000,
-            "price": 78
+            "price": 75
         },
         {
             "id": "6",
             "before": 1500,
-            "price": 84
+            "price": 81
         },
         {
             "id": "7",
             "before": 2000,
-            "price": 114
+            "price": 109
         },
         {
             "id": "8",
             "before": 2500,
-            "price": 144
+            "price": 138
         },
         {
             "id": "9",
             "before": 3000,
-            "price": 174
+            "price": 167
         },
         {
             "id": "10",
             "before": 3500,
-            "price": 186
+            "price": 179
         },
         {
             "id": "11",
             "before": 4000,
-            "price": 210
+            "price": 202
         },
         {
             "id": "12",
             "before": 4500,
-            "price": 234
+            "price": 225
         },
         {
             "id": "13",
             "before": 5000,
-            "price": 258
+            "price": 248
         },
         {
             "id": "14",
             "before": 5500,
-            "price": 270
+            "price": 259
         },
         {
             "id": "15",
             "before": 6000,
-            "price": 282
+            "price": 271
         },
         {
             "id": "16",
             "before": 6500,
-            "price": 306
+            "price": 294
         },
         {
             "id": "17",
             "before": 7000,
-            "price": 330
+            "price": 317
         },
         {
             "id": "18",
             "before": 7500,
-            "price": 354
+            "price": 340
         },
         {
             "id": "19",
             "before": 8000,
-            "price": 366
+            "price": 352
         },
         {
             "id": "20",
             "before": 8500,
-            "price": 378
+            "price": 363
         },
         {
             "id": "21",
             "before": 9000,
-            "price": 390
+            "price": 375
         },
         {
             "id": "22",
             "before": 9500,
-            "price": 402
+            "price": 386
         },
         {
             "id": "23",
             "before": 10000,
-            "price": 414
+            "price": 398
         },
         {
             "id": "24",
             "before": 15000,
-            "price": 708
+            "price": 680
         },
         {
             "id": "25",
             "before": 20000,
-            "price": 948
+            "price": 910
         },
         {
             "id": "26",
             "before": 25000,
-            "price": 1176
+            "price": 1129
         },
         {
             "id": "27",
             "before": 30000,
-            "price": 1536
+            "price": 1475
         },
         {
             "id": "28",
             "before": 40000,
-            "price": 1896
+            "price": 1821
         },
         {
             "id": "29",
             "before": 50000,
-            "price": 2376
+            "price": 2282
         }
     ]
 }
