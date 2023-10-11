@@ -11007,7 +11007,7 @@ request.responseType = 'json';
 request.send();
 
 var jsonObjDollar = "";
-var requestURLDollar = 'https://www.nbrb.by/API/ExRates/Rates/USD?ParamMode=2';
+var requestURLDollar = 'https://api.nbrb.by/exrates/rates/USD?parammode=2';
 var request1 = new XMLHttpRequest();
 var numberOfPS = 0;
 
@@ -11335,7 +11335,7 @@ var numInput = document.querySelectorAll('input');
 numInput.forEach(function(elem) {
     elem.addEventListener('input', function(){
         if(elem.hasAttribute('step')){
-            var num = this.value.match(/^[0-9]+*([,.][0-9]+*)?$/);
+            var num = this.value;
             if (num === null) {
                 // If we have no match, value will be empty.
                 this.value = "";
